@@ -1,0 +1,15 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Core
+Bundle-SymbolicName: org.emftrace.akm.core
+Bundle-Version: 1.0.0.qualifier
+Bundle-Activator: org.emftrace.akm.core.Activator
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.core.runtime,
+ org.emftrace.metamodel;bundle-version="0.4.0",
+ org.emftrace.core;bundle-version="0.4.0",
+ org.emftrace.ui;bundle-version="0.4.0"
+Bundle-ActivationPolicy: lazy
+Import-Package: com.ibm.icu.text;version="50.1.1",
+ junit.framework;version="4.11.0"
+Export-Package: org.emftrace.akm.core.cache
