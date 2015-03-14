@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<model:Screen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://wireframesketcher.com/1.0/model.ecore">
+  <widgets xsi:type="model:Panel" id="1" x="16" y="240" width="937" height="425" measuredWidth="937" measuredHeight="425" alpha="0" verticalScrollbar="true"/>
+  <widgets xsi:type="model:Text" id="2" x="16" y="112" text="Ein weiterer Filter erlaubt das Ein- bzw. Ausblenden bestimmter Typen von Vor- und Nachteilen:&#xD;&#xA;- &quot;Feature-based benefits&quot; bzw. &quot;Concern-based benefits&quot;&#xD;&#xA;- &quot;Feature-based Drawbacks&quot; bzw. &quot;Concern-based drawbacks&quot;&#xD;&#xA;&#xD;&#xA;Hier angewendeter Filter: Concern-based benefits werden ausgeblendet (Benefit 3)" measuredWidth="632" measuredHeight="104" lineHeight="1.5">
+    <font size="14px"/>
+  </widgets>
+  <widgets xsi:type="model:Shape" id="3" x="313" y="255" width="137" height="57" text="Technology Solution 1" measuredWidth="137" measuredHeight="57" shapeType="rectangle">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:Shape" id="4" x="313" y="375" width="137" height="69" text="Feature 2" measuredWidth="137" measuredHeight="69" foreground="#00118a" shapeType="rectangle-round">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:Arrow" id="5" x="377" y="311" width="8" height="65" text="contains" measuredWidth="8" measuredHeight="65" left="false" right="true"/>
+  <widgets xsi:type="model:Combo" id="6" x="776" y="255" text="Filter Feature Type" measuredWidth="124" measuredHeight="23">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:VLine" id="7" x="728" y="240" height="425" measuredWidth="6" measuredHeight="425"/>
+  <widgets xsi:type="model:HLine" id="8" x="728" y="392" width="210" measuredWidth="210" measuredHeight="6"/>
+  <widgets xsi:type="model:Label" id="9" x="16" y="24" text="Benefits &amp; Drawbacks Exploration" measuredWidth="642" measuredHeight="67">
+    <font size="43px" underline="true"/>
+  </widgets>
+  <widgets xsi:type="model:WidgetGroup" id="10" x="168" y="480" measuredWidth="169" measuredHeight="169">
+    <widgets xsi:type="model:Shape" id="11" width="169" height="169" measuredWidth="169" measuredHeight="169" shapeType="rectangle-rounded">
+      <font/>
+    </widgets>
+    <widgets xsi:type="model:Label" id="12" x="56" y="9" text="Benefits" measuredWidth="48" measuredHeight="23">
+      <font underline="true"/>
+    </widgets>
+    <widgets xsi:type="model:Tree" id="13" x="16" y="31" width="126" height="131" text="[+] Benefit 1&#xA;[+] Benefit 2&#xA;" measuredWidth="126" measuredHeight="131" border="false">
+      <items x="0" y="5" width="126" height="21" text="[+] Benefit 1"/>
+      <items x="0" y="26" width="126" height="21" text="[+] Benefit 2"/>
+      <font/>
+    </widgets>
+  </widgets>
+  <widgets xsi:type="model:WidgetGroup" id="14" x="440" y="480" measuredWidth="169" measuredHeight="169">
+    <widgets xsi:type="model:Shape" id="15" width="169" height="169" measuredWidth="169" measuredHeight="169" shapeType="rectangle-rounded">
+      <font/>
+    </widgets>
+    <widgets xsi:type="model:Label" id="16" x="48" y="9" text="Drawbacks" measuredWidth="63" measuredHeight="23">
+      <font underline="true"/>
+    </widgets>
+    <widgets xsi:type="model:Tree" id="17" x="16" y="31" width="126" height="131" text="[+] Drawback 1&#xA;[+] Drawback 2&#xA;[-] Drawback 3&#xA;-[_] Description" measuredWidth="126" measuredHeight="131" border="false">
+      <items x="0" y="5" width="126" height="21" text="[+] Drawback 1"/>
+      <items x="0" y="26" width="126" height="21" text="[+] Drawback 2"/>
+      <items x="0" y="47" width="126" height="21" text="[-] Drawback 3"/>
+      <items x="0" y="68" width="126" height="21" text="-[_] Description"/>
+      <font/>
+    </widgets>
+  </widgets>
+  <widgets xsi:type="model:Arrow" id="18" x="248" y="443" width="130" height="37" measuredWidth="130" measuredHeight="37" direction="bottom"/>
+  <widgets xsi:type="model:Arrow" id="19" x="376" y="443" width="145" height="38" measuredWidth="145" measuredHeight="38" left="false" right="true"/>
+  <widgets xsi:type="model:Text" id="20" x="733" y="456" text="Name: Benefit 3&#xD;&#xA;Parent: Feature 2&#xD;&#xA;Type: Concern-based Benefit&#xD;&#xA;Description: Low learning effort" measuredWidth="167" measuredHeight="60">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:Label" id="21" x="790" y="404" text="Benefit 3" measuredWidth="52" measuredHeight="23">
+    <font underline="true"/>
+  </widgets>
+  <widgets xsi:type="model:List" id="22" x="733" y="291" text="[x] Show feature-based benefits&#xA;[ ] Show concern-based benefits&#xA;[x] Show feature-based drawbacks&#xA;[x] Show concern-based drawbacks" measuredWidth="200" measuredHeight="92" alpha="0">
+    <font/>
+    <items x="0" y="2" width="200" height="22" text="[x] Show feature-based benefits"/>
+    <items x="0" y="24" width="200" height="22" text="[ ] Show concern-based benefits"/>
+    <items x="0" y="46" width="200" height="22" text="[x] Show feature-based drawbacks"/>
+    <items x="0" y="68" width="200" height="22" text="[x] Show concern-based drawbacks"/>
+  </widgets>
+  <hRuler/>
+  <vRuler/>
+  <font size="12px"/>
+</model:Screen>

@@ -1,0 +1,17 @@
+package org.emftrace.akm.core.cache;
+
+import org.eclipse.emf.ecore.EObject;
+import org.emftrace.core.accesslayer.AccessLayer;
+
+public class AKMCache extends AbstractCache {
+
+	public AKMCache(final EObject pInput, final AccessLayer pAccessLayer) {
+		super(pInput, pAccessLayer);
+	}
+
+	@Override
+	public void initCache() {
+		// TODO Auto-generated method stub
+
+	}
+}

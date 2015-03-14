@@ -1,0 +1,81 @@
+package org.emftrace.akm.ui.zest.nodes;
+
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+
+import org.eclipse.draw2d.IFigure;
+import org.eclipse.draw2d.MouseEvent;
+import org.eclipse.draw2d.MouseListener;
+import org.eclipse.swt.SWT;
+import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.swt.events.SelectionListener;
+import org.eclipse.swt.graphics.Color;
+import org.eclipse.swt.widgets.Display;
+import org.eclipse.swt.widgets.Event;
+import org.eclipse.swt.widgets.Menu;
+import org.eclipse.zest.core.widgets.GraphConnection;
+import org.eclipse.zest.core.widgets.GraphNode;
+import org.eclipse.zest.core.widgets.IContainer;
+import org.emftrace.akm.ui.zest.graph.AKMGraph;
+import org.emftrace.metamodel.ArchitectureKnowledgeModel.ArchitectureKnowledgeModel;
+import org.emftrace.metamodel.QUARCModel.GSS.Offset;
+import org.emftrace.metamodel.QUARCModel.GSS.Relation;
+import org.emftrace.quarc.ui.zest.connections.GSSRelationConnection;
+import org.emftrace.quarc.ui.zest.figures.ElementFigure;
+import org.emftrace.quarc.ui.zest.figures.listeners.IExpandListener;
+
+/**
+ * A GraphNode for representing a AKM Element with a custom figure (ElementFigure)
+ * 
+ * @author Daniel Motschmann
+ * @version 1.0
+ * 
+ */
+public class AKMElementGraphNode extends AbstractAKMGraphNode {
+
+	/**
+	 * the represented AKM Element
+	 */
+	private ArchitectureKnowledgeModel mArchitectureKnowledgeModel;
+
+	/**
+	 * the default constructor
+	 * 
+	 * @param pGraphModel
+	 *            the container graph
+	 * @param pStyle
+	 *            the SWT style
+	 * @param pElementFigure
+	 *            the custom figure for the node
+	 * @param pLevel
+	 *            the level of the node ( e.g. goal = 0, principle = 1, instrument = 2)
+	 * @param pSublevel
+	 *            the sub level of the node (e.g. count of ancestors)
+	 * @param element
+	 *            the represented AKM Element
+	 */
+	public AKMElementGraphNode(final IContainer pGraphModel, final int pStyle,
+			final ElementFigure pElementFigure, final int pLevel, final int pSublevel,
+			final ArchitectureKnowledgeModel pModel) {
+		
+		super(pGraphModel, pStyle, pElementFigure, pLevel, pSublevel);
+		
+		this.mArchitectureKnowledgeModel = pModel;
+	}
+
+	/**
+	 * getter for the represented Element
+	 * 
+	 * @return the represented Element
+	 */
+	public ArchitectureKnowledgeModel getArchitectureKnowledgeModel() {
+		return mArchitectureKnowledgeModel;
+	}
+
+	@Override
+	public String toString() {
+		// must be overridden due to GraphNode uses text attribute for toString
+		return "AKMElementGraphNode \"" + mArchitectureKnowledgeModel.getName() + "\"";
+	}
+}

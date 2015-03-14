@@ -1,0 +1,33 @@
+package org.emftrace.akm.ui.editors.formpages;
+
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.swt.SWT;
+import org.eclipse.swt.layout.FillLayout;
+import org.eclipse.ui.forms.IManagedForm;
+import org.eclipse.ui.forms.editor.FormEditor;
+import org.emftrace.metamodel.QUARCModel.Query.QueryResultSet;
+
+public class TechnologySolutionModelElementFormPage extends AbstractAKMFormPage{
+
+	public TechnologySolutionModelElementFormPage(FormEditor editor, String id,
+			String title, EObject modelElement) {
+		super(editor, id, title, modelElement);
+	}
+	
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.eclipse.ui.forms.editor.FormPage#createFormContent(org.eclipse.ui
+	 * .forms.IManagedForm)
+	 */
+	@Override
+	protected void createFormContent(IManagedForm managedForm) {
+		super.createFormContent(managedForm);
+		managedFormComposite = managedForm.getForm().getBody();
+		managedFormComposite.setLayout(new FillLayout()); // set any Layout
+		builder = new GSSQueryResultGraphBuilder(managedFormComposite, SWT.NONE, getSite(), (QueryResultSet)modelElement, accessLayer);
+		builder.build();
+	}
+
+}

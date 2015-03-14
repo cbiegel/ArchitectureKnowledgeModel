@@ -1,0 +1,41 @@
+package org.emftrace.akm.ui.zest.nodes;
+
+import org.eclipse.zest.core.widgets.IContainer;
+import org.emftrace.metamodel.ArchitectureKnowledgeModel.TechnologySolution;
+import org.emftrace.quarc.ui.zest.figures.ElementFigure;
+
+/**
+ * A GraphNode for representing a TechnologySolution element with a custom figure (ElementFigure)
+ * 
+ * @author Christopher Biegel
+ */
+public class TechnologySolutionGraphNode extends AbstractAKMGraphNode {
+
+	/**
+	 * The represented TechnologySolution object
+	 */
+	private TechnologySolution mTechnologySolution;
+
+	public TechnologySolutionGraphNode(final IContainer pGraphModel, final int pStyle,
+			final ElementFigure pElementFigure, final int pLevel, final int pSublevel,
+			final TechnologySolution pTechnologySolution) {
+
+		super(pGraphModel, pStyle, pElementFigure, pLevel, pSublevel);
+
+	}
+
+	/**
+	 * Getter for the represented Element
+	 * 
+	 * @return The element represented by this node
+	 */
+	public TechnologySolution getTechnologySolution() {
+		return mTechnologySolution;
+	}
+
+	@Override
+	public String toString() {
+		// must be overridden due to GraphNode using text attribute for toString
+		return "TechnologySolutionGraphNode \"" + mTechnologySolution.getName() + "\"";
+	}
+}

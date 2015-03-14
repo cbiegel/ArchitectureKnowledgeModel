@@ -1,0 +1,19 @@
+package org.emftrace.akm.ui.zest.nodes;
+
+import org.eclipse.zest.core.widgets.IContainer;
+import org.emftrace.quarc.ui.zest.figures.ElementFigure;
+
+/**
+ * A GraphNode for representing a TechnologySolution element with a custom figure (ElementFigure)
+ * 
+ * @author Christopher Biegel
+ */
+public class TechnologySolutionGraphNode extends AbstractAKMGraphNode {
+
+	public TechnologySolutionGraphNode(final IContainer pGraphModel, final int pStyle,
+			final ElementFigure pElementFigure, final int pLevel, final int pSublevel) {
+		super(pGraphModel, pStyle, pElementFigure, pLevel, pSublevel);
+		// TODO Auto-generated constructor stub
+	}
+
+}

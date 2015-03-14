@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<org.eclipse.emf.emfstore.internal.common.model:Project xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ArchitectureKnowledgeModel="ArchitectureKnowledgeModel" xmlns:org.eclipse.emf.emfstore.internal.common.model="http://eclipse.org/emf/emfstore/common/model">
+  <modelElements xsi:type="ArchitectureKnowledgeModel:ArchitectureKnowledgeModel" xmi:id="_CtYbAMWKEeSyTdBoaNRe0Q" ID="1" Name="TestModel">
+    <TechnologySolutions xmi:id="_Exu4YMWKEeSyTdBoaNRe0Q" ID="1" Name="Test" TechnologySolution="#_UH6_QMWKEeSyTdBoaNRe0Q #_XE3tEMdBEeSiGeFB0BvR2w #_zirwUMmYEeSq6saETqWL0A"/>
+    <ConceptualSolutions xmi:id="_E9SoIMWKEeSyTdBoaNRe0Q"/>
+    <DevelopmentEnvironments xmi:id="_FGyiYMWKEeSyTdBoaNRe0Q"/>
+    <Relations xmi:id="_FOYYIMWKEeSyTdBoaNRe0Q"/>
+  </modelElements>
+  <modelElements xsi:type="ArchitectureKnowledgeModel:TechnologySolution" xmi:id="_UH6_QMWKEeSyTdBoaNRe0Q" ID="1" Name="TestSolution" Description="This is a test solution"/>
+  <modelElements xsi:type="ArchitectureKnowledgeModel:TechnologySolution" xmi:id="_XE3tEMdBEeSiGeFB0BvR2w" ID="2" Name="TestSolution2" Description="This is a second test solution!"/>
+  <modelElements xsi:type="ArchitectureKnowledgeModel:TechnologySolution" xmi:id="_zirwUMmYEeSq6saETqWL0A" ID="3" Name="TestSolution3" Description="TestSolution3 Description"/>
+</org.eclipse.emf.emfstore.internal.common.model:Project>

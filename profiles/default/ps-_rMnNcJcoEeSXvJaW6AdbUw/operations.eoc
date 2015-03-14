@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<org.eclipse.emf.emfstore.internal.server.model.versioning:ChangePackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:GSS="GSS" xmlns:Packages="Packages" xmlns:org.eclipse.emf.emfstore.internal.server.model.versioning="http://eclipse.org/emf/emfstore/server/model/versioning" xmlns:org.eclipse.emf.emfstore.internal.server.model.versioning.operations="http://eclipse.org/emf/emfstore/server/model/versioning/operations">
+  <operations xsi:type="org.eclipse.emf.emfstore.internal.server.model.versioning.operations:CreateDeleteOperation" identifier="_sGy9xpcoEeSXvJaW6AdbUw" clientDate="2015-01-08T12:22:54.236+0100">
+    <modelElementId id="_sGy9xZcoEeSXvJaW6AdbUw"/>
+    <modelElement xsi:type="Packages:Toolbox">
+      <gssCatalogue/>
+      <propertiesCatalogue/>
+      <predefinedContraintsSetCatalogue/>
+      <tagsCatalogue/>
+      <queryContainment/>
+    </modelElement>
+    <eObjectToIdMap key="#//@operations.0/@modelElement/@gssCatalogue">
+      <value id="_sGy9wJcoEeSXvJaW6AdbUw"/>
+    </eObjectToIdMap>
+    <eObjectToIdMap key="#//@operations.0/@modelElement/@propertiesCatalogue">
+      <value id="_sGy9wZcoEeSXvJaW6AdbUw"/>
+    </eObjectToIdMap>
+    <eObjectToIdMap key="#//@operations.0/@modelElement/@predefinedContraintsSetCatalogue">
+      <value id="_sGy9wpcoEeSXvJaW6AdbUw"/>
+    </eObjectToIdMap>
+    <eObjectToIdMap key="#//@operations.0/@modelElement/@tagsCatalogue">
+      <value id="_sGy9w5coEeSXvJaW6AdbUw"/>
+    </eObjectToIdMap>
+    <eObjectToIdMap key="#//@operations.0/@modelElement/@queryContainment">
+      <value id="_sGy9xJcoEeSXvJaW6AdbUw"/>
+    </eObjectToIdMap>
+    <eObjectToIdMap key="#//@operations.0/@modelElement">
+      <value id="_sGy9xZcoEeSXvJaW6AdbUw"/>
+    </eObjectToIdMap>
+  </operations>
+  <operations xsi:type="org.eclipse.emf.emfstore.internal.server.model.versioning.operations:CreateDeleteOperation" identifier="_tA8R0ZcoEeSXvJaW6AdbUw" clientDate="2015-01-08T12:23:00.333+0100">
+    <modelElementId id="_tA8R0JcoEeSXvJaW6AdbUw"/>
+    <modelElement xsi:type="GSS:Goal"/>
+    <eObjectToIdMap key="#//@operations.1/@modelElement">
+      <value id="_tA8R0JcoEeSXvJaW6AdbUw"/>
+    </eObjectToIdMap>
+  </operations>
+  <operations xsi:type="org.eclipse.emf.emfstore.internal.server.model.versioning.operations:MultiReferenceOperation" identifier="_tA844pcoEeSXvJaW6AdbUw" clientDate="2015-01-08T12:23:00.334+0100" featureName="elements" containmentType="CONTAINMENT" add="true">
+    <modelElementId id="_sGy9wJcoEeSXvJaW6AdbUw"/>
+    <referencedModelElements id="_tA8R0JcoEeSXvJaW6AdbUw"/>
+  </operations>
+</org.eclipse.emf.emfstore.internal.server.model.versioning:ChangePackage>

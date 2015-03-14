@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin>
+   <extension
+         point="org.eclipse.ui.commands">
+      <category
+            id="org.unicase.ui.navigator.project"
+            name="Project and Model Element Commands">
+      </category>
+   </extension>
+   <extension
+         point="org.eclipse.ui.editors">
+      <editor
+            class="org.emftrace.quarc.ui.editors.QUARCModelElementEditor"
+            id="org.emftrace.quarc.ui.editors.QUARCModelElementEditor"
+            name="QUARCModeEditor EDITOR">
+      </editor>
+   </extension>
+   
+    <extension
+         point="org.eclipse.ui.commands">
+      <category
+            id="org.unicase.ui.navigator.project"
+            name="Project and Model Element Commands">
+      </category>
+   </extension>
+   <extension
+         point="org.eclipse.ui.menus">
+      <menuContribution
+            locationURI="popup:org.eclipse.emf.ecp.ui.ModelExplorerView">
+         <command
+               commandId="org.emftrace.quarc.ui.handlers.navigator.ExecuteQueryHandler"
+               label="execute query"
+               style="push">
+            <visibleWhen
+                  checkEnabled="false">
+               <iterate>
+                  <instanceof
+                        value="org.emftrace.metamodel.QUARCModel.Query.GSSQuery">
+                  </instanceof>
+               </iterate>
+            </visibleWhen>
+         </command>
+         <command
+               commandId="org.emftrace.quarc.ui.handlers.navigator.CreateNewGSSQuery"
+               label="create new query" 
+               style="push">
+            <visibleWhen
+                  checkEnabled="false">
+               <iterate>
+                  <instanceof
+                        value="org.emftrace.metamodel.QUARCModel.Query.GSSQueryContainment">
+                  </instanceof>
+               </iterate>
+            </visibleWhen>
+         </command>
+                  <command
+               commandId="org.emftrace.quarc.ui.handlers.navigator.LoadConstraintsHandler"
+               label="load constraints from predefined constraint set or another query" 
+               style="push">
+            <visibleWhen
+                  checkEnabled="false">
+               <iterate>
+                  <instanceof
+                        value="org.emftrace.metamodel.QUARCModel.Query.GSSQuery">
+                  </instanceof>
+               </iterate>
+            </visibleWhen>
+         </command>
+                  <command
+               commandId="org.emftrace.quarc.ui.handlers.navigator.SaveConstraintsHandler"
+               label="save selected constraints to a predefined constraint set" 
+               style="push">
+            <visibleWhen
+                  checkEnabled="false">
+               <iterate>
+                  <instanceof
+                        value="org.emftrace.metamodel.QUARCModel.Query.GSSQuery">
+                  </instanceof>
+               </iterate>
+            </visibleWhen>
+         </command>
+      </menuContribution>
+   </extension>
+      
+   
+   <extension
+         point="org.eclipse.ui.views">
+      <category
+            name="QUARC"
+            id="quarc">
+      </category>
+      <view
+            allowMultiple="false"
+            category="quarc"
+            class="org.emftrace.quarc.ui.views.PropertiesView"
+            icon="icons/viewIcon.gif"
+            id="org.emftrace.quarc.ui.views.PropertiesView"
+            name="Properties"
+            restorable="true">
+      </view>
+      <view
+            allowMultiple="false"
+            category="quarc"
+            class="org.emftrace.quarc.ui.views.RatioView"
+            icon="icons/viewIcon.gif"
+            id="org.emftrace.quarc.ui.views.RatioView"
+            name="Ratios"
+            restorable="true">
+      </view>
+   </extension>
+   
+   <extension
+         point="org.eclipse.ui.commands">
+      <command
+            defaultHandler="org.emftrace.quarc.ui.handlers.navigator.ExecuteQueryHandler"
+            id="org.emftrace.quarc.ui.handlers.navigator.ExecuteQueryHandler"
+            name="execute query">
+      </command>
+      <command
+            defaultHandler="org.emftrace.quarc.ui.handlers.navigator.CreateNewGSSQuery"
+            id="org.emftrace.quarc.ui.handlers.navigator.CreateNewGSSQuery"
+            name="create new query">
+      </command>
+       <command
+            defaultHandler="org.emftrace.quarc.ui.handlers.navigator.LoadConstraintsHandler"
+            id="org.emftrace.quarc.ui.handlers.navigator.LoadConstraintsHandler"
+            name="load constraints from predefined constraint set">
+      </command>
+       <command
+            defaultHandler="org.emftrace.quarc.ui.handlers.navigator.SaveConstraintsHandler"
+            id="org.emftrace.quarc.ui.handlers.navigator.SaveConstraintsHandler"
+            name="save selected constraints to a predefined constraint set">
+      </command>
+   </extension>
+   
+   <extension
+         point="org.eclipse.ui.editors">
+      <editor
+            class="org.emftrace.quarc.ui.editors.CompareElementsEditor"
+            icon="icons/compareElementsEditorIcon.gif"
+            id="org.emftrace.quarc.ui.editors.CompareElementsEditorPart"
+            name="Compare Elements">
+      </editor>     
+   </extension>
+   
+</plugin>

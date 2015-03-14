@@ -1,0 +1,24 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: %Bundle-Name
+Bundle-SymbolicName: org.eclipse.gmt.modisco.java;singleton:=true
+Bundle-Version: 0.11.2.201401201005
+Bundle-ClassPath: org.eclipse.gmt.modisco.java_0.11.2.201401201005.jar
+Bundle-Activator: org.eclipse.gmt.modisco.java.plugin.JavaPlugin
+Bundle-Vendor: %Bundle-Vendor
+Bundle-Localization: plugin
+Export-Package: org.eclipse.gmt.modisco.java,
+ org.eclipse.gmt.modisco.java.emf,
+ org.eclipse.gmt.modisco.java.emf.impl;x-internal:=true,
+ org.eclipse.gmt.modisco.java.emf.util;x-internal:=true,
+ org.eclipse.gmt.modisco.java.internal.util;x-friends:="org.eclipse.gmt.modisco.java.discoverer.tests,  org.eclipse.gmt.modisco.java.discoverer,  org.eclipse.gmt.modisco.infra.browser.custom.examples.java.jdk,  org.eclipse.gmt.modisco.java.queries,  org.eclipse.modisco.java.composition.discoverer,  org.eclipse.modisco.java.discoverer,  org.eclipse.modisco.usecase.modelfilter.dependencies.ui,  org.eclipse.modisco.java.discoverer.tests"
+Require-Bundle: org.eclipse.core.runtime,
+ org.eclipse.emf.ecore;bundle-version="2.5.0",
+ org.eclipse.emf.ecore.xmi;bundle-version="2.5.0",
+ org.eclipse.gmt.modisco.infra.common.core
+Build-Jdk: 1.6.0_21
+Bundle-ActivationPolicy: lazy
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Created-By: Apache Maven
+Built-By: hudsonBuild
+Archiver-Version: Plexus Archiver

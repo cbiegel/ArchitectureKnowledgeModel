@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<org.eclipse.emf.emfstore.internal.common.model:Project xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:GSS="GSS" xmlns:Packages="Packages" xmlns:org.eclipse.emf.emfstore.internal.common.model="http://eclipse.org/emf/emfstore/common/model">
+  <modelElements xsi:type="Packages:Toolbox" xmi:id="_sGy9xZcoEeSXvJaW6AdbUw">
+    <gssCatalogue xmi:id="_sGy9wJcoEeSXvJaW6AdbUw">
+      <elements xsi:type="GSS:Goal" xmi:id="_tA8R0JcoEeSXvJaW6AdbUw"/>
+    </gssCatalogue>
+    <propertiesCatalogue xmi:id="_sGy9wZcoEeSXvJaW6AdbUw"/>
+    <predefinedContraintsSetCatalogue xmi:id="_sGy9wpcoEeSXvJaW6AdbUw"/>
+    <tagsCatalogue xmi:id="_sGy9w5coEeSXvJaW6AdbUw"/>
+    <queryContainment xmi:id="_sGy9xJcoEeSXvJaW6AdbUw"/>
+  </modelElements>
+</org.eclipse.emf.emfstore.internal.common.model:Project>

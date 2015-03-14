@@ -1,0 +1,12 @@
+/**
+ * 
+ */
+package org.emftrace.akm.core.cache;
+
+/**
+ * @author Christopher Biegel
+ *
+ */
+public interface ICacheChangedListener {
+
+}

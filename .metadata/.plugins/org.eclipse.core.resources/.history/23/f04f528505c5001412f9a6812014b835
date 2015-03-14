@@ -1,0 +1,42 @@
+package org.emftrace.akm.ui.editors.builders;
+
+import org.emftrace.core.accesslayer.AccessLayer;
+
+public class AbstractBuilder {
+
+	protected AccessLayer mAccessLayer;
+	
+	
+	public AbstractBuilder(final AccessLayer pAccessLayer) {
+		
+		mAccessLayer = pAccessLayer;
+	}
+	
+	/**
+	 * Builds the content within the current thread.
+	 * 
+	 */
+	public void build(){
+	  try {
+//	    	clearErrorMessageStack();
+	    	doBuild();
+		} catch (Exception e) {
+//			addErrorMessage("Can't build.\n"+e);
+			e.printStackTrace();
+		}
+//		if (wasBuildedWithErrors()){
+//			dispose();
+//			displayErrors();
+//		}
+	}
+	
+	/**
+	 * Implementation of the task
+	 */
+	protected abstract void doBuild();
+	
+	/**
+	 * disposes the builder
+	 */
+	public abstract void dispose();
+}

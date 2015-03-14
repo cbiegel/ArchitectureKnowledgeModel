@@ -1,0 +1,130 @@
+package org.emftrace.akm.ui.zest.connections;
+
+import org.eclipse.draw2d.ColorConstants;
+import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.ecp.edit.spi.util.ECPModelElementChangeListener;
+import org.eclipse.swt.SWT;
+import org.eclipse.swt.events.DisposeEvent;
+import org.eclipse.swt.events.DisposeListener;
+import org.eclipse.swt.graphics.Font;
+import org.eclipse.zest.core.widgets.GraphConnection;
+import org.emftrace.metamodel.QUARCModel.GSS.Decomposition;
+import org.emftrace.metamodel.QUARCModel.GSS.Element;
+import org.emftrace.metamodel.QUARCModel.GSS.Impact;
+import org.emftrace.metamodel.QUARCModel.GSS.Offset;
+import org.emftrace.metamodel.QUARCModel.GSS.Relation;
+import org.emftrace.metamodel.QUARCModel.Query.Rating;
+import org.emftrace.quarc.ui.helpers.DefaultColors;
+
+public class ConnectionDecoratorService {
+
+	// ===========================================================
+	// Constants
+	// ===========================================================
+
+	// Constants for various font sizes
+	private static final Font DECORATION_FONT_TINY = new Font(null, "Arial", 6, SWT.NONE);
+	private static final Font DECORATION_FONT_SMALL = new Font(null, "Arial", 8, SWT.NONE);
+	private static final Font DECORATION_FONT_NORMAL = new Font(null, "Arial", 10, SWT.BOLD);
+	private static final Font DECORATION_FONT_LARGE = new Font(null, "Arial", 12, SWT.BOLD);
+
+	// ===========================================================
+	// Methods
+	// ===========================================================
+	
+	/**
+	 * Decorates the specified GraphConnection in style of URN and adds a tooltip for the AKM element
+	 * 
+	 * @param connection
+	 *            the GraphConnection to decorate
+	 * @param relation
+	 *            the Relation for the GraphConnection
+	 * @param source
+	 *            the source Element of the Relation
+	 * @param target
+	 *            the target Element of the Relation
+	 * @param weight
+	 *            the weight of the Relation
+	 */
+	public static void decoradeConnection(final GraphConnection connection,
+			final Relation relation, Element source, Element target, String weight) {		
+		
+		float fWeight = weight != null? Float.valueOf(weight) : 0;
+		
+		connection.setLineColor(ColorConstants.black);
+
+		connection.setLineWidth(1);
+
+		if (weight != null)
+		connection.setLineColor( DefaultColors.getConnectionColor(fWeight));
+		
+		if (relation instanceof Offset)
+			connection.setLineStyle(SWT.LINE_DASH);
+		
+		decorateWithWeight(connection, weight);
+		
+		connection.setTooltip(createTooltipFigure(connection, relation, source, target, weight)); 
+		if (relation instanceof Decomposition) {
+			drawDecompositionConnectionEnd(connection);
+
+		} else if (relation instanceof Impact || relation instanceof Offset) {
+			
+			if (fWeight < -75.0f) {
+				decorateWithBrakeFigure(connection);
+			}
+				else	if (fWeight < -25.0f) {
+					decorateWithSomeNegativeFigure(connection);
+				}
+				else	if (fWeight < -0.0f) {
+					decorateWithHurtsFigure(connection);
+				}
+				else	if (fWeight == 0.0f) {
+					decorateWithUnknownFigure(connection);
+				}
+				else	if (fWeight <= 25.0f) {
+					decorateWithHelpsFigure(connection);
+				}
+				else	if (fWeight <= 75.0f) {
+					decorateWithSomePositiveFigure(connection);
+				}
+				else {
+					decorateWithMakeFigure(connection);
+				}
+	
+		}
+
+		final ECPModelElementChangeListener ecpModelElementChangeListener = new ECPModelElementChangeListener(relation) {
+			
+			@Override
+			public void onChange(Notification notification) {
+				if (relation instanceof Impact)
+				decoradeConnection(connection, relation, relation.getSource(), relation.getTarget(), ((Impact)relation).getWeight());
+				else
+				if (relation instanceof Offset)
+				decoradeConnection(connection, relation, relation.getSource(), relation.getTarget(), ((Offset)relation).getValue());
+				else
+				if (relation instanceof Rating)
+				decoradeConnection(connection, relation, relation.getSource(), relation.getTarget(), ((Rating)relation).getWeight());
+				else
+
+				decoradeConnection(connection, relation, relation.getSource(), relation.getTarget(), "");
+				
+			}
+		};
+
+		relation.addModelElementChangeListener(ecpModelElementChangeListener);
+		
+		connection.addDisposeListener( new DisposeListener() {
+			
+			@Override
+			public void widgetDisposed(DisposeEvent e) {
+				relation.removeModelElementChangeListener(ecpModelElementChangeListener);
+				
+			}
+		});
+	}
+
+	// ===========================================================
+	// Inner and Anonymous Classes
+	// ===========================================================
+}

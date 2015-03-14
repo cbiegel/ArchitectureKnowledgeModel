@@ -1,0 +1,171 @@
+package org.emftrace.akm.ui.zest.connections;
+
+import org.eclipse.draw2d.ColorConstants;
+import org.eclipse.draw2d.Figure;
+import org.eclipse.draw2d.IFigure;
+import org.eclipse.draw2d.Label;
+import org.eclipse.draw2d.ToolbarLayout;
+import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.ecp.edit.spi.util.ECPModelElementChangeListener;
+import org.eclipse.swt.SWT;
+import org.eclipse.swt.events.DisposeEvent;
+import org.eclipse.swt.events.DisposeListener;
+import org.eclipse.swt.graphics.Color;
+import org.eclipse.swt.graphics.Font;
+import org.eclipse.swt.widgets.Display;
+import org.eclipse.zest.core.widgets.GraphConnection;
+import org.emftrace.metamodel.ArchitectureKnowledgeModel.ArchitectureKnowledgeModelBase;
+import org.emftrace.metamodel.QUARCModel.GSS.Decomposition;
+import org.emftrace.metamodel.QUARCModel.GSS.Impact;
+import org.emftrace.metamodel.QUARCModel.GSS.Offset;
+import org.emftrace.metamodel.QUARCModel.GSS.isA;
+import org.emftrace.metamodel.QUARCModel.Query.Rating;
+
+public class ConnectionDecoratorService {
+
+	// ===========================================================
+	// Constants
+	// ===========================================================
+
+	// Constants for various font sizes
+	private static final Font DECORATION_FONT_TINY = new Font(null, "Arial", 6, SWT.NONE);
+	private static final Font DECORATION_FONT_SMALL = new Font(null, "Arial", 8, SWT.NONE);
+	private static final Font DECORATION_FONT_NORMAL = new Font(null, "Arial", 10, SWT.BOLD);
+	private static final Font DECORATION_FONT_LARGE = new Font(null, "Arial", 12, SWT.BOLD);
+
+	// ===========================================================
+	// Methods
+	// ===========================================================
+
+	/**
+	 * Decorates the specified GraphConnection in style of URN and adds a tooltip for the AKM
+	 * elements
+	 * 
+	 * @param pConnection
+	 *            The GraphConnection object to decorate
+	 * @param pSourceElement
+	 *            The source element of the connection
+	 * @param pTargetElement
+	 *            The target element of the connection
+	 */
+	public static void decoradeConnection(final GraphConnection pConnection,
+			final ArchitectureKnowledgeModelBase pSourceElement,
+			final ArchitectureKnowledgeModelBase pTargetElement) {
+
+		pConnection.setLineColor(ColorConstants.black);
+		pConnection.setLineWidth(1);
+		pConnection.setLineColor(new Color(Display.getDefault(), 255, 255, 255));
+
+		pConnection.setTooltip(createTooltipFigure(pConnection, relation, source, target, weight));
+		if (relation instanceof Decomposition) {
+			drawDecompositionConnectionEnd(pConnection);
+
+		} else if ((relation instanceof Impact) || (relation instanceof Offset)) {
+
+			if (fWeight < -75.0f) {
+				decorateWithBrakeFigure(pConnection);
+			} else if (fWeight < -25.0f) {
+				decorateWithSomeNegativeFigure(pConnection);
+			} else if (fWeight < -0.0f) {
+				decorateWithHurtsFigure(pConnection);
+			} else if (fWeight == 0.0f) {
+				decorateWithUnknownFigure(pConnection);
+			} else if (fWeight <= 25.0f) {
+				decorateWithHelpsFigure(pConnection);
+			} else if (fWeight <= 75.0f) {
+				decorateWithSomePositiveFigure(pConnection);
+			} else {
+				decorateWithMakeFigure(pConnection);
+			}
+
+		}
+
+		final ECPModelElementChangeListener ecpModelElementChangeListener =
+				new ECPModelElementChangeListener(relation) {
+
+					@Override
+					public void onChange(final Notification notification) {
+						if (relation instanceof Impact) {
+							decoradeConnection(pConnection, relation, relation.getSource(),
+									relation.getTarget(), ((Impact) relation).getWeight());
+						} else if (relation instanceof Offset) {
+							decoradeConnection(pConnection, relation, relation.getSource(),
+									relation.getTarget(), ((Offset) relation).getValue());
+						} else if (relation instanceof Rating) {
+							decoradeConnection(pConnection, relation, relation.getSource(),
+									relation.getTarget(), ((Rating) relation).getWeight());
+						} else {
+							decoradeConnection(pConnection, relation, relation.getSource(),
+									relation.getTarget(), "");
+						}
+
+					}
+				};
+
+		relation.addModelElementChangeListener(ecpModelElementChangeListener);
+
+		pConnection.addDisposeListener(new DisposeListener() {
+
+			@Override
+			public void widgetDisposed(final DisposeEvent e) {
+				relation.removeModelElementChangeListener(ecpModelElementChangeListener);
+
+			}
+		});
+	}
+
+	/**
+	 * Create a Figure for a tooltip for the connection of GraphNodes
+	 * 
+	 * @param pConnection
+	 *            The GraphConnection object to decorate
+	 * @param pSourceElement
+	 *            The source element of the connection
+	 * @param pTargetElement
+	 *            The target element of the connection
+	 * @return The created tooltip Figure
+	 */
+	private static IFigure createTooltipFigure(final GraphConnection pConnection,
+			final ArchitectureKnowledgeModelBase pSourceElement,
+			final ArchitectureKnowledgeModelBase pTargetElement) {
+
+		Figure tooltipFigure = new Figure();
+
+		ToolbarLayout layout = new ToolbarLayout();
+		tooltipFigure.setLayoutManager(layout);
+		tooltipFigure.setOpaque(true);
+
+//		String relationType = "";
+
+		String sourceName = pSourceElement != null ? pSourceElement.getName() : "";
+		String targetName = pTargetElement != null ? pTargetElement.getName() : "";
+		;
+
+		String tooltipText = "";
+		// 3 free spaces before and behind each line start and line end due to ascetic reasons
+		// (prevent text to border on tooltip bounds)
+		tooltipText += "\n";
+		tooltipText += "   Source:\t" + sourceName + "   \n";
+		tooltipText += "   Target:\t" + targetName + "   \n";
+
+		if (weight != "") {
+			tooltipText += "   Weight:\t" + weight + "   \n";
+		}
+
+		Label titleLabel = new Label("   " + relationType + "   ");
+		titleLabel.setFont(decoractionFontLarge);
+
+		tooltipFigure.add(titleLabel);
+
+		Label valuesLabel = new Label(tooltipText);
+		valuesLabel.setFont(decoractionFontNormal);
+		tooltipFigure.add(valuesLabel);
+		tooltipFigure.setSize(-1, -1);
+
+		return tooltipFigure;
+	}
+
+	// ===========================================================
+	// Inner and Anonymous Classes
+	// ===========================================================
+}

@@ -1,0 +1,13 @@
+package org.emftrace.akm.ui.editors.formpages;
+
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.ui.forms.editor.FormEditor;
+
+public class TechnologySolutionModelElementFormPage extends AbstractAKMFormPage{
+
+	public TechnologySolutionModelElementFormPage(FormEditor editor, String id,
+			String title, EObject modelElement) {
+		super(editor, id, title, modelElement);
+	}
+
+}

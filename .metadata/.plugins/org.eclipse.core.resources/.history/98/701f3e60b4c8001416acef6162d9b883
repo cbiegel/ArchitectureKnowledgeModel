@@ -1,0 +1,331 @@
+/**
+ */
+package org.emftrace.metamodel.ArchitectureKnowledgeModel.impl;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
+import java.util.TreeSet;
+
+import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.impl.AdapterImpl;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.impl.EObjectImpl;
+import org.eclipse.emf.ecp.edit.spi.util.ECPModelElementChangeListener;
+import org.eclipse.emf.emfstore.internal.common.model.Project;
+import org.eclipse.emf.emfstore.internal.common.model.util.ModelUtil;
+import org.emftrace.metamodel.ArchitectureKnowledgeModel.ArchitectureKnowledgeModelBase;
+import org.emftrace.metamodel.ArchitectureKnowledgeModel.ArchitectureKnowledgeModelPackage;
+
+/**
+ * <!-- begin-user-doc --> An implementation of the model object '<em><b>Base</b></em>'. <!-- end-user-doc -->
+ * <p>
+ * The following features are implemented:
+ * <ul>
+ * <li>{@link org.emftrace.metamodel.ArchitectureKnowledgeModel.impl.ArchitectureKnowledgeModelBaseImpl#getID <em>ID</em>}</li>
+ * <li>{@link org.emftrace.metamodel.ArchitectureKnowledgeModel.impl.ArchitectureKnowledgeModelBaseImpl#getName <em>Name</em>}</li>
+ * </ul>
+ * </p>
+ * 
+ * @generated
+ */
+public abstract class ArchitectureKnowledgeModelBaseImpl extends EObjectImpl implements ArchitectureKnowledgeModelBase {
+	/**
+	 * The default value of the '{@link #getID() <em>ID</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @see #getID()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String ID_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getID() <em>ID</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @see #getID()
+	 * @generated
+	 * @ordered
+	 */
+	protected String id = ID_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getName() <em>Name</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @see #getName()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String NAME_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getName() <em>Name</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @see #getName()
+	 * @generated
+	 * @ordered
+	 */
+	protected String name = NAME_EDEFAULT;
+
+	/**
+	 * @generated NOT
+	 */
+	private List<ECPModelElementChangeListener> mChangeListeners;
+	private AdapterImpl mInternalChangeListener;
+	private boolean mIsNotifying;
+	private Set<ECPModelElementChangeListener> mListenersToBeRemoved;
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated NOT
+	 */
+	protected ArchitectureKnowledgeModelBaseImpl() {
+		super();
+		mChangeListeners = new ArrayList<ECPModelElementChangeListener>();
+		mInternalChangeListener = null;
+		mListenersToBeRemoved = new TreeSet<ECPModelElementChangeListener>();
+		mIsNotifying = false;
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	@Override
+	protected EClass eStaticClass() {
+		return ArchitectureKnowledgeModelPackage.Literals.ARCHITECTURE_KNOWLEDGE_MODEL_BASE;
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	@Override
+	public String getID() {
+		return id;
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	@Override
+	public void setID(final String newID) {
+		String oldID = id;
+		id = newID;
+		if (eNotificationRequired()) {
+			eNotify(new ENotificationImpl(this, Notification.SET, ArchitectureKnowledgeModelPackage.ARCHITECTURE_KNOWLEDGE_MODEL_BASE__ID, oldID, id));
+		}
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	@Override
+	public String getName() {
+		return name;
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	@Override
+	public void setName(final String newName) {
+		String oldName = name;
+		name = newName;
+		if (eNotificationRequired()) {
+			eNotify(new ENotificationImpl(this, Notification.SET, ArchitectureKnowledgeModelPackage.ARCHITECTURE_KNOWLEDGE_MODEL_BASE__NAME, oldName,
+					name));
+		}
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	@Override
+	public Object eGet(final int featureID, final boolean resolve, final boolean coreType) {
+		switch (featureID) {
+		case ArchitectureKnowledgeModelPackage.ARCHITECTURE_KNOWLEDGE_MODEL_BASE__ID:
+			return getID();
+		case ArchitectureKnowledgeModelPackage.ARCHITECTURE_KNOWLEDGE_MODEL_BASE__NAME:
+			return getName();
+		}
+		return super.eGet(featureID, resolve, coreType);
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	@Override
+	public void eSet(final int featureID, final Object newValue) {
+		switch (featureID) {
+		case ArchitectureKnowledgeModelPackage.ARCHITECTURE_KNOWLEDGE_MODEL_BASE__ID:
+			setID((String) newValue);
+			return;
+		case ArchitectureKnowledgeModelPackage.ARCHITECTURE_KNOWLEDGE_MODEL_BASE__NAME:
+			setName((String) newValue);
+			return;
+		}
+		super.eSet(featureID, newValue);
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	@Override
+	public void eUnset(final int featureID) {
+		switch (featureID) {
+		case ArchitectureKnowledgeModelPackage.ARCHITECTURE_KNOWLEDGE_MODEL_BASE__ID:
+			setID(ID_EDEFAULT);
+			return;
+		case ArchitectureKnowledgeModelPackage.ARCHITECTURE_KNOWLEDGE_MODEL_BASE__NAME:
+			setName(NAME_EDEFAULT);
+			return;
+		}
+		super.eUnset(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	@Override
+	public boolean eIsSet(final int featureID) {
+		switch (featureID) {
+		case ArchitectureKnowledgeModelPackage.ARCHITECTURE_KNOWLEDGE_MODEL_BASE__ID:
+			return ID_EDEFAULT == null ? id != null : !ID_EDEFAULT.equals(id);
+		case ArchitectureKnowledgeModelPackage.ARCHITECTURE_KNOWLEDGE_MODEL_BASE__NAME:
+			return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+		}
+		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	@Override
+	public String toString() {
+		if (eIsProxy()) {
+			return super.toString();
+		}
+
+		StringBuffer result = new StringBuffer(super.toString());
+		result.append(" (ID: ");
+		result.append(id);
+		result.append(", Name: ");
+		result.append(name);
+		result.append(')');
+		return result.toString();
+	}
+
+	/**
+	 * @generated NOT
+	 */
+	@Override
+	public void delete() {
+		// if( modelElementChangeListener != null ) modelElementChangeListener.remove();
+
+		Project project = ModelUtil.getProject(this);
+		project.deleteModelElement(this);
+	}
+
+	/**
+	 * @generated NOT
+	 */
+	@Override
+	public String getIdentifier() {
+		Project project = ModelUtil.getProject(this);
+		return project.getModelElementId(this).getId();
+	}
+
+	/**
+	 * @generated NOT
+	 */
+	@Override
+	public void addModelElementChangeListener(final ECPModelElementChangeListener listener) {
+		if (this.mChangeListeners.size() == 0) {
+			mInternalChangeListener = new AdapterImpl() {
+				/**
+				 * {@inheritDoc}
+				 */
+				@Override
+				public void notifyChanged(final Notification notification) {
+					notifyListenersAboutChange(notification);
+				}
+			};
+			this.eAdapters().add(mInternalChangeListener);
+		}
+		this.mChangeListeners.add(listener);
+	}
+
+	/**
+	 * @generated NOT
+	 */
+	@Override
+	public void removeModelElementChangeListener(final ECPModelElementChangeListener listener) {
+		// if we are notifying listeners at the moment than just add listener for later removal
+		if (mIsNotifying) {
+			mListenersToBeRemoved.add(listener);
+			return;
+		}
+
+		this.mChangeListeners.remove(listener);
+		if ((this.mChangeListeners.size() < 1) && (mInternalChangeListener != null)) {
+			this.eAdapters().remove(mInternalChangeListener);
+			mInternalChangeListener = null;
+		}
+	}
+
+	/**
+	 * @generated NOT
+	 * @param notification
+	 */
+	private void notifyListenersAboutChange(final Notification notification) {
+		mIsNotifying = true;
+		for (ECPModelElementChangeListener listener : mChangeListeners) {
+			try {
+				// listener.onChange(notification);
+				// TODO CB CLEANUP listener onChange
+				System.out.println("hi");
+			}
+			// BEGIN SUPRESS CATCH EXCEPTION
+			catch (RuntimeException exception) {
+				ModelUtil.logWarning("ModelElementChangeListener threw RuntimeException on Change Notification " + ""
+						+ "(exception was caught and forwarded to listener for handling)", exception);
+				try {
+					// listener.onRuntimeExceptionInListener(exception);
+					// TODO CB CLEANUP listener onRuntimeExceptionInListener
+					System.out.println("hi");
+				} catch (RuntimeException runtimeException) {
+					ModelUtil.logException("Notifying listener about change in a model element failed, UI may not update properly now.",
+							runtimeException);
+					mListenersToBeRemoved.add(listener);
+				}
+			}
+			// END SUPRESS CATCH EXCEPTION
+		}
+		mIsNotifying = false;
+		for (ECPModelElementChangeListener listener : mListenersToBeRemoved) {
+			removeModelElementChangeListener(listener);
+		}
+		mListenersToBeRemoved.clear();
+	}
+
+} // ArchitectureKnowledgeModelBaseImpl

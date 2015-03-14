@@ -1,0 +1,115 @@
+package org.emftrace.akm.ui.zestgraphbuilders;
+
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.swt.SWT;
+import org.eclipse.swt.widgets.Composite;
+import org.eclipse.ui.IWorkbenchPartSite;
+import org.emftrace.akm.ui.zest.graph.AKMGraph;
+import org.emftrace.akm.ui.zest.nodes.AKMElementGraphNode;
+import org.emftrace.core.accesslayer.AccessLayer;
+import org.emftrace.metamodel.ArchitectureKnowledgeModel.ArchitectureKnowledgeModel;
+import org.emftrace.metamodel.ArchitectureKnowledgeModel.TechnologySolution;
+import org.emftrace.metamodel.ArchitectureKnowledgeModel.TechnologySolutions;
+
+public class FeaturesExplorationGraphBuilder extends AbstractElementGraphBuilder {
+
+	private ArchitectureKnowledgeModel mModel;
+
+	public FeaturesExplorationGraphBuilder(final Composite pParentComposite, final int pStyle,
+			final IWorkbenchPartSite pWorkbenchPartSite, final ArchitectureKnowledgeModel pModel,
+			final AccessLayer pAccessLayer) {
+
+		super(pParentComposite, pStyle, pWorkbenchPartSite, pModel, pAccessLayer);
+
+		mModel = pModel;
+		TechnologySolutions solutions = pModel.getTechnologySolutions();
+		EList<TechnologySolution> solutionList = solutions.getTechnologySolution();
+	}
+
+	@Override
+	protected void initCache() {
+
+		cacheManager = new org.emftrace.akm.core.cache.CacheManager(mModel, accessLayer);
+		cacheManager.initCache();
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see quarc_gssquerygui.zestgpraphbuilders.AbstractElementGraphBuilder#
+	 * buildCustomGraph(org.eclipse.zest.core.widgets.Graph)
+	 */
+	@Override
+	protected void buildCustomGraph(final AKMGraph pZestGraph) {
+
+		super.buildCustomGraph(pZestGraph);
+
+		// Get the AKM
+		ArchitectureKnowledgeModel model = cacheManager.getModel();
+		// Get the TechnologySolutions of the model
+		TechnologySolutions solutions = model.getTechnologySolutions();
+		EList<TechnologySolution> solutionList = solutions.getTechnologySolution();
+
+		AKMElementGraphNode node = createAKMNode(pZestGraph, SWT.NONE, model, 0, 0, true, false);
+
+		// ---------------------------------------------------------------------------------------
+
+		// ArchitectureKnowledgeModel model = cacheManager.getModel();
+		// TechnologySolutions technologySolutions = model.getTechnologySolutions();
+		// EList<TechnologySolution> technologySolutionList =
+		// technologySolutions.getTechnologySolution();
+		//
+		// // create a node for each applicable Element
+		// // for (TechnologySolution technologySolution : technologySolutionList) {
+		//
+		// // int level = cacheManager.getLevel(element);
+		// // int sublevel = cacheManager.getSublevel(element);
+		//
+		// // TODO CB level & leaf implementieren
+		// int level = 0;
+		// int sublevel = 0;
+		// boolean isLeaf = true;
+		// boolean isExpandable = false;
+		//
+		// AKMElementGraphNode node =
+		// createNode(pZestGraph, SWT.NONE, model, level, sublevel, isLeaf, isExpandable);
+		//
+		// node.getElementFigure().getBodyDecoratorFigure().setImportance(0f);
+
+		// ---------------------------------------------------------------------------------------
+
+		// }
+
+		// // create connections for all (outgoing) relations
+		// for (ApplicableElement applicableElement : cacheManager.getAllApplicableElements()) {
+		// for (Relation outgoingDecompositionRelation : cacheManager
+		// .getApplicableOutgoingDecompositionRelations(applicableElement)) {
+		//
+		// GraphConnection connection = createConnection(outgoingDecompositionRelation);
+		//
+		// Integer weight =
+		// cacheManager
+		// .getSelectedGoalPriorizedDecompositionWeight(cacheManager
+		// .getPriorizedGoalDecompositionForDecomposition((Decomposition)
+		// outgoingDecompositionRelation));
+		// connection.setText(weight != null ? String.valueOf(weight) : "");
+		// ConnectionDecorator.decoradeConnection(connection, outgoingDecompositionRelation,
+		// cacheManager.getSourceOfRelation(outgoingDecompositionRelation),
+		// cacheManager.getTargetOfRelation(outgoingDecompositionRelation), null);
+		//
+		// }
+		//
+		// if (cacheManager.getApplicableOutgoingIsARelations(applicableElement) != null) {
+		//
+		// createConnection(cacheManager.getApplicableOutgoingIsARelations(applicableElement));
+		// }
+		//
+		// for (Impact impact : cacheManager
+		// .getApplicableIncomingImpactRelations(applicableElement)) {
+		// createConnection(impact);
+		// }
+		// }
+
+	}
+
+}

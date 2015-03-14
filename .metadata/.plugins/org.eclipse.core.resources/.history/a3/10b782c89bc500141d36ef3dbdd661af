@@ -1,0 +1,96 @@
+/*******************************************************************************
+ * Copyright (c) 2010-2013 Software Systems/Process Informatics Group,
+ * Ilmenau University of Technology.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ ******************************************************************************/
+
+package org.emftrace.ui.util;
+
+/**
+ * Container class storing constants required for import and export of models
+ * 
+ * @author  Steffen Lehnert
+ * @version 1.0
+ *
+ */
+public class UIHelper
+{
+	public static final String ECP_EDITOR    = "org.eclipse.emf.ecp.editor";
+	public static final String EMFFit_EDITOR = "org.emftrace.emffit.ui.editors.EMFfitEditor"; // see also plugin.xml
+	public static final String TRACE_EDITOR  = "org.emftrace.ui.editor.EMFTraceEditor"; // see also plugin.xml
+	public static final String QUARC_EDITOR  = "org.emftrace.quarc.ui.editors.QUARCModelElementEditor";
+	public static final String QUARC_ELEMENTS_COMPARE_EDITOR_ID = "org.emftrace.quarc.ui.editors.CompareElementsEditorPart";
+	
+	public static final String AKM_EDITOR = "org.emftrace.akm.ui.editors.AKMModelElementEditor";
+	
+	public static final String USER_HOME = "user.home";
+	
+	public static final String TEMPLATE_PATH      = "templates/";
+	public static final String TEMPLATE_EXTENSION = ".xsl";
+	
+	public static final String BPMN_Filter_Names     = "BPMN Diagrams (*.bpmn)";
+	public static final String BPMN_Filter_Extension = "*.bpmn";
+	public static final String BPMN_File_Extension   = ".bpmn";
+	public static final String BPMN_2_EMF_Template   = "BPMN2EMF";
+	public static final String EMF_2_BPMN_Template   = "EMF2BPMN";
+	
+	public static final String UML_Filter_Names     = "Visual Paradigm UML Diagram (*.uml)";
+	public static final String UML_Filter_Extension = "*.uml";
+	public static final String UML_File_Extension   = ".uml";
+	public static final String UML_2_EMF_Template   = "UML2EMF";
+	public static final String EMF_2_UML_Template   = "EMF2UML";
+	
+	public static final String URN_Filter_Names     = "jUCMNav URN Diagram (*.z151)";
+	public static final String URN_Filter_Extension = "*.z151";
+	public static final String URN_File_Extension   = ".z151";
+	public static final String URN_2_EMF_Template   = "URN2EMF";
+	public static final String EMF_2_URN_Template   = "EMF2URN";
+	
+	public static final String OWL_Filter_Names     = "Protégé OWL Ontology (*.owl)";
+	public static final String OWL_Filter_Extension = "*.owl";
+	public static final String OWL_File_Extension   = ".owl";
+	public static final String OWL_2_EMF_Template   = "OWL2EMF";
+	public static final String EMF_2_OWL_Template   = "EMF2OWL";
+	
+	public static final String FeatureModel_Filter_Names     = "pure::variants Feature Model (*.xfm)";
+	public static final String FeatureModel_Filter_Extension = "*.xfm";
+	public static final String FeatureModel_File_Extension   = ".xfm";
+	public static final String FeatureModel_2_EMF_Template   = "FeatureModel2EMF";
+	public static final String EMF_2_FeatureModel_Template   = "EMF2FeatureModel";
+		
+	public static final String Rule_Filter_Name = "Rule (*.r)";
+	public static final String Rule_Filter_Extension   = "*.r";
+	public static final String Rule_File_Extension   = ".r";
+	public static final String Rule_2_EMF_Template   = "Rule2EMF";
+	
+	public static final String RuleCatalogue_Filter_Name = "Rule Catalogue (*.rc)";
+	public static final String RuleCatalogue_Filter_Extension   = "*.rc";
+	public static final String RuleCatalogue_File_Extension   = ".rc";
+	public static final String RuleCatalogue_2_EMF_Template   = "RuleCatalogue2EMF";
+	
+	public static final String NO_TEMPLATE = "NO_TEMPLATE";
+	
+	public static final String XMI_Filter_Name      = "XMI file (*.xmi)";
+	public static final String XMI_Filter_Extension = "*.xmi";
+	public static final String XMI_File_Extension   = ".xmi";
+	
+	public static final String ECM_Filter_Name      = "ECM file (*.ecm)";
+	public static final String ECM_Filter_Extension = "*.ecm";
+	public static final String ECM_File_Extension   = ".ecm";
+	
+	public enum ModelExchangeState 
+	{
+	    Export_OK,
+	    Import_OK,
+	    Transformation_Error,
+	    File_Missing,
+	    Model_Missing,
+	    Template_Missing,
+	    Extension_Missing,
+	    Misc_Error,
+	    Project_Missing
+	};
+}

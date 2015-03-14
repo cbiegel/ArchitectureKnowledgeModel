@@ -1,0 +1,40 @@
+/**
+ */
+package org.emftrace.metamodel.ArchitectureKnowledgeModel;
+
+import org.eclipse.emf.common.util.EList;
+
+/**
+ * <!-- begin-user-doc -->
+ * A representation of the model object '<em><b>Development Environments</b></em>'.
+ * <!-- end-user-doc -->
+ *
+ * <p>
+ * The following features are supported:
+ * <ul>
+ *   <li>{@link org.emftrace.metamodel.ArchitectureKnowledgeModel.DevelopmentEnvironments#getDevelopmentEnvironments <em>Development Environments</em>}</li>
+ * </ul>
+ * </p>
+ *
+ * @see org.emftrace.metamodel.ArchitectureKnowledgeModel.ArchitectureKnowledgeModelPackage#getDevelopmentEnvironments()
+ * @model
+ * @generated
+ */
+public interface DevelopmentEnvironments extends ArchitectureKnowledgeModelBase {
+	/**
+	 * Returns the value of the '<em><b>Development Environments</b></em>' reference list.
+	 * The list contents are of type {@link org.emftrace.metamodel.ArchitectureKnowledgeModel.DevelopmentEnvironment}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Development Environments</em>' reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Development Environments</em>' reference list.
+	 * @see org.emftrace.metamodel.ArchitectureKnowledgeModel.ArchitectureKnowledgeModelPackage#getDevelopmentEnvironments_DevelopmentEnvironments()
+	 * @model
+	 * @generated
+	 */
+	EList<DevelopmentEnvironment> getDevelopmentEnvironments();
+
+} // DevelopmentEnvironments

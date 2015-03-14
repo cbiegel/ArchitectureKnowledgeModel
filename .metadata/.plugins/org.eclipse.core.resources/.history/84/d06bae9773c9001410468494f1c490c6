@@ -1,0 +1,60 @@
+package org.emftrace.akm.ui.zest.nodes;
+
+import org.eclipse.zest.core.widgets.IContainer;
+import org.emftrace.metamodel.ArchitectureKnowledgeModel.ArchitectureKnowledgeModel;
+import org.emftrace.quarc.ui.zest.figures.ElementFigure;
+
+/**
+ * A GraphNode for representing a AKM Element with a custom figure (ElementFigure)
+ * 
+ * @author Daniel Motschmann
+ * @version 1.0
+ * 
+ */
+public class AKMElementGraphNode extends AbstractAKMGraphNode {
+
+	/**
+	 * the represented AKM Element
+	 */
+	private ArchitectureKnowledgeModel mArchitectureKnowledgeModel;
+
+	/**
+	 * the default constructor
+	 * 
+	 * @param pGraphModel
+	 *            the container graph
+	 * @param pStyle
+	 *            the SWT style
+	 * @param pElementFigure
+	 *            the custom figure for the node
+	 * @param pLevel
+	 *            the level of the node ( e.g. goal = 0, principle = 1, instrument = 2)
+	 * @param pSublevel
+	 *            the sub level of the node (e.g. count of ancestors)
+	 * @param element
+	 *            the represented AKM Element
+	 */
+	public AKMElementGraphNode(final IContainer pGraphModel, final int pStyle,
+			final ElementFigure pElementFigure, final int pLevel, final int pSublevel,
+			final ArchitectureKnowledgeModel pModel) {
+
+		super(pGraphModel, pStyle, pElementFigure, pLevel, pSublevel);
+
+		this.mArchitectureKnowledgeModel = pModel;
+	}
+
+	/**
+	 * getter for the represented Element
+	 * 
+	 * @return the represented Element
+	 */
+	public ArchitectureKnowledgeModel getArchitectureKnowledgeModel() {
+		return mArchitectureKnowledgeModel;
+	}
+
+	@Override
+	public String toString() {
+		// must be overridden due to GraphNode uses text attribute for toString
+		return "AKMElementGraphNode \"" + mArchitectureKnowledgeModel.getName() + "\"";
+	}
+}

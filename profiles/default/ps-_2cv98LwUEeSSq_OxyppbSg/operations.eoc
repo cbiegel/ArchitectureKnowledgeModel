@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<org.eclipse.emf.emfstore.internal.server.model.versioning:ChangePackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Constraints="Constraints" xmlns:FeatureModel="FeatureModel" xmlns:GSS="GSS" xmlns:Packages="Packages" xmlns:Query="Query" xmlns:org.eclipse.emf.emfstore.internal.server.model.versioning="http://eclipse.org/emf/emfstore/server/model/versioning" xmlns:org.eclipse.emf.emfstore.internal.server.model.versioning.operations="http://eclipse.org/emf/emfstore/server/model/versioning/operations">
+  <operations xsi:type="org.eclipse.emf.emfstore.internal.server.model.versioning.operations:CreateDeleteOperation" identifier="__n0mYLwUEeSSq_OxyppbSg" clientDate="2015-02-24T12:05:08.294+0100">
+    <modelElementId id="__nxjFbwUEeSSq_OxyppbSg"/>
+    <modelElement xsi:type="Packages:Toolbox">
+      <gssCatalogue/>
+      <propertiesCatalogue/>
+      <predefinedContraintsSetCatalogue/>
+      <tagsCatalogue/>
+      <queryContainment/>
+    </modelElement>
+    <eObjectToIdMap key="#//@operations.0/@modelElement/@gssCatalogue">
+      <value id="__nxjELwUEeSSq_OxyppbSg"/>
+    </eObjectToIdMap>
+    <eObjectToIdMap key="#//@operations.0/@modelElement/@propertiesCatalogue">
+      <value id="__nxjEbwUEeSSq_OxyppbSg"/>
+    </eObjectToIdMap>
+    <eObjectToIdMap key="#//@operations.0/@modelElement/@predefinedContraintsSetCatalogue">
+      <value id="__nxjErwUEeSSq_OxyppbSg"/>
+    </eObjectToIdMap>
+    <eObjectToIdMap key="#//@operations.0/@modelElement/@tagsCatalogue">
+      <value id="__nxjE7wUEeSSq_OxyppbSg"/>
+    </eObjectToIdMap>
+    <eObjectToIdMap key="#//@operations.0/@modelElement/@queryContainment">
+      <value id="__nxjFLwUEeSSq_OxyppbSg"/>
+    </eObjectToIdMap>
+    <eObjectToIdMap key="#//@operations.0/@modelElement">
+      <value id="__nxjFbwUEeSSq_OxyppbSg"/>
+    </eObjectToIdMap>
+  </operations>
+  <operations xsi:type="org.eclipse.emf.emfstore.internal.server.model.versioning.operations:CreateDeleteOperation" identifier="_RtFiobwVEeSSq_OxyppbSg" clientDate="2015-02-24T12:07:09.642+0100">
+    <modelElementId id="_RtFioLwVEeSSq_OxyppbSg"/>
+    <modelElement xsi:type="GSS:Goal"/>
+    <eObjectToIdMap key="#//@operations.1/@modelElement">
+      <value id="_RtFioLwVEeSSq_OxyppbSg"/>
+    </eObjectToIdMap>
+  </operations>
+  <operations xsi:type="org.eclipse.emf.emfstore.internal.server.model.versioning.operations:MultiReferenceOperation" identifier="_RtGwwLwVEeSSq_OxyppbSg" clientDate="2015-02-24T12:07:09.644+0100" featureName="elements" containmentType="CONTAINMENT" add="true">
+    <modelElementId id="__nxjELwUEeSSq_OxyppbSg"/>
+    <referencedModelElements id="_RtFioLwVEeSSq_OxyppbSg"/>
+  </operations>
+  <operations xsi:type="org.eclipse.emf.emfstore.internal.server.model.versioning.operations:CreateDeleteOperation" identifier="_T3dvgLwVEeSSq_OxyppbSg" clientDate="2015-02-24T12:07:24.152+0100" delete="true">
+    <modelElementId id="_RtFioLwVEeSSq_OxyppbSg"/>
+    <modelElement xsi:type="GSS:Goal"/>
+    <subOperations xsi:type="org.eclipse.emf.emfstore.internal.server.model.versioning.operations:MultiReferenceOperation" identifier="_T3chYrwVEeSSq_OxyppbSg" clientDate="2015-02-24T12:07:24.150+0100" featureName="elements" containmentType="CONTAINMENT">
+      <modelElementId id="__nxjELwUEeSSq_OxyppbSg"/>
+      <referencedModelElements id="_RtFioLwVEeSSq_OxyppbSg"/>
+    </subOperations>
+    <eObjectToIdMap key="#//@operations.3/@modelElement">
+      <value id="_RtFioLwVEeSSq_OxyppbSg"/>
+    </eObjectToIdMap>
+  </operations>
+  <operations xsi:type="org.eclipse.emf.emfstore.internal.server.model.versioning.operations:CreateDeleteOperation" identifier="_awsRJbwVEeSSq_OxyppbSg" clientDate="2015-02-24T12:08:10.419+0100">
+    <modelElementId id="_awsRJLwVEeSSq_OxyppbSg"/>
+    <modelElement xsi:type="Query:GSSQuery" name="tutorial query" description="test" uuid="6681738c-31f3-430d-80ae-b0ef52fce457" username="cbiegel" includeAll="true" includePattern="true" includeRefactorings="true" includePrinciples="true" includeFlaws="true">
+      <selectedGoalsSet/>
+      <assignedConstraintsSet/>
+      <selectedPrinciplesSet/>
+      <selectedGoalsPriorities/>
+    </modelElement>
+    <eObjectToIdMap key="#//@operations.4/@modelElement/@selectedGoalsSet">
+      <value id="_awsRILwVEeSSq_OxyppbSg"/>
+    </eObjectToIdMap>
+    <eObjectToIdMap key="#//@operations.4/@modelElement/@assignedConstraintsSet">
+      <value id="_awsRIbwVEeSSq_OxyppbSg"/>
+    </eObjectToIdMap>
+    <eObjectToIdMap key="#//@operations.4/@modelElement/@selectedPrinciplesSet">
+      <value id="_awsRIrwVEeSSq_OxyppbSg"/>
+    </eObjectToIdMap>
+    <eObjectToIdMap key="#//@operations.4/@modelElement/@selectedGoalsPriorities">
+      <value id="_awsRI7wVEeSSq_OxyppbSg"/>
+    </eObjectToIdMap>
+    <eObjectToIdMap key="#//@operations.4/@modelElement">
+      <value id="_awsRJLwVEeSSq_OxyppbSg"/>
+    </eObjectToIdMap>
+  </operations>
+  <operations xsi:type="org.eclipse.emf.emfstore.internal.server.model.versioning.operations:MultiReferenceOperation" identifier="_awtfQrwVEeSSq_OxyppbSg" clientDate="2015-02-24T12:08:10.420+0100" featureName="gssQueries" containmentType="CONTAINMENT" add="true">
+    <modelElementId id="__nxjFLwUEeSSq_OxyppbSg"/>
+    <referencedModelElements id="_awsRJLwVEeSSq_OxyppbSg"/>
+  </operations>
+  <operations xsi:type="org.eclipse.emf.emfstore.internal.server.model.versioning.operations:CreateDeleteOperation" identifier="_iwziUbwVEeSSq_OxyppbSg" clientDate="2015-02-24T12:09:04.117+0100">
+    <modelElementId id="_iwziULwVEeSSq_OxyppbSg"/>
+    <modelElement xsi:type="Constraints:PredefinedConstraintSet"/>
+    <eObjectToIdMap key="#//@operations.6/@modelElement">
+      <value id="_iwziULwVEeSSq_OxyppbSg"/>
+    </eObjectToIdMap>
+  </operations>
+  <operations xsi:type="org.eclipse.emf.emfstore.internal.server.model.versioning.operations:MultiReferenceOperation" identifier="_iw0JYrwVEeSSq_OxyppbSg" clientDate="2015-02-24T12:09:04.118+0100" featureName="catalogueItems" containmentType="CONTAINMENT" add="true">
+    <modelElementId id="__nxjErwUEeSSq_OxyppbSg"/>
+    <referencedModelElements id="_iwziULwVEeSSq_OxyppbSg"/>
+  </operations>
+  <operations xsi:type="org.eclipse.emf.emfstore.internal.server.model.versioning.operations:AttributeOperation" identifier="_ksDHArwVEeSSq_OxyppbSg" clientDate="2015-02-24T12:09:17.040+0100" featureName="name" newValue="ACED00057400177475746F7269616C20636F6E73747261696E7420736574">
+    <modelElementId id="_iwziULwVEeSSq_OxyppbSg"/>
+  </operations>
+  <operations xsi:type="org.eclipse.emf.emfstore.internal.server.model.versioning.operations:CreateDeleteOperation" identifier="_k8U-sbwVEeSSq_OxyppbSg" clientDate="2015-02-24T12:09:18.748+0100">
+    <modelElementId id="_k8U-sLwVEeSSq_OxyppbSg"/>
+    <modelElement xsi:type="Constraints:Constraint"/>
+    <eObjectToIdMap key="#//@operations.9/@modelElement">
+      <value id="_k8U-sLwVEeSSq_OxyppbSg"/>
+    </eObjectToIdMap>
+  </operations>
+  <operations xsi:type="org.eclipse.emf.emfstore.internal.server.model.versioning.operations:MultiReferenceOperation" identifier="_k8VlxLwVEeSSq_OxyppbSg" clientDate="2015-02-24T12:09:18.748+0100" featureName="constraints" containmentType="CONTAINMENT" add="true">
+    <modelElementId id="_iwziULwVEeSSq_OxyppbSg"/>
+    <referencedModelElements id="_k8U-sLwVEeSSq_OxyppbSg"/>
+  </operations>
+  <operations xsi:type="org.eclipse.emf.emfstore.internal.server.model.versioning.operations:CreateDeleteOperation" identifier="_nEEuUbwVEeSSq_OxyppbSg" clientDate="2015-02-24T12:09:32.981+0100">
+    <modelElementId id="_nEEuULwVEeSSq_OxyppbSg"/>
+    <modelElement xsi:type="Constraints:BooleanTechnicalProperty"/>
+    <eObjectToIdMap key="#//@operations.11/@modelElement">
+      <value id="_nEEuULwVEeSSq_OxyppbSg"/>
+    </eObjectToIdMap>
+  </operations>
+  <operations xsi:type="org.eclipse.emf.emfstore.internal.server.model.versioning.operations:SingleReferenceOperation" identifier="_nEF8dbwVEeSSq_OxyppbSg" clientDate="2015-02-24T12:09:32.983+0100" featureName="technicalProperty">
+    <modelElementId id="_k8U-sLwVEeSSq_OxyppbSg"/>
+    <newValue id="_nEEuULwVEeSSq_OxyppbSg"/>
+  </operations>
+  <operations xsi:type="org.eclipse.emf.emfstore.internal.server.model.versioning.operations:AttributeOperation" identifier="_n0dpcrwVEeSSq_OxyppbSg" clientDate="2015-02-24T12:09:38.055+0100" featureName="name" newValue="ACED00057400085475726F7269616C">
+    <modelElementId id="_nEEuULwVEeSSq_OxyppbSg"/>
+  </operations>
+  <operations xsi:type="org.eclipse.emf.emfstore.internal.server.model.versioning.operations:AttributeOperation" identifier="_qMssIrwVEeSSq_OxyppbSg" clientDate="2015-02-24T12:09:54.018+0100" featureName="value" newValue="ACED000574000474727565">
+    <modelElementId id="_k8U-sLwVEeSSq_OxyppbSg"/>
+  </operations>
+  <operations xsi:type="org.eclipse.emf.emfstore.internal.server.model.versioning.operations:CreateDeleteOperation" identifier="_wZ_U0bwVEeSSq_OxyppbSg" clientDate="2015-02-24T12:10:35.678+0100">
+    <modelElementId id="_wZ_U0LwVEeSSq_OxyppbSg"/>
+    <modelElement xsi:type="Query:QueryResultSet"/>
+    <eObjectToIdMap key="#//@operations.15/@modelElement">
+      <value id="_wZ_U0LwVEeSSq_OxyppbSg"/>
+    </eObjectToIdMap>
+  </operations>
+  <operations xsi:type="org.eclipse.emf.emfstore.internal.server.model.versioning.operations:SingleReferenceOperation" identifier="_wZ_75bwVEeSSq_OxyppbSg" clientDate="2015-02-24T12:10:35.678+0100" featureName="queryResultSet" containmentType="CONTAINMENT">
+    <modelElementId id="_awsRJLwVEeSSq_OxyppbSg"/>
+    <newValue id="_wZ_U0LwVEeSSq_OxyppbSg"/>
+  </operations>
+  <operations xsi:type="org.eclipse.emf.emfstore.internal.server.model.versioning.operations:AttributeOperation" identifier="_yl-EMrwVEeSSq_OxyppbSg" clientDate="2015-02-24T12:10:50.355+0100" featureName="timestamp" newValue="ACED000574001730322E32342E323031352031323A31303A3530204D455A">
+    <modelElementId id="_awsRJLwVEeSSq_OxyppbSg"/>
+  </operations>
+  <operations xsi:type="org.eclipse.emf.emfstore.internal.server.model.versioning.operations:CreateDeleteOperation" identifier="_ymBHgbwVEeSSq_OxyppbSg" clientDate="2015-02-24T12:10:50.360+0100">
+    <modelElementId id="_ymBHgLwVEeSSq_OxyppbSg"/>
+    <modelElement xsi:type="Query:QueryResultSet"/>
+    <eObjectToIdMap key="#//@operations.18/@modelElement">
+      <value id="_ymBHgLwVEeSSq_OxyppbSg"/>
+    </eObjectToIdMap>
+  </operations>
+  <operations xsi:type="org.eclipse.emf.emfstore.internal.server.model.versioning.operations:SingleReferenceOperation" identifier="_ymBHiLwVEeSSq_OxyppbSg" clientDate="2015-02-24T12:10:50.360+0100" featureName="queryResultSet" containmentType="CONTAINMENT">
+    <modelElementId id="_awsRJLwVEeSSq_OxyppbSg"/>
+    <oldValue id="_wZ_U0LwVEeSSq_OxyppbSg"/>
+    <newValue id="_ymBHgLwVEeSSq_OxyppbSg"/>
+  </operations>
+  <operations xsi:type="org.eclipse.emf.emfstore.internal.server.model.versioning.operations:CreateDeleteOperation" identifier="_ymEx4LwVEeSSq_OxyppbSg" clientDate="2015-02-24T12:10:50.366+0100" delete="true">
+    <modelElementId id="_wZ_U0LwVEeSSq_OxyppbSg"/>
+    <modelElement xsi:type="Query:QueryResultSet"/>
+    <eObjectToIdMap key="#//@operations.20/@modelElement">
+      <value id="_wZ_U0LwVEeSSq_OxyppbSg"/>
+    </eObjectToIdMap>
+  </operations>
+  <operations xsi:type="org.eclipse.emf.emfstore.internal.server.model.versioning.operations:CreateDeleteOperation" identifier="_9vhLgbwVEeSSq_OxyppbSg" clientDate="2015-02-24T12:12:05.176+0100">
+    <modelElementId id="_9vhLgLwVEeSSq_OxyppbSg"/>
+    <modelElement xsi:type="Query:PrioritizedElement"/>
+    <eObjectToIdMap key="#//@operations.21/@modelElement">
+      <value id="_9vhLgLwVEeSSq_OxyppbSg"/>
+    </eObjectToIdMap>
+  </operations>
+  <operations xsi:type="org.eclipse.emf.emfstore.internal.server.model.versioning.operations:MultiReferenceOperation" identifier="_9vhykrwVEeSSq_OxyppbSg" clientDate="2015-02-24T12:12:05.177+0100" featureName="prioritizedElements" containmentType="CONTAINMENT" add="true">
+    <modelElementId id="_awsRILwVEeSSq_OxyppbSg"/>
+    <referencedModelElements id="_9vhLgLwVEeSSq_OxyppbSg"/>
+  </operations>
+  <operations xsi:type="org.eclipse.emf.emfstore.internal.server.model.versioning.operations:CreateDeleteOperation" identifier="_-v2nIbwVEeSSq_OxyppbSg" clientDate="2015-02-24T12:12:11.922+0100">
+    <modelElementId id="_-v2nILwVEeSSq_OxyppbSg"/>
+    <modelElement xsi:type="GSS:Goal"/>
+    <eObjectToIdMap key="#//@operations.23/@modelElement">
+      <value id="_-v2nILwVEeSSq_OxyppbSg"/>
+    </eObjectToIdMap>
+  </operations>
+  <operations xsi:type="org.eclipse.emf.emfstore.internal.server.model.versioning.operations:SingleReferenceOperation" identifier="_-v31Q7wVEeSSq_OxyppbSg" clientDate="2015-02-24T12:12:11.924+0100" featureName="element">
+    <modelElementId id="_9vhLgLwVEeSSq_OxyppbSg"/>
+    <newValue id="_-v2nILwVEeSSq_OxyppbSg"/>
+  </operations>
+  <operations xsi:type="org.eclipse.emf.emfstore.internal.server.model.versioning.operations:AttributeOperation" identifier="__XZIQrwVEeSSq_OxyppbSg" clientDate="2015-02-24T12:12:16.068+0100" featureName="name" newValue="ACED000574000854657374476F616C">
+    <modelElementId id="_-v2nILwVEeSSq_OxyppbSg"/>
+  </operations>
+  <operations xsi:type="org.eclipse.emf.emfstore.internal.server.model.versioning.operations:AttributeOperation" identifier="__1FJ0rwVEeSSq_OxyppbSg" clientDate="2015-02-24T12:12:19.181+0100" featureName="description" newValue="ACED000574000F746573744465736372697074696F6E">
+    <modelElementId id="_-v2nILwVEeSSq_OxyppbSg"/>
+  </operations>
+  <operations xsi:type="org.eclipse.emf.emfstore.internal.server.model.versioning.operations:AttributeOperation" identifier="_CJutArwWEeSSq_OxyppbSg" clientDate="2015-02-24T12:12:34.768+0100" featureName="globalPriority" newValue="ACED000574000131">
+    <modelElementId id="_9vhLgLwVEeSSq_OxyppbSg"/>
+  </operations>
+  <operations xsi:type="org.eclipse.emf.emfstore.internal.server.model.versioning.operations:CreateDeleteOperation" identifier="_SmdEgLweEeSDI_fK0GJv1g" clientDate="2015-02-24T13:11:41.128+0100">
+    <modelElementId id="_SmYzELweEeSDI_fK0GJv1g"/>
+    <modelElement xsi:type="FeatureModel:ConsulModel"/>
+    <eObjectToIdMap key="#//@operations.28/@modelElement">
+      <value id="_SmYzELweEeSDI_fK0GJv1g"/>
+    </eObjectToIdMap>
+  </operations>
+  <operations xsi:type="org.eclipse.emf.emfstore.internal.server.model.versioning.operations:CreateDeleteOperation" identifier="_4cX7QLwzEeSbAJ81Bk-hvQ" clientDate="2015-02-24T15:46:14.516+0100">
+    <modelElementId id="_4cVfALwzEeSbAJ81Bk-hvQ"/>
+    <modelElement xsi:type="GSS:GSSTestElement"/>
+    <eObjectToIdMap key="#//@operations.29/@modelElement">
+      <value id="_4cVfALwzEeSbAJ81Bk-hvQ"/>
+    </eObjectToIdMap>
+  </operations>
+  <operations xsi:type="org.eclipse.emf.emfstore.internal.server.model.versioning.operations:CreateDeleteOperation" identifier="_zGj3sLw0EeS9p6R2dY7BQg" clientDate="2015-02-24T15:52:48.171+0100" delete="true">
+    <modelElementId id="_4cVfALwzEeSbAJ81Bk-hvQ"/>
+    <modelElement xsi:type="GSS:GSSTestElement"/>
+    <eObjectToIdMap key="#//@operations.30/@modelElement">
+      <value id="_4cVfALwzEeSbAJ81Bk-hvQ"/>
+    </eObjectToIdMap>
+  </operations>
+  <operations xsi:type="org.eclipse.emf.emfstore.internal.server.model.versioning.operations:CreateDeleteOperation" identifier="_4x1YcLw0EeS9p6R2dY7BQg" clientDate="2015-02-24T15:53:26.263+0100">
+    <modelElementId id="_4x0KULw0EeS9p6R2dY7BQg"/>
+    <modelElement xsi:type="GSS:GSSTestElement"/>
+    <eObjectToIdMap key="#//@operations.31/@modelElement">
+      <value id="_4x0KULw0EeS9p6R2dY7BQg"/>
+    </eObjectToIdMap>
+  </operations>
+</org.eclipse.emf.emfstore.internal.server.model.versioning:ChangePackage>

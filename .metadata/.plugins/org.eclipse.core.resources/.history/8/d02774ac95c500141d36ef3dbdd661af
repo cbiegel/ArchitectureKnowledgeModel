@@ -1,0 +1,13 @@
+package org.emftrace.akm.ui.editors;
+
+import org.emftrace.ui.editors.ModelElementEditor;
+
+public class AKMModelElementEditor extends ModelElementEditor {
+
+	@Override
+	protected void addPages() {
+		
+		
+	}
+
+}

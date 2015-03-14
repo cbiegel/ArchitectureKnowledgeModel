@@ -1,0 +1,25 @@
+package org.emftrace.akm.core.cache;
+
+import org.emftrace.core.accesslayer.AccessLayer;
+import org.emftrace.metamodel.ArchitectureKnowledgeModel.ArchitectureKnowledgeModel;
+import org.emftrace.metamodel.QUARCModel.Query.QueryResultSet;
+
+public class AKMCache extends AbstractCache {
+
+	public AKMCache(final ArchitectureKnowledgeModel pInput, final AccessLayer pAccessLayer) {
+		super(pInput, pAccessLayer);
+	}
+
+	@Override
+	public void initCache() {
+		// TODO Auto-generated method stub
+
+	}
+	
+	/**
+	 * @return the input of the cache
+	 */
+	public ArchitectureKnowledgeModel getModel() {
+		return (ArchitectureKnowledgeModel) getInput();
+	}
+}

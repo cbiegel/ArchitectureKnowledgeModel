@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<org.eclipse.emf.emfstore.internal.server.model.versioning:ChangePackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Packages="Packages" xmlns:org.eclipse.emf.emfstore.internal.server.model.versioning="http://eclipse.org/emf/emfstore/server/model/versioning" xmlns:org.eclipse.emf.emfstore.internal.server.model.versioning.operations="http://eclipse.org/emf/emfstore/server/model/versioning/operations">
+  <operations xsi:type="org.eclipse.emf.emfstore.internal.server.model.versioning.operations:CreateDeleteOperation" identifier="_0vZ1gJcsEeSZZ7bAiqAMIA" clientDate="2015-01-08T12:52:30.168+0100">
+    <modelElementId id="_0vXZRZcsEeSZZ7bAiqAMIA"/>
+    <modelElement xsi:type="Packages:Toolbox">
+      <gssCatalogue/>
+      <propertiesCatalogue/>
+      <predefinedContraintsSetCatalogue/>
+      <tagsCatalogue/>
+      <queryContainment/>
+    </modelElement>
+    <eObjectToIdMap key="#//@operations.0/@modelElement/@gssCatalogue">
+      <value id="_0vXZQJcsEeSZZ7bAiqAMIA"/>
+    </eObjectToIdMap>
+    <eObjectToIdMap key="#//@operations.0/@modelElement/@propertiesCatalogue">
+      <value id="_0vXZQZcsEeSZZ7bAiqAMIA"/>
+    </eObjectToIdMap>
+    <eObjectToIdMap key="#//@operations.0/@modelElement/@predefinedContraintsSetCatalogue">
+      <value id="_0vXZQpcsEeSZZ7bAiqAMIA"/>
+    </eObjectToIdMap>
+    <eObjectToIdMap key="#//@operations.0/@modelElement/@tagsCatalogue">
+      <value id="_0vXZQ5csEeSZZ7bAiqAMIA"/>
+    </eObjectToIdMap>
+    <eObjectToIdMap key="#//@operations.0/@modelElement/@queryContainment">
+      <value id="_0vXZRJcsEeSZZ7bAiqAMIA"/>
+    </eObjectToIdMap>
+    <eObjectToIdMap key="#//@operations.0/@modelElement">
+      <value id="_0vXZRZcsEeSZZ7bAiqAMIA"/>
+    </eObjectToIdMap>
+  </operations>
+</org.eclipse.emf.emfstore.internal.server.model.versioning:ChangePackage>

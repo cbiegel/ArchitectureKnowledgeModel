@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<org.eclipse.emf.emfstore.internal.common.model:Project xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Packages="Packages" xmlns:org.eclipse.emf.emfstore.internal.common.model="http://eclipse.org/emf/emfstore/common/model">
+  <modelElements xsi:type="Packages:Toolbox" xmi:id="_0vXZRZcsEeSZZ7bAiqAMIA">
+    <gssCatalogue xmi:id="_0vXZQJcsEeSZZ7bAiqAMIA"/>
+    <propertiesCatalogue xmi:id="_0vXZQZcsEeSZZ7bAiqAMIA"/>
+    <predefinedContraintsSetCatalogue xmi:id="_0vXZQpcsEeSZZ7bAiqAMIA"/>
+    <tagsCatalogue xmi:id="_0vXZQ5csEeSZZ7bAiqAMIA"/>
+    <queryContainment xmi:id="_0vXZRJcsEeSZZ7bAiqAMIA"/>
+  </modelElements>
+</org.eclipse.emf.emfstore.internal.common.model:Project>

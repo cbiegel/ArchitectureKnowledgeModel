@@ -1,0 +1,164 @@
+/*******************************************************************************
+ * Copyright (c) 2010-2013 Software Systems/Process Informatics Group,
+ * Ilmenau University of Technology.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ ******************************************************************************/
+
+package org.emftrace.ui.modelelementopener;
+
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecp.core.ECPProject;
+import org.eclipse.emf.ecp.core.util.ECPUtil;
+import org.eclipse.emf.ecp.editor.e3.MEEditorInput;
+import org.eclipse.emf.ecp.explorereditorbridge.internal.EditorContext;
+import org.eclipse.emf.ecp.ui.util.ECPModelElementOpener;
+import org.eclipse.ui.PartInitException;
+import org.eclipse.ui.PlatformUI;
+import org.emftrace.metamodel.ArchitectureKnowledgeModel.ArchitectureKnowledgeModel;
+import org.emftrace.metamodel.EMFfitModel.FactorTable;
+import org.emftrace.metamodel.EMFfitModel.IssueCard;
+import org.emftrace.metamodel.LinkModel.Trace;
+import org.emftrace.metamodel.QUARCModel.GSS.GSS;
+import org.emftrace.metamodel.QUARCModel.Query.AssignedConstraintsSet;
+import org.emftrace.metamodel.QUARCModel.Query.PrioritizedElementSet;
+import org.emftrace.metamodel.QUARCModel.Query.QueryResultSet;
+import org.emftrace.metamodel.QUARCModel.Query.SelectedGoalsPriorities;
+import org.emftrace.ui.util.UIHelper;
+
+public class EMFTraceModelElementOpener implements ECPModelElementOpener
+{
+	/**
+	 * tests for specified modelElement can be opened with {@link EMFfitEditor}
+	 * 
+	 * @param modelElement
+	 *            modelElement to open
+	 * @return true if modelElement can be opened with EMFfitEditor
+	 */
+	public static boolean canOpenWithEMFfitEditor(final EObject modelElement)
+	{
+		//return false;
+		return ((modelElement instanceof FactorTable) || (modelElement instanceof IssueCard));
+	}
+
+	///////////////////////////////////////////////////////////////////////////
+
+	/**
+	 * tests for specified modelElement can be opened with {@link TraceEditor}
+	 * 
+	 * @param modelElement
+	 *            modelElement to open
+	 * @return true if modelElement can be opened with TraceEditor
+	 */
+	public static boolean canOpenWithTraceEditor(final EObject modelElement)
+	{
+		return (modelElement instanceof Trace);
+	}
+
+	///////////////////////////////////////////////////////////////////////////
+
+	/**
+	 * tests for specified modelElement can be opened with {@link QUARCEditor}
+	 * 
+	 * @param modelElement
+	 *            modelElement to open
+	 * @return true if modelElement can be opened with QUARCEditor
+	 */
+	public static boolean canOpenWithQUARCEditor(final EObject modelElement)
+	{
+		//return false;
+		return ((modelElement instanceof AssignedConstraintsSet) || (modelElement instanceof QueryResultSet) || (modelElement instanceof GSS) || (modelElement instanceof PrioritizedElementSet) || (modelElement instanceof SelectedGoalsPriorities));
+	}
+
+	///////////////////////////////////////////////////////////////////////////
+
+	/**
+	 * tests if the specified modelElement can be opened with {@link AKMEditor}
+	 * 
+	 * @param modelElement
+	 *            modelElement to open
+	 * @return true if modelElement can be opened with AKMEditor
+	 */
+	public static boolean canOpenWithAKMEditor(final EObject modelElement) {
+
+		return (modelElement instanceof ArchitectureKnowledgeModel);
+	}
+
+	///////////////////////////////////////////////////////////////////////////
+
+	/**
+	 * Open the dependency view for a selected model element
+	 * 
+	 * @param modelElement the selected model
+	 */
+	public static void openDependencyViewer(final EObject modelElement)
+	{
+		openEditor(modelElement, UIHelper.TRACE_EDITOR);
+	}
+
+	///////////////////////////////////////////////////////////////////////////
+
+	/**
+	 * Open the standard EMFStore/ECP editor for models
+	 * 
+	 * @param modelElement the selected model
+	 */
+	public static void openStandardEditor(final EObject modelElement)
+	{
+		openEditor(modelElement, UIHelper.ECP_EDITOR);
+	}
+
+	///////////////////////////////////////////////////////////////////////////
+
+	/**
+	 * open an Editor for specified modelElement
+	 * 
+	 * @param modelElement
+	 */
+	public static void open(final EObject modelElement)
+	{
+
+		String editorID = UIHelper.ECP_EDITOR;
+
+		if( canOpenWithEMFfitEditor(modelElement) ) editorID = UIHelper.EMFFit_EDITOR;
+		if( canOpenWithTraceEditor(modelElement)  ) editorID = UIHelper.TRACE_EDITOR;
+		if( canOpenWithQUARCEditor(modelElement)  ) editorID = UIHelper.QUARC_EDITOR;
+		if( canOpenWithAKMEditor(modelElement)    ) editorID = UIHelper.AKM_EDITOR;
+
+		openEditor(modelElement, editorID);
+	}
+
+	///////////////////////////////////////////////////////////////////////////
+
+	/**
+	 * Opens an editor with a specified id for a certain model
+	 * 
+	 * @param editorID a editor ID
+	 * @param modelElement the model to be opened
+	 */
+	public static void openEditor(final EObject modelElement, final String editorID)
+	{
+		ECPProject    project = ECPUtil.getECPProjectManager().getProject(modelElement);
+		EditorContext context = new EditorContext(modelElement, project);
+		MEEditorInput input   = new MEEditorInput(context);
+
+		try
+		{
+			PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().openEditor(input, editorID, true);
+		}
+		catch(PartInitException e)
+		{
+			e.printStackTrace();
+		}
+	}
+
+	///////////////////////////////////////////////////////////////////////////
+
+	@Override
+	public void openModelElement(final Object objectToBeOpened, final ECPProject ecpProject)
+	{
+		open((EObject)objectToBeOpened);
+	}
+}

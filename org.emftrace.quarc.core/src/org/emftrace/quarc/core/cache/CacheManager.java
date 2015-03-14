@@ -1,0 +1,1252 @@
+/*******************************************************************************
+ * Copyright (c) 2010-2012 Software Systems/Process Informatics Group,
+ * Ilmenau University of Technology.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributor: Daniel Motschmann
+ ******************************************************************************/ 
+
+package org.emftrace.quarc.core.cache;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
+import java.util.Map.Entry;
+
+import org.emftrace.core.accesslayer.AccessLayer;
+import org.emftrace.metamodel.QUARCModel.GSS.ConstrainedElement;
+import org.emftrace.metamodel.QUARCModel.GSS.Decomposition;
+import org.emftrace.metamodel.QUARCModel.GSS.Element;
+import org.emftrace.metamodel.QUARCModel.GSS.GSS;
+import org.emftrace.metamodel.QUARCModel.GSS.Goal;
+import org.emftrace.metamodel.QUARCModel.GSS.Impact;
+import org.emftrace.metamodel.QUARCModel.GSS.Offset;
+import org.emftrace.metamodel.QUARCModel.GSS.Principle;
+import org.emftrace.metamodel.QUARCModel.GSS.Relation;
+import org.emftrace.metamodel.QUARCModel.GSS.isA;
+import org.emftrace.metamodel.QUARCModel.Query.ApplicableElement;
+import org.emftrace.metamodel.QUARCModel.Query.PrioritizedDecomposition;
+import org.emftrace.metamodel.QUARCModel.Query.PrioritizedElement;
+import org.emftrace.metamodel.QUARCModel.Query.QueryResultSet;
+import org.emftrace.metamodel.QUARCModel.Query.Rating;
+import org.emftrace.metamodel.QUARCModel.Query.SelectedGoalsSet;
+import org.emftrace.metamodel.QUARCModel.Query.SelectedPrinciplesSet;
+
+/**
+ * a manager for the used caches
+ * 
+ * @author Daniel Motschmann
+ * @version 1.0
+ */
+
+public class CacheManager {
+
+	/**
+	 * the cache for ApplicableElements
+	 */
+	private GSSQueryCache applicableElementCache;
+
+	/**
+	 * the cache for all Elements (including non applicable Elements)
+	 */
+	private GSSCache gssCache;
+
+	/**
+	 * an AccessLayer
+	 */
+	private AccessLayer accessLayer;
+
+	/**
+	 * the specified GSS
+	 */
+	private GSS gss;
+
+	/**
+	 * the specified QueryResultSet
+	 */
+	private QueryResultSet queryResultSet;
+
+	/**
+	 * @return the used AccessLayer
+	 */
+	public AccessLayer getAccessLayer() {
+		return accessLayer;
+	}
+
+	/**
+	 * @return the used QueryResultSet
+	 */
+	public QueryResultSet getQueryResultSet() {
+		return queryResultSet;
+	}
+	
+	private List<ICacheChangedListener> cacheChangedListeners;
+	
+	private PrioritizedElementsCache selectedPrinciplesCache;
+	
+	private PrioritizedElementsCache selectedGoalsCache;
+
+	private SelectedGoalsSet selectedGoalsSet;
+	
+	/** adds the specified ICacheChangedListener
+	 * @param listener a ICacheChangedListener
+	 */
+	public void addCacheChangedListener(ICacheChangedListener listener){
+		cacheChangedListeners.add(listener);
+	}
+	
+	/** removes the specified ICacheChangedListener
+	 * @param listener a ICacheChangedListener
+	 */
+	public void removeCacheChangedListener(ICacheChangedListener listener){
+		cacheChangedListeners.remove(listener);
+	}
+	
+	/**
+	 * notifies all listening ICacheChangedListener about changes
+	 */
+	private void notifyCacheChangeListeners(){
+		for (ICacheChangedListener listener: cacheChangedListeners){
+			try {
+				listener.changed();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			
+		}
+	}
+
+	/**
+	 * the default constructor
+	 * 
+	 * @param gss
+	 *            a GSS which contains all Elements (including non applicable
+	 *            Elements)
+	 * @param queryResultSet
+	 *            a QueryResultSet which contains the ApplicableElements
+	 * @param accessLayer
+	 *            an AccessLayer
+	 */
+	public CacheManager(GSS gss, QueryResultSet queryResultSet,
+			AccessLayer accessLayer) {
+		this.accessLayer = accessLayer;
+		this.gss = gss;
+		this.queryResultSet = queryResultSet;
+		applicableElementCache = new GSSQueryCache(queryResultSet,
+				accessLayer);
+		gssCache = new GSSCache(gss, accessLayer);
+		
+		cacheChangedListeners = new ArrayList<ICacheChangedListener>();
+		
+		this.selectedGoalsCache = new PrioritizedElementsCache(null, accessLayer);
+		this.selectedPrinciplesCache = new PrioritizedElementsCache(null, accessLayer);
+		
+	}
+	
+	/**
+	 * an alternative constructor with SelectedGoalsSet
+	 * 
+	 * @param gss
+	 *            a GSS which contains all Elements (including non applicable
+	 *            Elements)
+	 * @param queryResultSet
+	 *            a QueryResultSet which contains the ApplicableElements
+	 * @param selectedGoalsSet
+	 *            a SelectedGoalsSet which contains the selected goals
+	 * @param accessLayer
+	 *            an AccessLayer
+	 */
+	public CacheManager(GSS gss, QueryResultSet queryResultSet, SelectedGoalsSet selectedGoalsSet,
+			AccessLayer accessLayer) {
+		this.accessLayer = accessLayer;
+		this.gss = gss;
+		this.queryResultSet = queryResultSet;
+		this.applicableElementCache = new GSSQueryCache(queryResultSet,
+				accessLayer);
+		this.gssCache = new GSSCache(gss, accessLayer);
+		this.selectedGoalsSet = selectedGoalsSet;
+		this.selectedGoalsCache = new PrioritizedElementsCache(selectedGoalsSet, accessLayer);
+		this.selectedPrinciplesCache = new PrioritizedElementsCache(null, accessLayer);
+		cacheChangedListeners = new ArrayList<ICacheChangedListener>();
+	}
+
+	/**
+	 * an alternative constructor without caching a GSS and PrioritizedElements
+	 * 
+	 * @param queryResultSet
+	 *            a QueryResultSet which contains the ApplicableElements
+	 * @param accessLayer
+	 *            an AccessLayer
+	 */
+	public CacheManager(QueryResultSet queryResultSet, AccessLayer accessLayer) {
+		this.accessLayer = accessLayer;
+		this.gss = null;
+		this.queryResultSet = queryResultSet;
+		applicableElementCache = new GSSQueryCache(queryResultSet,
+				accessLayer);
+		gssCache = null;
+		cacheChangedListeners = new ArrayList<ICacheChangedListener>();
+		this.selectedGoalsCache = new PrioritizedElementsCache(null, accessLayer);
+		this.selectedPrinciplesCache = new PrioritizedElementsCache(null, accessLayer);
+	}
+	
+
+	/**
+	 * an alternative constructor without caching ApplicableElements and PrioritizedElements
+	 * 
+	 * @param gss
+	 *            a GSS which contains all Elements
+	 * @param accessLayer
+	 *            an AccessLayer
+	 */
+	public CacheManager(GSS gss, AccessLayer accessLayer) {
+		this.accessLayer = accessLayer;
+		this.gss = gss;
+		this.queryResultSet = null;
+		applicableElementCache = null;
+		gssCache = new GSSCache(gss, accessLayer);
+		cacheChangedListeners = new ArrayList<ICacheChangedListener>();
+		
+		this.selectedGoalsCache = new PrioritizedElementsCache(null, accessLayer);
+		this.selectedPrinciplesCache = new PrioritizedElementsCache(null, accessLayer);
+	}
+
+
+	/**
+	 * an alternative constructor with caching SelectedGoalsSet
+	 * 
+	 * @param gss
+	 *            a GSS which contains all Elements
+	 * @param selectedGoalsSet a SelectedGoalsSet
+	 * @param accessLayer
+	 *            an AccessLayer
+	 */
+	public CacheManager(GSS gss, SelectedGoalsSet selectedGoalsSet,
+			AccessLayer accessLayer) {
+		this.accessLayer = accessLayer;
+		this.gss = gss;
+		this.queryResultSet = null;
+		applicableElementCache = null;
+		gssCache = new GSSCache(gss, accessLayer);
+		this.selectedGoalsSet = selectedGoalsSet;
+		selectedGoalsCache = new PrioritizedElementsCache(selectedGoalsSet, accessLayer);
+		cacheChangedListeners = new ArrayList<ICacheChangedListener>();
+		
+		this.selectedPrinciplesCache = new PrioritizedElementsCache(null, accessLayer);
+	}
+	
+	
+
+	/**
+	 * getter for applicable root Elements
+	 * 
+	 * @return a List with all applicable root Elements
+	 */
+	public List<Element> getRootApplicableElementElements() {
+		return applicableElementCache.getRootElements();
+	}
+
+	/**
+	 * @param element
+	 *            an applicable Element
+	 * @return true if the specified Element is a root Element else false
+	 */
+	public boolean isRootApplicableElement(Element element) {
+		return applicableElementCache.isRootElement(element);
+	}
+
+	/**
+	 * 
+	 * @param element
+	 *            an Element
+	 * @return true if the specified Element is applicable else false
+	 */
+	public boolean isApplicableElement(Element element) {
+		return applicableElementCache.isApplicableElement(element);
+	}
+
+	/**
+	 * 
+	 * @param element
+	 *            an applicable Element
+	 * @return true if the specified Element is a leaf Element else false
+	 */
+	public boolean isLeafAppicableElement(Element element) {
+		return applicableElementCache.isLeafElement(element);
+	}
+
+	/**
+	 * @return a List with all cached root ApplicableElements
+	 */
+	public List<ApplicableElement> getRootApplicableElements() {
+		return applicableElementCache.getRootApplicableElements();
+	}
+
+	/**
+	 * @return a Set of all ApplicableElement with the referenced Element
+	 */
+	public Set<Entry<ApplicableElement, Element>> getApplicableElementsSet() {
+		return applicableElementCache.getApplicableElementsSet();
+	}
+
+	/**
+	 * @return a Set of all Elements with their ApplicableElements
+	 */
+	public Set<Entry<Element, ApplicableElement>> getElementApplicableElementsSet() {
+		return applicableElementCache.getElementsSet();
+	}
+
+	/**
+	 * @param className
+	 *            the name of the EClass of an Element
+	 * @return a Set of all ApplicableElement with the referenced Element with
+	 *         the specified class name
+	 */
+	public Set<Entry<ApplicableElement, Element>> getApplicableElementElementsSet(
+			String className) {
+		return applicableElementCache.getApplicableElementsSet(className);
+	}
+
+	/**
+	 * @param className
+	 *            the name of the EClass of an Element
+	 * @return a Set of all Element with the specified class name and their
+	 *         ApplicableElements
+	 */
+	public Set<Entry<Element, ApplicableElement>> getElementApplicableElementsSet(
+			String className) {
+		return applicableElementCache.getElementsSet(className);
+	}
+
+	/**
+	 * @param applicableElement
+	 *            an ApplicableElement
+	 * @return a List with all incoming Impact relations to the specified
+	 *         ApplicableElement
+	 */
+	public List<Impact> getApplicableIncomingImpactRelations(
+			ApplicableElement applicableElement) {
+		return applicableElementCache
+				.getIncomingImpactRelations(applicableElement);
+	}
+
+	/**
+	 * @param element
+	 *            an applicable Element
+	 * @return a List with all incoming Impact relations to the specified
+	 *         applicable Element
+	 */
+	public List<Impact> getApplicableIncomingImpactRelations(Element element) {
+		return applicableElementCache.getIncomingImpactRelations(element);
+	}
+
+	/**
+	 * @param element
+	 *            an applicable Element
+	 * @return the ApplicableElement for the specified applicable Element
+	 */
+	public ApplicableElement getApplicableElementForElement(Element element) {
+		return applicableElementCache.getApplicableElement(element);
+	}
+
+	/**
+	 * @param applicableElement
+	 *            an ApplicableElement
+	 * @return the referenced applicable Element for the specified
+	 *         ApplicableElement
+	 */
+	public Element getElementForApplicableElement(
+			ApplicableElement applicableElement) {
+		return applicableElementCache.getElement(applicableElement);
+	}
+
+	/**
+	 * @param applicableElement
+	 *            an ApplicableElement
+	 * @return a List with all outgoing Impact relations from the specified
+	 *         ApplicableElement
+	 */
+	public List<Impact> getApplicableOutgoingImpactRelations(
+			ApplicableElement applicableElement) {
+		return applicableElementCache
+				.getOutgoingImpactRelations(applicableElement);
+	}
+
+	/**
+	 * @param element
+	 *            an applicable Element
+	 * @return a List with all outgoing Impact relations from the specified
+	 *         applicable Element
+	 */
+	public List<Impact> getApplicableOutgoingImpactRelations(Element element) {
+		return applicableElementCache.getOutgoingImpactRelations(element);
+	}
+
+	/**
+	 * @param applicableElement
+	 *            an ApplicableElement
+	 * @return a List with all outgoing Offset relations from the specified
+	 *         ApplicableElement
+	 */
+	public List<Offset> getApplicableOutgoingOffsetRelations(
+			ApplicableElement applicableElement) {
+		return applicableElementCache
+				.getOutgoingOffsetRelations(applicableElement);
+	}
+
+	/**
+	 * @param element
+	 *            an applicable Element
+	 * @return a List with all outgoing Offset relations from the specified
+	 *         applicable Element
+	 */
+	public List<Offset> getApplicableOutgoingOffsetRelations(Element element) {
+		return applicableElementCache.getOutgoingOffsetRelations(element);
+	}
+
+	/**
+	 * @param applicableElement
+	 *            an ApplicableElement
+	 * @return a List with all incoming Offset relations to the specified
+	 *         ApplicableElement
+	 */
+	public List<Offset> getApplicableIncomingOffsetRelations(
+			ApplicableElement applicableElement) {
+		return applicableElementCache
+				.getIncomingOffsetRelations(applicableElement);
+	}
+
+	/**
+	 * @param element
+	 *            an applicable Element
+	 * @return a List with all incoming Offset relations to the specified
+	 *         applicable Element
+	 */
+	public List<Offset> getApplicableIncomingOffsetRelations(Element element) {
+		return applicableElementCache.getIncomingOffsetRelations(element);
+	}
+
+	/**
+	 * @param applicableElement
+	 *            an ApplicableElement
+	 * @return a List with all incoming Decomposition relations to the specified
+	 *         ApplicableElement
+	 */
+	public List<Decomposition> getApplicableIncomingDecompositionRelations(
+			ApplicableElement applicableElement) {
+		return applicableElementCache
+				.getIncomingDecompositionRelations(applicableElement);
+	}
+
+	/**
+	 * @param element
+	 *            an applicable Element
+	 * @return a List with all incoming Decomposition relations to the specified
+	 *         applicable Element
+	 */
+	public List<Decomposition> getApplicableIncomingDecompositionRelations(
+			Element element) {
+		return applicableElementCache
+				.getIncomingDecompositionRelations(element);
+	}
+
+	/**
+	 * @param applicableElement
+	 *            an ApplicableElement
+	 * @return a List with all outgoing Decomposition relations from the
+	 *         specified ApplicableElement
+	 */
+	public List<Decomposition> getApplicableOutgoingDecompositionRelations(
+			ApplicableElement applicableElement) {
+		return applicableElementCache
+				.getOutgoingDecompositionRelations(applicableElement);
+	}
+
+	/**
+	 * @param element
+	 *            an applicable Element
+	 * @return a List with all outgoing Decomposition relations from the
+	 *         specified applicable Element
+	 */
+	public List<Decomposition> getApplicableOutgoingDecompositionRelations(
+			Element element) {
+		return applicableElementCache
+				.getOutgoingDecompositionRelations(element);
+	}
+
+	/**
+	 * @param element
+	 *            an applicable Element
+	 * @return the outgoing IsA relation from the specified applicable Element
+	 */
+	public isA getApplicableOutgoingIsARelations(Element element) {
+		return applicableElementCache.getOutgoingIsARelation(element);
+	}
+
+	/**
+	 * @param element
+	 *            an applicable Element
+	 * @return a List with all incoming IsA relations to the specified
+	 *         applicable Element
+	 */
+	public List<isA> getApplicableIncomingIsARelations(Element element) {
+		return applicableElementCache.getIncomingIsARelations(element);
+	}
+
+	/**
+	 * @param applicableElement
+	 *            an ApplicableElement
+	 * @return the outgoing IsA relation from the specified ApplicableElement
+	 */
+	public isA getApplicableOutgoingIsARelations(
+			ApplicableElement applicableElement) {
+		return applicableElementCache
+				.getOutgoingIsARelations(applicableElement);
+	}
+
+	/**
+	 * @param applicableElement
+	 *            an ApplicableElement
+	 * @return a List with all incoming IsA relations to the specified
+	 *         ApplicableElement
+	 */
+
+	public List<isA> getApplicableIncomingIsARelations(
+			ApplicableElement applicableElement) {
+		return applicableElementCache
+				.getIncomingIsARelations(applicableElement);
+	}
+
+	/**
+	 * Initializes all caches
+	 */
+	public void initCache() {
+		initApplicableElementCache();
+		initGSSCache() ;
+		initSelectedGoalCache();
+		initSelectedPrincipleCache();
+		
+	}
+	
+	/**
+	 * Initializes only the GSS cache
+	 */
+	public void initGSSCache() {
+		if (gssCache != null)
+			gssCache.initCache();
+		notifyCacheChangeListeners();
+	}
+	
+	/**
+	 * Initializes only the GSS cache
+	 */
+	public void initApplicableElementCache() {
+		if (applicableElementCache != null)
+			applicableElementCache.initCache();
+		notifyCacheChangeListeners();
+	}
+
+	/**
+	 * @param applicableElement
+	 *            an ApplicableElement
+	 * @return a List with all incoming Relations to the specified
+	 *         ApplicableElement
+	 */
+	public List<Relation> getAllApplicableIncomingRelations(
+			ApplicableElement applicableElement) {
+		return applicableElementCache
+				.getAllIncomingRelations(applicableElement);
+	}
+
+	/**
+	 * @param applicableElement
+	 *            an ApplicableElement
+	 * @return a List with all outgoing Relations from the specified
+	 *         ApplicableElement
+	 */
+	public List<Relation> getAllApplicableOutgoingRelations(
+			ApplicableElement applicableElement) {
+		return applicableElementCache
+				.getAllOutgoingRelations(applicableElement);
+	}
+
+	/**
+	 * @param element
+	 *            an applicable Element
+	 * @return a List with all incoming Relations to the specified applicable
+	 *         Element
+	 */
+	public List<Relation> getAllApplicableIncomingRelations(Element element) {
+		return applicableElementCache.getAllIncomingRelations(element);
+	}
+
+	/**
+	 * @param element
+	 *            an applicable Element
+	 * @return a List with all outgoing Relations from the specified applicable
+	 *         Element
+	 */
+	public List<Relation> getAllApplicableOutgoingRelations(Element element) {
+		return applicableElementCache.getAllOutgoingRelations(element);
+	}
+
+	/**
+	 * @return a List with all cached applicable Elements
+	 */
+	public List<Element> getAllApplicableElementElements() {
+		return applicableElementCache.getAllElements();
+	}
+
+	/**
+	 * @return a List with all cached ApplicableElements
+	 */
+	public List<ApplicableElement> getAllApplicableElements() {
+		return applicableElementCache.getAllApplicableElements();
+	}
+
+	/**
+	 * @param layer
+	 *            a GSSLayer (GSSLayer.layer1..GSSLayer.layer4) note: layer1
+	 *            equals layer 4
+	 * @return a List with all cached applicable Elements
+	 */
+	public List<Element> getAllApplicableElementElement(int layer) {
+		return applicableElementCache.getAllElements(layer);
+	}
+
+	/**
+	 * @param layer
+	 *            a GSSLayer (GSSLayer.layer1..GSSLayer.layer4) note: layer1
+	 *            equals layer 4
+	 * @return a List with all cached applicable root Elements
+	 */
+	public List<Element> getRootApplicableElementElements(int layer) {
+		return applicableElementCache.getRootElements(layer);
+	}
+
+	/**
+	 * @param layer
+	 *            an GSSLayer (GSSLayer.layer1..GSSLayer.layer4) note: layer1
+	 *            equals layer 4
+	 * @return a List with all cached applicable leaf Elements
+	 */
+	public List<Element> getLeafApplicableElementElements(int layer) {
+		return applicableElementCache.getLeafElements(layer);
+	}
+
+	/**
+	 * @param element
+	 *            an Element
+	 * @return true if the specified applicable Element isn't a root or leaf
+	 */
+	public boolean isInnerNodeApplicableElementElement(Element element) {
+		return applicableElementCache.isInnerNodeElement(element);
+	}
+
+	/**
+	 * adds the specified relation as an applicable relation to the specified
+	 * ApplicableElements and caches the relation
+	 * 
+	 * @param sourceApplicableElement
+	 *            the ApplicableElement for the source of the Relation
+	 * @param targetApplicableElement
+	 *            the ApplicableElement for the target of the Relation
+	 * @param relation
+	 *            a Relation between two applicable Elements
+	 */
+
+	public void addRelation(ApplicableElement sourceApplicableElement,
+			ApplicableElement targetApplicableElement, Relation relation) {
+		applicableElementCache.addRelation(sourceApplicableElement,
+				targetApplicableElement, relation);
+		notifyCacheChangeListeners();
+	}
+
+	/**
+	 * adds the specified relation from an Element with undefined satisfaction
+	 * of the Precondition to the specified ApplicableElement and caches the
+	 * relation
+	 * 
+	 * @param sourceApplicableElement
+	 *            the ApplicableElement for the source of the Relation
+	 * @param relation
+	 *            a relation from an Element with undefined satisfaction
+	 */
+	public void addRelationForUndefinedApplicableness(
+			ApplicableElement targetApplicableElement, Relation relation) {
+		applicableElementCache.addRelationForUndefinedApplicableness(
+				targetApplicableElement, relation);
+		notifyCacheChangeListeners();
+	}
+
+	/**
+	 * Creates an ApplicableElement for the specified Element and caches the
+	 * ApplicableElement
+	 * 
+	 * @param element
+	 *            an Element
+	 * @return the created ApplicableElement
+	 */
+	public ApplicableElement createApplicableElement(Element element) {
+		ApplicableElement result = applicableElementCache.createApplicableElement(element);
+		notifyCacheChangeListeners();
+		return result;
+	}
+
+	/**
+	 * Creates a Rating relation between the specified Elements and caches the
+	 * Rating relation
+	 * 
+	 * @param sourceElement
+	 *            the source Element of the Rating relation
+	 * @param targetElement
+	 *            the target Element of the Rating relation
+	 * @param weight
+	 *            the weight of the Rating relation
+	 * @return the created ApplicableElement
+	 */
+	public Rating createRatingRelation(Element sourceElement,
+			Element targetElement, float weight) {
+		Rating result =  applicableElementCache.createRatingRelation(sourceElement,
+				targetElement, weight);
+		notifyCacheChangeListeners();
+		return result;
+	}
+
+	/**
+	 * @param sourceElement
+	 *            the source Element of a Rating relation
+	 * @param targetElement
+	 *            the target Element of a Rating relation
+	 * @return the weight of the found Rating relation between the specified
+	 *         Elements
+	 */
+	public float getRatingWeight(Element sourceElement, Element targetElement) {
+		return applicableElementCache.getRatingWeight(sourceElement,
+				targetElement);
+	}
+
+	/**
+	 * @return the used GSS
+	 */
+	public GSS getGss() {
+		return this.gss;
+	}
+
+	/**
+	 * calculates the level of the specified Element
+	 * 
+	 * @param element
+	 *            an Element
+	 * @return the calculates level (0..2) for the layout for zest
+	 */
+	public int getLevel(Element element) {
+		return gssCache.getLevel(element);
+	}
+
+	/**
+	 * calculates the GSS layer of the specified Element
+	 * 
+	 * @param element
+	 *            an Element
+	 * @return the calculates layer within the GSS layout
+	 *         (GSSLayer.layer1..GSSLayer.layer4)
+	 */
+	public static int getGSSLayer(Element element) {
+		return GSSCache.getGSSLayer(element);
+	}
+
+	/**
+	 * calculates the sub level of the specified Element
+	 * 
+	 * @param element
+	 *            an Element
+	 * @return the calculates sub level (0..*) for the layout for zest
+	 */
+	public int getSublevel(Element element) {
+		return gssCache.getSublevel(element);
+	}
+
+	/**
+	 * @param element
+	 *            an Element
+	 * @return true if Element is not a leaf and not a root Element
+	 */
+	public boolean isInnerNode(Element element) {
+		return gssCache.isInnerNode(element);
+	}
+
+	/**
+	 * @param element
+	 *            an Element
+	 * @return true if Element is a leaf Element
+	 */
+	public boolean isLeaf(Element element) {
+		return gssCache.isLeaf(element);
+	}
+
+	/**
+	 * @param element
+	 *            an Element
+	 * @return true if Element is a root Element
+	 */
+	public boolean isRoot(Element element) {
+		return gssCache.isRoot(element);
+	}
+
+	/**
+	 * @return a List with all cached Elements
+	 */
+	public List<Element> getAllElements() {
+		return gssCache.getAllElements();
+	}
+
+	/**
+	 * @param the
+	 *            layer of the Element (1..4)
+	 * @return a List with all cached Elements
+	 */
+	public List<Element> getAllElements(int layer) {
+		return gssCache.getAllElements(layer);
+	}
+
+	/**
+	 * @param the
+	 *            layer of the Element (1..4)
+	 * @return a List with all cached root Elements
+	 */
+	public List<Element> getRootElements(int layer) {
+		return gssCache.getRootElements(layer);
+	}
+
+	/**
+	 * @param the
+	 *            layer of the Element (1..4)
+	 * @return a List with all cached leaf Elements
+	 */
+
+	public List<Element> getLeafElements(int layer) {
+		return gssCache.getLeafElements(layer);
+	}
+
+	/**
+	 * @param relation
+	 *            a Relation
+	 * @return the target Element of the specified Relation
+	 */
+	public Element getTargetOfRelation(Relation relation) {
+		return gssCache.getTargetOfRelation(relation);
+	}
+
+	/**
+	 * @param relation
+	 *            a Relation
+	 * @return the source Element of the specified Relation
+	 */
+	public Element getSourceOfRelation(Relation relation) {
+		return gssCache.getSourceOfRelation(relation);
+	}
+
+	/**
+	 * @param element
+	 *            an Element
+	 * @return a List with all outgoing Relations for the specified Element
+	 */
+	public List<Relation> getAllOutgoingRelationsForElement(Element element) {
+		return gssCache.getAllOutgoingRelationsForElement(element);
+	}
+
+	/**
+	 * @param element
+	 *            an Element
+	 * @return a List with all incoming Relations for the specified Element
+	 */
+	public List<Relation> getAllIncomingRelationsForElement(Element element) {
+		return gssCache.getAllIncomingRelationsForElement(element);
+	}
+
+	/**
+	 * @param element
+	 *            an Element
+	 * @param relationClassName
+	 *            the class name of a Relation
+	 * @return a List with all outgoing Relations with the specified class name
+	 *         for the specified Element
+	 */
+	public List<Relation> getAllOutgoingRelationsForElement(Element element,
+			String relationClassName) {
+		return gssCache.getAllOutgoingRelationsForElement(element,
+				relationClassName);
+	}
+
+	/**
+	 * @param element
+	 *            an Element
+	 * @param relationClassName
+	 *            the class name of a Relation
+	 * @return a List with all incoming Relations with the specified class name
+	 *         for the specified Element
+	 */
+	public List<Relation> getAllIncomingRelationsForElement(Element element,
+			String relationClassName) {
+		return gssCache.getAllIncomingRelationsForElement(element,
+				relationClassName);
+	}
+
+	/**
+	 * @return a List with all cached Relations
+	 */
+	public List<Relation> getAllRelations() {
+		return gssCache.getAllRelations();
+	}
+
+	/**
+	 * @param relationClassName
+	 *            the class name of a Relation
+	 * @return a List with all cached Relations with the specified class name
+	 */
+	public List<Relation> getAllRelations(String relationClassName) {
+		return gssCache.getAllRelations(relationClassName);
+	}
+
+	/**
+	 * @param relation
+	 *            a Relation
+	 * @return the cached weight for the specified relation as Float
+	 */
+	public Float getRelationWeight(Relation relation) {
+		return gssCache.getRelationWeight(relation);
+	}
+
+	/**
+	 * @param relation
+	 *            a Relation
+	 * @return the cached weight for the specified relation as String
+	 */
+	public String getRelationWeightString(Relation relation) {
+		return gssCache.getRelationWeightString(relation);
+	}
+
+	/**
+	 * @param selectedGoal
+	 *            a Goal
+	 * @return a List with all Rating relations to the specified Goal
+	 */
+	public List<Rating> getRatingRelationsTo(Goal selectedGoal) {
+		return applicableElementCache.getRatingRelationsTo(selectedGoal);
+	}
+	
+	public SelectedGoalsSet getSelectedGoalsSet(){
+		return	(SelectedGoalsSet) selectedGoalsCache.getPrioritizedElementSet();
+	}
+	
+	public PrioritizedDecomposition getSelectedGoalsPriorizedDecomposition(Decomposition decomposition){
+		return	selectedGoalsCache.getPrioritizedDecomposition(decomposition);
+	}
+	
+	public Decomposition getSelectedGoalsDecomposition(PrioritizedDecomposition priorizedDecomposition){
+		return	selectedGoalsCache.getDecomposition(priorizedDecomposition);
+	}
+	
+	public List<PrioritizedDecomposition> getSelectedGoalsPriorizedDecompositionsForSource(Goal source){
+		return	selectedGoalsCache.getPrioritizedDecompositionsForSource(source);
+	}
+	
+	public List<PrioritizedDecomposition> getSelectedGoalsPriorizedDecompositionsForTarget(Goal target){
+		return	selectedGoalsCache.getPrioritizedDecompositionsForTarget(target);
+	
+	}
+	
+	public PrioritizedDecomposition getSelectedGoalsPriorizedDecompositionsBetween(Goal source, Goal target){
+		return	selectedGoalsCache.getPrioritizedDecompositionsBetween(source, target);
+	}
+	
+	public PrioritizedElement getSelectedGoaForGoal(Goal element){
+		return	selectedGoalsCache.getPrioritizedElement(element);
+	}
+	
+	public Goal getGoalForSelectedGoal(PrioritizedElement priorizedElement){
+		return	(Goal) selectedGoalsCache.getElement(priorizedElement);
+	}
+	
+	public void setSelectedGoalPriorizedDecompositionWeight(Goal source, Goal target, Integer newPriority){
+
+		selectedGoalsCache.setWeight(source, target, newPriority);
+		notifyCacheChangeListeners();
+	}
+
+	public Integer getSelectedGoalPriorizedDecompositionWeight(Goal source, Goal target){
+
+		return	selectedGoalsCache.getWeight(source, target);
+		
+	}
+	
+	public void setSelecteddGoalPriority(Goal element, Integer newPriority){
+		selectedGoalsCache.setPriority(element, newPriority);
+		notifyCacheChangeListeners();
+	}
+	
+	public Goal getSelectedGoalPriorizedDecompositionTarget(PrioritizedDecomposition priorizedDecomposition){
+	
+		return (Goal) selectedGoalsCache.getTarget(priorizedDecomposition);
+	}
+	
+
+	public Float getSelectedGoalPriority(Goal element){
+
+			return selectedGoalsCache.getPrioritizedElementPriority(element);
+	
+	}
+	
+	public Integer getSelectedGoalPriorizedDecompositionWeight(PrioritizedDecomposition priorizedDecomposition){
+		return selectedGoalsCache.getPrioritizedDecompositionWeight(priorizedDecomposition);
+	}
+	
+
+/**
+ * save all changes stored by the cache to the containment model element instance
+	*/
+	public void flushSelectedGoalsCache(){
+		selectedGoalsCache.flush();
+	}
+
+
+	public void initSelectedGoalCache(){
+		if (selectedGoalsCache!= null)
+
+			selectedGoalsCache.initCache();
+		notifyCacheChangeListeners();
+	}
+	
+	public Set<PrioritizedDecomposition> getSelectedGoalsDecompositions(){
+		return selectedGoalsCache.getPrioritizedDecompositions();
+
+	}
+	
+	public Set<PrioritizedElement> getSelectedGoals(){
+		return selectedGoalsCache.getPrioritizedElements();
+	}
+
+	public List<Element> getRootSelectedGoals() {
+		return selectedGoalsCache.getRootPrioritizedElements();
+	}
+	
+	/**
+	 * @param source an Element
+	 * @param target an Element
+	 * @return the Decomposition between the two specified Elements
+	 */
+	public Decomposition getDecompositionBetween(Element source, Element target){
+		return gssCache.getDecompositionBetween(source, target);
+	
+	}
+
+	public void repairSelectedGoalsPrioritiesAndWeights(){
+		selectedGoalsCache.repairPrioritiesAndWeights();
+		notifyCacheChangeListeners();
+	}
+	
+	public PrioritizedDecomposition getPriorizedGoalDecompositionForDecomposition(Decomposition decomposition){
+		return selectedGoalsCache.getPrioritizedDecompositionForDecomposition(decomposition);
+	}
+	
+	
+	
+	public void markSelectedGoalDecompositionAsToRemove(
+			Decomposition decomposition) {
+		selectedGoalsCache.markDecompositionAsToRemove(decomposition);
+		notifyCacheChangeListeners();
+	}
+	
+	public void demarkSelectedGoalDecompositionAsToRemove(
+			Decomposition decomposition) {
+		selectedGoalsCache.demarkDecompositionAsToRemove(decomposition);
+		notifyCacheChangeListeners();
+	}
+
+	public void markSelectedGoalAsToRemove(
+			Goal element) {
+		selectedGoalsCache.markElementAsToRemove(element);
+		notifyCacheChangeListeners();
+	}
+
+	
+	public void demarkSelectedGoalAsToRemove(
+			Goal element) {
+		selectedGoalsCache.demarkElementAsToRemove(element);
+		notifyCacheChangeListeners();
+	}
+
+	public void removeMarkedGoalsAndDecompositions( ) {
+		selectedGoalsCache.removeMarkedElementsAndDecompositions();
+		notifyCacheChangeListeners();
+	}
+
+
+	public boolean goalDecompositionIsMarkedAsToRemove(Decomposition decomposition) {
+		return	selectedGoalsCache.isMarkedAsToRemove(decomposition);
+	}
+
+	public boolean goalIsMarkedAsToRemove(Goal element) {	
+		return selectedGoalsCache.isMarkedAsToRemove(element);
+	}
+	
+	
+	//principles
+	
+	
+	public SelectedPrinciplesSet getSelectedPrinciplesSet(){
+		return	(SelectedPrinciplesSet) selectedPrinciplesCache.getPrioritizedElementSet();
+	}
+	
+	public PrioritizedDecomposition getSelectedPrinciplesPriorizedDecomposition(Decomposition decomposition){
+		return	selectedPrinciplesCache.getPrioritizedDecomposition(decomposition);
+	}
+	
+	public Decomposition getSelectedPrinciplesDecomposition(PrioritizedDecomposition priorizedDecomposition){
+		return	selectedPrinciplesCache.getDecomposition(priorizedDecomposition);
+	}
+	
+	public List<PrioritizedDecomposition> getSelectedPrinciplesPriorizedDecompositionsForSource(Principle source){
+		return	selectedPrinciplesCache.getPrioritizedDecompositionsForSource(source);
+	}
+	
+	public List<PrioritizedDecomposition> getSelectedPrinciplesPriorizedDecompositionsForTarget(Principle target){
+		return	selectedPrinciplesCache.getPrioritizedDecompositionsForTarget(target);
+	
+	}
+	
+	public PrioritizedDecomposition getSelectedPrinciplesPriorizedDecompositionsBetween(Principle source, Principle target){
+		return	selectedPrinciplesCache.getPrioritizedDecompositionsBetween(source, target);
+	}
+	
+	public PrioritizedElement getSelectedGoaForPrinciple(Principle element){
+		return	selectedPrinciplesCache.getPrioritizedElement(element);
+	}
+	
+	public Principle getPrincipleForSelectedPrinciple(PrioritizedElement priorizedElement){
+		return	(Principle) selectedPrinciplesCache.getElement(priorizedElement);
+	}
+	
+	public void setSelectedPrinciplePriorizedDecompositionWeight(Principle source, Principle target, Integer newPriority){
+
+		selectedPrinciplesCache.setWeight(source, target, newPriority);
+		notifyCacheChangeListeners();
+	}
+
+	public Integer getSelectedPrinciplePriorizedDecompositionWeight(Principle source, Principle target){
+
+		return	selectedPrinciplesCache.getWeight(source, target);
+		
+	}
+	
+	public void setSelecteddPrinciplePriority(Principle element, Integer newPriority){
+		selectedPrinciplesCache.setPriority(element, newPriority);
+		notifyCacheChangeListeners();
+	}
+	
+	public Principle getSelectedPrinciplePriorizedDecompositionTarget(PrioritizedDecomposition priorizedDecomposition){
+	
+		return (Principle) selectedPrinciplesCache.getTarget(priorizedDecomposition);
+	}
+	
+
+	public Float getSelectedPrinciplePriority(Principle element){
+
+			return selectedPrinciplesCache.getPrioritizedElementPriority(element);
+	
+	}
+	
+	public Integer getSelectedPrinciplePriorizedDecompositionWeight(PrioritizedDecomposition priorizedDecomposition){
+		return selectedPrinciplesCache.getPrioritizedDecompositionWeight(priorizedDecomposition);
+	}
+	
+
+/**
+ * save all changes stored by the cache to the containment model element instance
+	*/
+	public void flushSelectedPrinciplesCache(){
+		selectedPrinciplesCache.flush();
+	}
+
+
+	public void initSelectedPrincipleCache(){
+		if (selectedPrinciplesCache!= null)
+
+			selectedPrinciplesCache.initCache();
+		notifyCacheChangeListeners();
+	}
+	
+	public Set<PrioritizedDecomposition> getSelectedPrinciplesDecompositions(){
+		return selectedPrinciplesCache.getPrioritizedDecompositions();
+
+	}
+	
+	public Set<PrioritizedElement> getSelectedPrinciples(){
+		return selectedPrinciplesCache.getPrioritizedElements();
+	}
+
+	public List<Element> getRootSelectedPrinciples() {
+		return selectedPrinciplesCache.getRootPrioritizedElements();
+	}
+	
+
+	public void repairSelectedPrinciplesPrioritiesAndWeights(){
+		selectedPrinciplesCache.repairPrioritiesAndWeights();
+		notifyCacheChangeListeners();
+	}
+	
+	public PrioritizedDecomposition getPriorizedPrinciplesDecompositionForDecomposition(Decomposition decomposition){
+		return selectedPrinciplesCache.getPrioritizedDecompositionForDecomposition(decomposition);
+	}
+	
+	
+	
+	public void markSelectedPrincipleDecompositionAsToRemove(
+			Decomposition decomposition) {
+		selectedPrinciplesCache.markDecompositionAsToRemove(decomposition);
+		notifyCacheChangeListeners();
+	}
+	
+	public void demarkSelectedPrincipleDecompositionAsToRemove(
+			Decomposition decomposition) {
+		selectedPrinciplesCache.demarkDecompositionAsToRemove(decomposition);
+		notifyCacheChangeListeners();
+	}
+
+	public void markSelectedPrincipleAsToRemove(
+			Principle element) {
+		selectedPrinciplesCache.markElementAsToRemove(element);
+		notifyCacheChangeListeners();
+	}
+
+	
+	public void demarkSelectedPrincipleAsToRemove(
+			Principle element) {
+		selectedPrinciplesCache.demarkElementAsToRemove(element);
+		notifyCacheChangeListeners();
+	}
+
+	public void removeMarkedPrinciplesAndDecompositions( ) {
+		selectedPrinciplesCache.removeMarkedElementsAndDecompositions();
+		notifyCacheChangeListeners();
+	}
+
+
+	public boolean principleDecompositionIsMarkedAsToRemove(Decomposition decomposition) {
+		return	selectedPrinciplesCache.isMarkedAsToRemove(decomposition);
+	}
+
+	public boolean principleIsMarkedAsToRemove(Principle element) {	
+		return selectedPrinciplesCache.isMarkedAsToRemove(element);
+	}
+
+	public Float getIndirectRatingWeight(ConstrainedElement sourceElement,
+			Element targetElement) {
+		return applicableElementCache.getIndirectRatingWeight(sourceElement, targetElement);
+	}
+	
+}

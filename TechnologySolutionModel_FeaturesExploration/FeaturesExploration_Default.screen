@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<model:Screen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://wireframesketcher.com/1.0/model.ecore">
+  <widgets xsi:type="model:Panel" id="18" x="16" y="207" width="721" height="425" measuredWidth="721" measuredHeight="425" alpha="0" verticalScrollbar="true"/>
+  <widgets xsi:type="model:Label" id="13" x="16" y="24" text="Features Exploration" measuredWidth="390" measuredHeight="67">
+    <font size="43px" underline="true"/>
+  </widgets>
+  <widgets xsi:type="model:Text" id="15" x="16" y="112" text="Standard-Ansicht der Features-Exploration-Sicht:&#xD;&#xA;* Auflistung aller Technologielösungen eines ausgewählten Modells" measuredWidth="469" measuredHeight="42" lineHeight="1.5">
+    <font size="14px" underline="false"/>
+  </widgets>
+  <widgets xsi:type="model:Shape" id="4" x="63" y="456" width="137" height="57" text="Technology Solution 1" measuredWidth="137" measuredHeight="57" shapeType="rectangle">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:Shape" id="5" x="217" y="456" width="137" height="57" text="Technology Solution 2" measuredWidth="137" measuredHeight="57" shapeType="rectangle">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:Shape" id="7" x="376" y="456" height="57" text="Technology Solution n" measuredWidth="137" measuredHeight="57" shapeType="rectangle">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:Shape" id="8" x="209" y="217" text="TechnologySolutionModel X" measuredWidth="168" measuredHeight="168" shapeType="diamond">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:Combo" id="20" x="576" y="242" text="Filter Feature Type" measuredWidth="124" measuredHeight="23" state="disabled">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:VLine" id="21" x="544" y="208" height="425" measuredWidth="6" measuredHeight="425"/>
+  <widgets xsi:type="model:HLine" id="22" x="544" y="350" width="178" measuredWidth="178" measuredHeight="6"/>
+  <widgets xsi:type="model:Arrow" id="23" x="128" y="384" width="161" height="73" measuredWidth="161" measuredHeight="73" direction="bottom"/>
+  <widgets xsi:type="model:Arrow" id="24" x="296" y="384" width="8" height="73" measuredWidth="8" measuredHeight="73" left="false" right="true"/>
+  <widgets xsi:type="model:Arrow" id="25" x="296" y="384" width="153" height="73" measuredWidth="153" measuredHeight="73" left="false" right="true"/>
+  <hRuler/>
+  <vRuler/>
+  <font size="12px"/>
+</model:Screen>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<section name="ColorChooserDialog">
+		<list key="custom">
+			<item value="#00118A"/>
+		</list>
+	</section>
+	<section name="NewProjectWizard">
+	</section>
+	<section name="SaveAsImageDialogSettings">
+		<item value="true" key="saveToFile"/>
+		<item value="false" key="hideAnnotations"/>
+		<list key="folderHistory">
+			<item value="C:\Users\Chris\Documents\_UNI\Bachelor Semester 6\Bachelorarbeit\Mockups"/>
+		</list>
+		<list key="fileNameHistory">
+			<item value="FeaturesExploration_Default"/>
+		</list>
+	</section>
+</section>

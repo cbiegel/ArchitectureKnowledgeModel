@@ -1,0 +1,5 @@
+package org.emftrace.akm.core.cache;
+
+public class CachenManager {
+
+}

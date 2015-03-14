@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<org.eclipse.emf.emfstore.internal.common.model:Project xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Constraints="Constraints" xmlns:GSS="GSS" xmlns:Packages="Packages" xmlns:org.eclipse.emf.emfstore.internal.common.model="http://eclipse.org/emf/emfstore/common/model">
+  <modelElements xsi:type="Packages:Toolbox" xmi:id="_AXH05cTzEeSfz99xxu0S5g">
+    <gssCatalogue xmi:id="_AXH04MTzEeSfz99xxu0S5g">
+      <elements xsi:type="GSS:Goal" xmi:id="_aSrX8MTzEeSfz99xxu0S5g" name="testGoal" description="testGoalDescription"/>
+      <elements xsi:type="GSS:Goal" xmi:id="_ZQda0MWUEeSRG9PdnMEapQ" name="testGoal2" description="testGoal2Description"/>
+      <elements xsi:type="GSS:Principle" xmi:id="_5TJc4MkFEeSlMeTl6WqQUA" name="TestPrinciple" description="TestPrinciple Description"/>
+      <relations xsi:type="GSS:isA" xmi:id="_dOpHoMWUEeSRG9PdnMEapQ" source="#_ZQda0MWUEeSRG9PdnMEapQ" target="#_aSrX8MTzEeSfz99xxu0S5g"/>
+      <relations xsi:type="GSS:Impact" xmi:id="_9gm70MkFEeSlMeTl6WqQUA" source="#_ZQda0MWUEeSRG9PdnMEapQ" target="#_5TJc4MkFEeSlMeTl6WqQUA"/>
+      <relations xsi:type="GSS:Decomposition" xmi:id="_KsnD0MmaEeSq6saETqWL0A" source="#_ZQda0MWUEeSRG9PdnMEapQ" target="#_5TJc4MkFEeSlMeTl6WqQUA"/>
+    </gssCatalogue>
+    <propertiesCatalogue xmi:id="_AXH04cTzEeSfz99xxu0S5g"/>
+    <predefinedContraintsSetCatalogue xmi:id="_AXH04sTzEeSfz99xxu0S5g">
+      <catalogueItems xmi:id="_O-ZnUMTzEeSfz99xxu0S5g">
+        <constraints xmi:id="_PSfoAMTzEeSfz99xxu0S5g" technicalProperty="#_QUPY4MTzEeSfz99xxu0S5g" value="true"/>
+      </catalogueItems>
+    </predefinedContraintsSetCatalogue>
+    <tagsCatalogue xmi:id="_AXH048TzEeSfz99xxu0S5g"/>
+    <queryContainment xmi:id="_AXH05MTzEeSfz99xxu0S5g">
+      <gssQueries xmi:id="_A2PZ0MTzEeSfz99xxu0S5g" timestamp="03.13.2015 17:01:23 MEZ">
+        <queryResultSet xmi:id="_Mo5xYsmaEeSq6saETqWL0A">
+          <applicableElements xmi:id="_Mo5xYMmaEeSq6saETqWL0A" element="#_aSrX8MTzEeSfz99xxu0S5g" incomingIsARelations="#_dOpHoMWUEeSRG9PdnMEapQ"/>
+          <applicableElements xmi:id="_Mo5xYcmaEeSq6saETqWL0A" element="#_ZQda0MWUEeSRG9PdnMEapQ" outgoingIsARelations="#_dOpHoMWUEeSRG9PdnMEapQ"/>
+        </queryResultSet>
+        <selectedGoalsSet xmi:id="_IJsZUMTzEeSfz99xxu0S5g"/>
+        <assignedConstraintsSet xmi:id="_JUW1oMTzEeSfz99xxu0S5g"/>
+        <selectedPrinciplesSet xmi:id="_L_zvQMTzEeSfz99xxu0S5g"/>
+        <selectedGoalsPriorities xmi:id="_NF0VEMTzEeSfz99xxu0S5g"/>
+      </gssQueries>
+    </queryContainment>
+  </modelElements>
+  <modelElements xsi:type="Constraints:BooleanTechnicalProperty" xmi:id="_QUPY4MTzEeSfz99xxu0S5g" name="Tutorial"/>
+</org.eclipse.emf.emfstore.internal.common.model:Project>

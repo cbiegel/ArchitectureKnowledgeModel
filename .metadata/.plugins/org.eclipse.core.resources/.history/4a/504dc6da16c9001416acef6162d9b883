@@ -1,0 +1,41 @@
+package org.emftrace.akm.ui.zest.nodes;
+
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+
+import org.eclipse.draw2d.IFigure;
+import org.eclipse.draw2d.MouseEvent;
+import org.eclipse.draw2d.MouseListener;
+import org.eclipse.swt.SWT;
+import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.swt.events.SelectionListener;
+import org.eclipse.swt.graphics.Color;
+import org.eclipse.swt.widgets.Display;
+import org.eclipse.swt.widgets.Event;
+import org.eclipse.swt.widgets.Menu;
+import org.eclipse.zest.core.widgets.GraphConnection;
+import org.eclipse.zest.core.widgets.GraphNode;
+import org.eclipse.zest.core.widgets.IContainer;
+import org.emftrace.akm.ui.zest.graph.AKMGraph;
+import org.emftrace.metamodel.ArchitectureKnowledgeModel.TechnologySolution;
+import org.emftrace.metamodel.QUARCModel.GSS.Offset;
+import org.emftrace.metamodel.QUARCModel.GSS.Relation;
+import org.emftrace.quarc.ui.zest.connections.GSSRelationConnection;
+import org.emftrace.quarc.ui.zest.figures.ElementFigure;
+import org.emftrace.quarc.ui.zest.figures.listeners.IExpandListener;
+
+/**
+ * A GraphNode for representing a TechnologySolution element with a custom figure (ElementFigure)
+ * 
+ * @author Christopher Biegel
+ */
+public class TechnologySolutionGraphNode extends AbstractAKMGraphNode {
+
+	public TechnologySolutionGraphNode(IContainer pGraphModel, int pStyle,
+			ElementFigure pElementFigure, int pLevel, int pSublevel) {
+		super(pGraphModel, pStyle, pElementFigure, pLevel, pSublevel);
+		// TODO Auto-generated constructor stub
+	}
+	
+}

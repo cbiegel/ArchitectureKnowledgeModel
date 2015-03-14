@@ -1,0 +1,568 @@
+package org.emftrace.akm.ui.zest.nodes;
+
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+
+import org.eclipse.draw2d.IFigure;
+import org.eclipse.draw2d.MouseEvent;
+import org.eclipse.draw2d.MouseListener;
+import org.eclipse.swt.SWT;
+import org.eclipse.swt.events.SelectionListener;
+import org.eclipse.swt.graphics.Color;
+import org.eclipse.swt.widgets.Display;
+import org.eclipse.swt.widgets.Menu;
+import org.eclipse.zest.core.widgets.GraphConnection;
+import org.eclipse.zest.core.widgets.GraphNode;
+import org.eclipse.zest.core.widgets.IContainer;
+import org.emftrace.akm.ui.zest.graph.AKMGraph;
+import org.emftrace.quarc.ui.zest.figures.ElementFigure;
+import org.emftrace.quarc.ui.zest.figures.listeners.IExpandListener;
+
+/**
+ * This abstract class serves as a super class for all types of GraphNodes of an
+ * {@link org.emftrace.akm.ui.zest.graph.AKMGraph}.
+ * 
+ * @author Christopher Biegel
+ * 
+ */
+public abstract class AbstractAKMGraphNode extends GraphNode {
+
+	// ===========================================================
+	// Fields
+	// ===========================================================
+
+	// ===========================================================
+	// Getter & Setter
+	// ===========================================================
+
+	// ===========================================================
+	// Inner and Anonymous Classes
+	// ===========================================================
+
+	/**
+	 * The default colors
+	 */
+	private final Color mDefaultMarkColor = Display.getDefault().getSystemColor(
+			SWT.COLOR_TITLE_BACKGROUND_GRADIENT);
+	private final Color mDefaultHighlightColor = Display.getDefault().getSystemColor(
+			SWT.COLOR_LIST_SELECTION);
+	private final Color mDefaultBackgroundColor = Display.getDefault().getSystemColor(
+			SWT.COLOR_WIDGET_BACKGROUND);
+	private final Color mDefaultTextColor = Display.getDefault().getSystemColor(SWT.COLOR_BLACK);
+	private final Color mDefaultMarkedTextColor = Display.getDefault().getSystemColor(
+			SWT.COLOR_BLACK);
+	private final Color mDefaultHighlightTextColor = Display.getDefault().getSystemColor(
+			SWT.COLOR_LIST_SELECTION_TEXT);
+
+	/**
+	 * The custom ElementFigure for the node
+	 */
+	private ElementFigure mElementFigure = null;
+
+	/**
+	 * The level of the node within the graph (e.g. ArchitectureKnowledgeModel = 0,
+	 * TechnologySolution = 1, TechnologyFeature = 2, ...)
+	 */
+	private int mLevel;
+
+	/**
+	 * The sub level of the node (e.g. count of ancestors)
+	 */
+	private int mSublevel;
+
+	/**
+	 * Flag of marking
+	 */
+	private boolean mIsMark;
+
+	/**
+	 * The Color for marking
+	 */
+	private Color mMarkColor;
+
+	/**
+	 * The context menu of the node
+	 */
+	private Menu mMenu;
+
+	/**
+	 * Flag for the visibility of the node
+	 */
+	private boolean mIsVisbile;
+
+	/**
+	 * Color used to painted the text of a marked node
+	 */
+	private Color mMarkedTextColor;
+
+	/**
+	 * Color used to painted the text of a highlighted node
+	 */
+	private Color mHighlightedTextColor;
+
+	/**
+	 * Color used to painted the text of the node
+	 */
+	private Color mTextColor;
+
+	/**
+	 * A List of all listening SelectionListeners
+	 */
+	private List<SelectionListener> mSelectionListenerList;
+
+	// ===========================================================
+	// Constructors
+	// ===========================================================
+
+	/**
+	 * The default constructor
+	 * 
+	 * @param pGraphModel
+	 *            The graph that contains this node
+	 * @param pStyle
+	 *            The SWT style used for this node
+	 * @param pElementFigure
+	 *            The custom figure for the node
+	 * @param pLevel
+	 *            The level of the node within the graph (e.g. ArchitectureKnowledgeModel = 0,
+	 *            TechnologySolution = 1, TechnologyFeature = 2, ...)
+	 * @param pSublevel
+	 *            The sub level of the node (e.g. count of ancestors)
+	 * @param element
+	 *            the represented AKM Element
+	 */
+	public AbstractAKMGraphNode(final IContainer pGraphModel, final int pStyle,
+			final ElementFigure pElementFigure, final int pLevel, final int pSublevel) {
+
+		super(pGraphModel, pStyle, pElementFigure);
+		mLevel = pLevel;
+		mSublevel = pSublevel;
+		mElementFigure = pElementFigure;
+		mElementFigure.setHighlightColor(mDefaultHighlightColor);
+		mElementFigure.setBackgroundColor(mDefaultBackgroundColor);
+		mIsMark = false;
+		mIsVisbile = true;
+		mMarkColor = mDefaultMarkColor;
+		setHighlightColor(mDefaultHighlightColor);
+		setBackgroundColor(mDefaultBackgroundColor);
+		setTextColor(mDefaultTextColor);
+		setMarkedTextColor(mDefaultMarkedTextColor);
+		setHighlightedTextColor(mDefaultHighlightTextColor);
+		mSelectionListenerList = new ArrayList<SelectionListener>();
+
+		addDefaultMouseListener();
+
+		addDefaultExpandListener();
+	}
+
+	// ===========================================================
+	// Methods for/from SuperClass/Interfaces
+	// ===========================================================
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.eclipse.zest.core.widgets.GraphNode#setHighlightColor(org.eclipse
+	 * .swt.graphics.Color)
+	 */
+	@Override
+	public void setHighlightColor(final Color c) {
+		super.setHighlightColor(c);
+		mElementFigure.setHighlightColor(c);
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.eclipse.zest.core.widgets.GraphNode#setBackgroundColor(org.eclipse
+	 * .swt.graphics.Color)
+	 */
+	@Override
+	public void setBackgroundColor(final Color c) {
+		super.setBackgroundColor(c);
+		mElementFigure.setBackgroundColor(c);
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.eclipse.zest.core.widgets.GraphNode#unhighlight()
+	 */
+	@Override
+	public void unhighlight() {
+		super.unhighlight();
+		if (isMarked() == true) {
+			mElementFigure.setHighlightColor(getMarkColor());
+			mElementFigure.setLabelColor(this.getMarkedTextColor());
+			mElementFigure.highlight();
+		} else {
+
+			mElementFigure.setHighlightColor(this.getHighlightColor());
+			mElementFigure.setLabelColor(this.getTextColor());
+			mElementFigure.unhighlight();
+		}
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.eclipse.zest.core.widgets.GraphNode#createFigureForModel()
+	 */
+	@Override
+	protected IFigure createFigureForModel() {
+		return (IFigure) this.getData();
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.eclipse.zest.core.widgets.GraphNode#highlight()
+	 */
+	@Override
+	public void highlight() {
+		super.highlight();
+		mElementFigure.setHighlightColor(this.getHighlightColor());
+		mElementFigure.setLabelColor(this.getHighlightedTextColor());
+		mElementFigure.highlight();
+	}
+
+	// ===========================================================
+	// Methods
+	// ===========================================================
+
+	/**
+	 * Adds the specified IExpandListener to the ElementFigure of this node
+	 * 
+	 * @param pExpandListener
+	 *            An IExpandListener to be added
+	 */
+	public void addExpandListener(final IExpandListener pExpandListener) {
+		getElementFigure().addExpandListener(pExpandListener);
+	}
+
+	/**
+	 * Removes the specified IExpandListener from the ElementFigure of this node
+	 * 
+	 * @param pExpandListener
+	 *            An IExpandListener to be removed
+	 */
+	public void removeExpandListener(final IExpandListener pExpandListener) {
+		getElementFigure().removeExpandListener(pExpandListener);
+	}
+
+	/**
+	 * Creates and adds the default listener to show or hide children if a click was performed on
+	 * this node
+	 */
+	private void addDefaultExpandListener() {
+		final AbstractAKMGraphNode thisNode = this;
+
+		mElementFigure.addExpandListener(new IExpandListener() {
+
+			@Override
+			public void expanded() {
+
+				thisNode.expand();
+			}
+
+			@Override
+			public void collapsed() {
+
+				thisNode.collapse();
+			}
+		});
+	}
+
+	/**
+	 * Hide this node
+	 */
+	public void hide() {
+		this.setVisible(false);
+		setVisible(false);
+	}
+
+	/**
+	 * Show the node if it is hidden
+	 */
+	public void show() {
+		this.setVisible(true);
+		setVisible(true);
+
+		// hide connections
+		@SuppressWarnings("rawtypes")
+		List sConnections = (this).getSourceConnections();
+		@SuppressWarnings("rawtypes")
+		List tConnections = (this).getTargetConnections();
+		for (@SuppressWarnings("rawtypes")
+		Iterator iterator2 = sConnections.iterator(); iterator2.hasNext();) {
+			GraphConnection connection = (GraphConnection) iterator2.next();
+			connection.setVisible(false);
+		}
+
+		for (@SuppressWarnings("rawtypes")
+		Iterator iterator2 = tConnections.iterator(); iterator2.hasNext();) {
+			GraphConnection connection = (GraphConnection) iterator2.next();
+			connection.setVisible(false);
+		}
+	}
+
+	/**
+	 * Creates a mouse listener to open a context menu by right clicking or to select the node by
+	 * left clicking
+	 */
+	private void addDefaultMouseListener() {
+		final AKMGraph graph = (AKMGraph) getGraphModel();
+		final AbstractAKMGraphNode node = this;
+
+		mElementFigure.addMouseListener(new MouseListener() {
+
+			@Override
+			public void mousePressed(final MouseEvent me) {
+
+			}
+
+			@Override
+			public void mouseReleased(final MouseEvent me) {
+				if (me.button == 1) {
+					// left mouse button was pressed
+					setSelection(me.getState());
+				} else if (me.button == 3) {
+					// right mouse button was pressed
+
+					// get location of the mouse in the workspace
+					int x =
+							graph.getParent().getParent().getParent().getParent().getParent()
+									.getParent().getParent().getParent().getParent().getParent()
+									.getLocation().x;
+					int y =
+							graph.getParent().getParent().getParent().getParent().getParent()
+									.getParent().getParent().getParent().getParent().getParent()
+									.getLocation().y;
+					x +=
+							graph.getParent().getParent().getParent().getParent().getParent()
+									.getParent().getParent().getParent().getParent().getLocation().x;
+					y +=
+							graph.getParent().getParent().getParent().getParent().getParent()
+									.getParent().getParent().getParent().getParent().getLocation().y;
+
+					x +=
+							graph.getParent().getParent().getParent().getParent().getParent()
+									.getParent().getParent().getParent().getParent().getParent()
+									.getParent().getLocation().x;
+					y +=
+							graph.getParent().getParent().getParent().getParent().getParent()
+									.getParent().getParent().getParent().getParent().getParent()
+									.getParent().getLocation().y;
+
+					x +=
+							graph.getParent().getParent().getParent().getParent().getParent()
+									.getParent().getParent().getParent().getParent().getParent()
+									.getParent().getParent().getParent().getParent().getLocation().x;
+					y +=
+							graph.getParent().getParent().getParent().getParent().getParent()
+									.getParent().getParent().getParent().getParent().getParent()
+									.getParent().getParent().getParent().getParent().getLocation().y;
+
+					openMenu(me.x + x, me.y + y);
+				}
+			}
+
+			private void openMenu(final int xPos, final int yPos) {
+				if (mMenu != null) {
+					mMenu.setLocation(xPos, yPos);
+					mMenu.setVisible(true);
+				}
+			}
+
+			private void setSelection(final int state) {
+
+				// TODO CB State-Code in Variable auslagern
+				if (state == 786432) {
+					// control was pressed & hold
+
+					if (graph.getSelection().contains(node)) {
+						// remove selected node
+
+						graph.deselectNode(node, false);
+					} else {
+						// add selected node
+						graph.selectNode(node, false);
+					}
+				} else if (graph.getSelection().contains(node)) {
+					// clear selection
+					graph.deselectNode(node, true);
+				} else {
+					// add selected node
+					graph.selectNode(node, true);
+				}
+			}
+
+			@Override
+			public void mouseDoubleClicked(final MouseEvent me) {
+
+			}
+		});
+	}
+	
+	/**
+	 * Mark the node
+	 */
+	public void mark() {
+		mIsMark = true;
+		if (this.isSelected() == false) {
+			mElementFigure.setHighlightColor(this.getMarkColor());
+			mElementFigure.setLabelColor(this.getMarkedTextColor());
+			mElementFigure.highlight();
+		}
+		super.highlight();
+	}
+
+	// ===========================================================
+	// Getter & Setter
+	// ===========================================================
+
+	/**
+	 * @return The ElementFigure of this node
+	 */
+	public ElementFigure getElementFigure() {
+		return mElementFigure;
+	}
+
+	/**
+	 * @param pElementFigure
+	 *            The ElementFigure to set
+	 */
+	public void setElementFigure(final ElementFigure pElementFigure) {
+		mElementFigure = pElementFigure;
+	}
+
+	/**
+	 * @return The level of the node within the graph (e.g. ArchitectureKnowledgeModel = 0,
+	 *         TechnologySolution = 1, TechnologyFeature = 2, ...)
+	 */
+	public int getLevel() {
+		return mLevel;
+	}
+
+	/**
+	 * @param pLevel
+	 *            The level of this node to set
+	 */
+	public void setmLevel(final int pLevel) {
+		mLevel = pLevel;
+	}
+
+	/**
+	 * @return The sublevel of this node (e.g. the count of ancestors)
+	 */
+	public int getSublevel() {
+		return mSublevel;
+	}
+
+	/**
+	 * @param pSublevel
+	 *            The sublevel of this node to set
+	 */
+	public void setmSublevel(final int pSublevel) {
+		mSublevel = pSublevel;
+	}
+
+	/**
+	 * @return True, if this node acts as a mark. Otherwise, returns false.
+	 */
+	public boolean isMark() {
+		return mIsMark;
+	}
+
+	/**
+	 * @param pMark
+	 *            Whether this node should act as a mark
+	 */
+	public void setMark(final boolean pMark) {
+		mIsMark = pMark;
+	}
+
+	/**
+	 * @return The color of the mark
+	 */
+	public Color getMarkColor() {
+		return mMarkColor;
+	}
+
+	/**
+	 * @param pMarkColor
+	 *            The color of the mark to set
+	 */
+	public void setMarkColor(final Color pMarkColor) {
+		mMarkColor = pMarkColor;
+	}
+
+	/**
+	 * @param pMenu
+	 *            The context menu for this node to set
+	 */
+	public void setMenu(final Menu pMenu) {
+		mMenu = pMenu;
+	}
+
+	/**
+	 * @return True, if this node is invisible. Otherwise, returns false.
+	 */
+	public boolean IsVisbile() {
+		return mIsVisbile;
+	}
+
+	/**
+	 * @param pIsVisbile
+	 *            Whether this node is visible or not
+	 */
+	public void setIsVisbile(final boolean pIsVisbile) {
+		mIsVisbile = pIsVisbile;
+	}
+
+	/**
+	 * @return The color of the marked text
+	 */
+	public Color getMarkedTextColor() {
+		return mMarkedTextColor;
+	}
+
+	/**
+	 * @param pMarkedTextColor
+	 *            The color of the marked text to set
+	 */
+	public void setMarkedTextColor(final Color pMarkedTextColor) {
+		mMarkedTextColor = pMarkedTextColor;
+	}
+
+	/**
+	 * @return The color of the highlighted text
+	 */
+	public Color getHighlightedTextColor() {
+		return mHighlightedTextColor;
+	}
+
+	/**
+	 * @param pHighlightedTextColor
+	 *            The color of the highlighted text to set
+	 */
+	public void setHighlightedTextColor(final Color pHighlightedTextColor) {
+		mHighlightedTextColor = pHighlightedTextColor;
+	}
+
+	/**
+	 * @return The color of the text
+	 */
+	public Color getTextColor() {
+		return mTextColor;
+	}
+
+	/**
+	 * @param pTextColor
+	 *            The color of the text to set
+	 */
+	public void setTextColor(final Color pTextColor) {
+		mTextColor = pTextColor;
+	}
+}

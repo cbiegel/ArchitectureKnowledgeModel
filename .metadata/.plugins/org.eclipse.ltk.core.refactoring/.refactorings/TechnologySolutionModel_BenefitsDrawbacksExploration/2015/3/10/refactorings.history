@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename resource &apos;TechnologySolutionModel_BenefitsDrawbacksExploration/BenefitsDrawbacks_Dependencies.screen&apos; to &apos;BenefitsDrawbacks_Relations.screen&apos;" description="Rename resource &apos;BenefitsDrawbacks_Dependencies.screen&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="BenefitsDrawbacks_Dependencies.screen" name="BenefitsDrawbacks_Relations.screen" stamp="1425311273609" updateReferences="true"/>
+</session>

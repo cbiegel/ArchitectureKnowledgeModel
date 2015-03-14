@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<model:Screen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://wireframesketcher.com/1.0/model.ecore">
+  <widgets xsi:type="model:Panel" id="1" x="16" y="240" width="937" height="425" measuredWidth="937" measuredHeight="425" alpha="0" verticalScrollbar="true"/>
+  <widgets xsi:type="model:Text" id="2" x="16" y="112" text="Das Auswählen eines Benefits bzw. Drawbacks per Doppelklick auf den Eintrag zeigt die Beziehungen zwischen dem ausgewählten&#xD;&#xA;Element und Technologielösungen an.&#xD;&#xA;* Das Element der Technologielösung, von welcher heraus ein Benefit bzw. Drawback ausgewählt wurde, wird als &quot;Source&quot; gekennzeichnet.&#xD;&#xA;* Es gibt zwei Arten von Beziehungen: Eine Technologielösung kann entweder ein Benefit/Drawback besitzen (&quot;has&quot;) oder kann im Falle&#xD;&#xA;eines Drawbacks von anderen Technologielösungen gelöst werden (&quot;solved by&quot;)." measuredWidth="937" measuredHeight="105" lineHeight="1.5">
+    <font size="14px"/>
+  </widgets>
+  <widgets xsi:type="model:Shape" id="3" x="313" y="255" width="137" height="57" text="Technology Solution 1" measuredWidth="137" measuredHeight="57" shapeType="rectangle">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:Combo" id="6" x="776" y="255" text="Filter Feature Type" measuredWidth="124" measuredHeight="23" state="disabled">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:VLine" id="7" x="728" y="240" height="425" measuredWidth="6" measuredHeight="425"/>
+  <widgets xsi:type="model:HLine" id="8" x="728" y="392" width="210" measuredWidth="210" measuredHeight="6"/>
+  <widgets xsi:type="model:Label" id="9" x="16" y="24" text="Benefits &amp; Drawbacks Exploration" measuredWidth="642" measuredHeight="67">
+    <font size="43px" underline="true"/>
+  </widgets>
+  <widgets xsi:type="model:Text" id="20" x="733" y="456" text="Name: Drawback 1&#xD;&#xA;Parent: Technology Solution 1&#xD;&#xA;Type: Feature-based Drawback&#xD;&#xA;Description: Not easy to integrate" measuredWidth="177" measuredHeight="60">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:Label" id="21" x="790" y="404" text="Drawback 1" measuredWidth="67" measuredHeight="23">
+    <font underline="true"/>
+  </widgets>
+  <widgets xsi:type="model:List" id="22" x="733" y="291" text="[x] Show feature-based benefits&#xA;[ ] Show concern-based benefits&#xA;[x] Show feature-based drawbacks&#xA;[x] Show concern-based drawbacks" measuredWidth="200" measuredHeight="92" alpha="0" rowHeight="20">
+    <font/>
+    <items x="0" y="2" width="200" height="22" text="[x] Show feature-based benefits"/>
+    <items x="0" y="24" width="200" height="22" text="[ ] Show concern-based benefits"/>
+    <items x="0" y="46" width="200" height="22" text="[x] Show feature-based drawbacks"/>
+    <items x="0" y="68" width="200" height="22" text="[x] Show concern-based drawbacks"/>
+  </widgets>
+  <widgets xsi:type="model:Shape" id="25" x="313" y="404" width="137" height="63" text="Drawback 1" measuredWidth="137" measuredHeight="63" shapeType="rectangle-round">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:Shape" id="26" x="26" y="407" width="137" height="57" text="Technology Solution 2" measuredWidth="137" measuredHeight="57" shapeType="rectangle">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:Shape" id="27" x="584" y="407" width="137" height="57" text="Technology Solution 3" measuredWidth="137" measuredHeight="57" shapeType="rectangle">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:Shape" id="28" x="313" y="598" width="137" height="57" text="Technology Solution 4" measuredWidth="137" measuredHeight="57" shapeType="rectangle">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:Arrow" id="29" x="162" y="432" width="152" height="8" text="solved by" measuredWidth="152" measuredHeight="8" direction="bottom"/>
+  <widgets xsi:type="model:Arrow" id="30" x="384" y="312" width="8" height="96" text="has" measuredWidth="8" measuredHeight="96" direction="bottom"/>
+  <widgets xsi:type="model:Arrow" id="31" x="449" y="440" width="135" height="8" text="solved by" measuredWidth="135" measuredHeight="8" left="false" right="true" direction="bottom"/>
+  <widgets xsi:type="model:Arrow" id="32" x="384" y="467" width="8" height="131" text="has" measuredWidth="8" measuredHeight="131" left="false" right="true" direction="bottom"/>
+  <widgets xsi:type="model:Label" id="33" x="360" y="291" text="(Source)" measuredWidth="50" measuredHeight="23">
+    <font/>
+  </widgets>
+  <hRuler/>
+  <vRuler/>
+  <font size="12px"/>
+</model:Screen>

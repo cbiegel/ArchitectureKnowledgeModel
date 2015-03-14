@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<org.eclipse.emf.emfstore.internal.common.model:Project xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Constraints="Constraints" xmlns:FeatureModel="FeatureModel" xmlns:GSS="GSS" xmlns:Packages="Packages" xmlns:org.eclipse.emf.emfstore.internal.common.model="http://eclipse.org/emf/emfstore/common/model">
+  <modelElements xsi:type="Packages:Toolbox" xmi:id="__nxjFbwUEeSSq_OxyppbSg">
+    <gssCatalogue xmi:id="__nxjELwUEeSSq_OxyppbSg"/>
+    <propertiesCatalogue xmi:id="__nxjEbwUEeSSq_OxyppbSg"/>
+    <predefinedContraintsSetCatalogue xmi:id="__nxjErwUEeSSq_OxyppbSg">
+      <catalogueItems xmi:id="_iwziULwVEeSSq_OxyppbSg" name="tutorial constraint set">
+        <constraints xmi:id="_k8U-sLwVEeSSq_OxyppbSg" technicalProperty="#_nEEuULwVEeSSq_OxyppbSg" value="true"/>
+      </catalogueItems>
+    </predefinedContraintsSetCatalogue>
+    <tagsCatalogue xmi:id="__nxjE7wUEeSSq_OxyppbSg"/>
+    <queryContainment xmi:id="__nxjFLwUEeSSq_OxyppbSg">
+      <gssQueries xmi:id="_awsRJLwVEeSSq_OxyppbSg" name="tutorial query" description="test" uuid="6681738c-31f3-430d-80ae-b0ef52fce457" username="cbiegel" timestamp="02.24.2015 12:10:50 MEZ" includeAll="true" includePattern="true" includeRefactorings="true" includePrinciples="true" includeFlaws="true">
+        <queryResultSet xmi:id="_ymBHgLwVEeSSq_OxyppbSg"/>
+        <selectedGoalsSet xmi:id="_awsRILwVEeSSq_OxyppbSg">
+          <prioritizedElements xmi:id="_9vhLgLwVEeSSq_OxyppbSg" element="#_-v2nILwVEeSSq_OxyppbSg" globalPriority="1"/>
+        </selectedGoalsSet>
+        <assignedConstraintsSet xmi:id="_awsRIbwVEeSSq_OxyppbSg"/>
+        <selectedPrinciplesSet xmi:id="_awsRIrwVEeSSq_OxyppbSg"/>
+        <selectedGoalsPriorities xmi:id="_awsRI7wVEeSSq_OxyppbSg"/>
+      </gssQueries>
+    </queryContainment>
+  </modelElements>
+  <modelElements xsi:type="Constraints:BooleanTechnicalProperty" xmi:id="_nEEuULwVEeSSq_OxyppbSg" name="Turorial"/>
+  <modelElements xsi:type="GSS:Goal" xmi:id="_-v2nILwVEeSSq_OxyppbSg" name="TestGoal" description="testDescription"/>
+  <modelElements xsi:type="FeatureModel:ConsulModel" xmi:id="_SmYzELweEeSDI_fK0GJv1g"/>
+  <modelElements xsi:type="GSS:GSSTestElement" xmi:id="_4x0KULw0EeS9p6R2dY7BQg"/>
+</org.eclipse.emf.emfstore.internal.common.model:Project>

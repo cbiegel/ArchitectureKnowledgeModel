@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<org.eclipse.emf.emfstore.internal.common.model:Project xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:GSS="GSS" xmlns:Packages="Packages" xmlns:org.eclipse.emf.emfstore.internal.common.model="http://eclipse.org/emf/emfstore/common/model">
+  <modelElements xsi:type="Packages:Toolbox" xmi:id="_NwpftZmOEeScHsiD7FWvLA">
+    <gssCatalogue xmi:id="_NwpfsJmOEeScHsiD7FWvLA">
+      <elements xsi:type="GSS:Goal" xmi:id="_e4ntQJmOEeScHsiD7FWvLA" name="test" description="test"/>
+    </gssCatalogue>
+    <propertiesCatalogue xmi:id="_NwpfsZmOEeScHsiD7FWvLA"/>
+    <predefinedContraintsSetCatalogue xmi:id="_NwpfspmOEeScHsiD7FWvLA"/>
+    <tagsCatalogue xmi:id="_Nwpfs5mOEeScHsiD7FWvLA"/>
+    <queryContainment xmi:id="_NwpftJmOEeScHsiD7FWvLA">
+      <gssQueries xmi:id="_rRu_BJmOEeScHsiD7FWvLA" name="test" description="test" uuid="6eebd88e-dd8f-4aa2-95cb-3aad8f8ba0aa" username="" includeAll="true" includePattern="true" includeRefactorings="true" includePrinciples="true" includeFlaws="true">
+        <queryResultSet xmi:id="_slJHoJmOEeScHsiD7FWvLA"/>
+        <selectedGoalsSet xmi:id="_rRu_AJmOEeScHsiD7FWvLA" changed="true"/>
+        <assignedConstraintsSet xmi:id="_rRu_AZmOEeScHsiD7FWvLA"/>
+        <selectedPrinciplesSet xmi:id="_rRu_ApmOEeScHsiD7FWvLA"/>
+        <selectedGoalsPriorities xmi:id="_rRu_A5mOEeScHsiD7FWvLA"/>
+      </gssQueries>
+    </queryContainment>
+  </modelElements>
+</org.eclipse.emf.emfstore.internal.common.model:Project>

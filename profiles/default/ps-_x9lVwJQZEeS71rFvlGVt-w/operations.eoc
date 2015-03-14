@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<org.eclipse.emf.emfstore.internal.server.model.versioning:ChangePackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:GSS="GSS" xmlns:Packages="Packages" xmlns:org.eclipse.emf.emfstore.internal.server.model.versioning="http://eclipse.org/emf/emfstore/server/model/versioning" xmlns:org.eclipse.emf.emfstore.internal.server.model.versioning.operations="http://eclipse.org/emf/emfstore/server/model/versioning/operations">
+  <operations xsi:type="org.eclipse.emf.emfstore.internal.server.model.versioning.operations:CreateDeleteOperation" identifier="_zibMoJQZEeS71rFvlGVt-w" clientDate="2015-01-04T14:58:48.172+0100">
+    <modelElementId id="_ziYJUJQZEeS71rFvlGVt-w"/>
+    <modelElement xsi:type="GSS:GSS"/>
+    <eObjectToIdMap key="#//@operations.0/@modelElement">
+      <value id="_ziYJUJQZEeS71rFvlGVt-w"/>
+    </eObjectToIdMap>
+  </operations>
+  <operations xsi:type="org.eclipse.emf.emfstore.internal.server.model.versioning.operations:CreateDeleteOperation" identifier="_A3skoJQaEeS71rFvlGVt-w" clientDate="2015-01-04T15:00:17.642+0100">
+    <modelElementId id="_A3r9lZQaEeS71rFvlGVt-w"/>
+    <modelElement xsi:type="Packages:Toolbox">
+      <gssCatalogue/>
+      <propertiesCatalogue/>
+      <predefinedContraintsSetCatalogue/>
+      <tagsCatalogue/>
+      <queryContainment/>
+    </modelElement>
+    <eObjectToIdMap key="#//@operations.1/@modelElement/@gssCatalogue">
+      <value id="_A3r9kJQaEeS71rFvlGVt-w"/>
+    </eObjectToIdMap>
+    <eObjectToIdMap key="#//@operations.1/@modelElement/@propertiesCatalogue">
+      <value id="_A3r9kZQaEeS71rFvlGVt-w"/>
+    </eObjectToIdMap>
+    <eObjectToIdMap key="#//@operations.1/@modelElement/@predefinedContraintsSetCatalogue">
+      <value id="_A3r9kpQaEeS71rFvlGVt-w"/>
+    </eObjectToIdMap>
+    <eObjectToIdMap key="#//@operations.1/@modelElement/@tagsCatalogue">
+      <value id="_A3r9k5QaEeS71rFvlGVt-w"/>
+    </eObjectToIdMap>
+    <eObjectToIdMap key="#//@operations.1/@modelElement/@queryContainment">
+      <value id="_A3r9lJQaEeS71rFvlGVt-w"/>
+    </eObjectToIdMap>
+    <eObjectToIdMap key="#//@operations.1/@modelElement">
+      <value id="_A3r9lZQaEeS71rFvlGVt-w"/>
+    </eObjectToIdMap>
+  </operations>
+</org.eclipse.emf.emfstore.internal.server.model.versioning:ChangePackage>

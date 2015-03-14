@@ -1,0 +1,44 @@
+package org.emftrace.akm.ui.zest.graph;
+
+import org.eclipse.swt.events.MouseEvent;
+import org.eclipse.swt.widgets.Composite;
+import org.eclipse.zest.core.widgets.Graph;
+
+
+/**
+ * 
+ * @author Christopher Biegel
+ *
+ */
+public class AKMGraph extends Graph {
+
+	public AKMGraph(final Composite parent, final int style) {
+		super(parent, style);
+
+		this.addMouseListener(new org.eclipse.swt.events.MouseAdapter() {
+
+			@Override
+			public void mouseDown(final MouseEvent e) {
+				if ((e.button == 1) && (getFigureAt(e.x, e.y) == null)) {
+					//if a mouse click was performed on an empty space (no nodes were selected), deselect all previously selected nodes.
+					//					deselectAllNodes();
+					System.out.println("DESELECT ALL NODES");
+				}
+			}
+		});
+	}
+
+
+		/**
+		 * Deselects all currently selected nodes in the graph.
+		 */
+		public void deselectAllNodes() {
+			List<Object> selectedNodes = new ArrayList<Object>(); //due to concurrent access to the selected nodes, the list must be duplicated
+			selectedNodes.addAll(this.getSelection());			  //otherwise an expection will be raised
+			for (Object selectedNode:selectedNodes ){
+				if (selectedNode instanceof GSSElementGraphNode )
+				deselectNode((GSSElementGraphNode) selectedNode, false);
+			}
+	
+		}
+}

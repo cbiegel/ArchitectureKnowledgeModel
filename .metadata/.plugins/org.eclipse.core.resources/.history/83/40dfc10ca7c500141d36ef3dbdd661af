@@ -1,0 +1,258 @@
+/*******************************************************************************
+ * Copyright (c) 2010-2012 Software Systems/Process Informatics Group,
+ * Ilmenau University of Technology.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributor: Daniel Motschmann
+ ******************************************************************************/ 
+
+
+package org.emftrace.quarc.ui.zestgpraphbuilders;
+
+import java.util.List;
+import java.util.Map.Entry;
+
+import org.eclipse.swt.SWT;
+import org.eclipse.swt.widgets.Composite;
+import org.eclipse.ui.IWorkbenchPartSite;
+import org.eclipse.zest.core.widgets.GraphConnection;
+import org.eclipse.zest.core.widgets.GraphNode;
+import org.emftrace.core.accesslayer.AccessLayer;
+import org.emftrace.metamodel.QUARCModel.GSS.Decomposition;
+import org.emftrace.metamodel.QUARCModel.GSS.Element;
+import org.emftrace.metamodel.QUARCModel.GSS.GSS;
+import org.emftrace.metamodel.QUARCModel.GSS.Goal;
+import org.emftrace.metamodel.QUARCModel.GSS.Principle;
+import org.emftrace.metamodel.QUARCModel.GSS.Relation;
+import org.emftrace.metamodel.QUARCModel.GSS.SolutionInstrument;
+import org.emftrace.metamodel.QUARCModel.Query.ApplicableElement;
+import org.emftrace.metamodel.QUARCModel.Query.GSSQuery;
+import org.emftrace.metamodel.QUARCModel.Query.PrioritizedElement;
+import org.emftrace.metamodel.QUARCModel.Query.SelectedPrinciplesSet;
+import org.emftrace.quarc.core.cache.CacheManager;
+import org.emftrace.quarc.core.commands.prioritizedelementsset.RemovePrioritizedElementCommand;
+import org.emftrace.quarc.core.gssquery.GSSQueryProcessor;
+import org.emftrace.quarc.ui.zest.figures.CheckboxFigure;
+import org.emftrace.quarc.ui.zest.figures.listeners.ICheckListener;
+import org.emftrace.quarc.ui.zest.nodes.AKMElementGraphNode;
+
+
+
+/**
+ * A GraphBuilder for the selection of principles
+ * 
+ * @author Daniel Motschmann
+ * @version 1.0
+ * 
+ */
+public class PrincipleSelectorGraphBuilder extends
+		PrioritizedElementSelectorGraphBuilder {
+
+	private GSSQuery query;
+
+	/**
+	 * the constructor
+	 * 
+	 * @param parent
+	 *            the parent Composite
+	 * @param style
+	 *            the SWT sytle
+	 * @param queryResult
+	 *            a QueryResult
+	 * @param accessLayer
+	 *            an AccessLayer instance
+	 */
+	public PrincipleSelectorGraphBuilder(Composite parent, int style,
+			IWorkbenchPartSite iWorkbenchPartSite, GSS gss, GSSQuery query,
+			SelectedPrinciplesSet selectedPrinciplesSet, AccessLayer accessLayer) {
+		super(parent, style, iWorkbenchPartSite, gss, selectedPrinciplesSet,
+				accessLayer);
+		this.query = query;
+	}
+
+	/* (non-Javadoc)
+	 * @see org.emftrace.quarc.ui.zestgpraphbuilders.PrioriziedElementSelectorGraphBuilder#setCheckSetForSelectedElements()
+	 */
+	@Override
+	protected void setCheckSetForSelectedElements() {
+		for (Object node : zestGraph.getNodes()) {
+			if (node instanceof AKMElementGraphNode) // leave out
+														// LayerLabelGraphNodes
+
+				if ( getElementForNode((AKMElementGraphNode) node) instanceof Goal)
+					((AKMElementGraphNode) node).setIsExpanded();
+				else {
+					((AKMElementGraphNode) node).setIsCollapsed();
+				}
+		}
+
+		for (int i = priorizedElementSet
+				.getPrioritizedElements().size()-1; i>=0;i--) {
+			PrioritizedElement selectedPrinciple = priorizedElementSet
+					.getPrioritizedElements().get(i);
+			Element element = selectedPrinciple.getElement();
+			AKMElementGraphNode node = (AKMElementGraphNode) getNodeForElement(selectedPrinciple
+					.getElement());
+			
+			
+			if (node == null) { //due to changes principle is no longer applicable 
+				if( displayQuestionMessagebox(element.getName() + " is no longer applicable. Deselect Principle?")){
+					
+					new RemovePrioritizedElementCommand(priorizedElementSet, selectedPrinciple).run();
+					}
+				continue;
+			}
+				
+			if (!cacheManager.isLeafAppicableElement(element)) 
+
+				node.setIsExpanded();
+
+			getCheckboxFigure(node).setIsChecked();
+			selectedElementsMap.put(element, selectedPrinciple);
+		}
+
+	}
+
+	/* (non-Javadoc)
+	 * @see org.emftrace.quarc.ui.zestgpraphbuilders.PrioriziedElementSelectorGraphBuilder#createNodesForAllElements()
+	 */
+	@Override
+	protected void createNodesForAllElements() {
+		if (query.getQueryResultSet() != null) {
+		for (final Element element : cacheManager
+				.getAllApplicableElementElements()) {
+
+			int level = cacheManager.getLevel(element);
+			int sublevel = cacheManager.getSublevel(element);
+
+			CheckboxFigure topFigure = null;
+			if (element instanceof Principle) {
+				// GraphNode node = findNodeForElement(element);
+				topFigure = new CheckboxFigure(false);
+
+			}
+
+			AKMElementGraphNode node = createNode(zestGraph, SWT.NONE, element,
+					level, sublevel,
+					cacheManager.isLeafAppicableElement(element),
+					cacheManager.getAllApplicableIncomingRelations(element)
+							.size() != 0, topFigure);
+			if (element instanceof Principle) {
+				selectionMap.put(node, topFigure);
+			}
+		}
+		}
+		
+	}
+
+
+
+	/* (non-Javadoc)
+	 * @see org.emftrace.quarc.ui.zestgpraphbuilders.PrioriziedElementSelectorGraphBuilder#addCheckListeners()
+	 */
+	@Override
+	protected void addCheckListeners() {
+		for (Entry<GraphNode, CheckboxFigure> entry : selectionMap.entrySet()) {
+
+			final Element element = ((AKMElementGraphNode) entry.getKey())
+					.getElement();
+			entry.getValue().addCheckListener(new ICheckListener() {
+
+				@Override
+				public void unchecked() {
+					GraphNode node = getNodeForElement(element);
+					for (Object connection : node.getSourceConnections()) {
+						GraphNode destination = ((GraphConnection) connection)
+								.getDestination();
+						if (((AKMElementGraphNode) destination).getElement() instanceof Principle) {
+							if (!hasSelectedSourceNodes(destination))
+								getCheckboxFigure(destination).setIsUnchecked();
+
+						}
+					}
+					removePriorizedElement(element);
+
+				}
+
+				@Override
+				public void checked() {
+					AKMElementGraphNode node = (AKMElementGraphNode) getNodeForElement(element);
+
+					List<Decomposition> outgoingDecompositions = getOutgoingDecomposition(node);
+					List<Decomposition> incomingDecompositions = getIncomingDecompositions(node);
+
+					addPriorizedElement(element, outgoingDecompositions,
+							incomingDecompositions);
+
+					if (!cacheManager.isLeafAppicableElement(element)) {
+						node.setIsExpanded();
+					}
+
+					// add subElements
+
+					for (Object connection : node.getTargetConnections()) {
+						CheckboxFigure checkboxFigure = getCheckboxFigure((((GraphConnection) connection)
+								.getSource()));
+						if (checkboxFigure != null) // -> element == goal
+							checkboxFigure.setIsChecked();
+					}
+
+				}
+			});
+		}
+	}
+
+	/* (non-Javadoc)
+	 * @see org.emftrace.quarc.ui.zestgpraphbuilders.PrioriziedElementSelectorGraphBuilder#createConnectionsBetweenAllNodes()
+	 */
+	@Override
+	protected void createConnectionsBetweenAllNodes() {
+		if (query.getQueryResultSet()!= null) {
+		for (Element element : cacheManager.getAllApplicableElementElements()) {
+			for (Relation outgoingRelation : cacheManager
+					.getAllApplicableOutgoingRelations(element)) {
+				createConnection(outgoingRelation);
+			}
+		}
+
+		for (Entry<Element, AKMElementGraphNode> entry : nodeMap.entrySet()) {
+			if (!(entry.getKey() instanceof Goal))
+				( entry.getValue()).hide();
+		}
+		}
+	}
+
+	/* (non-Javadoc)
+	 * @see org.emftrace.quarc.ui.zestgpraphbuilders.AbstractElementGraphBuilder#initCache()
+	 */
+	@Override
+	protected void initCache() {
+
+		if ((query.getQueryResultSet() == null &&  displayQuestionMessagebox( "Preselecion for priniples musst be calculated first!\n Calculate Preslection now?")) ||
+				(needsRerun(query) &&  displayQuestionMessagebox( "Preselecion for priniples musst be calculated again. This will reset the query result!\n\nCalculate preslection now?"))){
+					
+			    new GSSQueryProcessor(query, accessLayer, (GSS) getInput(), query.getAssignedConstraintsSet(), true).run();
+
+		}
+		
+		cacheManager = new CacheManager((GSS) getInput(),
+				query.getQueryResultSet(), accessLayer);
+		
+		if (query.getQueryResultSet() != null)
+		cacheManager.initCache();
+
+	}
+
+	private boolean needsRerun(GSSQuery query) {
+		if (		query.isChanged() || query.getAssignedConstraintsSet()!= null && query.getAssignedConstraintsSet().isChanged() || query.getSelectedGoalsSet()!= null && query.getSelectedGoalsSet().isChanged())  
+	return true;
+			for (ApplicableElement ae: query.getQueryResultSet().getApplicableElements()) {
+		if (ae.getElement() instanceof SolutionInstrument) //query was executed completly if containts solution instruments
+			return true;
+	}
+		return false;
+	}
+}

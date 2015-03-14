@@ -1,0 +1,45 @@
+package org.emftrace.akm.ui.editors;
+
+import org.eclipse.ui.PartInitException;
+import org.eclipse.ui.forms.editor.FormPage;
+import org.emftrace.akm.ui.editors.formpages.ArchitectureKnowledgeModelElementFormPage;
+import org.emftrace.metamodel.ArchitectureKnowledgeModel.ArchitectureKnowledgeModel;
+import org.emftrace.ui.editors.ModelElementEditor;
+import org.emftrace.ui.util.UIHelper;
+
+public class AKMModelElementEditor extends ModelElementEditor {
+
+	public static final String PAGE_ID = UIHelper.AKM_EDITOR;
+
+	private final String sDefaultPageName = "Features Exploration View";
+
+	private FormPage mPage;
+
+	@Override
+	protected void addPages() {
+
+		// Determine the page type
+		if (modelElement instanceof ArchitectureKnowledgeModel) {
+			mPage = new ArchitectureKnowledgeModelElementFormPage(this, PAGE_ID, sDefaultPageName, modelElement);
+		}
+
+		// Add the page
+		try {
+			addPage(mPage);
+		} catch (PartInitException e) {
+			e.printStackTrace();
+		}
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.eclipse.ui.forms.editor.SharedHeaderFormEditor#setFocus()
+	 */
+	@Override
+	public void setFocus() {
+		super.setFocus();
+		mPage.setFocus();
+	}
+
+}

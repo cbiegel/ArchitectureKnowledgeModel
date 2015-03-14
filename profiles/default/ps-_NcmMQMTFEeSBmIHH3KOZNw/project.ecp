@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<org.eclipse.emf.emfstore.internal.common.model:Project xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ArchitectureKnowledgeModel="ArchitectureKnowledgeModel" xmlns:org.eclipse.emf.emfstore.internal.common.model="http://eclipse.org/emf/emfstore/common/model">
+  <modelElements xsi:type="ArchitectureKnowledgeModel:ArchitectureKnowledgeModel" xmi:id="_OiT3IMTFEeSBmIHH3KOZNw" ID="1" Name="sample">
+    <TechnologySolutions xmi:id="_QLWRgMTFEeSBmIHH3KOZNw" ID="1" Name="test" TechnologySolution="#_Y5_coMTFEeSBmIHH3KOZNw"/>
+    <ConceptualSolutions xmi:id="_QYt_IMTFEeSBmIHH3KOZNw" ID="1" Name="test"/>
+    <DevelopmentEnvironments xmi:id="_QhLXkMTFEeSBmIHH3KOZNw" ID="1" Name="test"/>
+    <Relations xmi:id="_QorGsMTFEeSBmIHH3KOZNw" ID="1" Name="test"/>
+  </modelElements>
+  <modelElements xsi:type="ArchitectureKnowledgeModel:TechnologySolution" xmi:id="_Y5_coMTFEeSBmIHH3KOZNw" ID="1" Name="test" Description="This is a testDescription"/>
+</org.eclipse.emf.emfstore.internal.common.model:Project>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<model:Screen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://wireframesketcher.com/1.0/model.ecore">
+  <widgets xsi:type="model:Panel" id="17" x="16" y="208" width="721" height="425" measuredWidth="721" measuredHeight="425" alpha="0" verticalScrollbar="true"/>
+  <widgets xsi:type="model:Label" id="1" x="16" y="24" text="Features Exploration" measuredWidth="390" measuredHeight="67">
+    <font size="43px" underline="true"/>
+  </widgets>
+  <widgets xsi:type="model:Text" id="2" x="16" y="112" text="Ausgewähltes Element (Technology Solution 1):&#xD;&#xA;* Auflistung aller Features der Technologielösung&#xD;&#xA;* Farb-Codierung für Typen von Features (z.B. Entwicklungs-Features rot)" measuredWidth="499" measuredHeight="63" lineHeight="1.5">
+    <font size="14px"/>
+  </widgets>
+  <widgets xsi:type="model:Shape" id="18" x="232" y="264" width="137" height="57" text="Technology Solution 1" measuredWidth="137" measuredHeight="57" shapeType="rectangle">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:Shape" id="19" x="232" y="384" width="137" height="69" text="Feature 2" measuredWidth="137" measuredHeight="69" foreground="#00118a" shapeType="rectangle-round">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:Shape" id="20" x="64" y="384" width="137" height="69" text="Feature 1" measuredWidth="137" measuredHeight="69" foreground="#ff0000" shapeType="rectangle-round">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:Shape" id="21" x="400" y="384" width="137" height="69" text="Feature 3" measuredWidth="137" measuredHeight="69" foreground="#ff0000" shapeType="rectangle-round">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:Arrow" id="22" x="128" y="320" width="169" height="65" measuredWidth="169" measuredHeight="65" direction="bottom"/>
+  <widgets xsi:type="model:Arrow" id="23" x="296" y="320" width="8" height="65" text="contains" measuredWidth="8" measuredHeight="65" left="false" right="true"/>
+  <widgets xsi:type="model:Arrow" id="24" x="296" y="320" width="177" height="65" measuredWidth="177" measuredHeight="65" left="false" right="true"/>
+  <widgets xsi:type="model:Combo" id="28" x="576" y="242" text="Filter Feature Type" measuredWidth="124" measuredHeight="23">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:VLine" id="29" x="544" y="208" height="425" measuredWidth="6" measuredHeight="425"/>
+  <widgets xsi:type="model:HLine" id="30" x="544" y="350" width="178" measuredWidth="178" measuredHeight="6"/>
+  <hRuler/>
+  <vRuler/>
+  <font size="12px"/>
+</model:Screen>

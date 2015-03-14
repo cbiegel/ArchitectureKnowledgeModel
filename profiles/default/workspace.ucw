@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<org.eclipse.emfstore.client.model:Workspace xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:org.eclipse.emfstore.client.model="http://eclipse.org/emf/emfstore/client/model">
+  <projectSpaces href="projectspaces/_x9lVwJQZEeS71rFvlGVt-w/projectspace#_x9lVwJQZEeS71rFvlGVt-w"/>
+  <projectSpaces href="projectspaces/_rMnNcJcoEeSXvJaW6AdbUw/projectspace#_rMnNcJcoEeSXvJaW6AdbUw"/>
+  <projectSpaces href="projectspaces/_yJUkEJcsEeSZZ7bAiqAMIA/projectspace#_yJUkEJcsEeSZZ7bAiqAMIA"/>
+  <projectSpaces href="projectspaces/_LMC08JmOEeScHsiD7FWvLA/projectspace#_LMC08JmOEeScHsiD7FWvLA"/>
+  <projectSpaces href="projectspaces/_2cv98LwUEeSSq_OxyppbSg/projectspace#_2cv98LwUEeSSq_OxyppbSg"/>
+  <projectSpaces href="projectspaces/_jXEmMLwXEeSDI_fK0GJv1g/projectspace#_jXEmMLwXEeSDI_fK0GJv1g"/>
+  <projectSpaces href="projectspaces/_H3EWAMM3EeShJeh9-HgLuQ/projectspace#_H3EWAMM3EeShJeh9-HgLuQ"/>
+  <projectSpaces href="projectspaces/_NcmMQMTFEeSBmIHH3KOZNw/projectspace#_NcmMQMTFEeSBmIHH3KOZNw"/>
+  <projectSpaces href="projectspaces/_-SyloMTyEeSfz99xxu0S5g/projectspace#_-SyloMTyEeSfz99xxu0S5g"/>
+  <projectSpaces href="projectspaces/_AUWuIMWKEeSyTdBoaNRe0Q/projectspace#_AUWuIMWKEeSyTdBoaNRe0Q"/>
+  <projectSpaces href="projectspaces/_Bjc-gMWKEeSyTdBoaNRe0Q/projectspace#_Bjc-gMWKEeSyTdBoaNRe0Q"/>
+  <serverInfos name="Localhost Server" url="localhost" port="8080" lastUsersession="#//@usersessions.0" certificateAlias="emfstore test certificate (do not use in production!)"/>
+  <usersessions username="super" persistentPassword="JHe1sXiQqydOafhNxAweokz1rvpzeculv/iSoxQQb5f3hDTiBWK7MHHHOSM2fezC4HIrK6uM71xiFt1TWmChS9xM705zoerKdnfGHgg+ctPGt6fG06JkTsz2pVYEaUsa4/bF6Ea6NSC5FXmVb3vZeZmwMb0H5u5reEiCV9dF9Hg=" serverInfo="#//@serverInfos.0" savePassword="true"/>
+</org.eclipse.emfstore.client.model:Workspace>

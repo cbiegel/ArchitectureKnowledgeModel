@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<org.eclipse.emfstore.client.model:ProjectSpace xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:org.eclipse.emfstore.client.model="http://eclipse.org/emf/emfstore/client/model" workspace="../../workspace#/" identifier="_yJUkEJcsEeSZZ7bAiqAMIA" projectName="ggg" resourceCount="1" dirty="true">
+  <project href="project#/"/>
+  <localChangePackage href="operations#/"/>
+</org.eclipse.emfstore.client.model:ProjectSpace>

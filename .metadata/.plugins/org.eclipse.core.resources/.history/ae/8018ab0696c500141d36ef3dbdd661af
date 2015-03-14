@@ -1,0 +1,14 @@
+package org.emftrace.akm.ui.editors;
+
+import org.emftrace.ui.editors.ModelElementEditor;
+
+public class AKMModelElementEditor extends ModelElementEditor {
+
+	public static final String PAGE_ID = "org.emftrace.akm.ui.editors.AKMModelElementEditor";
+	
+	@Override
+	protected void addPages() {
+		
+	}
+
+}

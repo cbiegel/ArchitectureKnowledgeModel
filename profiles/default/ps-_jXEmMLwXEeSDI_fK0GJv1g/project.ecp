@@ -1,0 +1,1098 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<org.eclipse.emf.emfstore.internal.common.model:Project xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:FeatureModel="FeatureModel" xmlns:LinkModel="LinkModel" xmlns:org.eclipse.emf.emfstore.internal.common.model="http://eclipse.org/emf/emfstore/common/model">
+  <modelElements xsi:type="FeatureModel:ConsulModel" xmi:id="_jXFNQLwXEeSDI_fK0GJv1g" id="Architecture Knowledge Model" version="1.5" type="ps:fm">
+    <head xmi:id="_jXFNQbwXEeSDI_fK0GJv1g" id="Architecture Knowledge Model Head">
+      <properties xmi:id="_jXFNQrwXEeSDI_fK0GJv1g" id="Architecture Knowledge Model Properties">
+        <property xmi:id="_jXFNQ7wXEeSDI_fK0GJv1g" id="iIXu4OdwFbb3aDtHJ" name="ps:name" type="ps:string" invisible="true">
+          <value xsi:type="FeatureModel:Constant" xmi:id="_jXFNRLwXEeSDI_fK0GJv1g" id="if7639wLXyCxEEbrC" type="ps:string" content="TechnologyFeatureModel"/>
+        </property>
+        <property xmi:id="_jXFNRbwXEeSDI_fK0GJv1g" id="iKHVtalwv8ibFL3W2" name="ps:author" type="ps:string" invisible="true">
+          <value xsi:type="FeatureModel:Constant" xmi:id="_jXFNRrwXEeSDI_fK0GJv1g" id="iRkVTJ0cgmfMaXn0Z" type="ps:string" content="Chris"/>
+        </property>
+        <property xmi:id="_jXFNR7wXEeSDI_fK0GJv1g" id="iodCsu6pFXT-JVpMJ" name="ps:version" type="ps:string" invisible="true">
+          <value xsi:type="FeatureModel:Constant" xmi:id="_jXFNSLwXEeSDI_fK0GJv1g" id="iKEVBr1hCe42_LMEY" type="ps:string" content="1.0"/>
+        </property>
+        <property xmi:id="_jXFNSbwXEeSDI_fK0GJv1g" id="i7GcAadoO43-QOt14" name="ps:created" type="ps:datetime" invisible="true">
+          <value xsi:type="FeatureModel:Constant" xmi:id="_jXFNSrwXEeSDI_fK0GJv1g" id="iIMsZKW0-x6Ct7fVR" type="ps:datetime" content="2015-01-18T12:54:06.301Z"/>
+        </property>
+        <property xmi:id="_jXFNS7wXEeSDI_fK0GJv1g" id="iIhRjFQlNMybltEzL" name="ps:DescriptionType" type="ps:mimetype" invisible="true">
+          <value xsi:type="FeatureModel:Constant" xmi:id="_jXFNTLwXEeSDI_fK0GJv1g" id="iIvkpmTs2kdW05WeG" type="ps:mimetype" content="text/html"/>
+        </property>
+      </properties>
+    </head>
+    <elements xmi:id="_jXFNTbwXEeSDI_fK0GJv1g" id="Architecture Knowledge Model Elements" rootid="ibGMzSKN-jay3HIdq" class="ps:feature">
+      <element xmi:id="_jXFNTrwXEeSDI_fK0GJv1g" id="i_RYCXHIFivp-IML3" name="SA Solution" type="ps:feature" class="ps:feature" default="on">
+        <relations xmi:id="_jXFNT7wXEeSDI_fK0GJv1g" id="SA Solution Parents" class="ps:parents">
+          <relation xmi:id="_jXFNULwXEeSDI_fK0GJv1g" id="igQKWhfrJEaTYd0SD" type="ps:parent">
+            <target xmi:id="_jXFNUbwXEeSDI_fK0GJv1g" id="i5AFGC8BW6INsfYps" content="./ibGMzSKN-jay3HIdq"/>
+          </relation>
+        </relations>
+        <relations xmi:id="_jXFNUrwXEeSDI_fK0GJv1g" id="SA Solution Children" class="ps:children">
+          <relation xmi:id="_jXFNU7wXEeSDI_fK0GJv1g" id="iATQs9YP8HrU3-hJM" type="ps:mandatory">
+            <target xmi:id="_jXFNVLwXEeSDI_fK0GJv1g" id="iv7MvKbiv4aTRhL5t" content="./i4CLYI8yRZej_fs-H"/>
+            <target xmi:id="_jXFNVbwXEeSDI_fK0GJv1g" id="iMtmpNSAv1DU6BYcb" content="./iVEW7qBQ7XM5J99yc"/>
+            <target xmi:id="_jXFNVrwXEeSDI_fK0GJv1g" id="iy6x2ZpScenUmsSK-" content="./i9bAnMxq0Q7opgOdJ"/>
+          </relation>
+        </relations>
+        <properties xmi:id="_jXFNV7wXEeSDI_fK0GJv1g" id="SA Solution">
+          <property xmi:id="_jXFNWLwXEeSDI_fK0GJv1g" id="i_b8q7IkkXg_BsDGp" name="ps:Source" type="ps:string" fixed="true" readonly="true">
+            <value xsi:type="FeatureModel:Constant" xmi:id="_jXFNWbwXEeSDI_fK0GJv1g" id="i-GlhHqgH9OoyBnKU" type="ps:string" content="Chris"/>
+          </property>
+          <property xmi:id="_jXFNWrwXEeSDI_fK0GJv1g" id="iuPgVkJckmmzzuDvh" name="ps:Created" type="ps:datetime" fixed="true" readonly="true">
+            <value xsi:type="FeatureModel:Constant" xmi:id="_jXFNW7wXEeSDI_fK0GJv1g" id="iggGQ55Kz7RNrfMtn" type="ps:datetime" content="2015-01-24T11:10:54.387Z"/>
+          </property>
+          <property xmi:id="_jXFNXLwXEeSDI_fK0GJv1g" id="ikBkq8I1fKvPo7sez" name="ps:ChangedBy" type="ps:string" fixed="true" readonly="true">
+            <value xsi:type="FeatureModel:Constant" xmi:id="_jXFNXbwXEeSDI_fK0GJv1g" id="i9RbUf7tVc99MGXSx" type="ps:string" content="Chris"/>
+          </property>
+          <property xmi:id="_jXFNXrwXEeSDI_fK0GJv1g" id="i7fvMLGdvbMX08xiR" name="ps:Changed" type="ps:datetime" fixed="true" readonly="true">
+            <value xsi:type="FeatureModel:Constant" xmi:id="_jXFNX7wXEeSDI_fK0GJv1g" id="io96LpD6QEhaqPOd2" type="ps:datetime" content="2015-01-24T11:10:54.387Z"/>
+          </property>
+        </properties>
+        <vname xmi:id="_jXFNYLwXEeSDI_fK0GJv1g" id="SA Solution" mimedesc="SASolution"/>
+      </element>
+      <element xmi:id="_jXFNYbwXEeSDI_fK0GJv1g" id="Reusable Technology Design Decision" name="Reusable Technology Design Decision" type="ps:feature" class="ps:feature" default="on">
+        <relations xmi:id="_jXF0ULwXEeSDI_fK0GJv1g" id="Reusable Technolgy Design Decision Parents" class="ps:parents">
+          <relation xmi:id="_jXF0UbwXEeSDI_fK0GJv1g" id="irMsqITo14L0BSbYu" type="ps:parent">
+            <target xmi:id="_jXF0UrwXEeSDI_fK0GJv1g" id="iqRTjurJwg6yX1ysm" content="./ibGMzSKN-jay3HIdq"/>
+          </relation>
+        </relations>
+        <relations xmi:id="_jXF0U7wXEeSDI_fK0GJv1g" id="Reusable Technolgy Design Decision Dependencies" class="ps:dependencies">
+          <relation xmi:id="_jXF0VLwXEeSDI_fK0GJv1g" id="i0kCvuH9FVRHr4CKb" type="ps:influences">
+            <target xmi:id="_jXF0VbwXEeSDI_fK0GJv1g" id="ik16f6ZgCNZiTo3y8" content="iLi73RNJ-7Lenn_9m/i3ViskFXr6iLFLh4w"/>
+          </relation>
+          <relation xmi:id="_jXF0VrwXEeSDI_fK0GJv1g" id="iC_adQhfN6u-vWuVX" type="ps:influences">
+            <target xmi:id="_jXF0V7wXEeSDI_fK0GJv1g" id="iS-Cm0eNG7lwBwqUA" content="iLi73RNJ-7Lenn_9m/i_RYCXHIFivp-IML3"/>
+          </relation>
+          <relation xmi:id="_jXF0WLwXEeSDI_fK0GJv1g" id="iHgE0-fluXIm1c0B9" type="ps:influences">
+            <target xmi:id="_jXF0WbwXEeSDI_fK0GJv1g" id="iohXYNzonzQUyYUb3" content="iLi73RNJ-7Lenn_9m/iALhtmaUhWS08p0Pa"/>
+          </relation>
+          <relation xmi:id="_jXF0WrwXEeSDI_fK0GJv1g" id="i3E3I9wbMKFhwD6wq" type="ps:influences">
+            <target xmi:id="_jXF0W7wXEeSDI_fK0GJv1g" id="iaaxPN_LsLRNHiXRr" content="iLi73RNJ-7Lenn_9m/iyNrB8KHJiPokTTuX"/>
+          </relation>
+        </relations>
+        <properties xmi:id="_jXF0XLwXEeSDI_fK0GJv1g" id="Reusable Technology Design Decision">
+          <property xmi:id="_jXF0XbwXEeSDI_fK0GJv1g" id="i2R6VmwUa-h9mqpd3" name="ps:Source" type="ps:string" fixed="true" readonly="true">
+            <value xsi:type="FeatureModel:Constant" xmi:id="_jXF0XrwXEeSDI_fK0GJv1g" id="ikMh9yBXCaFE0OOkm" type="ps:string" content="Chris"/>
+          </property>
+          <property xmi:id="_jXF0X7wXEeSDI_fK0GJv1g" id="iwIZm1PqyTjxSoD6A" name="ps:Created" type="ps:datetime" fixed="true" readonly="true">
+            <value xsi:type="FeatureModel:Constant" xmi:id="_jXF0YLwXEeSDI_fK0GJv1g" id="iAm7k2JgrfSVYPV_k" type="ps:datetime" content="2015-01-24T11:11:48.336Z"/>
+          </property>
+          <property xmi:id="_jXF0YbwXEeSDI_fK0GJv1g" id="iPLbkT_2PWG_b_bjB" name="ps:ChangedBy" type="ps:string" fixed="true" readonly="true">
+            <value xsi:type="FeatureModel:Constant" xmi:id="_jXF0YrwXEeSDI_fK0GJv1g" id="iDBg8k0yjWjHDa5Se" type="ps:string" content="Chris"/>
+          </property>
+          <property xmi:id="_jXF0Y7wXEeSDI_fK0GJv1g" id="iNKJjfxEymWWbv04f" name="ps:Changed" type="ps:datetime" fixed="true" readonly="true">
+            <value xsi:type="FeatureModel:Constant" xmi:id="_jXF0ZLwXEeSDI_fK0GJv1g" id="isELkV53aIJimhPa6" type="ps:datetime" content="2015-01-24T11:40:30.474Z"/>
+          </property>
+        </properties>
+        <vname xmi:id="_jXF0ZbwXEeSDI_fK0GJv1g" id="Reusable Technology Design Decision" mimedesc="ReusableTechnologyDesignDecision"/>
+      </element>
+      <element xmi:id="_jXF0ZrwXEeSDI_fK0GJv1g" id="Contextual Factors" name="Contextual Factors" type="ps:feature" class="ps:feature" default="on">
+        <relations xmi:id="_jXF0Z7wXEeSDI_fK0GJv1g" id="Contextual Factors Parents" class="ps:parents">
+          <relation xmi:id="_jXF0aLwXEeSDI_fK0GJv1g" id="i6lx9OwJA7KFHa--M" type="ps:parent">
+            <target xmi:id="_jXF0abwXEeSDI_fK0GJv1g" id="izOJ3-z4qsZyKvs5u" content="./ibGMzSKN-jay3HIdq"/>
+          </relation>
+        </relations>
+        <relations xmi:id="_jXF0arwXEeSDI_fK0GJv1g" id="Contextual Factors Dependencies" class="ps:dependencies">
+          <relation xmi:id="_jXF0a7wXEeSDI_fK0GJv1g" id="iCnG4CWcVP-YJSUiK" type="ps:influences">
+            <target xmi:id="_jXF0bLwXEeSDI_fK0GJv1g" id="iLXVXA9EvopHatExl" content="iLi73RNJ-7Lenn_9m/i2305sTZqKTIBfoY9"/>
+          </relation>
+          <relation xmi:id="_jXF0bbwXEeSDI_fK0GJv1g" id="i4qT3Mh1vfJec6iVk" type="ps:influences">
+            <target xmi:id="_jXF0brwXEeSDI_fK0GJv1g" id="ipKR6ArbQiirtdG6l" content="iLi73RNJ-7Lenn_9m/i3bYTHa_B_EfTx34M"/>
+          </relation>
+        </relations>
+        <properties xmi:id="_jXF0b7wXEeSDI_fK0GJv1g" id="Contextual Factors">
+          <property xmi:id="_jXF0cLwXEeSDI_fK0GJv1g" id="i0T6vLbNmM4HIUUlU" name="ps:Source" type="ps:string" fixed="true" readonly="true">
+            <value xsi:type="FeatureModel:Constant" xmi:id="_jXF0cbwXEeSDI_fK0GJv1g" id="imB0vzRXLsodZPcz9" type="ps:string" content="Chris"/>
+          </property>
+          <property xmi:id="_jXF0crwXEeSDI_fK0GJv1g" id="iIISjbIw07lkrcY-O" name="ps:Created" type="ps:datetime" fixed="true" readonly="true">
+            <value xsi:type="FeatureModel:Constant" xmi:id="_jXF0c7wXEeSDI_fK0GJv1g" id="iw5AyK9Y5d_ggTsz8" type="ps:datetime" content="2015-01-24T11:12:04.394Z"/>
+          </property>
+          <property xmi:id="_jXF0dLwXEeSDI_fK0GJv1g" id="iqe3FwY3mVTMymo4a" name="ps:ChangedBy" type="ps:string" fixed="true" readonly="true">
+            <value xsi:type="FeatureModel:Constant" xmi:id="_jXF0dbwXEeSDI_fK0GJv1g" id="i-MNMmNvv4CAuOYBR" type="ps:string" content="Chris"/>
+          </property>
+          <property xmi:id="_jXF0drwXEeSDI_fK0GJv1g" id="iQILXIMSPDjDcFc0g" name="ps:Changed" type="ps:datetime" fixed="true" readonly="true">
+            <value xsi:type="FeatureModel:Constant" xmi:id="_jXF0d7wXEeSDI_fK0GJv1g" id="iiQciPndqWx2JYyos" type="ps:datetime" content="2015-01-24T11:29:56.323Z"/>
+          </property>
+        </properties>
+        <vname xmi:id="_jXF0eLwXEeSDI_fK0GJv1g" id="Contextual Factors" mimedesc="ContextualFactors"/>
+      </element>
+      <element xmi:id="_jXF0ebwXEeSDI_fK0GJv1g" id="Issue Concern Combination" name="Issue Concern Combination" type="ps:feature" class="ps:feature" default="on">
+        <relations xmi:id="_jXF0erwXEeSDI_fK0GJv1g" id="Issue Concern Combination Parents" class="ps:parents">
+          <relation xmi:id="_jXF0e7wXEeSDI_fK0GJv1g" id="i0WYfhM6GnGhJ2_JO" type="ps:parent">
+            <target xmi:id="_jXF0fLwXEeSDI_fK0GJv1g" id="i1LD6OQY8WEGuinxq" content="./ibGMzSKN-jay3HIdq"/>
+          </relation>
+        </relations>
+        <relations xmi:id="_jXF0fbwXEeSDI_fK0GJv1g" id="Issue Concern Combination Dependencies" class="ps:dependencies">
+          <relation xmi:id="_jXF0frwXEeSDI_fK0GJv1g" id="iCBeiXshQyY1VNXqr" type="ps:influences">
+            <target xmi:id="_jXF0f7wXEeSDI_fK0GJv1g" id="iS7a7uOOxzUBfkbxx" content="iLi73RNJ-7Lenn_9m/iNoBOS_F7KJMBJNGZ"/>
+          </relation>
+          <relation xmi:id="_jXF0gLwXEeSDI_fK0GJv1g" id="iOMHMqdY0nKHHiPr9" type="ps:influences">
+            <target xmi:id="_jXF0gbwXEeSDI_fK0GJv1g" id="ib7wy9EyzQWHU2WeI" content="iLi73RNJ-7Lenn_9m/i3ViskFXr6iLFLh4w"/>
+          </relation>
+          <relation xmi:id="_jXF0grwXEeSDI_fK0GJv1g" id="ifuBXMBo7LGP0zDFP" type="ps:influences">
+            <target xmi:id="_jXF0g7wXEeSDI_fK0GJv1g" id="iPU-9pM2TIBen1Gwu" content="iLi73RNJ-7Lenn_9m/iALhtmaUhWS08p0Pa"/>
+          </relation>
+        </relations>
+        <properties xmi:id="_jXF0hLwXEeSDI_fK0GJv1g" id="Issue Concern Combination">
+          <property xmi:id="_jXF0hbwXEeSDI_fK0GJv1g" id="ieNrESba_NLZVD40l" name="ps:Source" type="ps:string" fixed="true" readonly="true">
+            <value xsi:type="FeatureModel:Constant" xmi:id="_jXF0hrwXEeSDI_fK0GJv1g" id="iR3ln7a3Ow2mG4L78" type="ps:string" content="Chris"/>
+          </property>
+          <property xmi:id="_jXF0h7wXEeSDI_fK0GJv1g" id="iiq19IgmUNmTIUHDj" name="ps:Created" type="ps:datetime" fixed="true" readonly="true">
+            <value xsi:type="FeatureModel:Constant" xmi:id="_jXF0iLwXEeSDI_fK0GJv1g" id="i8NnLZ9mBaXM8YICk" type="ps:datetime" content="2015-01-24T11:12:18.100Z"/>
+          </property>
+          <property xmi:id="_jXF0ibwXEeSDI_fK0GJv1g" id="iYPUdoDE4NmeOOEgD" name="ps:ChangedBy" type="ps:string" fixed="true" readonly="true">
+            <value xsi:type="FeatureModel:Constant" xmi:id="_jXF0irwXEeSDI_fK0GJv1g" id="iz03FvtU2Hvek0Lm1" type="ps:string" content="Chris"/>
+          </property>
+          <property xmi:id="_jXF0i7wXEeSDI_fK0GJv1g" id="i6QN1mbI8i0QqqkJZ" name="ps:Changed" type="ps:datetime" fixed="true" readonly="true">
+            <value xsi:type="FeatureModel:Constant" xmi:id="_jXF0jLwXEeSDI_fK0GJv1g" id="i7hjTtQWvaz3-LeBz" type="ps:datetime" content="2015-01-24T11:34:16.310Z"/>
+          </property>
+        </properties>
+        <vname xmi:id="_jXF0jbwXEeSDI_fK0GJv1g" id="Issue Concern Combination" mimedesc="IssueConcernCombination"/>
+      </element>
+      <element xmi:id="_jXF0jrwXEeSDI_fK0GJv1g" id="Architecture Concern" name="Architecture Concern" type="ps:feature" class="ps:feature" default="on">
+        <relations xmi:id="_jXF0j7wXEeSDI_fK0GJv1g" id="Architecture Concern Parents" class="ps:parents">
+          <relation xmi:id="_jXF0kLwXEeSDI_fK0GJv1g" id="ixFA4IP5uV4SZ4IIP" type="ps:parent">
+            <target xmi:id="_jXF0kbwXEeSDI_fK0GJv1g" id="icsOxyoJOx0uUj3lA" content="./ibGMzSKN-jay3HIdq"/>
+          </relation>
+        </relations>
+        <relations xmi:id="_jXF0krwXEeSDI_fK0GJv1g" id="Architecture Concern Dependencies" class="ps:dependencies">
+          <relation xmi:id="_jXF0k7wXEeSDI_fK0GJv1g" id="iHe8ZaoFjUkZCO7sV" type="ps:influences">
+            <target xmi:id="_jXF0lLwXEeSDI_fK0GJv1g" id="i8pTkRzEhvXiANKN0" content="iLi73RNJ-7Lenn_9m/i2305sTZqKTIBfoY9"/>
+          </relation>
+          <relation xmi:id="_jXF0lbwXEeSDI_fK0GJv1g" id="i3S1j9yl-7WhPEjy9" type="ps:influences">
+            <target xmi:id="_jXF0lrwXEeSDI_fK0GJv1g" id="ia0SJH-1zXaR9IFIV" content="iLi73RNJ-7Lenn_9m/iALhtmaUhWS08p0Pa"/>
+          </relation>
+        </relations>
+        <properties xmi:id="_jXF0l7wXEeSDI_fK0GJv1g" id="Architecture Concern">
+          <property xmi:id="_jXF0mLwXEeSDI_fK0GJv1g" id="iI3twNuY9t-BnLaQC" name="ps:Source" type="ps:string" fixed="true" readonly="true">
+            <value xsi:type="FeatureModel:Constant" xmi:id="_jXF0mbwXEeSDI_fK0GJv1g" id="ig_gMjBCJ3Ux3FYdi" type="ps:string" content="Chris"/>
+          </property>
+          <property xmi:id="_jXF0mrwXEeSDI_fK0GJv1g" id="iemq3kBvyfOAQL3B6" name="ps:Created" type="ps:datetime" fixed="true" readonly="true">
+            <value xsi:type="FeatureModel:Constant" xmi:id="_jXF0m7wXEeSDI_fK0GJv1g" id="i-RuaESf_xij6hEZV" type="ps:datetime" content="2015-01-24T11:12:28.744Z"/>
+          </property>
+          <property xmi:id="_jXF0nLwXEeSDI_fK0GJv1g" id="it7RVIbwB9F0MnIOM" name="ps:ChangedBy" type="ps:string" fixed="true" readonly="true">
+            <value xsi:type="FeatureModel:Constant" xmi:id="_jXF0nbwXEeSDI_fK0GJv1g" id="isuKlznFSNMu3KhhP" type="ps:string" content="Chris"/>
+          </property>
+          <property xmi:id="_jXF0nrwXEeSDI_fK0GJv1g" id="izf10HHbnDeNa8Loc" name="ps:Changed" type="ps:datetime" fixed="true" readonly="true">
+            <value xsi:type="FeatureModel:Constant" xmi:id="_jXF0n7wXEeSDI_fK0GJv1g" id="izh6QxuHvOx2tUmoY" type="ps:datetime" content="2015-01-24T11:35:45.413Z"/>
+          </property>
+        </properties>
+        <vname xmi:id="_jXF0oLwXEeSDI_fK0GJv1g" id="Architecture Concern" mimedesc="ArchitectureConcern"/>
+      </element>
+      <element xmi:id="_jXF0obwXEeSDI_fK0GJv1g" id="Design Issue" name="Design Issue" type="ps:feature" class="ps:feature" default="on">
+        <relations xmi:id="_jXF0orwXEeSDI_fK0GJv1g" id="Design Issue Parents" class="ps:parents">
+          <relation xmi:id="_jXF0o7wXEeSDI_fK0GJv1g" id="iOAnEh3OL8BBQ3gBR" type="ps:parent">
+            <target xmi:id="_jXF0pLwXEeSDI_fK0GJv1g" id="iSEhNAhIKytBzk-Ll" content="./ibGMzSKN-jay3HIdq"/>
+          </relation>
+        </relations>
+        <relations xmi:id="_jXF0pbwXEeSDI_fK0GJv1g" id="Design Issue Dependencies" class="ps:dependencies">
+          <relation xmi:id="_jXF0prwXEeSDI_fK0GJv1g" id="iY5pc6oiPGc5Run7q" type="ps:influences">
+            <target xmi:id="_jXF0p7wXEeSDI_fK0GJv1g" id="ipHj-BGuD929Rw3xy" content="iLi73RNJ-7Lenn_9m/iNoBOS_F7KJMBJNGZ"/>
+          </relation>
+          <relation xmi:id="_jXF0qLwXEeSDI_fK0GJv1g" id="iDVYEb0JJqYQPS0Gs" type="ps:influences">
+            <target xmi:id="_jXF0qbwXEeSDI_fK0GJv1g" id="iyL-H77U2GB_eNWbX" content="iLi73RNJ-7Lenn_9m/i2305sTZqKTIBfoY9"/>
+          </relation>
+          <relation xmi:id="_jXF0qrwXEeSDI_fK0GJv1g" id="i7cgIbZZal7Ic6CsP" type="ps:recommends">
+            <target xmi:id="_jXF0q7wXEeSDI_fK0GJv1g" id="iNiZb5YhM7HhgeYs4" content="iLi73RNJ-7Lenn_9m/i_RYCXHIFivp-IML3"/>
+          </relation>
+        </relations>
+        <properties xmi:id="_jXF0rLwXEeSDI_fK0GJv1g" id="Design Issue">
+          <property xmi:id="_jXF0rbwXEeSDI_fK0GJv1g" id="iMvOStHoBeteL0kq3" name="ps:Source" type="ps:string" fixed="true" readonly="true">
+            <value xsi:type="FeatureModel:Constant" xmi:id="_jXF0rrwXEeSDI_fK0GJv1g" id="iYuAr9FA2ktBiE-dR" type="ps:string" content="Chris"/>
+          </property>
+          <property xmi:id="_jXF0r7wXEeSDI_fK0GJv1g" id="iUHeW5XPlztK1Nb6w" name="ps:Created" type="ps:datetime" fixed="true" readonly="true">
+            <value xsi:type="FeatureModel:Constant" xmi:id="_jXF0sLwXEeSDI_fK0GJv1g" id="iNzCenEttcpMLhNND" type="ps:datetime" content="2015-01-24T11:12:37.433Z"/>
+          </property>
+          <property xmi:id="_jXF0sbwXEeSDI_fK0GJv1g" id="iigypc-2K-6br2-JH" name="ps:ChangedBy" type="ps:string" fixed="true" readonly="true">
+            <value xsi:type="FeatureModel:Constant" xmi:id="_jXF0srwXEeSDI_fK0GJv1g" id="i0L7n_VoBZ9qOa20z" type="ps:string" content="Chris"/>
+          </property>
+          <property xmi:id="_jXF0s7wXEeSDI_fK0GJv1g" id="iVcNO6yqOo8eD0Fuj" name="ps:Changed" type="ps:datetime" fixed="true" readonly="true">
+            <value xsi:type="FeatureModel:Constant" xmi:id="_jXF0tLwXEeSDI_fK0GJv1g" id="idP1QuvmILpAEBCnx" type="ps:datetime" content="2015-01-24T11:39:28.634Z"/>
+          </property>
+        </properties>
+        <vname xmi:id="_jXF0tbwXEeSDI_fK0GJv1g" id="Design Issue" mimedesc="DesignIssue"/>
+      </element>
+      <element xmi:id="_jXF0trwXEeSDI_fK0GJv1g" id="Conceptual Solution" name="Conceptual Solution" type="ps:feature" class="ps:feature" default="on">
+        <relations xmi:id="_jXF0t7wXEeSDI_fK0GJv1g" id="Conceptual Solution Parents" class="ps:parents">
+          <relation xmi:id="_jXF0uLwXEeSDI_fK0GJv1g" id="iP2xl9Rr85tf1AhIp" type="ps:parent">
+            <target xmi:id="_jXF0ubwXEeSDI_fK0GJv1g" id="iZeXPA_zuIZa7aihY" content="./i_RYCXHIFivp-IML3"/>
+          </relation>
+        </relations>
+        <properties xmi:id="_jXF0urwXEeSDI_fK0GJv1g" id="Conceptual Solution">
+          <property xmi:id="_jXF0u7wXEeSDI_fK0GJv1g" id="iI5yecy1nayax1Pol" name="ps:Source" type="ps:string" fixed="true" readonly="true">
+            <value xsi:type="FeatureModel:Constant" xmi:id="_jXF0vLwXEeSDI_fK0GJv1g" id="i9jkll1tvRLhdbP3c" type="ps:string" content="Chris"/>
+          </property>
+          <property xmi:id="_jXF0vbwXEeSDI_fK0GJv1g" id="iuDhGRRXjseIatClp" name="ps:Created" type="ps:datetime" fixed="true" readonly="true">
+            <value xsi:type="FeatureModel:Constant" xmi:id="_jXF0vrwXEeSDI_fK0GJv1g" id="ih_0xUTG0XWlAii10" type="ps:datetime" content="2015-01-24T11:12:52.532Z"/>
+          </property>
+          <property xmi:id="_jXF0v7wXEeSDI_fK0GJv1g" id="ifWMEfq9NWW2psjAg" name="ps:ChangedBy" type="ps:string" fixed="true" readonly="true">
+            <value xsi:type="FeatureModel:Constant" xmi:id="_jXF0wLwXEeSDI_fK0GJv1g" id="iNKufgDq61DycJ8zQ" type="ps:string" content="Chris"/>
+          </property>
+          <property xmi:id="_jXF0wbwXEeSDI_fK0GJv1g" id="iDRIy6AAXWlAYaevU" name="ps:Changed" type="ps:datetime" fixed="true" readonly="true">
+            <value xsi:type="FeatureModel:Constant" xmi:id="_jXF0wrwXEeSDI_fK0GJv1g" id="i5T6PqiX_oIdsSaBP" type="ps:datetime" content="2015-01-24T11:12:52.532Z"/>
+          </property>
+        </properties>
+        <vname xmi:id="_jXF0w7wXEeSDI_fK0GJv1g" id="Conceptual Solution" mimedesc="ConceptualSolution"/>
+      </element>
+      <element xmi:id="_jXF0xLwXEeSDI_fK0GJv1g" id="Technology Feature" name="Technology Feature" type="ps:feature" class="ps:feature" default="on">
+        <relations xmi:id="_jXF0xbwXEeSDI_fK0GJv1g" id="Technology Feature Parents" class="ps:parents">
+          <relation xmi:id="_jXF0xrwXEeSDI_fK0GJv1g" id="i7qd3c7kgggUiZVeN" type="ps:parent">
+            <target xmi:id="_jXF0x7wXEeSDI_fK0GJv1g" id="ipr8VhpZEmVdEnqLe" content="./i_RYCXHIFivp-IML3"/>
+          </relation>
+        </relations>
+        <relations xmi:id="_jXF0yLwXEeSDI_fK0GJv1g" id="Technology Feature Dependencies" class="ps:dependencies">
+          <relation xmi:id="_jXF0ybwXEeSDI_fK0GJv1g" id="i31_3q6PGbF1MyDD9" type="ps:influences">
+            <target xmi:id="_jXF0yrwXEeSDI_fK0GJv1g" id="iJNPerI2OGZuFfuym" content="iLi73RNJ-7Lenn_9m/i9bAnMxq0Q7opgOdJ"/>
+          </relation>
+          <relation xmi:id="_jXF0y7wXEeSDI_fK0GJv1g" id="iA9itW7g3tHV-OeAb" type="ps:influences">
+            <target xmi:id="_jXF0zLwXEeSDI_fK0GJv1g" id="i-F-DvNuPwlZ2YFAm" content="iLi73RNJ-7Lenn_9m/iyNrB8KHJiPokTTuX"/>
+          </relation>
+          <relation xmi:id="_jXF0zbwXEeSDI_fK0GJv1g" id="igAT-x8pYculQSj1m" type="ps:influences">
+            <target xmi:id="_jXF0zrwXEeSDI_fK0GJv1g" id="iiTV5ClHQJv-ih0vi" content="iLi73RNJ-7Lenn_9m/ilc0IaFj23XYgt7FD"/>
+          </relation>
+        </relations>
+        <relations xmi:id="_jXF0z7wXEeSDI_fK0GJv1g" id="Technology Feature Children" class="ps:children">
+          <relation xmi:id="_jXF00LwXEeSDI_fK0GJv1g" id="ijli511LUcgZS9Lyv" type="ps:alternative">
+            <target xmi:id="_jXF00bwXEeSDI_fK0GJv1g" id="i6N71YRpJ4_omaf11" content="./iYfi_6rwdbha0P6yT"/>
+            <target xmi:id="_jXF00rwXEeSDI_fK0GJv1g" id="ix24CcXWW3YIBfvoD" content="./iaypHHG4l3TOVv7Li"/>
+            <target xmi:id="_jXF007wXEeSDI_fK0GJv1g" id="i8dehGzQuXqsrdhzx" content="./irSvlQDpAauVX8-PW"/>
+            <target xmi:id="_jXF01LwXEeSDI_fK0GJv1g" id="i-00ecA4k9PdSiaLN" content="./iETYHJ8wlEco07Q-b"/>
+            <target xmi:id="_jXF01bwXEeSDI_fK0GJv1g" id="irFDzZFzXKjR0j7uR" content="./iTPvwex26rVpd9PLT"/>
+            <target xmi:id="_jXF01rwXEeSDI_fK0GJv1g" id="iGLJvaMsCqRdUyOUc" content="./iSq0wQt2BwVQqS3fr"/>
+            <target xmi:id="_jXF017wXEeSDI_fK0GJv1g" id="iSs4ob4eDfH0Q8wHF" content="./iziHmUxUjJ2loAMEb"/>
+            <target xmi:id="_jXF02LwXEeSDI_fK0GJv1g" id="inJc5evIpP2juiswe" content="./iNV8ZSYLJYUcSknon"/>
+            <target xmi:id="_jXF02bwXEeSDI_fK0GJv1g" id="iQN4aJDUbYJj0kKz0" content="./ioCsz670Cf3CE6hVq"/>
+          </relation>
+        </relations>
+        <properties xmi:id="_jXF02rwXEeSDI_fK0GJv1g" id="Technology Feature">
+          <property xmi:id="_jXF027wXEeSDI_fK0GJv1g" id="il7zJDPVbjUglPyoK" name="ps:Source" type="ps:string" fixed="true" readonly="true">
+            <value xsi:type="FeatureModel:Constant" xmi:id="_jXF03LwXEeSDI_fK0GJv1g" id="iUx_mxa_rsQhT0a6u" type="ps:string" content="Chris"/>
+          </property>
+          <property xmi:id="_jXF03bwXEeSDI_fK0GJv1g" id="iAXDArQfSzYV28LX3" name="ps:Created" type="ps:datetime" fixed="true" readonly="true">
+            <value xsi:type="FeatureModel:Constant" xmi:id="_jXF03rwXEeSDI_fK0GJv1g" id="iRlxSGKKUcXu35e6u" type="ps:datetime" content="2015-01-24T11:13:05.418Z"/>
+          </property>
+          <property xmi:id="_jXF037wXEeSDI_fK0GJv1g" id="i7gtTFsoJo42z6vxw" name="ps:ChangedBy" type="ps:string" fixed="true" readonly="true">
+            <value xsi:type="FeatureModel:Constant" xmi:id="_jXF04LwXEeSDI_fK0GJv1g" id="iLyAEJppDXPz1_nNu" type="ps:string" content="Chris"/>
+          </property>
+          <property xmi:id="_jXF04bwXEeSDI_fK0GJv1g" id="ijAXSsSocydOnPnUK" name="ps:Changed" type="ps:datetime" fixed="true" readonly="true">
+            <value xsi:type="FeatureModel:Constant" xmi:id="_jXF04rwXEeSDI_fK0GJv1g" id="iV3KXRBUrsXw-J0ev" type="ps:datetime" content="2015-01-24T14:55:16.801Z"/>
+          </property>
+          <property xmi:id="_jXF047wXEeSDI_fK0GJv1g" id="ifJDqbYXGgZaqwwtz" name="Description" type="ps:string"/>
+          <property xmi:id="_jXF05LwXEeSDI_fK0GJv1g" id="ijXhNVLNpkS7PlSwS" name="CapabilityType" type="ps:class">
+            <value xsi:type="FeatureModel:Constant" xmi:id="_jXF05bwXEeSDI_fK0GJv1g" id="iwCeqLSB4qhOkksf1" type="ps:class" content="iLi73RNJ-7Lenn_9m/i2p1tTAiaWvRwV_Ow"/>
+          </property>
+        </properties>
+        <vname xmi:id="_jXF05rwXEeSDI_fK0GJv1g" id="Technology Feature" mimedesc="TechnologyFeature"/>
+      </element>
+      <element xmi:id="_jXF057wXEeSDI_fK0GJv1g" id="Technology Solution" name="Technology Solution" type="ps:feature" class="ps:feature" default="on">
+        <relations xmi:id="_jXF06LwXEeSDI_fK0GJv1g" id="Technology Solution Parents" class="ps:parents">
+          <relation xmi:id="_jXF06bwXEeSDI_fK0GJv1g" id="i0uGk9svovMl4Kbjq" type="ps:parent">
+            <target xmi:id="_jXF06rwXEeSDI_fK0GJv1g" id="i30dp-mgsxJx5cxwC" content="./i_RYCXHIFivp-IML3"/>
+          </relation>
+        </relations>
+        <relations xmi:id="_jXF067wXEeSDI_fK0GJv1g" id="Technology Solution Dependencies" class="ps:dependencies">
+          <relation xmi:id="_jXF07LwXEeSDI_fK0GJv1g" id="i5_1DAhaKn-9YYOVq" type="ps:requires">
+            <target xmi:id="_jXF07bwXEeSDI_fK0GJv1g" id="iIEIFRvNEUfogtxfW" content="iLi73RNJ-7Lenn_9m/i4CLYI8yRZej_fs-H"/>
+          </relation>
+        </relations>
+        <properties xmi:id="_jXF07rwXEeSDI_fK0GJv1g" id="Technology Solution">
+          <property xmi:id="_jXF077wXEeSDI_fK0GJv1g" id="iMYc8KQFA_eHJ-lVB" name="ps:Source" type="ps:string" fixed="true" readonly="true">
+            <value xsi:type="FeatureModel:Constant" xmi:id="_jXF08LwXEeSDI_fK0GJv1g" id="iuM4LCWcdZWWsLFBR" type="ps:string" content="Chris"/>
+          </property>
+          <property xmi:id="_jXF08bwXEeSDI_fK0GJv1g" id="iqolSzHS1C4dVtkxm" name="ps:Created" type="ps:datetime" fixed="true" readonly="true">
+            <value xsi:type="FeatureModel:Constant" xmi:id="_jXF08rwXEeSDI_fK0GJv1g" id="iZd7PoSZB1Bmoalxy" type="ps:datetime" content="2015-01-24T11:13:14.506Z"/>
+          </property>
+          <property xmi:id="_jXF087wXEeSDI_fK0GJv1g" id="i92PKY4Q6vllF5_qg" name="ps:ChangedBy" type="ps:string" fixed="true" readonly="true">
+            <value xsi:type="FeatureModel:Constant" xmi:id="_jXF09LwXEeSDI_fK0GJv1g" id="ibVbhowykBXG2nJA7" type="ps:string" content="Chris"/>
+          </property>
+          <property xmi:id="_jXF09bwXEeSDI_fK0GJv1g" id="iERcJVQ-5DAXBdzKE" name="ps:Changed" type="ps:datetime" fixed="true" readonly="true">
+            <value xsi:type="FeatureModel:Constant" xmi:id="_jXF09rwXEeSDI_fK0GJv1g" id="i7FBp_MNkA9KG6t3G" type="ps:datetime" content="2015-01-24T14:49:26.107Z"/>
+          </property>
+        </properties>
+        <vname xmi:id="_jXF097wXEeSDI_fK0GJv1g" id="Technology Solution" mimedesc="TechnologySolution"/>
+      </element>
+      <element xmi:id="_jXF0-LwXEeSDI_fK0GJv1g" id="ilc0IaFj23XYgt7FD" name="ASTA" type="ps:feature" class="ps:feature" default="on">
+        <relations xmi:id="_jXF0-bwXEeSDI_fK0GJv1g" id="ASTA Parents" class="ps:parents">
+          <relation xmi:id="_jXF0-rwXEeSDI_fK0GJv1g" id="iPaAUtUlLuPNg6trG" type="ps:parent">
+            <target xmi:id="_jXF0-7wXEeSDI_fK0GJv1g" id="iL75L7I0RCxv96HmU" content="./ibGMzSKN-jay3HIdq"/>
+          </relation>
+        </relations>
+        <relations xmi:id="_jXF0_LwXEeSDI_fK0GJv1g" id="ASTA Children" class="ps:children">
+          <relation xmi:id="_jXF0_bwXEeSDI_fK0GJv1g" id="ifs2U1xw4n0XjvD2g" type="ps:alternative" range="1">
+            <target xmi:id="_jXF0_rwXEeSDI_fK0GJv1g" id="iQcjMm56xapsItYoK" content="./iSJ85u2bbi5_mkLw-"/>
+            <target xmi:id="_jXF0_7wXEeSDI_fK0GJv1g" id="ioQhpmxoj77H57Jjx" content="./iBrwh9J-33j4-tKYL"/>
+          </relation>
+        </relations>
+        <relations xmi:id="_jXF1ALwXEeSDI_fK0GJv1g" id="ASTA Dependencies" class="ps:dependencies"/>
+        <properties xmi:id="_jXF1AbwXEeSDI_fK0GJv1g" id="ASTA ">
+          <property xmi:id="_jXF1ArwXEeSDI_fK0GJv1g" id="inA3CxMhwULcl4d6F" name="Description" type="ps:string" inheritable="true"/>
+          <property xmi:id="_jXF1A7wXEeSDI_fK0GJv1g" id="ihDmVqzXooS2Ec4EP" name="Condition" type="ps:string" inheritable="true"/>
+          <property xmi:id="_jXF1BLwXEeSDI_fK0GJv1g" id="igIPrP7Zi424f9elu" name="CapabilityType" type="ps:class" inheritable="true">
+            <value xsi:type="FeatureModel:Constant" xmi:id="_jXF1BbwXEeSDI_fK0GJv1g" id="ivpTJDX6EvCTkT3H0" type="ps:class" content="iLi73RNJ-7Lenn_9m/i2p1tTAiaWvRwV_Ow"/>
+          </property>
+          <property xmi:id="_jXF1BrwXEeSDI_fK0GJv1g" id="iSRZlrh91X8HyBWQ2" name="ps:Source" type="ps:string" fixed="true" readonly="true">
+            <value xsi:type="FeatureModel:Constant" xmi:id="_jXF1B7wXEeSDI_fK0GJv1g" id="iu_S1TieuUITkxr6v" type="ps:string" content="Chris"/>
+          </property>
+          <property xmi:id="_jXF1CLwXEeSDI_fK0GJv1g" id="ixRYbo2ImSPNVK-dn" name="ps:Created" type="ps:datetime" fixed="true" readonly="true">
+            <value xsi:type="FeatureModel:Constant" xmi:id="_jXF1CbwXEeSDI_fK0GJv1g" id="iHlH0UdeYwpDgasEL" type="ps:datetime" content="2015-01-24T11:14:01.742Z"/>
+          </property>
+          <property xmi:id="_jXF1CrwXEeSDI_fK0GJv1g" id="icgNthcB5X19xndRv" name="ps:ChangedBy" type="ps:string" fixed="true" readonly="true">
+            <value xsi:type="FeatureModel:Constant" xmi:id="_jXF1C7wXEeSDI_fK0GJv1g" id="icXi4_-giLIND2eMR" type="ps:string" content="Chris"/>
+          </property>
+          <property xmi:id="_jXF1DLwXEeSDI_fK0GJv1g" id="ibNpQc6hJnKecUhZw" name="ps:Changed" type="ps:datetime" fixed="true" readonly="true">
+            <value xsi:type="FeatureModel:Constant" xmi:id="_jXF1DbwXEeSDI_fK0GJv1g" id="iLDQIg0Tw9eW38AA1" type="ps:datetime" content="2015-01-24T14:21:11.109Z"/>
+          </property>
+        </properties>
+      </element>
+      <element xmi:id="_jXF1DrwXEeSDI_fK0GJv1g" id="iBrwh9J-33j4-tKYL" name="Benefit" type="ps:feature" class="ps:feature">
+        <relations xmi:id="_jXF1D7wXEeSDI_fK0GJv1g" id="Benefit Parents" class="ps:parents">
+          <relation xmi:id="_jXF1ELwXEeSDI_fK0GJv1g" id="iSnogZWlEk38Ftu-d" type="ps:parent">
+            <target xmi:id="_jXF1EbwXEeSDI_fK0GJv1g" id="iuiVKmmFgZ34eW_s2" content="./ilc0IaFj23XYgt7FD"/>
+          </relation>
+        </relations>
+        <relations xmi:id="_jXF1ErwXEeSDI_fK0GJv1g" id="Benefit Dependencies" class="ps:dependencies"/>
+        <relations xmi:id="_jXF1E7wXEeSDI_fK0GJv1g" id="Benefit Children" class="ps:children">
+          <relation xmi:id="_jXF1FLwXEeSDI_fK0GJv1g" id="i1Lb0-niLShzBgySv" type="ps:alternative" range="1">
+            <target xmi:id="_jXF1FbwXEeSDI_fK0GJv1g" id="iJZ7WfsjuY4fpm6gv" content="./iqDJ5pkaEIlfhK9VY"/>
+            <target xmi:id="_jXF1FrwXEeSDI_fK0GJv1g" id="ihvw254MTiNGGTxLe" content="./iO7oiHfUGmAYt1BOt"/>
+          </relation>
+        </relations>
+        <properties xmi:id="_jXF1F7wXEeSDI_fK0GJv1g" id="Benefit ">
+          <property xmi:id="_jXF1GLwXEeSDI_fK0GJv1g" id="iFbnOyUsoZPg2_5I4" name="ps:Source" type="ps:string" fixed="true" readonly="true">
+            <value xsi:type="FeatureModel:Constant" xmi:id="_jXF1GbwXEeSDI_fK0GJv1g" id="iSAabogKb2XfVNK0L" type="ps:string" content="Chris"/>
+          </property>
+          <property xmi:id="_jXF1GrwXEeSDI_fK0GJv1g" id="ikP_zOalK1G0GA51j" name="ps:Created" type="ps:datetime" fixed="true" readonly="true">
+            <value xsi:type="FeatureModel:Constant" xmi:id="_jXF1G7wXEeSDI_fK0GJv1g" id="iYfHAoKhFNpilD8Vh" type="ps:datetime" content="2015-01-24T11:15:30.251Z"/>
+          </property>
+          <property xmi:id="_jXF1HLwXEeSDI_fK0GJv1g" id="iTUY4zBFmRxtDJPFK" name="ps:ChangedBy" type="ps:string" fixed="true" readonly="true">
+            <value xsi:type="FeatureModel:Constant" xmi:id="_jXF1HbwXEeSDI_fK0GJv1g" id="icc6mSo7LaiTRYWGr" type="ps:string" content="Chris"/>
+          </property>
+          <property xmi:id="_jXF1HrwXEeSDI_fK0GJv1g" id="iw7ZuXnYpKENy3l3E" name="ps:Changed" type="ps:datetime" fixed="true" readonly="true">
+            <value xsi:type="FeatureModel:Constant" xmi:id="_jXF1H7wXEeSDI_fK0GJv1g" id="iKE76qAMlVMHOE_vt" type="ps:datetime" content="2015-01-24T11:47:56.324Z"/>
+          </property>
+        </properties>
+        <vname xmi:id="_jXF1ILwXEeSDI_fK0GJv1g" id="Benefit" mimedesc="Benefit"/>
+      </element>
+      <element xmi:id="_jXF1IbwXEeSDI_fK0GJv1g" id="iSJ85u2bbi5_mkLw-" name="Drawback" type="ps:feature" class="ps:feature">
+        <relations xmi:id="_jXF1IrwXEeSDI_fK0GJv1g" id="Drawback Parents" class="ps:parents">
+          <relation xmi:id="_jXF1I7wXEeSDI_fK0GJv1g" id="iXTgl4CAilp9XJuQY" type="ps:parent">
+            <target xmi:id="_jXF1JLwXEeSDI_fK0GJv1g" id="iFsU-46SK5hxnpiiC" content="./ilc0IaFj23XYgt7FD"/>
+          </relation>
+        </relations>
+        <relations xmi:id="_jXF1JbwXEeSDI_fK0GJv1g" id="Drawback Children" class="ps:children">
+          <relation xmi:id="_jXF1JrwXEeSDI_fK0GJv1g" id="iGZWxoHEkoSFL2M2t" type="ps:alternative" range="1">
+            <target xmi:id="_jXF1J7wXEeSDI_fK0GJv1g" id="iy8zBj9EpvDShy32W" content="./iMWGLXGS6MPA6T6RY"/>
+            <target xmi:id="_jXF1KLwXEeSDI_fK0GJv1g" id="i6BSC_bY4oWFX6lfZ" content="./iHDo-dtNsMAYKAnP8"/>
+          </relation>
+        </relations>
+        <relations xmi:id="_jXF1KbwXEeSDI_fK0GJv1g" id="Drawback Dependencies" class="ps:dependencies">
+          <relation xmi:id="_jXF1KrwXEeSDI_fK0GJv1g" id="iLwBW2ukJABtpih1-" type="ps:influences">
+            <target xmi:id="_jXF1K7wXEeSDI_fK0GJv1g" id="igEQ_fSAUrHc8s8me" content="iLi73RNJ-7Lenn_9m/i4CLYI8yRZej_fs-H"/>
+          </relation>
+          <relation xmi:id="_jXF1LLwXEeSDI_fK0GJv1g" id="iwhoixEeWyBZaJkNF" type="ps:influences">
+            <target xmi:id="_jXF1LbwXEeSDI_fK0GJv1g" id="iDl9dw75NoXwCIcvG" content="iLi73RNJ-7Lenn_9m/iALhtmaUhWS08p0Pa"/>
+          </relation>
+        </relations>
+        <properties xmi:id="_jXF1LrwXEeSDI_fK0GJv1g" id="Drawback">
+          <property xmi:id="_jXF1L7wXEeSDI_fK0GJv1g" id="iflNWhB3cF6DoYhsB" name="ps:Source" type="ps:string" fixed="true" readonly="true">
+            <value xsi:type="FeatureModel:Constant" xmi:id="_jXF1MLwXEeSDI_fK0GJv1g" id="iQry_4ei1p8Xqlcnf" type="ps:string" content="Chris"/>
+          </property>
+          <property xmi:id="_jXF1MbwXEeSDI_fK0GJv1g" id="isorGEcyuX6wExoyL" name="ps:Created" type="ps:datetime" fixed="true" readonly="true">
+            <value xsi:type="FeatureModel:Constant" xmi:id="_jXF1MrwXEeSDI_fK0GJv1g" id="iOaqdYJyL4xAk0YMJ" type="ps:datetime" content="2015-01-24T11:17:29.831Z"/>
+          </property>
+          <property xmi:id="_jXF1M7wXEeSDI_fK0GJv1g" id="iH8ctwGuBaJgdLI0H" name="ps:ChangedBy" type="ps:string" fixed="true" readonly="true">
+            <value xsi:type="FeatureModel:Constant" xmi:id="_jXF1NLwXEeSDI_fK0GJv1g" id="i4ZHestuqOtZDswZr" type="ps:string" content="Chris"/>
+          </property>
+          <property xmi:id="_jXF1NbwXEeSDI_fK0GJv1g" id="iBC2kpkPyXFC4CoZB" name="ps:Changed" type="ps:datetime" fixed="true" readonly="true">
+            <value xsi:type="FeatureModel:Constant" xmi:id="_jXF1NrwXEeSDI_fK0GJv1g" id="iz0Su8zqEcaTtMnmI" type="ps:datetime" content="2015-01-24T11:45:50.317Z"/>
+          </property>
+        </properties>
+        <vname xmi:id="_jXF1N7wXEeSDI_fK0GJv1g" id="Drawback" mimedesc="Drawback"/>
+      </element>
+      <element xmi:id="_jXF1OLwXEeSDI_fK0GJv1g" id="Concern-based Benefit" name="Concern-based Benefit" type="ps:feature" class="ps:feature">
+        <relations xmi:id="_jXF1ObwXEeSDI_fK0GJv1g" id="Concern-based Benefit Parents" class="ps:parents">
+          <relation xmi:id="_jXF1OrwXEeSDI_fK0GJv1g" id="i9_zRuCISwe7DS_wS" type="ps:parent">
+            <target xmi:id="_jXF1O7wXEeSDI_fK0GJv1g" id="ipSVwpv1-09aDOzos" content="./iBrwh9J-33j4-tKYL"/>
+          </relation>
+        </relations>
+        <properties xmi:id="_jXF1PLwXEeSDI_fK0GJv1g" id="Concern-based Benefit">
+          <property xmi:id="_jXF1PbwXEeSDI_fK0GJv1g" id="iRexipmOAhHWWHqul" name="Concern" type="ps:string"/>
+          <property xmi:id="_jXF1PrwXEeSDI_fK0GJv1g" id="iYm5-rvACA-L_8WWs" name="ps:Source" type="ps:string" fixed="true" readonly="true">
+            <value xsi:type="FeatureModel:Constant" xmi:id="_jXF1P7wXEeSDI_fK0GJv1g" id="i8Y9ceL6hbFdXYJmM" type="ps:string" content="Chris"/>
+          </property>
+          <property xmi:id="_jXF1QLwXEeSDI_fK0GJv1g" id="iE__EiPs0Ed5VuAo-" name="ps:Created" type="ps:datetime" fixed="true" readonly="true">
+            <value xsi:type="FeatureModel:Constant" xmi:id="_jXF1QbwXEeSDI_fK0GJv1g" id="i7VXgzRJ4eaZYPNJP" type="ps:datetime" content="2015-01-24T11:18:34.552Z"/>
+          </property>
+          <property xmi:id="_jXF1QrwXEeSDI_fK0GJv1g" id="iov_4ecBT0rrdMkzV" name="ps:ChangedBy" type="ps:string" fixed="true" readonly="true">
+            <value xsi:type="FeatureModel:Constant" xmi:id="_jXF1Q7wXEeSDI_fK0GJv1g" id="iItv1cK_B5iezrama" type="ps:string" content="Chris"/>
+          </property>
+          <property xmi:id="_jXF1RLwXEeSDI_fK0GJv1g" id="iGHw7uQv8xkvhb4k5" name="ps:Changed" type="ps:datetime" fixed="true" readonly="true">
+            <value xsi:type="FeatureModel:Constant" xmi:id="_jXF1RbwXEeSDI_fK0GJv1g" id="igTWJaFYviqklPFFF" type="ps:datetime" content="2015-01-24T11:18:34.552Z"/>
+          </property>
+        </properties>
+        <vname xmi:id="_jXF1RrwXEeSDI_fK0GJv1g" id="Concern-based Benefit" mimedesc="ConcernBasedBenefit"/>
+      </element>
+      <element xmi:id="_jXF1R7wXEeSDI_fK0GJv1g" id="Feature-based Benefit" name="Feature-based Benefit" type="ps:feature" class="ps:feature">
+        <relations xmi:id="_jXF1SLwXEeSDI_fK0GJv1g" id="Feature-based Benefit Parents" class="ps:parents">
+          <relation xmi:id="_jXF1SbwXEeSDI_fK0GJv1g" id="i2W8XgeNxXp4TO5tD" type="ps:parent">
+            <target xmi:id="_jXF1SrwXEeSDI_fK0GJv1g" id="iExzWPnYVam8kpdr3" content="./iBrwh9J-33j4-tKYL"/>
+          </relation>
+        </relations>
+        <relations xmi:id="_jXF1S7wXEeSDI_fK0GJv1g" id="Feature-based Benefit Dependencies" class="ps:dependencies">
+          <relation xmi:id="_jXF1TLwXEeSDI_fK0GJv1g" id="inPeCP3gKx9h5GM_R" type="ps:influences">
+            <target xmi:id="_jXF1TbwXEeSDI_fK0GJv1g" id="iI4IM9KCQlm4CDmrx" content="iLi73RNJ-7Lenn_9m/iqDJ5pkaEIlfhK9VY"/>
+          </relation>
+        </relations>
+        <properties xmi:id="_jXGbYLwXEeSDI_fK0GJv1g" id="Feature-based Benefit">
+          <property xmi:id="_jXGbYbwXEeSDI_fK0GJv1g" id="iQ6UUoIWx9qbXn-bM" name="ps:Source" type="ps:string" fixed="true" readonly="true">
+            <value xsi:type="FeatureModel:Constant" xmi:id="_jXGbYrwXEeSDI_fK0GJv1g" id="iSYLApSFXI0XY8sm-" type="ps:string" content="Chris"/>
+          </property>
+          <property xmi:id="_jXGbY7wXEeSDI_fK0GJv1g" id="ivC3UoQg5ezIBnkae" name="ps:Created" type="ps:datetime" fixed="true" readonly="true">
+            <value xsi:type="FeatureModel:Constant" xmi:id="_jXGbZLwXEeSDI_fK0GJv1g" id="iRvLLDFwU3ZR7doxL" type="ps:datetime" content="2015-01-24T11:18:50.546Z"/>
+          </property>
+          <property xmi:id="_jXGbZbwXEeSDI_fK0GJv1g" id="i9CayxWUOofSpqsXb" name="ps:ChangedBy" type="ps:string" fixed="true" readonly="true">
+            <value xsi:type="FeatureModel:Constant" xmi:id="_jXGbZrwXEeSDI_fK0GJv1g" id="iVx_ZHNRmcHFcwuFV" type="ps:string" content="Chris"/>
+          </property>
+          <property xmi:id="_jXGbZ7wXEeSDI_fK0GJv1g" id="iGwVgraaivq0YwMue" name="ps:Changed" type="ps:datetime" fixed="true" readonly="true">
+            <value xsi:type="FeatureModel:Constant" xmi:id="_jXGbaLwXEeSDI_fK0GJv1g" id="i-8TtfqwuCVk6_Mzn" type="ps:datetime" content="2015-01-24T11:47:49.037Z"/>
+          </property>
+        </properties>
+        <vname xmi:id="_jXGbabwXEeSDI_fK0GJv1g" id="Feature-based Benefit" mimedesc="FeatureBasedBenefit"/>
+      </element>
+      <element xmi:id="_jXGbarwXEeSDI_fK0GJv1g" id="Concern-based Drawback" name="Concern-based Drawback" type="ps:feature" class="ps:feature">
+        <relations xmi:id="_jXGba7wXEeSDI_fK0GJv1g" id="Concern-based Drawback Parents" class="ps:parents">
+          <relation xmi:id="_jXGbbLwXEeSDI_fK0GJv1g" id="iwvR7qtbVC9OjQ_aj" type="ps:parent">
+            <target xmi:id="_jXGbbbwXEeSDI_fK0GJv1g" id="ilRK5NxiJWucPdRdC" content="./iSJ85u2bbi5_mkLw-"/>
+          </relation>
+        </relations>
+        <properties xmi:id="_jXGbbrwXEeSDI_fK0GJv1g" id="Concern-based Drawback">
+          <property xmi:id="_jXGbb7wXEeSDI_fK0GJv1g" id="iFGS4Sl1YLDBSWg5D" name="Concern" type="ps:string"/>
+          <property xmi:id="_jXGbcLwXEeSDI_fK0GJv1g" id="iTinGWi2d7J3KyDO1" name="ps:Source" type="ps:string" fixed="true" readonly="true">
+            <value xsi:type="FeatureModel:Constant" xmi:id="_jXGbcbwXEeSDI_fK0GJv1g" id="ioyUohEabOUarOvfI" type="ps:string" content="Chris"/>
+          </property>
+          <property xmi:id="_jXGbcrwXEeSDI_fK0GJv1g" id="inc9oJvXGd_LHIL8T" name="ps:Created" type="ps:datetime" fixed="true" readonly="true">
+            <value xsi:type="FeatureModel:Constant" xmi:id="_jXGbc7wXEeSDI_fK0GJv1g" id="i8Q43Exrxh_KEtU0H" type="ps:datetime" content="2015-01-24T11:19:08.582Z"/>
+          </property>
+          <property xmi:id="_jXGbdLwXEeSDI_fK0GJv1g" id="iQiDPmyk8hgJWCWSW" name="ps:ChangedBy" type="ps:string" fixed="true" readonly="true">
+            <value xsi:type="FeatureModel:Constant" xmi:id="_jXGbdbwXEeSDI_fK0GJv1g" id="iwrOdgMHidVgjDGIj" type="ps:string" content="Chris"/>
+          </property>
+          <property xmi:id="_jXGbdrwXEeSDI_fK0GJv1g" id="iF8s7LBKjbt9lVyFC" name="ps:Changed" type="ps:datetime" fixed="true" readonly="true">
+            <value xsi:type="FeatureModel:Constant" xmi:id="_jXGbd7wXEeSDI_fK0GJv1g" id="iek4w9oCr03LYOXze" type="ps:datetime" content="2015-01-24T11:22:36.124Z"/>
+          </property>
+        </properties>
+        <vname xmi:id="_jXGbeLwXEeSDI_fK0GJv1g" id="Concern-based Drawback" mimedesc="ConcernBasedDrawback"/>
+      </element>
+      <element xmi:id="_jXGbebwXEeSDI_fK0GJv1g" id="Feature-based Drawback" name="Feature-based Drawback" type="ps:feature" class="ps:feature">
+        <relations xmi:id="_jXGberwXEeSDI_fK0GJv1g" id="Feature-based Drawback Parents" class="ps:parents">
+          <relation xmi:id="_jXGbe7wXEeSDI_fK0GJv1g" id="idQZq3udamKyY9SwR" type="ps:parent">
+            <target xmi:id="_jXGbfLwXEeSDI_fK0GJv1g" id="i2xzrhOV1ynhXMIyn" content="./iSJ85u2bbi5_mkLw-"/>
+          </relation>
+        </relations>
+        <relations xmi:id="_jXGbfbwXEeSDI_fK0GJv1g" id="Feature-based Drawback Dependencies" class="ps:dependencies">
+          <relation xmi:id="_jXGbfrwXEeSDI_fK0GJv1g" id="ihlw4CTjkLP_69927" type="ps:influences">
+            <target xmi:id="_jXGbf7wXEeSDI_fK0GJv1g" id="iBnsHAb0tVfHZHrSk" content="iLi73RNJ-7Lenn_9m/iMWGLXGS6MPA6T6RY"/>
+          </relation>
+        </relations>
+        <properties xmi:id="_jXGbgLwXEeSDI_fK0GJv1g" id="Feature-based Drawback">
+          <property xmi:id="_jXGbgbwXEeSDI_fK0GJv1g" id="izMAtBvlhLyWH7LyT" name="ps:Source" type="ps:string" fixed="true" readonly="true">
+            <value xsi:type="FeatureModel:Constant" xmi:id="_jXGbgrwXEeSDI_fK0GJv1g" id="i1Dq2vNSw17E9J2Ts" type="ps:string" content="Chris"/>
+          </property>
+          <property xmi:id="_jXGbg7wXEeSDI_fK0GJv1g" id="iytOzSSbSO2GCeElm" name="ps:Created" type="ps:datetime" fixed="true" readonly="true">
+            <value xsi:type="FeatureModel:Constant" xmi:id="_jXGbhLwXEeSDI_fK0GJv1g" id="ifQycOKyzYtpw2uJm" type="ps:datetime" content="2015-01-24T11:19:21.170Z"/>
+          </property>
+          <property xmi:id="_jXGbhbwXEeSDI_fK0GJv1g" id="if-As974XnlZvvTpN" name="ps:ChangedBy" type="ps:string" fixed="true" readonly="true">
+            <value xsi:type="FeatureModel:Constant" xmi:id="_jXGbhrwXEeSDI_fK0GJv1g" id="ituKv_EHgbnpEX7Mp" type="ps:string" content="Chris"/>
+          </property>
+          <property xmi:id="_jXGbh7wXEeSDI_fK0GJv1g" id="irwRu_i0I2J2DNgod" name="ps:Changed" type="ps:datetime" fixed="true" readonly="true">
+            <value xsi:type="FeatureModel:Constant" xmi:id="_jXGbiLwXEeSDI_fK0GJv1g" id="iJxAqPF4btGv4GzkZ" type="ps:datetime" content="2015-01-24T11:47:25.192Z"/>
+          </property>
+        </properties>
+        <vname xmi:id="_jXGbibwXEeSDI_fK0GJv1g" id="Feature-based Drawback" mimedesc="FeatureBasedDrawback"/>
+      </element>
+      <element xmi:id="_jXGbirwXEeSDI_fK0GJv1g" id="Feature Evaluation" name="Feature Evaluation" type="ps:feature" class="ps:feature" default="on">
+        <relations xmi:id="_jXGbi7wXEeSDI_fK0GJv1g" id="Feature Evaluation Parents" class="ps:parents">
+          <relation xmi:id="_jXGbjLwXEeSDI_fK0GJv1g" id="inlirZ5fbWoazVhHb" type="ps:parent">
+            <target xmi:id="_jXGbjbwXEeSDI_fK0GJv1g" id="i3A8H1RwnWdlaCffZ" content="./ibGMzSKN-jay3HIdq"/>
+          </relation>
+        </relations>
+        <relations xmi:id="_jXGbjrwXEeSDI_fK0GJv1g" id="Feature Evaluation Children" class="ps:children">
+          <relation xmi:id="_jXGbj7wXEeSDI_fK0GJv1g" id="iA5BCN_gYwBAIVOQf" type="ps:alternative" range="1">
+            <target xmi:id="_jXGbkLwXEeSDI_fK0GJv1g" id="iQqS61_HFrhQXtbLr" content="./i3bYTHa_B_EfTx34M"/>
+            <target xmi:id="_jXGbkbwXEeSDI_fK0GJv1g" id="i14fVcUq--EFXc4i2" content="./iGuJ7JIEijFLHd-vm"/>
+          </relation>
+        </relations>
+        <relations xmi:id="_jXGbkrwXEeSDI_fK0GJv1g" id="Feature Evaluation Dependencies" class="ps:dependencies">
+          <relation xmi:id="_jXGbk7wXEeSDI_fK0GJv1g" id="iB40r-_Z8rftGxwaW" type="ps:influences">
+            <target xmi:id="_jXGblLwXEeSDI_fK0GJv1g" id="ikhaCVyOttPH2AWh2" content="iLi73RNJ-7Lenn_9m/iIb4c9NvMLwf9RKCU"/>
+          </relation>
+          <relation xmi:id="_jXGblbwXEeSDI_fK0GJv1g" id="ixvebcsIZmBl8HU-y" type="ps:influences">
+            <target xmi:id="_jXGblrwXEeSDI_fK0GJv1g" id="ioQ-h57trDUzFklPO" content="iLi73RNJ-7Lenn_9m/i4CLYI8yRZej_fs-H"/>
+          </relation>
+        </relations>
+        <properties xmi:id="_jXGbl7wXEeSDI_fK0GJv1g" id="Feature Evaluation">
+          <property xmi:id="_jXGbmLwXEeSDI_fK0GJv1g" id="iB_biKIoiPCQ4_gc6" name="ps:Source" type="ps:string" fixed="true" readonly="true">
+            <value xsi:type="FeatureModel:Constant" xmi:id="_jXGbmbwXEeSDI_fK0GJv1g" id="iJKT_Tn8c4VEFt_4D" type="ps:string" content="Chris"/>
+          </property>
+          <property xmi:id="_jXGbmrwXEeSDI_fK0GJv1g" id="iz6C95EAJ9GkPI0zK" name="ps:Created" type="ps:datetime" fixed="true" readonly="true">
+            <value xsi:type="FeatureModel:Constant" xmi:id="_jXGbm7wXEeSDI_fK0GJv1g" id="it6q5NfQK4J9zDfcI" type="ps:datetime" content="2015-01-24T11:19:42.809Z"/>
+          </property>
+          <property xmi:id="_jXGbnLwXEeSDI_fK0GJv1g" id="igFtKFkLlAXyaAzRJ" name="ps:ChangedBy" type="ps:string" fixed="true" readonly="true">
+            <value xsi:type="FeatureModel:Constant" xmi:id="_jXGbnbwXEeSDI_fK0GJv1g" id="iGsKBxiDYQZacniB8" type="ps:string" content="Chris"/>
+          </property>
+          <property xmi:id="_jXGbnrwXEeSDI_fK0GJv1g" id="itpXokVWCG2UHwzfB" name="ps:Changed" type="ps:datetime" fixed="true" readonly="true">
+            <value xsi:type="FeatureModel:Constant" xmi:id="_jXGbn7wXEeSDI_fK0GJv1g" id="iuic3qpKkqdfVxG_d" type="ps:datetime" content="2015-01-24T11:44:05.509Z"/>
+          </property>
+        </properties>
+        <vname xmi:id="_jXGboLwXEeSDI_fK0GJv1g" id="Feature Evaluation" mimedesc="FeatureEvaluation"/>
+      </element>
+      <element xmi:id="_jXGbobwXEeSDI_fK0GJv1g" id="Technology Feature Concern Measurement" name="Technology Feature Concern Measurement" type="ps:feature" class="ps:feature">
+        <relations xmi:id="_jXGborwXEeSDI_fK0GJv1g" id="Technology Feature Concern Measurement Parents" class="ps:parents">
+          <relation xmi:id="_jXGbo7wXEeSDI_fK0GJv1g" id="ilRdELz5CCr7RTTvn" type="ps:parent">
+            <target xmi:id="_jXGbpLwXEeSDI_fK0GJv1g" id="iAPRGq_uVrM6_Y8mR" content="./iyNrB8KHJiPokTTuX"/>
+          </relation>
+        </relations>
+        <relations xmi:id="_jXGbpbwXEeSDI_fK0GJv1g" id="Technology Feature Concern Measurement Dependencies" class="ps:dependencies">
+          <relation xmi:id="_jXGbprwXEeSDI_fK0GJv1g" id="iA6ofp_wi4s7aOFG_" type="ps:influences">
+            <target xmi:id="_jXGbp7wXEeSDI_fK0GJv1g" id="ivlDZx0wwroctCwVg" content="iLi73RNJ-7Lenn_9m/i3ViskFXr6iLFLh4w"/>
+          </relation>
+        </relations>
+        <properties xmi:id="_jXGbqLwXEeSDI_fK0GJv1g" id="Technology Feature Concern Measurement">
+          <property xmi:id="_jXGbqbwXEeSDI_fK0GJv1g" id="iiOuCXyMzgII4IeoS" name="ps:Source" type="ps:string" fixed="true" readonly="true">
+            <value xsi:type="FeatureModel:Constant" xmi:id="_jXGbqrwXEeSDI_fK0GJv1g" id="iD4DGVE-OIAT-9vlc" type="ps:string" content="Chris"/>
+          </property>
+          <property xmi:id="_jXGbq7wXEeSDI_fK0GJv1g" id="igp7nbD38U1rH3qkw" name="ps:Created" type="ps:datetime" fixed="true" readonly="true">
+            <value xsi:type="FeatureModel:Constant" xmi:id="_jXGbrLwXEeSDI_fK0GJv1g" id="ij4-kZk2wa72rKlCs" type="ps:datetime" content="2015-01-24T11:19:57.343Z"/>
+          </property>
+          <property xmi:id="_jXGbrbwXEeSDI_fK0GJv1g" id="ik2YGF66pa0shb-PX" name="ps:ChangedBy" type="ps:string" fixed="true" readonly="true">
+            <value xsi:type="FeatureModel:Constant" xmi:id="_jXGbrrwXEeSDI_fK0GJv1g" id="iliKAdL56g0j3P4An" type="ps:string" content="Chris"/>
+          </property>
+          <property xmi:id="_jXGbr7wXEeSDI_fK0GJv1g" id="iTiFNC4vMftmrMWUB" name="ps:Changed" type="ps:datetime" fixed="true" readonly="true">
+            <value xsi:type="FeatureModel:Constant" xmi:id="_jXGbsLwXEeSDI_fK0GJv1g" id="ioV3QDNTJBhv4kJGT" type="ps:datetime" content="2015-01-24T11:31:01.963Z"/>
+          </property>
+          <property xmi:id="_jXGbsbwXEeSDI_fK0GJv1g" id="i-IcgmxnWQzB9ghmd" name="Aspect" type="ps:string"/>
+          <property xmi:id="_jXGbsrwXEeSDI_fK0GJv1g" id="iuo-dxSEi14QVn_Mf" name="Context" type="ps:string"/>
+          <property xmi:id="_jXGbs7wXEeSDI_fK0GJv1g" id="i1piKAMvPFY97RiLK" name="Metrics" type="ps:string"/>
+          <property xmi:id="_jXGbtLwXEeSDI_fK0GJv1g" id="iVoBFxW6G3JPaGJ8o" name="Assumptions" type="ps:string"/>
+          <property xmi:id="_jXGbtbwXEeSDI_fK0GJv1g" id="iPthwlxCGz0-JCati" name="QuantitativeResult" type="ps:string"/>
+          <property xmi:id="_jXGbtrwXEeSDI_fK0GJv1g" id="i4LkvFPeXf5sr1Jcn" name="QualitativeResult" type="ps:string"/>
+        </properties>
+        <vname xmi:id="_jXGbt7wXEeSDI_fK0GJv1g" id="Technology Feature Concern Measurement" mimedesc="TechnologyFeatureConcernMeasurement"/>
+      </element>
+      <element xmi:id="_jXGbuLwXEeSDI_fK0GJv1g" id="Technology Features Comparison" name="Technology Features Comparison" type="ps:feature" class="ps:feature">
+        <relations xmi:id="_jXGbubwXEeSDI_fK0GJv1g" id="Technology Features Comparison Parents" class="ps:parents">
+          <relation xmi:id="_jXGburwXEeSDI_fK0GJv1g" id="iuaQIkWBSMRKM4kjn" type="ps:parent">
+            <target xmi:id="_jXGbu7wXEeSDI_fK0GJv1g" id="idBiyFPMF4FvLQvuk" content="./iyNrB8KHJiPokTTuX"/>
+          </relation>
+        </relations>
+        <relations xmi:id="_jXGbvLwXEeSDI_fK0GJv1g" id="Technology Features Comparison Dependencies" class="ps:dependencies">
+          <relation xmi:id="_jXGbvbwXEeSDI_fK0GJv1g" id="iYwAIyuMMqB8nyR2J" type="ps:influences">
+            <target xmi:id="_jXGbvrwXEeSDI_fK0GJv1g" id="iKpowWvV-i2V-nAw7" content="iLi73RNJ-7Lenn_9m/ilc0IaFj23XYgt7FD"/>
+          </relation>
+          <relation xmi:id="_jXGbv7wXEeSDI_fK0GJv1g" id="iEIlKXirsRKCzqsUg" type="ps:influences">
+            <target xmi:id="_jXGbwLwXEeSDI_fK0GJv1g" id="iwdlZ5skTqAUxvnmI" content="iLi73RNJ-7Lenn_9m/i3bYTHa_B_EfTx34M"/>
+          </relation>
+        </relations>
+        <properties xmi:id="_jXGbwbwXEeSDI_fK0GJv1g" id="Technology Features Comparison">
+          <property xmi:id="_jXGbwrwXEeSDI_fK0GJv1g" id="i_i_IoSj4xOgVsten" name="ps:Source" type="ps:string" fixed="true" readonly="true">
+            <value xsi:type="FeatureModel:Constant" xmi:id="_jXGbw7wXEeSDI_fK0GJv1g" id="isFOCVoUTddACA75v" type="ps:string" content="Chris"/>
+          </property>
+          <property xmi:id="_jXGbxLwXEeSDI_fK0GJv1g" id="iW3s4yzz58FF2MSYU" name="ps:Created" type="ps:datetime" fixed="true" readonly="true">
+            <value xsi:type="FeatureModel:Constant" xmi:id="_jXGbxbwXEeSDI_fK0GJv1g" id="ie-har5opFi6ok_Tv" type="ps:datetime" content="2015-01-24T11:20:12.473Z"/>
+          </property>
+          <property xmi:id="_jXGbxrwXEeSDI_fK0GJv1g" id="iSEXHcdg12JB1-J4A" name="ps:ChangedBy" type="ps:string" fixed="true" readonly="true">
+            <value xsi:type="FeatureModel:Constant" xmi:id="_jXGbx7wXEeSDI_fK0GJv1g" id="iUQ1FZzgC74x2W2XV" type="ps:string" content="Chris"/>
+          </property>
+          <property xmi:id="_jXGbyLwXEeSDI_fK0GJv1g" id="iyI2qmD1mN9-ICybe" name="ps:Changed" type="ps:datetime" fixed="true" readonly="true">
+            <value xsi:type="FeatureModel:Constant" xmi:id="_jXGbybwXEeSDI_fK0GJv1g" id="i9MqEhUhF_lAM8fnl" type="ps:datetime" content="2015-01-24T11:47:02.565Z"/>
+          </property>
+          <property xmi:id="_jXGbyrwXEeSDI_fK0GJv1g" id="ibMliK7xD5W5ZWa4v" name="Source" type="ps:string"/>
+          <property xmi:id="_jXGby7wXEeSDI_fK0GJv1g" id="iy1cAa_SRIn4r0EOc" name="Scope" type="ps:string"/>
+          <property xmi:id="_jXGbzLwXEeSDI_fK0GJv1g" id="iHaDD5ezAxZ4ylN7S" name="Date" type="ps:string"/>
+          <property xmi:id="_jXGbzbwXEeSDI_fK0GJv1g" id="i55DNFeu_-XZ87z7k" name="Trust" type="ps:string"/>
+        </properties>
+        <vname xmi:id="_jXGbzrwXEeSDI_fK0GJv1g" id="Technology Features Comparison" mimedesc="TechnologyFeaturesComparison"/>
+      </element>
+      <element xmi:id="_jXGbz7wXEeSDI_fK0GJv1g" id="Capability Type" name="Capability Type" type="ps:class" class="ps:feature" default="on">
+        <relations xmi:id="_jXGb0LwXEeSDI_fK0GJv1g" id="Capability Type Parents" class="ps:parents">
+          <relation xmi:id="_jXGb0bwXEeSDI_fK0GJv1g" id="iRMaScMKejWZ5hrrV" type="ps:parent">
+            <target xmi:id="_jXGb0rwXEeSDI_fK0GJv1g" id="i9GJmigb0w1evWB-2" content="./ibGMzSKN-jay3HIdq"/>
+          </relation>
+        </relations>
+        <relations xmi:id="_jXGb07wXEeSDI_fK0GJv1g" id="Capability Type Children" class="ps:children">
+          <relation xmi:id="_jXGb1LwXEeSDI_fK0GJv1g" id="i-Nw_xfExmHYjtQhL" type="ps:alternative" range="1">
+            <target xmi:id="_jXGb1bwXEeSDI_fK0GJv1g" id="iHgjdJiRU6iMwWRbg" content="./iAVooG9CW44N9aMMF"/>
+            <target xmi:id="_jXGb1rwXEeSDI_fK0GJv1g" id="iDZ4OQLjzNDfVyCa6" content="./iyL9AO9S_6VevrhGE"/>
+            <target xmi:id="_jXGb17wXEeSDI_fK0GJv1g" id="iTuu_J_8mr41234em" content="./ic2QgFfoREsoJB4qG"/>
+            <target xmi:id="_jXGb2LwXEeSDI_fK0GJv1g" id="iMsS6jm8aVOESIUFT" content="./ik9fcgEJ-s1vpq1En"/>
+            <target xmi:id="_jXGb2bwXEeSDI_fK0GJv1g" id="i1FzUDPbwK0vNTrAI" content="./iNnulNrNdR_J-31oD"/>
+            <target xmi:id="_jXGb2rwXEeSDI_fK0GJv1g" id="iUEIlaQTPXLr2Oyiy" content="./iSOvqd6EKe4q-GZBj"/>
+            <target xmi:id="_jXGb27wXEeSDI_fK0GJv1g" id="iXVN2FbYgnuaqEPL6" content="./i-1d4vrSHMgV2swyS"/>
+            <target xmi:id="_jXGb3LwXEeSDI_fK0GJv1g" id="iE7ZwpiOQ0p8I7h52" content="./ix7lT4tINOs78jqXQ"/>
+          </relation>
+        </relations>
+        <properties xmi:id="_jXGb3bwXEeSDI_fK0GJv1g" id="Capability Type">
+          <property xmi:id="_jXGb3rwXEeSDI_fK0GJv1g" id="iIFTQFsAb-LYanAUH" name="ps:Source" type="ps:string" fixed="true" readonly="true">
+            <value xsi:type="FeatureModel:Constant" xmi:id="_jXGb37wXEeSDI_fK0GJv1g" id="i71XwUVl7X92rENP5" type="ps:string" content="Chris"/>
+          </property>
+          <property xmi:id="_jXGb4LwXEeSDI_fK0GJv1g" id="iHo9bH2zCDS8YyrJZ" name="ps:Created" type="ps:datetime" fixed="true" readonly="true">
+            <value xsi:type="FeatureModel:Constant" xmi:id="_jXGb4bwXEeSDI_fK0GJv1g" id="iz885Sm45vhVDh9iW" type="ps:datetime" content="2015-01-24T13:42:49.805Z"/>
+          </property>
+          <property xmi:id="_jXGb4rwXEeSDI_fK0GJv1g" id="iHX5k1-tpqRCi99WU" name="ps:ChangedBy" type="ps:string" fixed="true" readonly="true">
+            <value xsi:type="FeatureModel:Constant" xmi:id="_jXGb47wXEeSDI_fK0GJv1g" id="ipHkLvCmMQANaynPx" type="ps:string" content="Chris"/>
+          </property>
+          <property xmi:id="_jXGb5LwXEeSDI_fK0GJv1g" id="iL9PbQXwnmiBe1tbF" name="ps:Changed" type="ps:datetime" fixed="true" readonly="true">
+            <value xsi:type="FeatureModel:Constant" xmi:id="_jXGb5bwXEeSDI_fK0GJv1g" id="iozuLHgv4OXAd_qVx" type="ps:datetime" content="2015-01-24T13:47:09.123Z"/>
+          </property>
+        </properties>
+        <vname xmi:id="_jXGb5rwXEeSDI_fK0GJv1g" id="Capability Type" mimedesc="CapabilityType"/>
+      </element>
+      <element xmi:id="_jXGb57wXEeSDI_fK0GJv1g" id="Development Capability" name="Development Capability" type="ps:class" class="ps:feature">
+        <relations xmi:id="_jXGb6LwXEeSDI_fK0GJv1g" id="Development Capability Parents" class="ps:parents">
+          <relation xmi:id="_jXGb6bwXEeSDI_fK0GJv1g" id="iJ2wupt47ylWXgjQP" type="ps:parent">
+            <target xmi:id="_jXGb6rwXEeSDI_fK0GJv1g" id="idf5s0Y4ztUx2mrpu" content="./i2p1tTAiaWvRwV_Ow"/>
+          </relation>
+        </relations>
+        <properties xmi:id="_jXGb67wXEeSDI_fK0GJv1g" id="Development Capability">
+          <property xmi:id="_jXGb7LwXEeSDI_fK0GJv1g" id="ixBg7ZfrqIAx42nhV" name="ps:Source" type="ps:string" fixed="true" readonly="true">
+            <value xsi:type="FeatureModel:Constant" xmi:id="_jXGb7bwXEeSDI_fK0GJv1g" id="i-pSP_AHznC4NqqU1" type="ps:string" content="Chris"/>
+          </property>
+          <property xmi:id="_jXGb7rwXEeSDI_fK0GJv1g" id="imyNNYzveo1zJeG9X" name="ps:Created" type="ps:datetime" fixed="true" readonly="true">
+            <value xsi:type="FeatureModel:Constant" xmi:id="_jXGb77wXEeSDI_fK0GJv1g" id="i5cLGYApN51YEfnF9" type="ps:datetime" content="2015-01-24T13:45:46.550Z"/>
+          </property>
+          <property xmi:id="_jXGb8LwXEeSDI_fK0GJv1g" id="i5QWvw938UOA9IWU3" name="ps:ChangedBy" type="ps:string" fixed="true" readonly="true">
+            <value xsi:type="FeatureModel:Constant" xmi:id="_jXGb8bwXEeSDI_fK0GJv1g" id="ieju86NGffWM-ix_7" type="ps:string" content="Chris"/>
+          </property>
+          <property xmi:id="_jXGb8rwXEeSDI_fK0GJv1g" id="iubNC-3xWcRAbCGjp" name="ps:Changed" type="ps:datetime" fixed="true" readonly="true">
+            <value xsi:type="FeatureModel:Constant" xmi:id="_jXGb87wXEeSDI_fK0GJv1g" id="iHOHOX1vTjvuRI6Q0" type="ps:datetime" content="2015-01-24T13:45:46.550Z"/>
+          </property>
+        </properties>
+        <vname xmi:id="_jXGb9LwXEeSDI_fK0GJv1g" id="Development Capability" mimedesc="DevelopmentCapability"/>
+      </element>
+      <element xmi:id="_jXGb9bwXEeSDI_fK0GJv1g" id="Configuration Capability" name="Configuration Capability" type="ps:class" class="ps:feature" default="off">
+        <relations xmi:id="_jXGb9rwXEeSDI_fK0GJv1g" id="Configuration Capability Parents" class="ps:parents">
+          <relation xmi:id="_jXGb97wXEeSDI_fK0GJv1g" id="iAapVX3-0ZGwx0A2Z" type="ps:parent">
+            <target xmi:id="_jXGb-LwXEeSDI_fK0GJv1g" id="i9uA7_vc9W58aws2u" content="./i2p1tTAiaWvRwV_Ow"/>
+          </relation>
+        </relations>
+        <properties xmi:id="_jXGb-bwXEeSDI_fK0GJv1g" id="Configuration Capability">
+          <property xmi:id="_jXGb-rwXEeSDI_fK0GJv1g" id="iZ62o6QjuOHpZjqJS" name="ps:Source" type="ps:string" fixed="true" readonly="true">
+            <value xsi:type="FeatureModel:Constant" xmi:id="_jXGb-7wXEeSDI_fK0GJv1g" id="iB-8G6jXLSVFzbs8s" type="ps:string" content="Chris"/>
+          </property>
+          <property xmi:id="_jXGb_LwXEeSDI_fK0GJv1g" id="i9shIdMNUn0ggTz8d" name="ps:Created" type="ps:datetime" fixed="true" readonly="true">
+            <value xsi:type="FeatureModel:Constant" xmi:id="_jXGb_bwXEeSDI_fK0GJv1g" id="iuLidNaQSaUiM4xp6" type="ps:datetime" content="2015-01-24T13:45:56.704Z"/>
+          </property>
+          <property xmi:id="_jXGb_rwXEeSDI_fK0GJv1g" id="i8Bhvy6fpjVbrEdXb" name="ps:ChangedBy" type="ps:string" fixed="true" readonly="true">
+            <value xsi:type="FeatureModel:Constant" xmi:id="_jXGb_7wXEeSDI_fK0GJv1g" id="iwOU5wKHBABOWYOMt" type="ps:string" content="Chris"/>
+          </property>
+          <property xmi:id="_jXGcALwXEeSDI_fK0GJv1g" id="imYFvqi_yJiVsJUe_" name="ps:Changed" type="ps:datetime" fixed="true" readonly="true">
+            <value xsi:type="FeatureModel:Constant" xmi:id="_jXGcAbwXEeSDI_fK0GJv1g" id="iOAZICKMe7_767vr8" type="ps:datetime" content="2015-01-24T13:45:56.704Z"/>
+          </property>
+        </properties>
+        <vname xmi:id="_jXGcArwXEeSDI_fK0GJv1g" id="Configuration Capability" mimedesc="ConfigurationCapability"/>
+      </element>
+      <element xmi:id="_jXGcA7wXEeSDI_fK0GJv1g" id="Behavior Capability" name="Behavior Capability" type="ps:class" class="ps:feature" default="off">
+        <relations xmi:id="_jXGcBLwXEeSDI_fK0GJv1g" id="Behavior Capability Parents" class="ps:parents">
+          <relation xmi:id="_jXGcBbwXEeSDI_fK0GJv1g" id="iYIeYh4KPx0Qfr-TN" type="ps:parent">
+            <target xmi:id="_jXGcBrwXEeSDI_fK0GJv1g" id="iHXN8eQA-nVkH9A-T" content="./i2p1tTAiaWvRwV_Ow"/>
+          </relation>
+        </relations>
+        <properties xmi:id="_jXGcB7wXEeSDI_fK0GJv1g" id="Behavior Capability">
+          <property xmi:id="_jXGcCLwXEeSDI_fK0GJv1g" id="i3ALQWWGRowxV_lvY" name="ps:Source" type="ps:string" fixed="true" readonly="true">
+            <value xsi:type="FeatureModel:Constant" xmi:id="_jXGcCbwXEeSDI_fK0GJv1g" id="iduGonA31BNXoegee" type="ps:string" content="Chris"/>
+          </property>
+          <property xmi:id="_jXGcCrwXEeSDI_fK0GJv1g" id="ioVBppGrT1Sfs93A7" name="ps:Created" type="ps:datetime" fixed="true" readonly="true">
+            <value xsi:type="FeatureModel:Constant" xmi:id="_jXGcC7wXEeSDI_fK0GJv1g" id="iU0h_HF8iT-Iwa_yR" type="ps:datetime" content="2015-01-24T13:46:08.904Z"/>
+          </property>
+          <property xmi:id="_jXGcDLwXEeSDI_fK0GJv1g" id="iqto2GSPEqAFoOyV_" name="ps:ChangedBy" type="ps:string" fixed="true" readonly="true">
+            <value xsi:type="FeatureModel:Constant" xmi:id="_jXGcDbwXEeSDI_fK0GJv1g" id="idasf2VaWNkjDYvg7" type="ps:string" content="Chris"/>
+          </property>
+          <property xmi:id="_jXGcDrwXEeSDI_fK0GJv1g" id="iUeYN9Q4Pba6E5RbY" name="ps:Changed" type="ps:datetime" fixed="true" readonly="true">
+            <value xsi:type="FeatureModel:Constant" xmi:id="_jXGcD7wXEeSDI_fK0GJv1g" id="iD5RBqIoLrlHtsiVP" type="ps:datetime" content="2015-01-24T13:46:08.904Z"/>
+          </property>
+        </properties>
+        <vname xmi:id="_jXGcELwXEeSDI_fK0GJv1g" id="Behavior Capability" mimedesc="BehaviorCapability"/>
+      </element>
+      <element xmi:id="_jXGcEbwXEeSDI_fK0GJv1g" id="Usability Capability" name="Usability Capability" type="ps:class" class="ps:feature" default="off">
+        <relations xmi:id="_jXGcErwXEeSDI_fK0GJv1g" id="Usability Capability Parents" class="ps:parents">
+          <relation xmi:id="_jXGcE7wXEeSDI_fK0GJv1g" id="id-uRfrtNugzcKnxc" type="ps:parent">
+            <target xmi:id="_jXGcFLwXEeSDI_fK0GJv1g" id="iQZSNu4vpjRndJTR-" content="./i2p1tTAiaWvRwV_Ow"/>
+          </relation>
+        </relations>
+        <properties xmi:id="_jXGcFbwXEeSDI_fK0GJv1g" id="Usability Capability">
+          <property xmi:id="_jXGcFrwXEeSDI_fK0GJv1g" id="ipt4K1t5goBPxj33R" name="ps:Source" type="ps:string" fixed="true" readonly="true">
+            <value xsi:type="FeatureModel:Constant" xmi:id="_jXGcF7wXEeSDI_fK0GJv1g" id="i_n5IjLRltJBCBY2u" type="ps:string" content="Chris"/>
+          </property>
+          <property xmi:id="_jXGcGLwXEeSDI_fK0GJv1g" id="iowoMZW5CjDB3tMek" name="ps:Created" type="ps:datetime" fixed="true" readonly="true">
+            <value xsi:type="FeatureModel:Constant" xmi:id="_jXGcGbwXEeSDI_fK0GJv1g" id="i3uh_Xa8T1UfpXMdo" type="ps:datetime" content="2015-01-24T13:46:24.016Z"/>
+          </property>
+          <property xmi:id="_jXGcGrwXEeSDI_fK0GJv1g" id="ipdmhoNCMIKOAD-Vx" name="ps:ChangedBy" type="ps:string" fixed="true" readonly="true">
+            <value xsi:type="FeatureModel:Constant" xmi:id="_jXGcG7wXEeSDI_fK0GJv1g" id="i6cVoeToezdtHuCQr" type="ps:string" content="Chris"/>
+          </property>
+          <property xmi:id="_jXGcHLwXEeSDI_fK0GJv1g" id="iwtJUSqsLoJMTQ0lh" name="ps:Changed" type="ps:datetime" fixed="true" readonly="true">
+            <value xsi:type="FeatureModel:Constant" xmi:id="_jXGcHbwXEeSDI_fK0GJv1g" id="iqcc3byknr-ntRKva" type="ps:datetime" content="2015-01-24T13:46:24.016Z"/>
+          </property>
+        </properties>
+        <vname xmi:id="_jXGcHrwXEeSDI_fK0GJv1g" id="Usability Capability" mimedesc="UsabilityCapability"/>
+      </element>
+      <element xmi:id="_jXGcH7wXEeSDI_fK0GJv1g" id="Interoperability Capability" name="Interoperability Capability" type="ps:class" class="ps:feature" default="off">
+        <relations xmi:id="_jXGcILwXEeSDI_fK0GJv1g" id="Interoperability Capability Parents" class="ps:parents">
+          <relation xmi:id="_jXGcIbwXEeSDI_fK0GJv1g" id="ixmUWY7K4KeWCrebe" type="ps:parent">
+            <target xmi:id="_jXGcIrwXEeSDI_fK0GJv1g" id="i5gvuunbMITd9554F" content="./i2p1tTAiaWvRwV_Ow"/>
+          </relation>
+        </relations>
+        <properties xmi:id="_jXGcI7wXEeSDI_fK0GJv1g" id="Interoperability Capability">
+          <property xmi:id="_jXGcJLwXEeSDI_fK0GJv1g" id="ib5vOwxumvteqH7AY" name="ps:Source" type="ps:string" fixed="true" readonly="true">
+            <value xsi:type="FeatureModel:Constant" xmi:id="_jXGcJbwXEeSDI_fK0GJv1g" id="i6Aq2ZWpjwR7WhbsF" type="ps:string" content="Chris"/>
+          </property>
+          <property xmi:id="_jXGcJrwXEeSDI_fK0GJv1g" id="ismtAyobM3eONIcHJ" name="ps:Created" type="ps:datetime" fixed="true" readonly="true">
+            <value xsi:type="FeatureModel:Constant" xmi:id="_jXGcJ7wXEeSDI_fK0GJv1g" id="i9Zg9CZHxpk-QYl_z" type="ps:datetime" content="2015-01-24T13:46:39.868Z"/>
+          </property>
+          <property xmi:id="_jXGcKLwXEeSDI_fK0GJv1g" id="iOfav3AbF1jAGrNuy" name="ps:ChangedBy" type="ps:string" fixed="true" readonly="true">
+            <value xsi:type="FeatureModel:Constant" xmi:id="_jXGcKbwXEeSDI_fK0GJv1g" id="i3CNsxL8cbJpjj4oW" type="ps:string" content="Chris"/>
+          </property>
+          <property xmi:id="_jXGcKrwXEeSDI_fK0GJv1g" id="iCJIqOhMICSuCiMD7" name="ps:Changed" type="ps:datetime" fixed="true" readonly="true">
+            <value xsi:type="FeatureModel:Constant" xmi:id="_jXGcK7wXEeSDI_fK0GJv1g" id="ilQUMIfS7SbP3uNT-" type="ps:datetime" content="2015-01-24T13:46:39.868Z"/>
+          </property>
+        </properties>
+        <vname xmi:id="_jXGcLLwXEeSDI_fK0GJv1g" id="Interoperability Capability" mimedesc="InteroperabilityCapability"/>
+      </element>
+      <element xmi:id="_jXGcLbwXEeSDI_fK0GJv1g" id="Storage Capability" name="Storage Capability" type="ps:class" class="ps:feature" default="off">
+        <relations xmi:id="_jXGcLrwXEeSDI_fK0GJv1g" id="Storage Capability Parents" class="ps:parents">
+          <relation xmi:id="_jXGcL7wXEeSDI_fK0GJv1g" id="i7t_29qOmoqBZAju_" type="ps:parent">
+            <target xmi:id="_jXGcMLwXEeSDI_fK0GJv1g" id="igB8nfVzh7b5IT3pe" content="./i2p1tTAiaWvRwV_Ow"/>
+          </relation>
+        </relations>
+        <properties xmi:id="_jXGcMbwXEeSDI_fK0GJv1g" id="Storage Capability">
+          <property xmi:id="_jXGcMrwXEeSDI_fK0GJv1g" id="ipqFMXMrABfxE_2A1" name="ps:Source" type="ps:string" fixed="true" readonly="true">
+            <value xsi:type="FeatureModel:Constant" xmi:id="_jXGcM7wXEeSDI_fK0GJv1g" id="igX4raxi5u061xZh5" type="ps:string" content="Chris"/>
+          </property>
+          <property xmi:id="_jXGcNLwXEeSDI_fK0GJv1g" id="ieO0Bb9NtHUcoxP9E" name="ps:Created" type="ps:datetime" fixed="true" readonly="true">
+            <value xsi:type="FeatureModel:Constant" xmi:id="_jXGcNbwXEeSDI_fK0GJv1g" id="i1d_6waDXXt1Lgq4n" type="ps:datetime" content="2015-01-24T13:46:50.052Z"/>
+          </property>
+          <property xmi:id="_jXGcNrwXEeSDI_fK0GJv1g" id="iG3TqoXSPlrnybUAS" name="ps:ChangedBy" type="ps:string" fixed="true" readonly="true">
+            <value xsi:type="FeatureModel:Constant" xmi:id="_jXGcN7wXEeSDI_fK0GJv1g" id="ixM_f8g6dQFwmtVDN" type="ps:string" content="Chris"/>
+          </property>
+          <property xmi:id="_jXGcOLwXEeSDI_fK0GJv1g" id="i686j8QC9AT1c3sHk" name="ps:Changed" type="ps:datetime" fixed="true" readonly="true">
+            <value xsi:type="FeatureModel:Constant" xmi:id="_jXGcObwXEeSDI_fK0GJv1g" id="iBKrTGmGibWldtC3k" type="ps:datetime" content="2015-01-24T13:46:50.052Z"/>
+          </property>
+        </properties>
+        <vname xmi:id="_jXGcOrwXEeSDI_fK0GJv1g" id="Storage Capability" mimedesc="StorageCapability"/>
+      </element>
+      <element xmi:id="_jXGcO7wXEeSDI_fK0GJv1g" id="Operational Capability" name="Operational Capability" type="ps:class" class="ps:feature" default="off">
+        <relations xmi:id="_jXGcPLwXEeSDI_fK0GJv1g" id="Operational Capability Parents" class="ps:parents">
+          <relation xmi:id="_jXGcPbwXEeSDI_fK0GJv1g" id="iDs6cXm7TUapRNYNZ" type="ps:parent">
+            <target xmi:id="_jXGcPrwXEeSDI_fK0GJv1g" id="i6Pmzlm4PBOBiDAbj" content="./i2p1tTAiaWvRwV_Ow"/>
+          </relation>
+        </relations>
+        <properties xmi:id="_jXGcP7wXEeSDI_fK0GJv1g" id="Operational Capability">
+          <property xmi:id="_jXGcQLwXEeSDI_fK0GJv1g" id="iuspE4YmF2OKOdca1" name="ps:Source" type="ps:string" fixed="true" readonly="true">
+            <value xsi:type="FeatureModel:Constant" xmi:id="_jXGcQbwXEeSDI_fK0GJv1g" id="i48T5iP5G2ONybSdN" type="ps:string" content="Chris"/>
+          </property>
+          <property xmi:id="_jXGcQrwXEeSDI_fK0GJv1g" id="iOfkCiKD1x1gJTX9W" name="ps:Created" type="ps:datetime" fixed="true" readonly="true">
+            <value xsi:type="FeatureModel:Constant" xmi:id="_jXGcQ7wXEeSDI_fK0GJv1g" id="i2tosgqrlQUcmtWKI" type="ps:datetime" content="2015-01-24T13:47:00.078Z"/>
+          </property>
+          <property xmi:id="_jXGcRLwXEeSDI_fK0GJv1g" id="ikg-9JcdeNxUNgqvo" name="ps:ChangedBy" type="ps:string" fixed="true" readonly="true">
+            <value xsi:type="FeatureModel:Constant" xmi:id="_jXGcRbwXEeSDI_fK0GJv1g" id="idhbririuScC5RHoc" type="ps:string" content="Chris"/>
+          </property>
+          <property xmi:id="_jXGcRrwXEeSDI_fK0GJv1g" id="idxtWpxHR4UP59xYR" name="ps:Changed" type="ps:datetime" fixed="true" readonly="true">
+            <value xsi:type="FeatureModel:Constant" xmi:id="_jXGcR7wXEeSDI_fK0GJv1g" id="iK6t4Y7TVNhwgPJ9-" type="ps:datetime" content="2015-01-24T13:47:00.078Z"/>
+          </property>
+        </properties>
+        <vname xmi:id="_jXGcSLwXEeSDI_fK0GJv1g" id="Operational Capability" mimedesc="OperationalCapability"/>
+      </element>
+      <element xmi:id="_jXGcSbwXEeSDI_fK0GJv1g" id="Commercial Capability" name="Commercial Capability" type="ps:class" class="ps:feature" default="off">
+        <relations xmi:id="_jXGcSrwXEeSDI_fK0GJv1g" id="Commercial Capability Parents" class="ps:parents">
+          <relation xmi:id="_jXGcS7wXEeSDI_fK0GJv1g" id="iCIexMuMtI9TOSVYK" type="ps:parent">
+            <target xmi:id="_jXGcTLwXEeSDI_fK0GJv1g" id="iBeNI4nu4IUnMQlcG" content="./i2p1tTAiaWvRwV_Ow"/>
+          </relation>
+        </relations>
+        <properties xmi:id="_jXGcTbwXEeSDI_fK0GJv1g" id="Commercial Capability">
+          <property xmi:id="_jXGcTrwXEeSDI_fK0GJv1g" id="iFs99720rfXo2wsN4" name="ps:Source" type="ps:string" fixed="true" readonly="true">
+            <value xsi:type="FeatureModel:Constant" xmi:id="_jXGcT7wXEeSDI_fK0GJv1g" id="iYFanphGwYKss0BRh" type="ps:string" content="Chris"/>
+          </property>
+          <property xmi:id="_jXGcULwXEeSDI_fK0GJv1g" id="iDzmdYr-Lp4c_Zxj-" name="ps:Created" type="ps:datetime" fixed="true" readonly="true">
+            <value xsi:type="FeatureModel:Constant" xmi:id="_jXGcUbwXEeSDI_fK0GJv1g" id="ijoZupCealhJylm4E" type="ps:datetime" content="2015-01-24T13:47:09.122Z"/>
+          </property>
+          <property xmi:id="_jXGcUrwXEeSDI_fK0GJv1g" id="ipaN1Br45bYQsbZF6" name="ps:ChangedBy" type="ps:string" fixed="true" readonly="true">
+            <value xsi:type="FeatureModel:Constant" xmi:id="_jXGcU7wXEeSDI_fK0GJv1g" id="iFDlv7lrHY8w7RZza" type="ps:string" content="Chris"/>
+          </property>
+          <property xmi:id="_jXGcVLwXEeSDI_fK0GJv1g" id="iBT7_bO-Fb1LX-2T0" name="ps:Changed" type="ps:datetime" fixed="true" readonly="true">
+            <value xsi:type="FeatureModel:Constant" xmi:id="_jXGcVbwXEeSDI_fK0GJv1g" id="ibGGZ3SR1ZzG2VEep" type="ps:datetime" content="2015-01-24T13:47:09.122Z"/>
+          </property>
+        </properties>
+        <vname xmi:id="_jXGcVrwXEeSDI_fK0GJv1g" id="Commercial Capability" mimedesc="CommercialCapability"/>
+      </element>
+      <element xmi:id="_jXGcV7wXEeSDI_fK0GJv1g" id="Development Feature" name="Development Feature" type="ps:feature" class="ps:feature" default="off">
+        <relations xmi:id="_jXGcWLwXEeSDI_fK0GJv1g" id="Development Feature Parents" class="ps:parents">
+          <relation xmi:id="_jXGcWbwXEeSDI_fK0GJv1g" id="i6126VM504fp3srKh" type="ps:parent">
+            <target xmi:id="_jXGcWrwXEeSDI_fK0GJv1g" id="itG-QlKprOFL96Vgx" content="./i4CLYI8yRZej_fs-H"/>
+          </relation>
+        </relations>
+        <relations xmi:id="_jXGcW7wXEeSDI_fK0GJv1g" id="Development Feature Dependencies" class="ps:dependencies">
+          <relation xmi:id="_jXGcXLwXEeSDI_fK0GJv1g" id="izKU9XCagVJX3gGTJ" type="ps:supports">
+            <target xmi:id="_jXGcXbwXEeSDI_fK0GJv1g" id="isqz6-3yY14wtsu9G" content="iLi73RNJ-7Lenn_9m/iTPvwex26rVpd9PLT"/>
+          </relation>
+        </relations>
+        <properties xmi:id="_jXGcXrwXEeSDI_fK0GJv1g" id="Development Feature">
+          <property xmi:id="_jXGcX7wXEeSDI_fK0GJv1g" id="iynR1qEnDESW9D_ej" name="ps:Source" type="ps:string" fixed="true" readonly="true">
+            <value xsi:type="FeatureModel:Constant" xmi:id="_jXGcYLwXEeSDI_fK0GJv1g" id="idA5rLBWjeHyrC8TD" type="ps:string" content="Chris"/>
+          </property>
+          <property xmi:id="_jXGcYbwXEeSDI_fK0GJv1g" id="ipTD3jVYrrQy9DGdT" name="ps:Created" type="ps:datetime" fixed="true" readonly="true">
+            <value xsi:type="FeatureModel:Constant" xmi:id="_jXGcYrwXEeSDI_fK0GJv1g" id="il8BsjY0hQDkA6yQy" type="ps:datetime" content="2015-01-24T14:18:27.556Z"/>
+          </property>
+          <property xmi:id="_jXGcY7wXEeSDI_fK0GJv1g" id="iAG-4h247j2-giD_a" name="ps:ChangedBy" type="ps:string" fixed="true" readonly="true">
+            <value xsi:type="FeatureModel:Constant" xmi:id="_jXGcZLwXEeSDI_fK0GJv1g" id="iwBUoby3AnGKgaV7V" type="ps:string" content="Chris"/>
+          </property>
+          <property xmi:id="_jXGcZbwXEeSDI_fK0GJv1g" id="iPMlMFO_nE7uU5cgF" name="ps:Changed" type="ps:datetime" fixed="true" readonly="true">
+            <value xsi:type="FeatureModel:Constant" xmi:id="_jXGcZrwXEeSDI_fK0GJv1g" id="iQBTtocgdBtMfayn7" type="ps:datetime" content="2015-01-24T14:58:44.454Z"/>
+          </property>
+        </properties>
+        <vname xmi:id="_jXGcZ7wXEeSDI_fK0GJv1g" id="Development Feature" mimedesc="DevelopmentFeature"/>
+      </element>
+      <element xmi:id="_jXGcaLwXEeSDI_fK0GJv1g" id="Configuration Feature" name="Configuration Feature" type="ps:feature" class="ps:feature" default="off">
+        <relations xmi:id="_jXGcabwXEeSDI_fK0GJv1g" id="Configuration Feature Parents" class="ps:parents">
+          <relation xmi:id="_jXGcarwXEeSDI_fK0GJv1g" id="imzVpxftEkpAbbks1" type="ps:parent">
+            <target xmi:id="_jXGca7wXEeSDI_fK0GJv1g" id="ioDAlltvq2AmOcAHP" content="./i4CLYI8yRZej_fs-H"/>
+          </relation>
+        </relations>
+        <properties xmi:id="_jXHCcLwXEeSDI_fK0GJv1g" id="Configuration Feature">
+          <property xmi:id="_jXHCcbwXEeSDI_fK0GJv1g" id="ivXDh-oZ9zC_RlR-T" name="ps:Source" type="ps:string" fixed="true" readonly="true">
+            <value xsi:type="FeatureModel:Constant" xmi:id="_jXHCcrwXEeSDI_fK0GJv1g" id="iWCPdFwCsCrr-m9PH" type="ps:string" content="Chris"/>
+          </property>
+          <property xmi:id="_jXHCc7wXEeSDI_fK0GJv1g" id="i7JTZ3agOEqSwiD8V" name="ps:Created" type="ps:datetime" fixed="true" readonly="true">
+            <value xsi:type="FeatureModel:Constant" xmi:id="_jXHCdLwXEeSDI_fK0GJv1g" id="i_u9B1RHwQvRBs_1W" type="ps:datetime" content="2015-01-24T14:18:37.909Z"/>
+          </property>
+          <property xmi:id="_jXHCdbwXEeSDI_fK0GJv1g" id="i8tjy_wLuE0i23DJo" name="ps:ChangedBy" type="ps:string" fixed="true" readonly="true">
+            <value xsi:type="FeatureModel:Constant" xmi:id="_jXHCdrwXEeSDI_fK0GJv1g" id="ikH28O9cUZRnGlzV_" type="ps:string" content="Chris"/>
+          </property>
+          <property xmi:id="_jXHCd7wXEeSDI_fK0GJv1g" id="i9pE3XbvpLQt3HMpQ" name="ps:Changed" type="ps:datetime" fixed="true" readonly="true">
+            <value xsi:type="FeatureModel:Constant" xmi:id="_jXHCeLwXEeSDI_fK0GJv1g" id="i6hLXLR_PzfTACtmv" type="ps:datetime" content="2015-01-24T14:18:37.909Z"/>
+          </property>
+        </properties>
+        <vname xmi:id="_jXHCebwXEeSDI_fK0GJv1g" id="Configuration Feature" mimedesc="ConfigurationFeature"/>
+      </element>
+      <element xmi:id="_jXHCerwXEeSDI_fK0GJv1g" id="Behavior Feature" name="Behavior Feature" type="ps:feature" class="ps:feature" default="off">
+        <relations xmi:id="_jXHCe7wXEeSDI_fK0GJv1g" id="Behavior Feature Parents" class="ps:parents">
+          <relation xmi:id="_jXHCfLwXEeSDI_fK0GJv1g" id="ic0MHdxBj7XwXVbLf" type="ps:parent">
+            <target xmi:id="_jXHCfbwXEeSDI_fK0GJv1g" id="iWydnx21wPuQDDVBP" content="./i4CLYI8yRZej_fs-H"/>
+          </relation>
+        </relations>
+        <properties xmi:id="_jXHCfrwXEeSDI_fK0GJv1g" id="Behavior Feature">
+          <property xmi:id="_jXHCf7wXEeSDI_fK0GJv1g" id="if9P8ICsEUxnYBFyD" name="ps:Source" type="ps:string" fixed="true" readonly="true">
+            <value xsi:type="FeatureModel:Constant" xmi:id="_jXHCgLwXEeSDI_fK0GJv1g" id="iC7GY3BV8wXZee2QA" type="ps:string" content="Chris"/>
+          </property>
+          <property xmi:id="_jXHCgbwXEeSDI_fK0GJv1g" id="ijSaDVbACGUIrH13c" name="ps:Created" type="ps:datetime" fixed="true" readonly="true">
+            <value xsi:type="FeatureModel:Constant" xmi:id="_jXHCgrwXEeSDI_fK0GJv1g" id="ikZ-0dqJgbptZl-UW" type="ps:datetime" content="2015-01-24T14:18:49.334Z"/>
+          </property>
+          <property xmi:id="_jXHCg7wXEeSDI_fK0GJv1g" id="iPs2riWXhrkyHDani" name="ps:ChangedBy" type="ps:string" fixed="true" readonly="true">
+            <value xsi:type="FeatureModel:Constant" xmi:id="_jXHChLwXEeSDI_fK0GJv1g" id="iqEaOXoo5r3ahmqkc" type="ps:string" content="Chris"/>
+          </property>
+          <property xmi:id="_jXHChbwXEeSDI_fK0GJv1g" id="i68Ou9krVbo9FYvOr" name="ps:Changed" type="ps:datetime" fixed="true" readonly="true">
+            <value xsi:type="FeatureModel:Constant" xmi:id="_jXHChrwXEeSDI_fK0GJv1g" id="iNXZRgYDUSTX0WHq2" type="ps:datetime" content="2015-01-24T14:18:49.334Z"/>
+          </property>
+        </properties>
+        <vname xmi:id="_jXHCh7wXEeSDI_fK0GJv1g" id="Behavior Feature" mimedesc="BehaviorFeature"/>
+      </element>
+      <element xmi:id="_jXHCiLwXEeSDI_fK0GJv1g" id="Usability Feature" name="Usability Feature" type="ps:feature" class="ps:feature" default="off">
+        <relations xmi:id="_jXHCibwXEeSDI_fK0GJv1g" id="Usability Feature Parents" class="ps:parents">
+          <relation xmi:id="_jXHCirwXEeSDI_fK0GJv1g" id="iQUp3zyo2wFCpxmO3" type="ps:parent">
+            <target xmi:id="_jXHCi7wXEeSDI_fK0GJv1g" id="iBK9maantRNkwhVmv" content="./i4CLYI8yRZej_fs-H"/>
+          </relation>
+        </relations>
+        <properties xmi:id="_jXHCjLwXEeSDI_fK0GJv1g" id="Usability Feature">
+          <property xmi:id="_jXHCjbwXEeSDI_fK0GJv1g" id="iM-fbEra9lmbXfB0v" name="ps:Source" type="ps:string" fixed="true" readonly="true">
+            <value xsi:type="FeatureModel:Constant" xmi:id="_jXHCjrwXEeSDI_fK0GJv1g" id="iub8lqLA9tL70sEsh" type="ps:string" content="Chris"/>
+          </property>
+          <property xmi:id="_jXHCj7wXEeSDI_fK0GJv1g" id="iSA_lrKyVbe1X4pN3" name="ps:Created" type="ps:datetime" fixed="true" readonly="true">
+            <value xsi:type="FeatureModel:Constant" xmi:id="_jXHCkLwXEeSDI_fK0GJv1g" id="iVpSdGfP_nwkZuyHT" type="ps:datetime" content="2015-01-24T14:19:04.410Z"/>
+          </property>
+          <property xmi:id="_jXHCkbwXEeSDI_fK0GJv1g" id="ijPex0or3iFrkt0V5" name="ps:ChangedBy" type="ps:string" fixed="true" readonly="true">
+            <value xsi:type="FeatureModel:Constant" xmi:id="_jXHCkrwXEeSDI_fK0GJv1g" id="iaFvOKReAX0xMIByY" type="ps:string" content="Chris"/>
+          </property>
+          <property xmi:id="_jXHCk7wXEeSDI_fK0GJv1g" id="iOMjgqUQj6JUkBp-S" name="ps:Changed" type="ps:datetime" fixed="true" readonly="true">
+            <value xsi:type="FeatureModel:Constant" xmi:id="_jXHClLwXEeSDI_fK0GJv1g" id="iAgrxj4_dxyVmp6Cx" type="ps:datetime" content="2015-01-24T14:19:04.410Z"/>
+          </property>
+        </properties>
+        <vname xmi:id="_jXHClbwXEeSDI_fK0GJv1g" id="Usability Feature" mimedesc="UsabilityFeature"/>
+      </element>
+      <element xmi:id="_jXHClrwXEeSDI_fK0GJv1g" id="Interoperability Feature" name="Interoperability Feature" type="ps:feature" class="ps:feature" default="off">
+        <relations xmi:id="_jXHCl7wXEeSDI_fK0GJv1g" id="Interoperability Feature Parents" class="ps:parents">
+          <relation xmi:id="_jXHCmLwXEeSDI_fK0GJv1g" id="iraIbpOgOCBOnPJIP" type="ps:parent">
+            <target xmi:id="_jXHCmbwXEeSDI_fK0GJv1g" id="ir2u34LBv8q-th9Hi" content="./i4CLYI8yRZej_fs-H"/>
+          </relation>
+        </relations>
+        <properties xmi:id="_jXHCmrwXEeSDI_fK0GJv1g" id="Interoperability Feature">
+          <property xmi:id="_jXHCm7wXEeSDI_fK0GJv1g" id="iqPUhxL9HWXXRvE8a" name="ps:Source" type="ps:string" fixed="true" readonly="true">
+            <value xsi:type="FeatureModel:Constant" xmi:id="_jXHCnLwXEeSDI_fK0GJv1g" id="i4edb2VozO337HnWc" type="ps:string" content="Chris"/>
+          </property>
+          <property xmi:id="_jXHCnbwXEeSDI_fK0GJv1g" id="izT539oJCbHzBAi6U" name="ps:Created" type="ps:datetime" fixed="true" readonly="true">
+            <value xsi:type="FeatureModel:Constant" xmi:id="_jXHCnrwXEeSDI_fK0GJv1g" id="iOU6IwrMlCLjznnoN" type="ps:datetime" content="2015-01-24T14:19:19.788Z"/>
+          </property>
+          <property xmi:id="_jXHCn7wXEeSDI_fK0GJv1g" id="iEXQoo8Ku_4uMjOHO" name="ps:ChangedBy" type="ps:string" fixed="true" readonly="true">
+            <value xsi:type="FeatureModel:Constant" xmi:id="_jXHCoLwXEeSDI_fK0GJv1g" id="iwS3rScBkxj63-2Lt" type="ps:string" content="Chris"/>
+          </property>
+          <property xmi:id="_jXHCobwXEeSDI_fK0GJv1g" id="ihCtODyZzzOQ6VaUF" name="ps:Changed" type="ps:datetime" fixed="true" readonly="true">
+            <value xsi:type="FeatureModel:Constant" xmi:id="_jXHCorwXEeSDI_fK0GJv1g" id="ih4f8KyzgywR3QnLG" type="ps:datetime" content="2015-01-24T14:19:19.788Z"/>
+          </property>
+        </properties>
+        <vname xmi:id="_jXHCo7wXEeSDI_fK0GJv1g" id="Interoperability Feature" mimedesc="InteroperabilityFeature"/>
+      </element>
+      <element xmi:id="_jXHCpLwXEeSDI_fK0GJv1g" id="Storage Feature" name="Storage Feature" type="ps:feature" class="ps:feature" default="off">
+        <relations xmi:id="_jXHCpbwXEeSDI_fK0GJv1g" id="Storage Feature Parents" class="ps:parents">
+          <relation xmi:id="_jXHCprwXEeSDI_fK0GJv1g" id="i9AcdktV2xDKAomvq" type="ps:parent">
+            <target xmi:id="_jXHCp7wXEeSDI_fK0GJv1g" id="iaso-UhwyW5xiaofx" content="./i4CLYI8yRZej_fs-H"/>
+          </relation>
+        </relations>
+        <properties xmi:id="_jXHCqLwXEeSDI_fK0GJv1g" id="Storage Feature">
+          <property xmi:id="_jXHCqbwXEeSDI_fK0GJv1g" id="i_Fp9nPipIxRfbmel" name="ps:Source" type="ps:string" fixed="true" readonly="true">
+            <value xsi:type="FeatureModel:Constant" xmi:id="_jXHCqrwXEeSDI_fK0GJv1g" id="i0ZUiIfv5UrCGg1PQ" type="ps:string" content="Chris"/>
+          </property>
+          <property xmi:id="_jXHCq7wXEeSDI_fK0GJv1g" id="icvrXlSzyV1s__o8V" name="ps:Created" type="ps:datetime" fixed="true" readonly="true">
+            <value xsi:type="FeatureModel:Constant" xmi:id="_jXHCrLwXEeSDI_fK0GJv1g" id="iLIyCeBRqW04G5GEL" type="ps:datetime" content="2015-01-24T14:19:41.572Z"/>
+          </property>
+          <property xmi:id="_jXHCrbwXEeSDI_fK0GJv1g" id="iqWoGwQHLzRd4FiB8" name="ps:ChangedBy" type="ps:string" fixed="true" readonly="true">
+            <value xsi:type="FeatureModel:Constant" xmi:id="_jXHCrrwXEeSDI_fK0GJv1g" id="iVh4yHrUXk9COiYhO" type="ps:string" content="Chris"/>
+          </property>
+          <property xmi:id="_jXHCr7wXEeSDI_fK0GJv1g" id="iuGQcWb2-DO5AK94R" name="ps:Changed" type="ps:datetime" fixed="true" readonly="true">
+            <value xsi:type="FeatureModel:Constant" xmi:id="_jXHCsLwXEeSDI_fK0GJv1g" id="iSdli-AhOdMOBidRh" type="ps:datetime" content="2015-01-24T14:19:41.572Z"/>
+          </property>
+        </properties>
+        <vname xmi:id="_jXHCsbwXEeSDI_fK0GJv1g" id="Storage Feature" mimedesc="StorageFeature"/>
+      </element>
+      <element xmi:id="_jXHCsrwXEeSDI_fK0GJv1g" id="Operational Feature" name="Operational Feature" type="ps:feature" class="ps:feature" default="off">
+        <relations xmi:id="_jXHCs7wXEeSDI_fK0GJv1g" id="Operational Feature Parents" class="ps:parents">
+          <relation xmi:id="_jXHCtLwXEeSDI_fK0GJv1g" id="iCE-WIfPbkDHNRf-C" type="ps:parent">
+            <target xmi:id="_jXHCtbwXEeSDI_fK0GJv1g" id="iFCLt6GJXzwEJ8bkn" content="./i4CLYI8yRZej_fs-H"/>
+          </relation>
+        </relations>
+        <properties xmi:id="_jXHCtrwXEeSDI_fK0GJv1g" id="Operational Feature">
+          <property xmi:id="_jXHCt7wXEeSDI_fK0GJv1g" id="i2U-YuPqkf8vDS2nu" name="ps:Source" type="ps:string" fixed="true" readonly="true">
+            <value xsi:type="FeatureModel:Constant" xmi:id="_jXHCuLwXEeSDI_fK0GJv1g" id="iyltWe8HDIF7EMcnt" type="ps:string" content="Chris"/>
+          </property>
+          <property xmi:id="_jXHCubwXEeSDI_fK0GJv1g" id="iNmgSAL54p0cYwGVM" name="ps:Created" type="ps:datetime" fixed="true" readonly="true">
+            <value xsi:type="FeatureModel:Constant" xmi:id="_jXHCurwXEeSDI_fK0GJv1g" id="iqpnaeOEy0Y4ZiYR5" type="ps:datetime" content="2015-01-24T14:19:51.003Z"/>
+          </property>
+          <property xmi:id="_jXHCu7wXEeSDI_fK0GJv1g" id="iCIZ3waRlFsCk5a05" name="ps:ChangedBy" type="ps:string" fixed="true" readonly="true">
+            <value xsi:type="FeatureModel:Constant" xmi:id="_jXHCvLwXEeSDI_fK0GJv1g" id="iIAA7yJuINREeFl8F" type="ps:string" content="Chris"/>
+          </property>
+          <property xmi:id="_jXHCvbwXEeSDI_fK0GJv1g" id="iNl_DTa2_ijh_LLJy" name="ps:Changed" type="ps:datetime" fixed="true" readonly="true">
+            <value xsi:type="FeatureModel:Constant" xmi:id="_jXHCvrwXEeSDI_fK0GJv1g" id="iepxWZaGHQgIhCenh" type="ps:datetime" content="2015-01-24T14:19:51.004Z"/>
+          </property>
+        </properties>
+        <vname xmi:id="_jXHCv7wXEeSDI_fK0GJv1g" id="Operational Feature" mimedesc="OperationalFeature"/>
+      </element>
+      <element xmi:id="_jXHCwLwXEeSDI_fK0GJv1g" id="Commercial Feature" name="Commercial Feature" type="ps:feature" class="ps:feature" default="off">
+        <relations xmi:id="_jXHCwbwXEeSDI_fK0GJv1g" id="Commercial Feature Parents" class="ps:parents">
+          <relation xmi:id="_jXHCwrwXEeSDI_fK0GJv1g" id="ibk3dELkhLQu358Zf" type="ps:parent">
+            <target xmi:id="_jXHCw7wXEeSDI_fK0GJv1g" id="iiBWp0mI-J3yT2vMP" content="./i4CLYI8yRZej_fs-H"/>
+          </relation>
+        </relations>
+        <properties xmi:id="_jXHCxLwXEeSDI_fK0GJv1g" id="Commercial Feature">
+          <property xmi:id="_jXHCxbwXEeSDI_fK0GJv1g" id="i_jBP3z0qC4QdMk4B" name="ps:Source" type="ps:string" fixed="true" readonly="true">
+            <value xsi:type="FeatureModel:Constant" xmi:id="_jXHCxrwXEeSDI_fK0GJv1g" id="iys0dVP2PnIgHncbM" type="ps:string" content="Chris"/>
+          </property>
+          <property xmi:id="_jXHCx7wXEeSDI_fK0GJv1g" id="iLVcLMDMwzN5yfcNH" name="ps:Created" type="ps:datetime" fixed="true" readonly="true">
+            <value xsi:type="FeatureModel:Constant" xmi:id="_jXHCyLwXEeSDI_fK0GJv1g" id="iAJK0ZeAhQevveco_" type="ps:datetime" content="2015-01-24T14:20:01.407Z"/>
+          </property>
+          <property xmi:id="_jXHCybwXEeSDI_fK0GJv1g" id="i0mCljZ9drXsryMnM" name="ps:ChangedBy" type="ps:string" fixed="true" readonly="true">
+            <value xsi:type="FeatureModel:Constant" xmi:id="_jXHCyrwXEeSDI_fK0GJv1g" id="i6cGxdlgtYb2x_Mt2" type="ps:string" content="Chris"/>
+          </property>
+          <property xmi:id="_jXHCy7wXEeSDI_fK0GJv1g" id="i4uhHhNusT99TD8ju" name="ps:Changed" type="ps:datetime" fixed="true" readonly="true">
+            <value xsi:type="FeatureModel:Constant" xmi:id="_jXHCzLwXEeSDI_fK0GJv1g" id="iVnP4_DrWo43l2h4y" type="ps:datetime" content="2015-01-24T14:20:01.407Z"/>
+          </property>
+        </properties>
+        <vname xmi:id="_jXHCzbwXEeSDI_fK0GJv1g" id="Commercial Feature" mimedesc="CommercialFeature"/>
+      </element>
+      <element xmi:id="_jXHCzrwXEeSDI_fK0GJv1g" id="Development Environment" name="Development Environment" type="ps:feature" class="ps:feature" default="off">
+        <relations xmi:id="_jXHCz7wXEeSDI_fK0GJv1g" id="Development Environment Parents" class="ps:parents">
+          <relation xmi:id="_jXHC0LwXEeSDI_fK0GJv1g" id="iI6FvavM__yXYwjj1" type="ps:parent">
+            <target xmi:id="_jXHC0bwXEeSDI_fK0GJv1g" id="im_K3TbxsJNRX0iBE" content="./i4CLYI8yRZej_fs-H"/>
+          </relation>
+        </relations>
+        <relations xmi:id="_jXHC0rwXEeSDI_fK0GJv1g" id="Development Environment Dependencies" class="ps:dependencies">
+          <relation xmi:id="_jXHC07wXEeSDI_fK0GJv1g" id="ifs3CMeWUam9oPhpb" type="ps:provides">
+            <target xmi:id="_jXHC1LwXEeSDI_fK0GJv1g" id="il7oJA3fsdZNyM0cV" content="iLi73RNJ-7Lenn_9m/iYfi_6rwdbha0P6yT"/>
+          </relation>
+        </relations>
+        <properties xmi:id="_jXHC1bwXEeSDI_fK0GJv1g" id="Development Environment">
+          <property xmi:id="_jXHC1rwXEeSDI_fK0GJv1g" id="i1xbBqsTxjsrKIcpW" name="ps:Source" type="ps:string" fixed="true" readonly="true">
+            <value xsi:type="FeatureModel:Constant" xmi:id="_jXHC17wXEeSDI_fK0GJv1g" id="iWDXKM6npNNM9MpKr" type="ps:string" content="Chris"/>
+          </property>
+          <property xmi:id="_jXHC2LwXEeSDI_fK0GJv1g" id="iHWgc5Fj05Xp1RaG7" name="ps:Created" type="ps:datetime" fixed="true" readonly="true">
+            <value xsi:type="FeatureModel:Constant" xmi:id="_jXHC2bwXEeSDI_fK0GJv1g" id="ihvDd667FhP9i4-Ra" type="ps:datetime" content="2015-01-24T14:55:13.615Z"/>
+          </property>
+          <property xmi:id="_jXHC2rwXEeSDI_fK0GJv1g" id="iIqip9_6cn9jR3-Nt" name="ps:ChangedBy" type="ps:string" fixed="true" readonly="true">
+            <value xsi:type="FeatureModel:Constant" xmi:id="_jXHC27wXEeSDI_fK0GJv1g" id="i2VJpN9TgTVnp19UU" type="ps:string" content="Chris"/>
+          </property>
+          <property xmi:id="_jXHC3LwXEeSDI_fK0GJv1g" id="ih63CwxhxhbLhaUgO" name="ps:Changed" type="ps:datetime" fixed="true" readonly="true">
+            <value xsi:type="FeatureModel:Constant" xmi:id="_jXHC3bwXEeSDI_fK0GJv1g" id="inDVHwW-sDDaj5B0X" type="ps:datetime" content="2015-01-24T14:59:03.675Z"/>
+          </property>
+        </properties>
+        <vname xmi:id="_jXHC3rwXEeSDI_fK0GJv1g" id="Development Environment" mimedesc="DevelopmentEnvironment"/>
+      </element>
+    </elements>
+  </modelElements>
+  <modelElements xsi:type="LinkModel:LinkContainer" xmi:id="_jXHC37wXEeSDI_fK0GJv1g" Name=" ">
+    <Links xmi:id="_jXHC4LwXEeSDI_fK0GJv1g" Name="uses AC ICC" Type="#_jXHDCLwXEeSDI_fK0GJv1g" LastModified=" " LastVisited=" " Source="#_jXF0jrwXEeSDI_fK0GJv1g" Target="#_jXF0ebwXEeSDI_fK0GJv1g" Description="Architecture Concern uses Issue Concern Combination"/>
+    <Links xmi:id="_jXHC4bwXEeSDI_fK0GJv1g" Name="uses ICC AC" Type="#_jXHDCLwXEeSDI_fK0GJv1g" LastModified=" " LastVisited=" " Source="#_jXF0ebwXEeSDI_fK0GJv1g" Target="#_jXF0jrwXEeSDI_fK0GJv1g" Description="Issue Concern Combination uses Architecture Concern"/>
+    <Links xmi:id="_jXHC4rwXEeSDI_fK0GJv1g" Name="must_consider AC DI" Type="#_jXHDFrwXEeSDI_fK0GJv1g" LastModified=" " LastVisited=" " Source="#_jXF0jrwXEeSDI_fK0GJv1g" Target="#_jXF0obwXEeSDI_fK0GJv1g" Description="Architecture Concern must consider Design Issue"/>
+    <Links xmi:id="_jXHC47wXEeSDI_fK0GJv1g" Name="must_consider DI AC" Type="#_jXHDFrwXEeSDI_fK0GJv1g" LastModified=" " LastVisited=" " Source="#_jXF0obwXEeSDI_fK0GJv1g" Target="#_jXF0jrwXEeSDI_fK0GJv1g" Description="Design Issue must consider Architecture Concern"/>
+    <Links xmi:id="_jXHC5LwXEeSDI_fK0GJv1g" Name="contains ICC DI" Type="#_jXHDCrwXEeSDI_fK0GJv1g" LastModified=" " LastVisited=" " Source="#_jXF0ebwXEeSDI_fK0GJv1g" Target="#_jXF0obwXEeSDI_fK0GJv1g" Description="Issue Concern Combination contains Design Issue(s)"/>
+    <Links xmi:id="_jXHC5bwXEeSDI_fK0GJv1g" Name="contains DI ICC" Type="#_jXHDCrwXEeSDI_fK0GJv1g" LastModified=" " LastVisited=" " Source="#_jXF0obwXEeSDI_fK0GJv1g" Target="#_jXF0ebwXEeSDI_fK0GJv1g" Description="Design Issue contains Issue Concern Combination(s)"/>
+    <Links xmi:id="_jXHC5rwXEeSDI_fK0GJv1g" Name="sub-issues DI DI" Type="#_jXHDDbwXEeSDI_fK0GJv1g" LastModified=" " LastVisited=" " Source="#_jXF0obwXEeSDI_fK0GJv1g" Target="#_jXF0obwXEeSDI_fK0GJv1g" Description="Design Issues can have sub-issues"/>
+    <Links xmi:id="_jXHC57wXEeSDI_fK0GJv1g" Name="solves RTDD DI" Type="#_jXHDC7wXEeSDI_fK0GJv1g" LastModified=" " LastVisited=" " Source="#_jXFNYbwXEeSDI_fK0GJv1g" Target="#_jXF0obwXEeSDI_fK0GJv1g" Description="Reusable Technology Design Decision solves Design Issue"/>
+    <Links xmi:id="_jXHC6LwXEeSDI_fK0GJv1g" Name="has_alternatives DI SAS" Type="#_jXHDDLwXEeSDI_fK0GJv1g" LastModified=" " LastVisited=" " Source="#_jXF0obwXEeSDI_fK0GJv1g" Target="#_jXFNTrwXEeSDI_fK0GJv1g" Description="Design Issues can have multiple alternative SA Solutions"/>
+    <Links xmi:id="_jXHC6bwXEeSDI_fK0GJv1g" Name="associated_with RTDD CF" Type="#_jXHDCbwXEeSDI_fK0GJv1g" LastModified=" " LastVisited=" " Source="#_jXFNYbwXEeSDI_fK0GJv1g" Target="#_jXF0ZrwXEeSDI_fK0GJv1g" Description="Reusable Technology Design Decision associates Factors with reusable ADD"/>
+    <Links xmi:id="_jXHC6rwXEeSDI_fK0GJv1g" Name="associated_with CF ICC" Type="#_jXHDCbwXEeSDI_fK0GJv1g" LastModified=" " LastVisited=" " Source="#_jXF0ZrwXEeSDI_fK0GJv1g" Target="#_jXF0ebwXEeSDI_fK0GJv1g" Description="Contextual Factors are associated with Issue Concern Combinations"/>
+    <Links xmi:id="_jXHC67wXEeSDI_fK0GJv1g" Name="associated_with ICC CF" Type="#_jXHDCbwXEeSDI_fK0GJv1g" LastModified=" " LastVisited=" " Source="#_jXF0ebwXEeSDI_fK0GJv1g" Target="#_jXF0ZrwXEeSDI_fK0GJv1g" Description="Issue Concern Combination is associated with Contextual Factor(s)"/>
+    <Links xmi:id="_jXHC7LwXEeSDI_fK0GJv1g" Name="select_solution RTDD SAS" Type="#_jXHDEbwXEeSDI_fK0GJv1g" LastModified=" " LastVisited=" " Source="#_jXFNYbwXEeSDI_fK0GJv1g" Target="#_jXFNTrwXEeSDI_fK0GJv1g" Description="Reusable Technology Design Decision(s) select SA Solution(s)"/>
+    <Links xmi:id="_jXHC7bwXEeSDI_fK0GJv1g" Name="used_decision_evaluation RTDD FE" Type="#_jXHDF7wXEeSDI_fK0GJv1g" LastModified=" " LastVisited=" " Source="#_jXFNYbwXEeSDI_fK0GJv1g" Target="#_jXGbirwXEeSDI_fK0GJv1g" Description="Reusable Technology Design Decisions are used for Feature Evaluation"/>
+    <Links xmi:id="_jXHC7rwXEeSDI_fK0GJv1g" Name="used_decision_evaluation FE RTDD" Type="#_jXHDF7wXEeSDI_fK0GJv1g" LastModified=" " LastVisited=" " Source="#_jXGbirwXEeSDI_fK0GJv1g" Target="#_jXFNYbwXEeSDI_fK0GJv1g" Description="Feature Evaluation uses Resusable Technology Design Decision for evaluation"/>
+    <Links xmi:id="_jXHC77wXEeSDI_fK0GJv1g" Name="consider_factors_during_evaluation CF TFCM" Type="#_jXHDFbwXEeSDI_fK0GJv1g" LastModified=" " LastVisited=" " Source="#_jXF0ZrwXEeSDI_fK0GJv1g" Target="#_jXGbobwXEeSDI_fK0GJv1g" Description="Contextual Factors are considered during evaluation in Technology Feature Concern Measurement"/>
+    <Links xmi:id="_jXHC8LwXEeSDI_fK0GJv1g" Name="consider_factors_during_evaluation TFCM CF" Type="#_jXHDFbwXEeSDI_fK0GJv1g" LastModified=" " LastVisited=" " Source="#_jXGbobwXEeSDI_fK0GJv1g" Target="#_jXF0ZrwXEeSDI_fK0GJv1g" Description="Technology Feature Concern Measurement considers Contextual Factor(s) during evaluation"/>
+    <Links xmi:id="_jXHC8bwXEeSDI_fK0GJv1g" Name="use_evaluation_results TFC TFCM" Type="#_jXHDFLwXEeSDI_fK0GJv1g" LastModified=" " LastVisited=" " Source="#_jXGbuLwXEeSDI_fK0GJv1g" Target="#_jXGbobwXEeSDI_fK0GJv1g" Description="Technology Features Comparison uses evaluation results of Technology Feature Concern Measurement"/>
+    <Links xmi:id="_jXHC8rwXEeSDI_fK0GJv1g" Name="compare_evaluate_features FE TF" Type="#_jXHDErwXEeSDI_fK0GJv1g" LastModified=" " LastVisited=" " Source="#_jXGbirwXEeSDI_fK0GJv1g" Target="#_jXF0xLwXEeSDI_fK0GJv1g" Description="Feature Evaluation compares and evaluates Technology Feature(s)"/>
+    <Links xmi:id="_jXHC87wXEeSDI_fK0GJv1g" Name="compare_evaluate_features TF FE" Type="#_jXHDErwXEeSDI_fK0GJv1g" LastModified=" " LastVisited=" " Source="#_jXF0xLwXEeSDI_fK0GJv1g" Target="#_jXGbirwXEeSDI_fK0GJv1g" Description="Technology Features are compared and evaluated in a Feature Evaluation"/>
+    <Links xmi:id="_jXHC9LwXEeSDI_fK0GJv1g" Name="identifies_benefits_and_drawbacks TFC ASTA" Type="#_jXHDE7wXEeSDI_fK0GJv1g" LastModified=" " LastVisited=" " Source="#_jXGbuLwXEeSDI_fK0GJv1g" Target="#_jXF0-LwXEeSDI_fK0GJv1g" Description="Technology Features Comparison identifies benefits &amp; drawbacks of ASTA(s)"/>
+    <Links xmi:id="_jXHC9bwXEeSDI_fK0GJv1g" Name="has_technology_aspects TF ASTA" Type="#_jXHDGLwXEeSDI_fK0GJv1g" LastModified=" " LastVisited=" " Source="#_jXF0xLwXEeSDI_fK0GJv1g" Target="#_jXF0-LwXEeSDI_fK0GJv1g" Description="Technology Featues have technology aspects (ASTA)"/>
+    <Links xmi:id="_jXHC9rwXEeSDI_fK0GJv1g" Name="addressed_by Drawback TF" Type="#_jXHDGbwXEeSDI_fK0GJv1g" LastModified=" " LastVisited=" " Source="#_jXF1IbwXEeSDI_fK0GJv1g" Target="#_jXF0xLwXEeSDI_fK0GJv1g" Description="A Drawback is addressed or solved by another Technology Feature"/>
+    <Links xmi:id="_jXHC97wXEeSDI_fK0GJv1g" Name="has_features TS TF" Type="#_jXHDGrwXEeSDI_fK0GJv1g" LastModified=" " LastVisited=" " Source="#_jXF057wXEeSDI_fK0GJv1g" Target="#_jXF0xLwXEeSDI_fK0GJv1g" Description="A Technology Solution has Technology Feature(s)"/>
+    <Links xmi:id="_jXHC-LwXEeSDI_fK0GJv1g" Name="based_on TF CS" Type="#_jXHDDrwXEeSDI_fK0GJv1g" LastModified=" " LastVisited=" " Source="#_jXF0xLwXEeSDI_fK0GJv1g" Target="#_jXF0trwXEeSDI_fK0GJv1g" Description="Technology Features are based on Conceptual Solutions"/>
+    <Links xmi:id="_jXHC-bwXEeSDI_fK0GJv1g" Name="triggers Drawback DI" Type="#_jXHDELwXEeSDI_fK0GJv1g" LastModified=" " LastVisited=" " Source="#_jXF1IbwXEeSDI_fK0GJv1g" Target="#_jXF0obwXEeSDI_fK0GJv1g" Description="A Drawback can trigger Design Issue(s)"/>
+    <Links xmi:id="_jXHC-rwXEeSDI_fK0GJv1g" Name="leads_to FBB CBB" Type="#_jXHDD7wXEeSDI_fK0GJv1g" LastModified=" " LastVisited=" " Source="#_jXF1R7wXEeSDI_fK0GJv1g" Target="#_jXF1OLwXEeSDI_fK0GJv1g" Description="A Feature-Based Benefit can lead to Concern-Based Benefit(s)"/>
+    <Links xmi:id="_jXHC-7wXEeSDI_fK0GJv1g" Name="leads_to FBD CBD" Type="#_jXHDD7wXEeSDI_fK0GJv1g" LastModified=" " LastVisited=" " Source="#_jXGbebwXEeSDI_fK0GJv1g" Target="#_jXGbarwXEeSDI_fK0GJv1g" Description="A Feature-Based Drawback can lead to Concern-Based Drawback(s)"/>
+    <Links xmi:id="_jXHC_LwXEeSDI_fK0GJv1g" Name="is_a TS SAS" Type="#_jXHDG7wXEeSDI_fK0GJv1g" LastModified=" " LastVisited=" " Source="#_jXF057wXEeSDI_fK0GJv1g" Target="#_jXFNTrwXEeSDI_fK0GJv1g" Description="Technology Solution is a SA Solution"/>
+    <Links xmi:id="_jXHC_bwXEeSDI_fK0GJv1g" Name="is_a TF SAS" Type="#_jXHDG7wXEeSDI_fK0GJv1g" LastModified=" " LastVisited=" " Source="#_jXF0xLwXEeSDI_fK0GJv1g" Target="#_jXFNTrwXEeSDI_fK0GJv1g" Description="Technology Feature is a SA Solution"/>
+    <Links xmi:id="_jXHC_rwXEeSDI_fK0GJv1g" Name="is_a CS SAS" Type="#_jXHDG7wXEeSDI_fK0GJv1g" LastModified=" " LastVisited=" " Source="#_jXF0trwXEeSDI_fK0GJv1g" Target="#_jXFNTrwXEeSDI_fK0GJv1g" Description="Conceptual Solution is a SA Solution"/>
+    <Links xmi:id="_jXHC_7wXEeSDI_fK0GJv1g" Name="is_a TFC FE" Type="#_jXHDG7wXEeSDI_fK0GJv1g" LastModified=" " LastVisited=" " Source="#_jXGbuLwXEeSDI_fK0GJv1g" Target="#_jXGbirwXEeSDI_fK0GJv1g" Description="Technology Features Comparison is a Feature Evaluation"/>
+    <Links xmi:id="_jXHDALwXEeSDI_fK0GJv1g" Name="is_a TFCM FE" Type="#_jXHDG7wXEeSDI_fK0GJv1g" LastModified=" " LastVisited=" " Source="#_jXGbobwXEeSDI_fK0GJv1g" Target="#_jXGbirwXEeSDI_fK0GJv1g" Description="Technology Feature Concern Measurement is a Feature Evaluation"/>
+    <Links xmi:id="_jXHDAbwXEeSDI_fK0GJv1g" Name="is_a Benefit ASTA" Type="#_jXHDG7wXEeSDI_fK0GJv1g" LastModified=" " LastVisited=" " Source="#_jXF1DrwXEeSDI_fK0GJv1g" Target="#_jXF0-LwXEeSDI_fK0GJv1g" Description="Benefit is a ASTA"/>
+    <Links xmi:id="_jXHDArwXEeSDI_fK0GJv1g" Name="is_a Drawback ASTA" Type="#_jXHDG7wXEeSDI_fK0GJv1g" LastModified=" " LastVisited=" " Source="#_jXF1IbwXEeSDI_fK0GJv1g" Target="#_jXF0-LwXEeSDI_fK0GJv1g" Description="Drawback is a ASTA"/>
+    <Links xmi:id="_jXHDA7wXEeSDI_fK0GJv1g" Name="is_a FBB Benefit" Type="#_jXHDG7wXEeSDI_fK0GJv1g" LastModified=" " LastVisited=" " Source="#_jXF1R7wXEeSDI_fK0GJv1g" Target="#_jXF1DrwXEeSDI_fK0GJv1g" Description="Feature-Based Benefit is a Benefit"/>
+    <Links xmi:id="_jXHDBLwXEeSDI_fK0GJv1g" Name="is_a CBB Benefit" Type="#_jXHDG7wXEeSDI_fK0GJv1g" LastModified=" " LastVisited=" " Source="#_jXF1OLwXEeSDI_fK0GJv1g" Target="#_jXF1DrwXEeSDI_fK0GJv1g" Description="Concern-Based Benefit is a Benefit"/>
+    <Links xmi:id="_jXHDBbwXEeSDI_fK0GJv1g" Name="is_a FBD Drawback" Type="#_jXHDG7wXEeSDI_fK0GJv1g" LastModified=" " LastVisited=" " Source="#_jXGbebwXEeSDI_fK0GJv1g" Target="#_jXF1IbwXEeSDI_fK0GJv1g" Description="Feature-Based Drawback is a Drawback"/>
+    <Links xmi:id="_jXHDBrwXEeSDI_fK0GJv1g" Name="is_a CBD Drawback" Type="#_jXHDG7wXEeSDI_fK0GJv1g" LastModified=" " LastVisited=" " Source="#_jXGbarwXEeSDI_fK0GJv1g" Target="#_jXF1IbwXEeSDI_fK0GJv1g" Description="Concern-Based Drawback is a Drawback"/>
+  </modelElements>
+  <modelElements xsi:type="LinkModel:LinkTypeCatalog" xmi:id="_jXHDB7wXEeSDI_fK0GJv1g" Name=" " Description="Link Type Catalog for Architecture Knowledge Model">
+    <LinkTypes xmi:id="_jXHDCLwXEeSDI_fK0GJv1g" Name="uses"/>
+    <LinkTypes xmi:id="_jXHDCbwXEeSDI_fK0GJv1g" Name="associated with"/>
+    <LinkTypes xmi:id="_jXHDCrwXEeSDI_fK0GJv1g" Name="contains"/>
+    <LinkTypes xmi:id="_jXHDC7wXEeSDI_fK0GJv1g" Name="solves"/>
+    <LinkTypes xmi:id="_jXHDDLwXEeSDI_fK0GJv1g" Name="has alternatives"/>
+    <LinkTypes xmi:id="_jXHDDbwXEeSDI_fK0GJv1g" Name="sub-issues"/>
+    <LinkTypes xmi:id="_jXHDDrwXEeSDI_fK0GJv1g" Name="based on"/>
+    <LinkTypes xmi:id="_jXHDD7wXEeSDI_fK0GJv1g" Name="leads to"/>
+    <LinkTypes xmi:id="_jXHDELwXEeSDI_fK0GJv1g" Name="triggers"/>
+    <LinkTypes xmi:id="_jXHDEbwXEeSDI_fK0GJv1g" Name="select solution"/>
+    <LinkTypes xmi:id="_jXHDErwXEeSDI_fK0GJv1g" Name="compare/evaluate features"/>
+    <LinkTypes xmi:id="_jXHDE7wXEeSDI_fK0GJv1g" Name="identifies benefits &amp; drawbacks"/>
+    <LinkTypes xmi:id="_jXHDFLwXEeSDI_fK0GJv1g" Name="use evaluation results"/>
+    <LinkTypes xmi:id="_jXHDFbwXEeSDI_fK0GJv1g" Name="consider factors during evaluation"/>
+    <LinkTypes xmi:id="_jXHDFrwXEeSDI_fK0GJv1g" Name="must consider"/>
+    <LinkTypes xmi:id="_jXHDF7wXEeSDI_fK0GJv1g" Name="used decision evaluation"/>
+    <LinkTypes xmi:id="_jXHDGLwXEeSDI_fK0GJv1g" Name="has technology aspects"/>
+    <LinkTypes xmi:id="_jXHDGbwXEeSDI_fK0GJv1g" Name="is addressed/solved by"/>
+    <LinkTypes xmi:id="_jXHDGrwXEeSDI_fK0GJv1g" Name="has features"/>
+    <LinkTypes xmi:id="_jXHDG7wXEeSDI_fK0GJv1g" Name="is-a"/>
+  </modelElements>
+</org.eclipse.emf.emfstore.internal.common.model:Project>

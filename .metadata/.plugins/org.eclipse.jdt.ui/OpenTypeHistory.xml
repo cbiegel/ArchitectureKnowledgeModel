@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<typeInfoHistroy>
+<typeInfo handle="=org.emftrace.ui/src&lt;org.emftrace.ui.controls{FilteredContentProviderResultItem.java[FilteredContentProviderResultItem" modifiers="1" timestamp="1409782918000"/>
+<typeInfo handle="=org.emftrace.quarc.ui/src&lt;org.emftrace.quarc.ui.zestgpraphbuilders{AbstractElementGraphBuilder.java[AbstractElementGraphBuilder" modifiers="1025" timestamp="1425828199103"/>
+<typeInfo handle="=org.emftrace.akm.core/src&lt;org.emftrace.akm.core.cache{AKMCache.java[AKMCache" modifiers="1" timestamp="1426003963488"/>
+<typeInfo handle="=org.emftrace.quarc.ui/src&lt;org.emftrace.quarc.ui.zest.nodes{GSSElementGraphNode.java[GSSElementGraphNode" modifiers="1" timestamp="1425828199391"/>
+<typeInfo handle="=org.emftrace.quarc.ui/src&lt;org.emftrace.quarc.ui.zest.graph{GSSGraph.java[GSSGraph" modifiers="1" timestamp="1425828199154"/>
+<typeInfo handle="=org.emftrace.quarc.ui/src&lt;org.emftrace.quarc.ui.zestgpraphbuilders{GSSGraphBuilder.java[GSSGraphBuilder" modifiers="1" timestamp="1409782918000"/>
+<typeInfo handle="=org.emftrace.quarc.ui/src&lt;org.emftrace.quarc.ui.editors{QUARCModelElementEditor.java[QUARCModelElementEditor" modifiers="1" timestamp="1409782918000"/>
+<typeInfo handle="=org.emftrace.quarc.ui/src&lt;org.emftrace.quarc.ui.zest.layouts{GSSGraphLayoutAlgorithm.java[GSSGraphLayoutAlgorithm" modifiers="1" timestamp="1425828199196"/>
+</typeInfoHistroy>

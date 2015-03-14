@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.ui.editors">
+      <editor
+            class="org.emftrace.akm.ui.editors.AKMModelElementEditor"
+            default="false"
+            id="org.emftrace.akm.ui.editors.AKMModelElementEditor"
+            name="AKMModelElementEditor">
+      </editor>
+   </extension>
+
+</plugin>

@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<org.eclipse.emf.emfstore.internal.server.model.versioning:ChangePackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ArchitectureKnowledgeModel="ArchitectureKnowledgeModel" xmlns:org.eclipse.emf.emfstore.internal.server.model.versioning="http://eclipse.org/emf/emfstore/server/model/versioning" xmlns:org.eclipse.emf.emfstore.internal.server.model.versioning.operations="http://eclipse.org/emf/emfstore/server/model/versioning/operations">
+  <operations xsi:type="org.eclipse.emf.emfstore.internal.server.model.versioning.operations:CreateDeleteOperation" identifier="_OiWTYMTFEeSBmIHH3KOZNw" clientDate="2015-03-07T13:26:49.110+0100">
+    <modelElementId id="_OiT3IMTFEeSBmIHH3KOZNw"/>
+    <modelElement xsi:type="ArchitectureKnowledgeModel:ArchitectureKnowledgeModel"/>
+    <eObjectToIdMap key="#//@operations.0/@modelElement">
+      <value id="_OiT3IMTFEeSBmIHH3KOZNw"/>
+    </eObjectToIdMap>
+  </operations>
+  <operations xsi:type="org.eclipse.emf.emfstore.internal.server.model.versioning.operations:CreateDeleteOperation" identifier="_QLWRgcTFEeSBmIHH3KOZNw" clientDate="2015-03-07T13:27:00.120+0100">
+    <modelElementId id="_QLWRgMTFEeSBmIHH3KOZNw"/>
+    <modelElement xsi:type="ArchitectureKnowledgeModel:TechnologySolutions"/>
+    <eObjectToIdMap key="#//@operations.1/@modelElement">
+      <value id="_QLWRgMTFEeSBmIHH3KOZNw"/>
+    </eObjectToIdMap>
+  </operations>
+  <operations xsi:type="org.eclipse.emf.emfstore.internal.server.model.versioning.operations:SingleReferenceOperation" identifier="_QLXfosTFEeSBmIHH3KOZNw" clientDate="2015-03-07T13:27:00.122+0100" featureName="TechnologySolutions" containmentType="CONTAINMENT">
+    <modelElementId id="_OiT3IMTFEeSBmIHH3KOZNw"/>
+    <newValue id="_QLWRgMTFEeSBmIHH3KOZNw"/>
+  </operations>
+  <operations xsi:type="org.eclipse.emf.emfstore.internal.server.model.versioning.operations:CreateDeleteOperation" identifier="_QYumMMTFEeSBmIHH3KOZNw" clientDate="2015-03-07T13:27:01.523+0100">
+    <modelElementId id="_QYt_IMTFEeSBmIHH3KOZNw"/>
+    <modelElement xsi:type="ArchitectureKnowledgeModel:ConceptualSolutions"/>
+    <eObjectToIdMap key="#//@operations.3/@modelElement">
+      <value id="_QYt_IMTFEeSBmIHH3KOZNw"/>
+    </eObjectToIdMap>
+  </operations>
+  <operations xsi:type="org.eclipse.emf.emfstore.internal.server.model.versioning.operations:SingleReferenceOperation" identifier="_QYumN8TFEeSBmIHH3KOZNw" clientDate="2015-03-07T13:27:01.523+0100" featureName="ConceptualSolutions" containmentType="CONTAINMENT">
+    <modelElementId id="_OiT3IMTFEeSBmIHH3KOZNw"/>
+    <newValue id="_QYt_IMTFEeSBmIHH3KOZNw"/>
+  </operations>
+  <operations xsi:type="org.eclipse.emf.emfstore.internal.server.model.versioning.operations:CreateDeleteOperation" identifier="_QhLXkcTFEeSBmIHH3KOZNw" clientDate="2015-03-07T13:27:02.409+0100">
+    <modelElementId id="_QhLXkMTFEeSBmIHH3KOZNw"/>
+    <modelElement xsi:type="ArchitectureKnowledgeModel:DevelopmentEnvironments"/>
+    <eObjectToIdMap key="#//@operations.5/@modelElement">
+      <value id="_QhLXkMTFEeSBmIHH3KOZNw"/>
+    </eObjectToIdMap>
+  </operations>
+  <operations xsi:type="org.eclipse.emf.emfstore.internal.server.model.versioning.operations:SingleReferenceOperation" identifier="_QhL-pMTFEeSBmIHH3KOZNw" clientDate="2015-03-07T13:27:02.410+0100" featureName="DevelopmentEnvironments" containmentType="CONTAINMENT">
+    <modelElementId id="_OiT3IMTFEeSBmIHH3KOZNw"/>
+    <newValue id="_QhLXkMTFEeSBmIHH3KOZNw"/>
+  </operations>
+  <operations xsi:type="org.eclipse.emf.emfstore.internal.server.model.versioning.operations:CreateDeleteOperation" identifier="_QorGscTFEeSBmIHH3KOZNw" clientDate="2015-03-07T13:27:03.195+0100">
+    <modelElementId id="_QorGsMTFEeSBmIHH3KOZNw"/>
+    <modelElement xsi:type="ArchitectureKnowledgeModel:Relations"/>
+    <eObjectToIdMap key="#//@operations.7/@modelElement">
+      <value id="_QorGsMTFEeSBmIHH3KOZNw"/>
+    </eObjectToIdMap>
+  </operations>
+  <operations xsi:type="org.eclipse.emf.emfstore.internal.server.model.versioning.operations:SingleReferenceOperation" identifier="_QortxMTFEeSBmIHH3KOZNw" clientDate="2015-03-07T13:27:03.196+0100" featureName="Relations" containmentType="CONTAINMENT">
+    <modelElementId id="_OiT3IMTFEeSBmIHH3KOZNw"/>
+    <newValue id="_QorGsMTFEeSBmIHH3KOZNw"/>
+  </operations>
+  <operations xsi:type="org.eclipse.emf.emfstore.internal.server.model.versioning.operations:CreateDeleteOperation" identifier="_Y5_cocTFEeSBmIHH3KOZNw" clientDate="2015-03-07T13:27:58.698+0100">
+    <modelElementId id="_Y5_coMTFEeSBmIHH3KOZNw"/>
+    <modelElement xsi:type="ArchitectureKnowledgeModel:TechnologySolution"/>
+    <eObjectToIdMap key="#//@operations.9/@modelElement">
+      <value id="_Y5_coMTFEeSBmIHH3KOZNw"/>
+    </eObjectToIdMap>
+  </operations>
+  <operations xsi:type="org.eclipse.emf.emfstore.internal.server.model.versioning.operations:MultiReferenceOperation" identifier="_Y6ADs8TFEeSBmIHH3KOZNw" clientDate="2015-03-07T13:27:58.699+0100" featureName="TechnologySolution" add="true">
+    <modelElementId id="_QLWRgMTFEeSBmIHH3KOZNw"/>
+    <referencedModelElements id="_Y5_coMTFEeSBmIHH3KOZNw"/>
+  </operations>
+  <operations xsi:type="org.eclipse.emf.emfstore.internal.server.model.versioning.operations:AttributeOperation" identifier="_aYHngsTFEeSBmIHH3KOZNw" clientDate="2015-03-07T13:28:08.568+0100" featureName="ID" newValue="ACED000574000131">
+    <modelElementId id="_OiT3IMTFEeSBmIHH3KOZNw"/>
+  </operations>
+  <operations xsi:type="org.eclipse.emf.emfstore.internal.server.model.versioning.operations:AttributeOperation" identifier="_azyP0sTFEeSBmIHH3KOZNw" clientDate="2015-03-07T13:28:11.469+0100" featureName="Name" newValue="ACED000574000673616D706C65">
+    <modelElementId id="_OiT3IMTFEeSBmIHH3KOZNw"/>
+  </operations>
+  <operations xsi:type="org.eclipse.emf.emfstore.internal.server.model.versioning.operations:AttributeOperation" identifier="_bNlP4sTFEeSBmIHH3KOZNw" clientDate="2015-03-07T13:28:14.174+0100" featureName="ID" newValue="ACED000574000131">
+    <modelElementId id="_QLWRgMTFEeSBmIHH3KOZNw"/>
+  </operations>
+  <operations xsi:type="org.eclipse.emf.emfstore.internal.server.model.versioning.operations:AttributeOperation" identifier="_bZBD0sTFEeSBmIHH3KOZNw" clientDate="2015-03-07T13:28:15.373+0100" featureName="Name" newValue="ACED000574000474657374">
+    <modelElementId id="_QLWRgMTFEeSBmIHH3KOZNw"/>
+  </operations>
+  <operations xsi:type="org.eclipse.emf.emfstore.internal.server.model.versioning.operations:AttributeOperation" identifier="_budvYsTFEeSBmIHH3KOZNw" clientDate="2015-03-07T13:28:17.622+0100" featureName="ID" newValue="ACED000574000131">
+    <modelElementId id="_Y5_coMTFEeSBmIHH3KOZNw"/>
+  </operations>
+  <operations xsi:type="org.eclipse.emf.emfstore.internal.server.model.versioning.operations:AttributeOperation" identifier="_b9SOgsTFEeSBmIHH3KOZNw" clientDate="2015-03-07T13:28:19.176+0100" featureName="Name" newValue="ACED000574000474657374">
+    <modelElementId id="_Y5_coMTFEeSBmIHH3KOZNw"/>
+  </operations>
+  <operations xsi:type="org.eclipse.emf.emfstore.internal.server.model.versioning.operations:AttributeOperation" identifier="_dye1ksTFEeSBmIHH3KOZNw" clientDate="2015-03-07T13:28:31.465+0100" featureName="Description" newValue="ACED000574001954686973206973206120746573744465736372697074696F6E">
+    <modelElementId id="_Y5_coMTFEeSBmIHH3KOZNw"/>
+  </operations>
+  <operations xsi:type="org.eclipse.emf.emfstore.internal.server.model.versioning.operations:AttributeOperation" identifier="_iGg2ksTFEeSBmIHH3KOZNw" clientDate="2015-03-07T13:29:00.409+0100" featureName="ID" newValue="ACED000574000131">
+    <modelElementId id="_QYt_IMTFEeSBmIHH3KOZNw"/>
+  </operations>
+  <operations xsi:type="org.eclipse.emf.emfstore.internal.server.model.versioning.operations:AttributeOperation" identifier="_iddW8sTFEeSBmIHH3KOZNw" clientDate="2015-03-07T13:29:02.815+0100" featureName="Name" newValue="ACED000574000474657374">
+    <modelElementId id="_QYt_IMTFEeSBmIHH3KOZNw"/>
+  </operations>
+  <operations xsi:type="org.eclipse.emf.emfstore.internal.server.model.versioning.operations:AttributeOperation" identifier="_isji4sTFEeSBmIHH3KOZNw" clientDate="2015-03-07T13:29:04.398+0100" featureName="ID" newValue="ACED000574000131">
+    <modelElementId id="_QhLXkMTFEeSBmIHH3KOZNw"/>
+  </operations>
+  <operations xsi:type="org.eclipse.emf.emfstore.internal.server.model.versioning.operations:AttributeOperation" identifier="_i1NIksTFEeSBmIHH3KOZNw" clientDate="2015-03-07T13:29:05.305+0100" featureName="Name" newValue="ACED000574000474657374">
+    <modelElementId id="_QhLXkMTFEeSBmIHH3KOZNw"/>
+  </operations>
+  <operations xsi:type="org.eclipse.emf.emfstore.internal.server.model.versioning.operations:AttributeOperation" identifier="_jDgDQsTFEeSBmIHH3KOZNw" clientDate="2015-03-07T13:29:06.804+0100" featureName="ID" newValue="ACED000574000131">
+    <modelElementId id="_QorGsMTFEeSBmIHH3KOZNw"/>
+  </operations>
+  <operations xsi:type="org.eclipse.emf.emfstore.internal.server.model.versioning.operations:AttributeOperation" identifier="_jMiDcsTFEeSBmIHH3KOZNw" clientDate="2015-03-07T13:29:07.751+0100" featureName="Name" newValue="ACED000574000474657374">
+    <modelElementId id="_QorGsMTFEeSBmIHH3KOZNw"/>
+  </operations>
+</org.eclipse.emf.emfstore.internal.server.model.versioning:ChangePackage>

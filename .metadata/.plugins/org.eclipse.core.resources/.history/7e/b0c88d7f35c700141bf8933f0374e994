@@ -1,0 +1,101 @@
+package org.emftrace.akm.ui.zestgraphbuilders;
+
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.swt.SWT;
+import org.eclipse.swt.widgets.Composite;
+import org.eclipse.ui.IWorkbenchPartSite;
+import org.emftrace.akm.ui.zest.graph.AKMGraph;
+import org.emftrace.akm.ui.zest.nodes.AKMElementGraphNode;
+import org.emftrace.core.accesslayer.AccessLayer;
+import org.emftrace.metamodel.ArchitectureKnowledgeModel.ArchitectureKnowledgeModel;
+import org.emftrace.metamodel.ArchitectureKnowledgeModel.TechnologySolution;
+import org.emftrace.metamodel.ArchitectureKnowledgeModel.TechnologySolutions;
+import org.emftrace.metamodel.QUARCModel.GSS.Goal;
+
+public class FeaturesExplorationGraphBuilder extends AbstractElementGraphBuilder {
+
+	public FeaturesExplorationGraphBuilder(final Composite pParentComposite, final int pStyle,
+			final IWorkbenchPartSite pWorkbenchPartSite, final ArchitectureKnowledgeModel pAKM,
+			final AccessLayer pAccessLayer) {
+
+		super(pParentComposite, pStyle, pWorkbenchPartSite, pAKM, pAccessLayer);
+
+		System.out.println("CONTENTS:\n");
+		for (EObject object : pAKM.eContents()) {
+			System.out.println(object.toString());
+		}
+	}
+
+	@Override
+	protected void initCache() {
+		// TODO Auto-generated method stub
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see quarc_gssquerygui.zestgpraphbuilders.AbstractElementGraphBuilder#
+	 * buildCustomGraph(org.eclipse.zest.core.widgets.Graph)
+	 */
+	@Override
+	protected void buildCustomGraph(final AKMGraph pZestGraph) {
+
+		super.buildCustomGraph(pZestGraph);
+
+		ArchitectureKnowledgeModel model = cacheManager.getModel();
+		TechnologySolutions technologySolutions = model.getTechnologySolutions();
+		EList<TechnologySolution> technologySolutionList =
+				technologySolutions.getTechnologySolution();
+
+		// create a node for each applicable Element
+		for (TechnologySolution technologySolution : technologySolutionList) {
+
+			// int level = cacheManager.getLevel(element);
+			// int sublevel = cacheManager.getSublevel(element);
+
+			// TODO CB level & leaf implementieren
+			int level = 0;
+			int sublevel = 0;
+			boolean isLeaf = true;
+			boolean isExpandable = false;
+
+			AKMElementGraphNode node =
+					createNode(pZestGraph, SWT.NONE, model, level, sublevel, isLeaf, isExpandable);
+
+			node.getElementFigure().getBodyDecoratorFigure().setImportance(0f);
+		}
+
+		// // create connections for all (outgoing) relations
+		// for (ApplicableElement applicableElement : cacheManager.getAllApplicableElements()) {
+		// for (Relation outgoingDecompositionRelation : cacheManager
+		// .getApplicableOutgoingDecompositionRelations(applicableElement)) {
+		//
+		// GraphConnection connection = createConnection(outgoingDecompositionRelation);
+		//
+		// Integer weight =
+		// cacheManager
+		// .getSelectedGoalPriorizedDecompositionWeight(cacheManager
+		// .getPriorizedGoalDecompositionForDecomposition((Decomposition)
+		// outgoingDecompositionRelation));
+		// connection.setText(weight != null ? String.valueOf(weight) : "");
+		// ConnectionDecorator.decoradeConnection(connection, outgoingDecompositionRelation,
+		// cacheManager.getSourceOfRelation(outgoingDecompositionRelation),
+		// cacheManager.getTargetOfRelation(outgoingDecompositionRelation), null);
+		//
+		// }
+		//
+		// if (cacheManager.getApplicableOutgoingIsARelations(applicableElement) != null) {
+		//
+		// createConnection(cacheManager.getApplicableOutgoingIsARelations(applicableElement));
+		// }
+		//
+		// for (Impact impact : cacheManager
+		// .getApplicableIncomingImpactRelations(applicableElement)) {
+		// createConnection(impact);
+		// }
+		// }
+
+	}
+
+}

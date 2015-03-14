@@ -1,0 +1,31 @@
+package org.emftrace.akm.ui.editors;
+
+import org.eclipse.ui.PartInitException;
+import org.eclipse.ui.forms.editor.FormPage;
+import org.emftrace.akm.ui.editors.formpages.ArchitectureKnowledgeModelElementFormPage;
+import org.emftrace.metamodel.ArchitectureKnowledgeModel.ArchitectureKnowledgeModel;
+import org.emftrace.ui.editors.ModelElementEditor;
+
+public class AKMModelElementEditor extends ModelElementEditor {
+
+	public static final String PAGE_ID = "org.emftrace.akm.ui.editors.AKMModelElementEditor";
+
+	private final String sDefaultPageName = "Test View";
+
+	private FormPage mPage;
+
+	@Override
+	protected void addPages() {
+
+		if(modelElement instanceof ArchitectureKnowledgeModel) {
+			mPage = new ArchitectureKnowledgeModelElementFormPage(this, PAGE_ID, sDefaultPageName, modelElement);
+		}
+
+		try {
+			addPage(mPage);
+		} catch (PartInitException e) {
+			e.printStackTrace();
+		}
+	}
+
+}

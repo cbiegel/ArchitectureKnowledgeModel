@@ -1,0 +1,42 @@
+package org.emftrace.akm.ui.zest.connections;
+
+import org.eclipse.zest.core.widgets.Graph;
+import org.eclipse.zest.core.widgets.GraphConnection;
+import org.eclipse.zest.core.widgets.GraphNode;
+
+public class AKMElementGraphConnection extends GraphConnection {
+
+	// ===========================================================
+	// Constants
+	// ===========================================================
+
+	// ===========================================================
+	// Fields
+	// ===========================================================
+
+	// ===========================================================
+	// Constructors
+	// ===========================================================
+
+	public AKMElementGraphConnection(final Graph graphModel, final int style,
+			final GraphNode source, final GraphNode destination) {
+		super(graphModel, style, source, destination);
+		// TODO Auto-generated constructor stub
+	}
+
+	// ===========================================================
+	// Getter & Setter
+	// ===========================================================
+
+	// ===========================================================
+	// Methods for/from SuperClass/Interfaces
+	// ===========================================================
+
+	// ===========================================================
+	// Methods
+	// ===========================================================
+
+	// ===========================================================
+	// Inner and Anonymous Classes
+	// ===========================================================
+}

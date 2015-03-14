@@ -1,0 +1,12 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Ui
+Bundle-SymbolicName: org.emftrace.akm.ui;singleton:=true
+Bundle-Version: 1.0.0.qualifier
+Bundle-Activator: org.emftrace.akm.ui.Activator
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.core.runtime,
+ org.emftrace.metamodel;bundle-version="0.4.0",
+ org.emftrace.core;bundle-version="0.4.0"
+Bundle-ActivationPolicy: lazy
+Bundle-RequiredExecutionEnvironment: JavaSE-1.7

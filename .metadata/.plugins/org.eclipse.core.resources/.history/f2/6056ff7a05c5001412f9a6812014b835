@@ -1,0 +1,14 @@
+package org.emftrace.akm.ui.editors.builders;
+
+import org.emftrace.core.accesslayer.AccessLayer;
+
+public class AbstractBuilder {
+
+	protected AccessLayer mAccessLayer;
+	
+	
+	public AbstractBuilder(final AccessLayer pAccessLayer) {
+		
+		mAccessLayer = pAccessLayer;
+	}
+}
