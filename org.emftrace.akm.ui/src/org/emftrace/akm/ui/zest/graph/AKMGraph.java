@@ -63,7 +63,6 @@ public class AKMGraph extends Graph {
 		event.widget = pNode;
 		this.notifyListeners(SWT.Selection, event);
 		pNode.notifySelectionListeners();
-
 	}
 
 	/**

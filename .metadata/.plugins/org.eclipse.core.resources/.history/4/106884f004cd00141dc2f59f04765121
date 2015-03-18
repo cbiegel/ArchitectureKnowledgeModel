@@ -1,0 +1,71 @@
+package org.emftrace.akm.ui.zest.figures;
+
+import java.util.List;
+
+import org.eclipse.draw2d.GridData;
+import org.eclipse.draw2d.Label;
+import org.eclipse.draw2d.RectangleFigure;
+import org.eclipse.swt.graphics.Color;
+import org.eclipse.swt.widgets.Display;
+import org.emftrace.metamodel.ArchitectureKnowledgeModel.Benefit;
+import org.emftrace.metamodel.ArchitectureKnowledgeModel.Drawback;
+
+public class DrawbacksFigure extends AbstractASTAFigure {
+
+	// ===========================================================
+	// Constants
+	// ===========================================================
+
+	// ===========================================================
+	// Fields
+	// ===========================================================
+
+	// ===========================================================
+	// Constructors
+	// ===========================================================
+
+	public DrawbacksFigure(final List<Drawback> pDrawbacksList) {
+
+		super();
+
+		Label titleLabel = getTitleLabel();
+
+		mBorderFigure.add(titleLabel);
+
+		addDrawbacks(pDrawbacksList);
+	}
+
+	// ===========================================================
+	// Getter & Setter
+	// ===========================================================
+
+	// ===========================================================
+	// Methods for/from SuperClass/Interfaces
+	// ===========================================================
+
+	@Override
+	public Label getTitleLabel() {
+		Label titleLabel = new Label("Drawbacks");
+		titleLabel.setFont(DEFAULT_FONT_TITLE);
+		return titleLabel;
+	}
+
+	// ===========================================================
+	// Methods
+	// ===========================================================
+	
+	private void addDrawbacks(final List<Drawback> pDrawbacksList) {
+
+		for (Benefit benefit : pDrawbacksList) {
+			Label benefitLabel = new Label(benefit.getName());
+			benefitLabel.setFont(DEFAULT_FONT);
+			GridData layoutData = new GridData(GridData.BEGINNING);
+			mGridLayout.setConstraint(benefitLabel, layoutData);
+			mBorderFigure.add(benefitLabel);
+		}
+	}
+
+	// ===========================================================
+	// Inner and Anonymous Classes
+	// ===========================================================
+}

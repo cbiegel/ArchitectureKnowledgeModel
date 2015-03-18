@@ -1,0 +1,85 @@
+/*******************************************************************************
+ * Copyright (c) 2010-2012 Software Systems/Process Informatics Group,
+ * Ilmenau University of Technology.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributor: Daniel Motschmann
+ ******************************************************************************/
+
+package org.emftrace.akm.ui.zest.figures;
+
+import org.eclipse.draw2d.Graphics;
+import org.eclipse.draw2d.geometry.PointList;
+import org.eclipse.draw2d.geometry.Rectangle;
+
+/**
+ * a Figure for soft goals
+ * 
+ * @author Daniel Motschmann
+ * 
+ */
+public class SoftGoalFigure extends AbstractDecoratorFigure {
+
+	/**
+	 * the constructor
+	 * 
+	 * @param name
+	 *            the name of the Element
+	 * @param isExpandable
+	 *            node is expandable or not
+	 */
+	public SoftGoalFigure(final String name, final boolean isExpandable) {
+		super(name, isExpandable);
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.eclipse.draw2d.Figure#paintFigure(org.eclipse.draw2d.Graphics)
+	 */
+	@Override
+	protected void paintFigure(final Graphics g) {
+		super.paintFigure(g);
+
+		Rectangle r = getClientArea();
+
+		System.out.println(r.x + ", " + r.y);
+
+		PointList points = new PointList();
+		points.addPoint(r.x, (r.y + (r.height / 2)) - 1);
+		points.addPoint(r.x + ((r.width * 1) / 64), r.y + ((r.height * 1) / 4));
+		points.addPoint(r.x + ((r.width * 1) / 16), r.y + ((r.height * 1) / 16));
+		points.addPoint(r.x + ((r.width * 1) / 8), r.y);
+		points.addPoint(r.x + ((r.width * 3) / 16), r.y);
+		points.addPoint(r.x + ((r.width * 1) / 4), r.y + ((r.height * 1) / 16));
+		points.addPoint(r.x + ((r.width * 7) / 16), r.y + ((r.height * 1) / 8));
+		points.addPoint(r.x + ((r.width * 1) / 2), r.y + ((r.height * 1) / 8));
+		points.addPoint(r.x + ((r.width * 9) / 16), r.y + ((r.height * 1) / 8));
+		points.addPoint(r.x + ((r.width * 3) / 4), r.y + ((r.height * 1) / 16));
+		points.addPoint(r.x + ((r.width * 14) / 16), r.y);
+		points.addPoint(r.x + ((r.width * 7) / 8), r.y);
+		points.addPoint(r.x + ((r.width * 15) / 16), r.y + ((r.height * 1) / 16));
+		points.addPoint(r.x + ((r.width * 63) / 64), r.y + ((r.height * 1) / 4));
+		points.addPoint((r.x + r.width) - 1, (r.y + (r.height / 2)) - 1);
+		points.addPoint(r.x + ((r.width * 63) / 64), (r.y + ((r.height * 3) / 4)) - 1);
+		points.addPoint(r.x + ((r.width * 15) / 16), (r.y + ((r.height * 15) / 16)) - 1);
+		points.addPoint(r.x + ((r.width * 7) / 8), (r.y + r.height) - 1);
+		points.addPoint(r.x + ((r.width * 13) / 16), (r.y + r.height) - 1);
+		points.addPoint(r.x + ((r.width * 3) / 4), (r.y + ((r.height * 15) / 16)) - 1);
+		points.addPoint(r.x + ((r.width * 9) / 16), (r.y + ((r.height * 7) / 8)) - 1);
+		points.addPoint(r.x + ((r.width * 1) / 2), (r.y + ((r.height * 7) / 8)) - 1);
+		points.addPoint(r.x + ((r.width * 7) / 16), (r.y + ((r.height * 7) / 8)) - 1);
+		points.addPoint(r.x + ((r.width * 1) / 4), (r.y + ((r.height * 15) / 16)) - 1);
+		points.addPoint(r.x + ((r.width * 3) / 16), (r.y + r.height) - 1);
+		points.addPoint(r.x + ((r.width * 1) / 8), (r.y + r.height) - 1);
+		points.addPoint(r.x + ((r.width * 1) / 16), (r.y + ((r.height * 15) / 16)) - 1);
+		points.addPoint(r.x + ((r.width * 1) / 64), (r.y + ((r.height * 3) / 4)) - 1);
+		points.addPoint(r.x, (r.y + (r.height / 2)) - 1);
+
+		// drawAndFillFigureBorder(g, points);
+		drawAndFillFigureBorderOval(g, r);
+	}
+}

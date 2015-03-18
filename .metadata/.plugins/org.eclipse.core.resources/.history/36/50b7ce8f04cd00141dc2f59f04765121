@@ -1,0 +1,64 @@
+package org.emftrace.akm.ui.zest.figures;
+
+import java.util.List;
+
+import org.eclipse.draw2d.GridData;
+import org.eclipse.draw2d.Label;
+import org.eclipse.draw2d.Triangle;
+import org.eclipse.swt.graphics.Color;
+import org.eclipse.swt.widgets.Display;
+import org.emftrace.metamodel.ArchitectureKnowledgeModel.Benefit;
+
+public class BenefitsFigure extends AbstractASTAFigure {
+
+	// ===========================================================
+	// Constants
+	// ===========================================================
+
+	// ===========================================================
+	// Fields
+	// ===========================================================
+
+	// ===========================================================
+	// Constructors
+	// ===========================================================
+	public BenefitsFigure(final List<Benefit> pBenefitsList) {
+
+		super();
+
+		Label titleLabel = getTitleLabel();
+		GridData layoutData = new GridData(GridData.CENTER);
+		mGridLayout.setConstraint(titleLabel, layoutData);
+
+		mBorderFigure.add(titleLabel);
+
+		Triangle tri = new Triangle();
+		tri.setBackgroundColor(new Color(Display.getCurrent(), 0, 0, 255));
+		tri.setSize(20, 20);
+
+		mBorderFigure.add(tri);
+	}
+
+	// ===========================================================
+	// Getter & Setter
+	// ===========================================================
+
+	// ===========================================================
+	// Methods for/from SuperClass/Interfaces
+	// ===========================================================
+
+	@Override
+	public Label getTitleLabel() {
+		Label titleLabel = new Label("Benefits");
+		titleLabel.setFont(DEFAULT_FONT_TITLE);
+		return titleLabel;
+	}
+
+	// ===========================================================
+	// Methods
+	// ===========================================================
+
+	// ===========================================================
+	// Inner and Anonymous Classes
+	// ===========================================================
+}

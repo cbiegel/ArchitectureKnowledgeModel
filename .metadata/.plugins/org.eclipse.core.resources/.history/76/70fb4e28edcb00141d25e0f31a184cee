@@ -1,0 +1,15 @@
+package org.emftrace.akm.ui.helpers;
+
+import org.eclipse.swt.graphics.Color;
+
+public enum TechnologyFeatureColorCoding {
+
+	DevelopmentCapability(new Color());
+
+	private final Object test;
+
+	private TechnologyFeatureColorCoding(final Object test) {
+
+		this.test = test;
+	}
+}

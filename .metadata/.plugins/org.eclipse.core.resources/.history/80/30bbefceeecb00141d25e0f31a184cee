@@ -1,0 +1,6 @@
+package org.emftrace.akm.ui.helpers;
+
+
+public class CapabilityTypeColorCoding {
+
+}

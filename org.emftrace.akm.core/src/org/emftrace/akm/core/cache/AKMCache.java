@@ -29,8 +29,7 @@ public class AKMCache extends AbstractCache {
 		// addApplicableElementToCache(applicableElement);
 		// }
 
-		Object test = getTechnologySolutions();
-
+		// TODO CB: Cache benutzen
 	}
 
 	/**

@@ -9,6 +9,8 @@ import java.util.List;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 
+import org.eclipse.emf.ecore.EStructuralFeature;
+
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
@@ -19,6 +21,7 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
+import org.emftrace.metamodel.ArchitectureKnowledgeModel.ArchitectureKnowledgeModelFactory;
 import org.emftrace.metamodel.ArchitectureKnowledgeModel.ArchitectureKnowledgeModelPackage;
 import org.emftrace.metamodel.ArchitectureKnowledgeModel.TechnologySolution;
 
@@ -131,6 +134,37 @@ public class TechnologySolutionItemProvider
 	}
 
 	/**
+	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
+	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
+	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
+		if (childrenFeatures == null) {
+			super.getChildrenFeatures(object);
+			childrenFeatures.add(ArchitectureKnowledgeModelPackage.Literals.TECHNOLOGY_SOLUTION__FEATURES);
+			childrenFeatures.add(ArchitectureKnowledgeModelPackage.Literals.TECHNOLOGY_SOLUTION__RELATIONS);
+		}
+		return childrenFeatures;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	protected EStructuralFeature getChildFeature(Object object, Object child) {
+		// Check the type of the specified child object and return the proper feature to use for
+		// adding (see {@link AddCommand}) it as a child.
+
+		return super.getChildFeature(object, child);
+	}
+
+	/**
 	 * This returns TechnologySolution.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -170,6 +204,10 @@ public class TechnologySolutionItemProvider
 			case ArchitectureKnowledgeModelPackage.TECHNOLOGY_SOLUTION__DESCRIPTION:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
+			case ArchitectureKnowledgeModelPackage.TECHNOLOGY_SOLUTION__FEATURES:
+			case ArchitectureKnowledgeModelPackage.TECHNOLOGY_SOLUTION__RELATIONS:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
+				return;
 		}
 		super.notifyChanged(notification);
 	}
@@ -184,6 +222,16 @@ public class TechnologySolutionItemProvider
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
+
+		newChildDescriptors.add
+			(createChildParameter
+				(ArchitectureKnowledgeModelPackage.Literals.TECHNOLOGY_SOLUTION__FEATURES,
+				 ArchitectureKnowledgeModelFactory.eINSTANCE.createTechnologyFeature()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(ArchitectureKnowledgeModelPackage.Literals.TECHNOLOGY_SOLUTION__RELATIONS,
+				 ArchitectureKnowledgeModelFactory.eINSTANCE.createRelation()));
 	}
 
 }

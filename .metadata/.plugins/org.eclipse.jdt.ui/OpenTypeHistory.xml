@@ -1,11 +1,24 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <typeInfoHistroy>
 <typeInfo handle="=org.emftrace.ui/src&lt;org.emftrace.ui.controls{FilteredContentProviderResultItem.java[FilteredContentProviderResultItem" modifiers="1" timestamp="1409782918000"/>
-<typeInfo handle="=org.emftrace.quarc.ui/src&lt;org.emftrace.quarc.ui.zestgpraphbuilders{AbstractElementGraphBuilder.java[AbstractElementGraphBuilder" modifiers="1025" timestamp="1425828199103"/>
-<typeInfo handle="=org.emftrace.akm.core/src&lt;org.emftrace.akm.core.cache{AKMCache.java[AKMCache" modifiers="1" timestamp="1426003963488"/>
+<typeInfo handle="=org.emftrace.akm.core/src&lt;org.emftrace.akm.core.cache{AKMCache.java[AKMCache" modifiers="1" timestamp="1426495297411"/>
 <typeInfo handle="=org.emftrace.quarc.ui/src&lt;org.emftrace.quarc.ui.zest.nodes{GSSElementGraphNode.java[GSSElementGraphNode" modifiers="1" timestamp="1425828199391"/>
 <typeInfo handle="=org.emftrace.quarc.ui/src&lt;org.emftrace.quarc.ui.zest.graph{GSSGraph.java[GSSGraph" modifiers="1" timestamp="1425828199154"/>
 <typeInfo handle="=org.emftrace.quarc.ui/src&lt;org.emftrace.quarc.ui.zestgpraphbuilders{GSSGraphBuilder.java[GSSGraphBuilder" modifiers="1" timestamp="1409782918000"/>
 <typeInfo handle="=org.emftrace.quarc.ui/src&lt;org.emftrace.quarc.ui.editors{QUARCModelElementEditor.java[QUARCModelElementEditor" modifiers="1" timestamp="1409782918000"/>
+<typeInfo handle="=org.emftrace.metamodel/src&lt;org.emftrace.metamodel.ArchitectureKnowledgeModel{ArchitectureKnowledgeModelBase.java[ArchitectureKnowledgeModelBase" modifiers="513" timestamp="1426436726416"/>
+<typeInfo handle="=org.emftrace.akm.ui/src&lt;org.emftrace.akm.ui.zest.layouts{FeatureExplorationLayoutAlgorithm.java[FeatureExplorationLayoutAlgorithm" modifiers="1" timestamp="1426694130054"/>
+<typeInfo handle="=org.emftrace.akm.ui/src&lt;org.emftrace.akm.ui.zestgraphbuilders{FeaturesExplorationGraphBuilder.java[FeaturesExplorationGraphBuilder" modifiers="1" timestamp="1426639502595"/>
 <typeInfo handle="=org.emftrace.quarc.ui/src&lt;org.emftrace.quarc.ui.zest.layouts{GSSGraphLayoutAlgorithm.java[GSSGraphLayoutAlgorithm" modifiers="1" timestamp="1425828199196"/>
+<typeInfo handle="=org.emftrace.quarc.ui/src&lt;org.emftrace.quarc.ui.zestgpraphbuilders{AbstractElementGraphBuilder.java[AbstractElementGraphBuilder" modifiers="1025" timestamp="1425828199103"/>
+<typeInfo handle="=jfreechart/C:\/Program Files\/Java\/jre1.8.0_31\/lib\/rt.jar&lt;javax.swing.text(AbstractDocument$AbstractElement.class[AbstractElement" modifiers="1025" timestamp="1422684568944"/>
+<typeInfo handle="=org.emftrace.akm.ui/src&lt;org.emftrace.akm.ui.zestgraphbuilders{AbstractElementGraphBuilder.java[AbstractElementGraphBuilder" modifiers="1025" timestamp="1426703628230"/>
+<typeInfo handle="=org.emftrace.akm.ui/src&lt;org.emftrace.akm.ui.zest.nodes{TechnologyFeatureGraphNode.java[TechnologyFeatureGraphNode" modifiers="1" timestamp="1426516900042"/>
+<typeInfo handle="=org.emftrace.akm.ui/src&lt;org.emftrace.akm.ui.zest.figures{SoftGoalFigure.java[SoftGoalFigure" modifiers="1" timestamp="1426618720355"/>
+<typeInfo handle="=org.emftrace.akm.ui/src&lt;org.emftrace.akm.ui.zest.graph{AKMGraph.java[AKMGraph" modifiers="1" timestamp="1426689077077"/>
+<typeInfo handle="=org.emftrace.quarc.ui/src&lt;org.emftrace.quarc.ui.zest.figures{SoftGoalFigure.java[SoftGoalFigure" modifiers="1" timestamp="1409782918000"/>
+<typeInfo handle="=org.emftrace.akm.ui/src&lt;org.emftrace.akm.ui.zest.nodes{AbstractAKMGraphNode.java[AbstractAKMGraphNode" modifiers="1025" timestamp="1426694130037"/>
+<typeInfo handle="=org.emftrace.akm.ui/src&lt;org.emftrace.akm.ui.editors.formpages{AbstractAKMFormPage.java[AbstractAKMFormPage" modifiers="1025" timestamp="1426495207219"/>
+<typeInfo handle="=org.emftrace.akm.ui/src&lt;org.emftrace.akm.ui.zest.figures{AbstractAKMFigure.java[AbstractAKMFigure" modifiers="1025" timestamp="1426628649475"/>
+<typeInfo handle="=org.emftrace.akm.ui/src&lt;org.emftrace.akm.ui.zest.figures{ElementFigure.java[ElementFigure" modifiers="1" timestamp="1426628656069"/>
 </typeInfoHistroy>

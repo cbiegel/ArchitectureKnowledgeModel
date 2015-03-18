@@ -4,7 +4,7 @@
 		<item value="1000" key="org.eclipse.search.resultpage.limit"/>
 	</section>
 	<section name="SearchDialog.ScopePart">
-		<item value="0" key="scope"/>
+		<item value="3" key="scope"/>
 	</section>
 	<section name="">
 		<item value="1000" key="org.eclipse.search.resultpage.limit"/>
@@ -17,9 +17,9 @@
 		<item value="false" key="WHOLE_WORD"/>
 		<section name="HISTORY6">
 			<item value="true" key="ignoreCase"/>
-			<item value="0" key="scope"/>
+			<item value="3" key="scope"/>
 			<item value="false" key="isWholeWord"/>
-			<item value="akmelementgraphnode" key="textPattern"/>
+			<item value="übergeben" key="textPattern"/>
 			<item value="false" key="isRegExSearch"/>
 			<list key="fileNamePatterns">
 				<item value="*.java"/>
@@ -31,7 +31,7 @@
 			<item value="true" key="ignoreCase"/>
 			<item value="0" key="scope"/>
 			<item value="false" key="isWholeWord"/>
-			<item value="abstractakmgraphnode" key="textPattern"/>
+			<item value="getfigure" key="textPattern"/>
 			<item value="false" key="isRegExSearch"/>
 			<list key="fileNamePatterns">
 				<item value="*.java"/>
@@ -41,9 +41,9 @@
 		</section>
 		<section name="HISTORY4">
 			<item value="true" key="ignoreCase"/>
-			<item value="0" key="scope"/>
+			<item value="3" key="scope"/>
 			<item value="false" key="isWholeWord"/>
-			<item value="GSSRelationConnection" key="textPattern"/>
+			<item value="selectionlist" key="textPattern"/>
 			<item value="false" key="isRegExSearch"/>
 			<list key="fileNamePatterns">
 				<item value="*.java"/>
@@ -53,9 +53,9 @@
 		</section>
 		<section name="HISTORY10">
 			<item value="true" key="ignoreCase"/>
-			<item value="0" key="scope"/>
+			<item value="3" key="scope"/>
 			<item value="false" key="isWholeWord"/>
-			<item value="labelprovider" key="textPattern"/>
+			<item value="AbstractDecoratorFigure" key="textPattern"/>
 			<item value="false" key="isRegExSearch"/>
 			<list key="fileNamePatterns">
 				<item value="*.java"/>
@@ -65,9 +65,9 @@
 		</section>
 		<section name="HISTORY5">
 			<item value="true" key="ignoreCase"/>
-			<item value="0" key="scope"/>
+			<item value="3" key="scope"/>
 			<item value="false" key="isWholeWord"/>
-			<item value="buildedwitherror" key="textPattern"/>
+			<item value="font" key="textPattern"/>
 			<item value="false" key="isRegExSearch"/>
 			<list key="fileNamePatterns">
 				<item value="*.java"/>
@@ -83,9 +83,9 @@
 		</section>
 		<section name="HISTORY11">
 			<item value="true" key="ignoreCase"/>
-			<item value="0" key="scope"/>
+			<item value="3" key="scope"/>
 			<item value="false" key="isWholeWord"/>
-			<item value="graphentitycontentprovider" key="textPattern"/>
+			<item value="expandChildren" key="textPattern"/>
 			<item value="false" key="isRegExSearch"/>
 			<list key="fileNamePatterns">
 				<item value="*.java"/>
@@ -97,7 +97,7 @@
 			<item value="true" key="ignoreCase"/>
 			<item value="0" key="scope"/>
 			<item value="false" key="isWholeWord"/>
-			<item value="quarcmodelelementeditor" key="textPattern"/>
+			<item value="figureprovider" key="textPattern"/>
 			<item value="false" key="isRegExSearch"/>
 			<list key="fileNamePatterns">
 				<item value="*.java"/>
@@ -107,9 +107,9 @@
 		</section>
 		<section name="HISTORY9">
 			<item value="true" key="ignoreCase"/>
-			<item value="0" key="scope"/>
+			<item value="3" key="scope"/>
 			<item value="false" key="isWholeWord"/>
-			<item value="akmmodelelementeditor" key="textPattern"/>
+			<item value="clientArea" key="textPattern"/>
 			<item value="false" key="isRegExSearch"/>
 			<list key="fileNamePatterns">
 				<item value="*.java"/>
@@ -121,7 +121,7 @@
 			<item value="true" key="ignoreCase"/>
 			<item value="3" key="scope"/>
 			<item value="false" key="isWholeWord"/>
-			<item value="deselect all nodes" key="textPattern"/>
+			<item value="addMouseListener(new MouseListener()" key="textPattern"/>
 			<item value="false" key="isRegExSearch"/>
 			<list key="fileNamePatterns">
 				<item value="*.java"/>
@@ -133,7 +133,7 @@
 			<item value="true" key="ignoreCase"/>
 			<item value="3" key="scope"/>
 			<item value="false" key="isWholeWord"/>
-			<item value="GraphConnection" key="textPattern"/>
+			<item value="pGraph.selectNode(pNode, true);" key="textPattern"/>
 			<item value="false" key="isRegExSearch"/>
 			<list key="fileNamePatterns">
 				<item value="*.java"/>
@@ -143,9 +143,9 @@
 		</section>
 		<section name="HISTORY0">
 			<item value="true" key="ignoreCase"/>
-			<item value="0" key="scope"/>
+			<item value="3" key="scope"/>
 			<item value="false" key="isWholeWord"/>
-			<item value="is a" key="textPattern"/>
+			<item value="lol" key="textPattern"/>
 			<item value="false" key="isRegExSearch"/>
 			<list key="fileNamePatterns">
 				<item value="*.java"/>
@@ -157,7 +157,7 @@
 			<item value="true" key="ignoreCase"/>
 			<item value="3" key="scope"/>
 			<item value="false" key="isWholeWord"/>
-			<item value="isa" key="textPattern"/>
+			<item value="state == 786432" key="textPattern"/>
 			<item value="false" key="isRegExSearch"/>
 			<list key="fileNamePatterns">
 				<item value="*.java"/>

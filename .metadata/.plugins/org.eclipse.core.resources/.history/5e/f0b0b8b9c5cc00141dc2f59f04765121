@@ -1,0 +1,59 @@
+/*******************************************************************************
+ * Copyright (c) 2010-2012 Software Systems/Process Informatics Group,
+ * Ilmenau University of Technology.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributor: Daniel Motschmann
+ ******************************************************************************/
+
+package org.emftrace.akm.ui.zest.figures;
+
+import org.eclipse.draw2d.Graphics;
+import org.eclipse.draw2d.geometry.PointList;
+import org.eclipse.draw2d.geometry.Rectangle;
+
+/**
+ * a Figure for soft goals
+ * 
+ * @author Daniel Motschmann
+ * 
+ */
+public class SoftGoalFigure extends AbstractDecoratorFigure {
+
+	/**
+	 * the constructor
+	 * 
+	 * @param name
+	 *            the name of the Element
+	 * @param isExpandable
+	 *            node is expandable or not
+	 */
+	public SoftGoalFigure(final String name, final boolean isExpandable) {
+		super(name, isExpandable);
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.eclipse.draw2d.Figure#paintFigure(org.eclipse.draw2d.Graphics)
+	 */
+	@Override
+	protected void paintFigure(final Graphics g) {
+		super.paintFigure(g);
+
+		Rectangle r = getClientArea();
+
+		PointList points = new PointList();
+		points.addPoint(r.x, r.y - (r.height / 2));
+		points.addPoint(r.x + (r.width / 2), r.y);
+		points.addPoint(r.x + r.width, r.y - (r.height / 2));
+		points.addPoint(r.x + (r.width / 2), r.y - r.height);
+		points.addPoint(r.x, r.y - (r.height / 2));
+
+		// drawAndFillFigureBorder(g, points);
+		drawAndFillFigureBorderOval(g, r);
+	}
+}

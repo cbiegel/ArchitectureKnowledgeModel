@@ -68,3 +68,8 @@
 1426281225165	Rename local variable 'formData'
 1426281238702	Rename local variable 'formData2'
 1426341309297	Rename field 'mCurrentlySelectedNode'
+1426428279408	Move compilation unit
+1426428380718	Rename local variable 'text'
+1426435912183	Rename local variable 'pTechnologySolution'
+1426439104594	Rename local variable 'parentNode'
+1426461612706	Delete element

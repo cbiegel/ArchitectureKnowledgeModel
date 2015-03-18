@@ -1,0 +1,70 @@
+package org.emftrace.akm.ui.zest.figures;
+
+import java.util.List;
+
+import org.eclipse.draw2d.GridData;
+import org.eclipse.draw2d.GridLayout;
+import org.eclipse.draw2d.Label;
+import org.eclipse.draw2d.LayoutManager;
+import org.eclipse.draw2d.RectangleFigure;
+import org.eclipse.draw2d.Triangle;
+import org.eclipse.swt.graphics.Color;
+import org.eclipse.swt.widgets.Display;
+import org.emftrace.metamodel.ArchitectureKnowledgeModel.Benefit;
+
+public class BenefitsFigure extends AbstractASTAFigure {
+
+	// ===========================================================
+	// Constants
+	// ===========================================================
+
+	// ===========================================================
+	// Fields
+	// ===========================================================
+
+	private RectangleFigure mBorderFigure;
+
+	// ===========================================================
+	// Constructors
+	// ===========================================================
+	public BenefitsFigure(final List<Benefit> pBenefitsList) {
+
+		super();
+
+		mBorderFigure = new RectangleFigure();
+		mBorderFigure.setFill(true);
+
+		LayoutManager layout = new GridLayout(1, false);
+
+		Label titleLabel = new Label("Benefits");
+		titleLabel.setFont(DEFAULT_FONT_TITLE);
+		GridData layoutData = new GridData(GridData.CENTER);
+		layout.setConstraint(titleLabel, layoutData);
+
+		mBorderFigure.setLayoutManager(layout);
+		mBorderFigure.add(titleLabel);
+
+		Triangle tri = new Triangle();
+		tri.setBackgroundColor(new Color(Display.getCurrent(), 0, 0, 255));
+		tri.setSize(20, 20);
+
+		mBorderFigure.add(tri);
+		add(mBorderFigure);
+	}
+
+	// ===========================================================
+	// Getter & Setter
+	// ===========================================================
+
+	// ===========================================================
+	// Methods for/from SuperClass/Interfaces
+	// ===========================================================
+
+	// ===========================================================
+	// Methods
+	// ===========================================================
+
+	// ===========================================================
+	// Inner and Anonymous Classes
+	// ===========================================================
+}

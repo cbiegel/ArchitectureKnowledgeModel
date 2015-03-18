@@ -1,0 +1,44 @@
+package org.emftrace.akm.ui.zest.nodes;
+
+import org.emftrace.metamodel.ArchitectureKnowledgeModel.TechnologyFeature;
+import org.emftrace.metamodel.ArchitectureKnowledgeModel.TechnologySolution;
+
+/**
+ * A GraphNode for representing a TechnologyFeature element with a custom figure (ElementFigure)
+ * 
+ * @author Christopher Biegel
+ */
+public class TechnologyFeatureGraphNode {
+	// ===========================================================
+	// Constants
+	// ===========================================================
+
+	// ===========================================================
+	// Fields
+	// ===========================================================
+	
+	/**
+	 * The represented TechnologyFeature object
+	 */
+	private TechnologyFeature mTechnologyFeature;
+
+	// ===========================================================
+	// Constructors
+	// ===========================================================
+
+	// ===========================================================
+	// Getter & Setter
+	// ===========================================================
+
+	// ===========================================================
+	// Methods for/from SuperClass/Interfaces
+	// ===========================================================
+
+	// ===========================================================
+	// Methods
+	// ===========================================================
+
+	// ===========================================================
+	// Inner and Anonymous Classes
+	// ===========================================================
+}

@@ -6,7 +6,28 @@
     <DevelopmentEnvironments xmi:id="_FGyiYMWKEeSyTdBoaNRe0Q"/>
     <Relations xmi:id="_FOYYIMWKEeSyTdBoaNRe0Q"/>
   </modelElements>
-  <modelElements xsi:type="ArchitectureKnowledgeModel:TechnologySolution" xmi:id="_UH6_QMWKEeSyTdBoaNRe0Q" ID="1" Name="TestSolution" Description="This is a test solution"/>
-  <modelElements xsi:type="ArchitectureKnowledgeModel:TechnologySolution" xmi:id="_XE3tEMdBEeSiGeFB0BvR2w" ID="2" Name="TestSolution2" Description="This is a second test solution!"/>
-  <modelElements xsi:type="ArchitectureKnowledgeModel:TechnologySolution" xmi:id="_zirwUMmYEeSq6saETqWL0A" ID="3" Name="TestSolution3" Description="TestSolution3 Description"/>
+  <modelElements xsi:type="ArchitectureKnowledgeModel:TechnologySolution" xmi:id="_UH6_QMWKEeSyTdBoaNRe0Q" ID="1" Name="TestSolution" Description="This is a test solution" Features="#_DOtmYMswEeSNYq3NycnsDg #_MD3pMMswEeSNYq3NycnsDg #_MSi-YMswEeSNYq3NycnsDg #_n9P2EMw8EeSw2ZJEQXSwSw #_oa6CcMw8EeSw2ZJEQXSwSw #_oqf9oMw8EeSw2ZJEQXSwSw #_o_zfQMw8EeSw2ZJEQXSwSw #_pI5w4Mw8EeSw2ZJEQXSwSw"/>
+  <modelElements xsi:type="ArchitectureKnowledgeModel:TechnologySolution" xmi:id="_XE3tEMdBEeSiGeFB0BvR2w" ID="2" Name="TestSolution2" Description="This is a second test solution!" Features="#_nK6H8MswEeSNYq3NycnsDg #_zzKIAMvXEeSyV_DiL41YvA"/>
+  <modelElements xsi:type="ArchitectureKnowledgeModel:TechnologySolution" xmi:id="_zirwUMmYEeSq6saETqWL0A" ID="3" Name="TestSolution3" Description="TestSolution3 Description" Features="#_nCmLEMyREeSjlPXhRVGZdA #_oHxqcMyREeSjlPXhRVGZdA"/>
+  <modelElements xsi:type="ArchitectureKnowledgeModel:TechnologyFeature" xmi:id="_DOtmYMswEeSNYq3NycnsDg" ID="1" Name="TechnologyFeature1" Description="TechnologyFeature1 Description" ASTA="#_W4jkkMzBEeSLkvfPT1stpQ #_eD2GkMzBEeSLkvfPT1stpQ #_g8KXgMzBEeSLkvfPT1stpQ #_jP24cMzBEeSLkvfPT1stpQ"/>
+  <modelElements xsi:type="ArchitectureKnowledgeModel:TechnologyFeature" xmi:id="_MD3pMMswEeSNYq3NycnsDg" ID="2" Name="TechnologyFeature2" Description="TechnologyFeature2 Description" CapabilityType="ConfigurationCapability"/>
+  <modelElements xsi:type="ArchitectureKnowledgeModel:TechnologyFeature" xmi:id="_MSi-YMswEeSNYq3NycnsDg" ID="3" Name="TechnologyFeature3" Description="TechnologyFeature3 Description" CapabilityType="BehaviorCapability"/>
+  <modelElements xsi:type="ArchitectureKnowledgeModel:TechnologyFeature" xmi:id="_nK6H8MswEeSNYq3NycnsDg" ID="1" Name="TechnologyFeature4" Description="TechnologyFeature4 Description"/>
+  <modelElements xsi:type="ArchitectureKnowledgeModel:ArchitectureKnowledgeModel" xmi:id="_4F0DQMvHEeSJssH6TRqaLA">
+    <TechnologySolutions xmi:id="_5iBikMvHEeSJssH6TRqaLA" ID="1" Name="1" TechnologySolution="#_6s1v4MvHEeSJssH6TRqaLA"/>
+  </modelElements>
+  <modelElements xsi:type="ArchitectureKnowledgeModel:TechnologySolution" xmi:id="_6s1v4MvHEeSJssH6TRqaLA" ID="1" Name="TestSolution1" Features="#_8IEXwMvHEeSJssH6TRqaLA"/>
+  <modelElements xsi:type="ArchitectureKnowledgeModel:TechnologyFeature" xmi:id="_8IEXwMvHEeSJssH6TRqaLA" ID="1" Name="TechnologyFeature1" Description="testDescription"/>
+  <modelElements xsi:type="ArchitectureKnowledgeModel:TechnologyFeature" xmi:id="_zzKIAMvXEeSyV_DiL41YvA" ID="2" Name="TechnologyFeature5" Description="TechnologyFeature5 Description"/>
+  <modelElements xsi:type="ArchitectureKnowledgeModel:TechnologyFeature" xmi:id="_n9P2EMw8EeSw2ZJEQXSwSw" ID="4" Name="TechnologyFeature4" Description=" " CapabilityType="UsabilityCapability"/>
+  <modelElements xsi:type="ArchitectureKnowledgeModel:TechnologyFeature" xmi:id="_oa6CcMw8EeSw2ZJEQXSwSw" ID="5" Name="TechnologyFeature5" Description=" " CapabilityType="InteroperabilityCapability"/>
+  <modelElements xsi:type="ArchitectureKnowledgeModel:TechnologyFeature" xmi:id="_oqf9oMw8EeSw2ZJEQXSwSw" ID="6" Name="TechnologyFeature6" Description=" " CapabilityType="StorageCapability"/>
+  <modelElements xsi:type="ArchitectureKnowledgeModel:TechnologyFeature" xmi:id="_o_zfQMw8EeSw2ZJEQXSwSw" ID="7" Name="TechnologyFeature7" Description=" " CapabilityType="OperationalCapability"/>
+  <modelElements xsi:type="ArchitectureKnowledgeModel:TechnologyFeature" xmi:id="_pI5w4Mw8EeSw2ZJEQXSwSw" ID="8" Name="TechnologyFeature8" Description=" " CapabilityType="CommercialCapability"/>
+  <modelElements xsi:type="ArchitectureKnowledgeModel:TechnologyFeature" xmi:id="_nCmLEMyREeSjlPXhRVGZdA" ID="1" Name="11" Description="1"/>
+  <modelElements xsi:type="ArchitectureKnowledgeModel:TechnologyFeature" xmi:id="_oHxqcMyREeSjlPXhRVGZdA" ID="2" Name="2" Description="2"/>
+  <modelElements xsi:type="ArchitectureKnowledgeModel:FeatureBasedBenefit" xmi:id="_W4jkkMzBEeSLkvfPT1stpQ" ID="1" Name="FBB1" Description="FBB1" Condition="asdads"/>
+  <modelElements xsi:type="ArchitectureKnowledgeModel:FeatureBasedDrawback" xmi:id="_eD2GkMzBEeSLkvfPT1stpQ" ID="2" Name="FBD1" Description="FBD1" Condition="adad"/>
+  <modelElements xsi:type="ArchitectureKnowledgeModel:ConcernBasedBenefit" xmi:id="_g8KXgMzBEeSLkvfPT1stpQ" ID="3" Name="CBB1" Description="CBB1" Condition="adada" Concern="Concern1"/>
+  <modelElements xsi:type="ArchitectureKnowledgeModel:ConcernBasedDrawback" xmi:id="_jP24cMzBEeSLkvfPT1stpQ" ID="4" Name="CBD1" Description="CBD1" Condition="adadaq" Concern="Concern2"/>
 </org.eclipse.emf.emfstore.internal.common.model:Project>

@@ -1,0 +1,18 @@
+package org.emftrace.akm.ui.helpers;
+
+import org.eclipse.swt.graphics.Color;
+import org.eclipse.swt.widgets.Display;
+
+public enum TechnologyFeatureColorCoding {
+
+	DevelopmentCapability(new Color(Display.getCurrent(), 255, 0, 0));
+
+	private final Color mColor;
+
+	TechnologyFeatureColorCoding(final Color pColor) {
+
+		mColor = pColor;
+	}
+	
+	public 
+}

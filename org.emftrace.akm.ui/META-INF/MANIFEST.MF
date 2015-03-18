@@ -27,9 +27,4 @@ Import-Package: org.eclipse.core.expressions,
  org.eclipse.zest.core.widgets,
  org.eclipse.zest.layouts,
  org.eclipse.zest.layouts.algorithms,
- org.eclipse.zest.layouts.dataStructures,
- org.emftrace.quarc.ui.zest.connections,
- org.emftrace.quarc.ui.zest.figures,
- org.emftrace.quarc.ui.zest.figures.listeners,
- org.emftrace.quarc.ui.zest.layouts,
- org.emftrace.quarc.ui.zest.nodes
+ org.eclipse.zest.layouts.dataStructures

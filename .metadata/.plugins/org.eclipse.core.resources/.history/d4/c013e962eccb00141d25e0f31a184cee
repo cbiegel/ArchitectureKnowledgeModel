@@ -1,0 +1,13 @@
+package org.emftrace.akm.ui.helpers;
+
+public enum TechnologyFeatureColorCoding {
+	
+	DevelopmentCapability (new Object());
+	
+	private final Object test;
+	
+	private TechnologyFeatureColorCoding(Object test) {
+		
+		this.test = test;
+	}
+}

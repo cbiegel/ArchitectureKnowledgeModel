@@ -1,0 +1,25 @@
+package org.emftrace.akm.ui.helpers;
+
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
+
+import org.eclipse.swt.graphics.Color;
+import org.emftrace.metamodel.ArchitectureKnowledgeModel.CapabilityType;
+
+public class CapabilityTypeColorCoding {
+
+	private static final Map<String, Color> COLOR_CODING_MAP = new HashMap<String, Color>();
+
+	private static final Set<CapabilityType> CAPABILITY_TYPES_SET = new HashSet<CapabilityType>(
+			Arrays.asList(CapabilityType.values()));
+
+	public CapabilityTypeColorCoding() {
+
+		System.out.println(CapabilityType.values()[0].getClass());
+
+		// COLOR_CODING_MAP.put("", arg1)
+	}
+}

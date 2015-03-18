@@ -17,13 +17,10 @@ import org.eclipse.swt.widgets.Menu;
 import org.eclipse.zest.core.widgets.GraphConnection;
 import org.eclipse.zest.core.widgets.GraphNode;
 import org.eclipse.zest.core.widgets.IContainer;
+import org.emftrace.akm.ui.zest.figures.AbstractAKMFigure;
+import org.emftrace.akm.ui.zest.figures.listeners.IExpandListener;
 import org.emftrace.akm.ui.zest.graph.AKMGraph;
 import org.emftrace.metamodel.ArchitectureKnowledgeModel.ArchitectureKnowledgeModelBase;
-import org.emftrace.metamodel.QUARCModel.GSS.Offset;
-import org.emftrace.metamodel.QUARCModel.GSS.Relation;
-import org.emftrace.quarc.ui.zest.connections.GSSRelationConnection;
-import org.emftrace.quarc.ui.zest.figures.ElementFigure;
-import org.emftrace.quarc.ui.zest.figures.listeners.IExpandListener;
 
 /**
  * This abstract class serves as a super class for all types of GraphNodes of an
@@ -54,9 +51,9 @@ public abstract class AbstractAKMGraphNode extends GraphNode {
 			SWT.COLOR_LIST_SELECTION_TEXT);
 
 	/**
-	 * The custom ElementFigure for the node
+	 * The custom figure for the node
 	 */
-	private ElementFigure mElementFigure = null;
+	private AbstractAKMFigure mFigure = null;
 
 	/**
 	 * The level of the node within the graph (e.g. ArchitectureKnowledgeModel = 0,
@@ -112,7 +109,9 @@ public abstract class AbstractAKMGraphNode extends GraphNode {
 	/**
 	 * The ArchitectureKnowledgeModelBase element represented by this node
 	 */
-	private ArchitectureKnowledgeModelBase mAKMBaseElement;
+	protected ArchitectureKnowledgeModelBase mAKMBaseElement;
+
+	private MouseListener mDefaultMouseListener;
 
 	// ===========================================================
 	// Constructors
@@ -136,15 +135,15 @@ public abstract class AbstractAKMGraphNode extends GraphNode {
 	 *            The ArchitectureKnowledgeModelBase element represented by this node
 	 */
 	public AbstractAKMGraphNode(final IContainer pGraphModel, final int pStyle,
-			final ElementFigure pElementFigure, final int pLevel, final int pSublevel,
+			final AbstractAKMFigure pElementFigure, final int pLevel, final int pSublevel,
 			final ArchitectureKnowledgeModelBase pElement) {
 
 		super(pGraphModel, pStyle, pElementFigure);
 		mLevel = pLevel;
 		mSublevel = pSublevel;
-		mElementFigure = pElementFigure;
-		mElementFigure.setHighlightColor(mDefaultHighlightColor);
-		mElementFigure.setBackgroundColor(mDefaultBackgroundColor);
+		mFigure = pElementFigure;
+		mFigure.setHighlightColor(mDefaultHighlightColor);
+		mFigure.setBackgroundColor(mDefaultBackgroundColor);
 		mIsMarked = false;
 		mIsVisbile = true;
 		mMarkColor = mDefaultMarkColor;
@@ -174,7 +173,8 @@ public abstract class AbstractAKMGraphNode extends GraphNode {
 	@Override
 	public void setHighlightColor(final Color c) {
 		super.setHighlightColor(c);
-		mElementFigure.setHighlightColor(c);
+
+		mFigure.setHighlightColor(c);
 	}
 
 	/*
@@ -186,7 +186,7 @@ public abstract class AbstractAKMGraphNode extends GraphNode {
 	@Override
 	public void setBackgroundColor(final Color c) {
 		super.setBackgroundColor(c);
-		mElementFigure.setBackgroundColor(c);
+		mFigure.setBackgroundColor(c);
 	}
 
 	/*
@@ -197,15 +197,16 @@ public abstract class AbstractAKMGraphNode extends GraphNode {
 	@Override
 	public void unhighlight() {
 		super.unhighlight();
+
 		if (isMarked() == true) {
-			mElementFigure.setHighlightColor(getMarkColor());
-			mElementFigure.setLabelColor(this.getMarkedTextColor());
-			mElementFigure.highlight();
+			mFigure.setHighlightColor(getMarkColor());
+			mFigure.setLabelColor(this.getMarkedTextColor());
+			mFigure.highlight();
 		} else {
 
-			mElementFigure.setHighlightColor(this.getHighlightColor());
-			mElementFigure.setLabelColor(this.getTextColor());
-			mElementFigure.unhighlight();
+			mFigure.setHighlightColor(this.getHighlightColor());
+			mFigure.setLabelColor(this.getTextColor());
+			mFigure.unhighlight();
 		}
 	}
 
@@ -227,9 +228,10 @@ public abstract class AbstractAKMGraphNode extends GraphNode {
 	@Override
 	public void highlight() {
 		super.highlight();
-		mElementFigure.setHighlightColor(this.getHighlightColor());
-		mElementFigure.setLabelColor(this.getHighlightedTextColor());
-		mElementFigure.highlight();
+
+		mFigure.setHighlightColor(this.getHighlightColor());
+		mFigure.setLabelColor(this.getHighlightedTextColor());
+		mFigure.highlight();
 	}
 
 	// ===========================================================
@@ -237,23 +239,23 @@ public abstract class AbstractAKMGraphNode extends GraphNode {
 	// ===========================================================
 
 	/**
-	 * Adds the specified IExpandListener to the ElementFigure of this node
+	 * Adds the specified IExpandListener to the figure of this node
 	 * 
 	 * @param pExpandListener
 	 *            An IExpandListener to be added
 	 */
 	public void addExpandListener(final IExpandListener pExpandListener) {
-		getElementFigure().addExpandListener(pExpandListener);
+		getAKMFigure().addExpandListener(pExpandListener);
 	}
 
 	/**
-	 * Removes the specified IExpandListener from the ElementFigure of this node
+	 * Removes the specified IExpandListener from the figure of this node
 	 * 
 	 * @param pExpandListener
 	 *            An IExpandListener to be removed
 	 */
 	public void removeExpandListener(final IExpandListener pExpandListener) {
-		getElementFigure().removeExpandListener(pExpandListener);
+		getAKMFigure().removeExpandListener(pExpandListener);
 	}
 
 	/**
@@ -263,7 +265,7 @@ public abstract class AbstractAKMGraphNode extends GraphNode {
 	private void addDefaultExpandListener() {
 		final AbstractAKMGraphNode thisNode = this;
 
-		mElementFigure.addExpandListener(new IExpandListener() {
+		mFigure.addExpandListener(new IExpandListener() {
 
 			@Override
 			public void expanded() {
@@ -320,7 +322,7 @@ public abstract class AbstractAKMGraphNode extends GraphNode {
 		final AKMGraph graph = (AKMGraph) getGraphModel();
 		final AbstractAKMGraphNode node = this;
 
-		mElementFigure.addMouseListener(new MouseListener() {
+		mDefaultMouseListener = new MouseListener() {
 
 			@Override
 			public void mousePressed(final MouseEvent me) {
@@ -407,7 +409,13 @@ public abstract class AbstractAKMGraphNode extends GraphNode {
 			public void mouseDoubleClicked(final MouseEvent me) {
 
 			}
-		});
+		};
+
+		mFigure.addMouseListener(mDefaultMouseListener);
+	}
+
+	public void removeDefaultMouseListener() {
+		mFigure.removeMouseListener(mDefaultMouseListener);
 	}
 
 	/**
@@ -416,9 +424,9 @@ public abstract class AbstractAKMGraphNode extends GraphNode {
 	public void mark() {
 		mIsMarked = true;
 		if (this.isSelected() == false) {
-			mElementFigure.setHighlightColor(this.getMarkColor());
-			mElementFigure.setLabelColor(this.getMarkedTextColor());
-			mElementFigure.highlight();
+			mFigure.setHighlightColor(this.getMarkColor());
+			mFigure.setLabelColor(this.getMarkedTextColor());
+			mFigure.highlight();
 		}
 		super.highlight();
 	}
@@ -428,14 +436,14 @@ public abstract class AbstractAKMGraphNode extends GraphNode {
 	 */
 	public void unmark() {
 		mIsMarked = false;
-		mElementFigure.setHighlightColor(this.getHighlightColor());
+		mFigure.setHighlightColor(this.getHighlightColor());
 		if (this.isSelected() == true) {
-			mElementFigure.setLabelColor(this.getHighlightedTextColor());
-			mElementFigure.highlight();
+			mFigure.setLabelColor(this.getHighlightedTextColor());
+			mFigure.highlight();
 			super.highlight();
 		} else {
-			mElementFigure.setLabelColor(this.getTextColor());
-			mElementFigure.unhighlight();
+			mFigure.setLabelColor(this.getTextColor());
+			mFigure.unhighlight();
 			super.unhighlight();
 		}
 	}
@@ -460,12 +468,15 @@ public abstract class AbstractAKMGraphNode extends GraphNode {
 		mSelectionListenerList.remove(pListener);
 	}
 
+	public void removeAllSelectionListeners() {
+		mSelectionListenerList.clear();
+	}
+
 	/**
 	 * Shows all children of the node
 	 */
 	public void showChildren() {
 		showChildren(this);
-		// elementFigure.setIsExpanded();
 		graph.applyLayout();
 	}
 
@@ -474,7 +485,6 @@ public abstract class AbstractAKMGraphNode extends GraphNode {
 	 */
 	public void hideChildren() {
 		hideChildren(this);
-		// elementFigure.setIsCollapsed();
 		graph.applyLayout();
 	}
 
@@ -635,42 +645,37 @@ public abstract class AbstractAKMGraphNode extends GraphNode {
 	 *            The node to expand its children of
 	 */
 	private void expandChildren(final AbstractAKMGraphNode pNode) {
-		// show only connections to expanded nodes
 
 		for (Object connection : pNode.getSourceConnections()) {
-			AbstractAKMGraphNode parentNode =
-					(AbstractAKMGraphNode) ((GraphConnection) connection).getDestination();
-			if (parentNode.isExpanded() && parentNode.isVisible()) {
-				((GraphConnection) connection).setVisible(true);
-			} else {
-				((GraphConnection) connection).setVisible(false);
-			}
-
-		}
-
-		// show all children
-		for (Object connection : pNode.getTargetConnections()) {
-			// TODO CB Relations-Typ ändern
-			if (connection instanceof GSSRelationConnection) {
-				Relation relation = ((GSSRelationConnection) connection).getRelation();
-				if (relation instanceof Offset) {
-					continue;
-				}
-
-			}
 			AbstractAKMGraphNode childNode =
-					(AbstractAKMGraphNode) ((GraphConnection) connection).getSource();
+					(AbstractAKMGraphNode) ((GraphConnection) connection).getDestination();
 
-			if (!childNode.isVisible()) {
-				childNode.show();
-
-			}
+			childNode.show();
 			((GraphConnection) connection).setVisible(true);
-			if (childNode.isExpanded()) {
-				expandChildren(childNode);
-			}
-		}
 
+			// TODO CB: Auskommentierten Code entfernen. Wird diese Logik benötigt?
+			// if (childNode.isExpanded() && childNode.isVisible()) {
+			// ((GraphConnection) connection).setVisible(true);
+			// } else {
+			// ((GraphConnection) connection).setVisible(false);
+			// }
+			//
+			// }
+			//
+			// // show all children
+			// for (Object connection : pNode.getTargetConnections()) {
+			// AbstractAKMGraphNode childNode =
+			// (AbstractAKMGraphNode) ((GraphConnection) connection).getSource();
+			//
+			// if (!childNode.isVisible()) {
+			// childNode.show();
+			//
+			// }
+			// ((GraphConnection) connection).setVisible(true);
+			// if (childNode.isExpanded()) {
+			// expandChildren(childNode);
+			// }
+		}
 	}
 
 	/**
@@ -680,37 +685,17 @@ public abstract class AbstractAKMGraphNode extends GraphNode {
 	 *            The node to collapse its children of
 	 */
 	private void collapseChildren(final AbstractAKMGraphNode node) {
-		for (Object connection : node.getTargetConnections()) {
+
+		for (Object connection : node.getSourceConnections()) {
+
 			AbstractAKMGraphNode childNode =
-					(AbstractAKMGraphNode) ((GraphConnection) connection).getSource();
+					(AbstractAKMGraphNode) ((GraphConnection) connection).getDestination();
 
-			boolean hasNoOtherParent = true;
-			for (Object connectionToParent : childNode.getSourceConnections()) {
-				AbstractAKMGraphNode parent =
-						(AbstractAKMGraphNode) ((GraphConnection) connectionToParent)
-								.getDestination();
+			// TODO CB: Die gelöschte Logik, falls eine Node mehrere Parents hat wieder einführen?
 
-				if (connectionToParent instanceof GSSRelationConnection) {
-					// TODO CB Relations-Typ ändern
-					Relation relation = ((GSSRelationConnection) connectionToParent).getRelation();
-					if (relation instanceof Offset) {
-						continue;
-
-					} else
-
-					if ((parent != node) && parent.isVisible() && parent.isExpanded()) {
-						hasNoOtherParent = false;
-						break;
-					}
-				}
-			}
-
-			if (hasNoOtherParent) {
-				childNode.hide();
-				collapseChildren(childNode);
-			} // else {
+			childNode.hide();
+			collapseChildren(childNode);
 			((GraphConnection) connection).setVisible(false);
-			// }
 		}
 	}
 
@@ -737,6 +722,19 @@ public abstract class AbstractAKMGraphNode extends GraphNode {
 		}
 	}
 
+	public boolean isParentVisibleAndExpanded() {
+
+		if (!getTargetConnections().isEmpty()) {
+			AbstractAKMGraphNode parentNode =
+					(AbstractAKMGraphNode) ((GraphConnection) getTargetConnections().get(0))
+							.getSource();
+
+			return parentNode.isVisible() && parentNode.isExpanded();
+		}
+
+		return false;
+	}
+
 	/**
 	 * Notifies all listening SelectionListeners(
 	 */
@@ -749,23 +747,150 @@ public abstract class AbstractAKMGraphNode extends GraphNode {
 		}
 	}
 
+	/**
+	 * @return True, if this node has children and any of them is visible
+	 */
+	public boolean hasVisibleChildren() {
+		List<Object> sourceConnections = getSourceConnections();
+
+		List<AbstractAKMGraphNode> visibleChildrenList = new ArrayList<AbstractAKMGraphNode>();
+
+		for (Object connection : sourceConnections) {
+			GraphConnection graphConnection = (GraphConnection) connection;
+			AbstractAKMGraphNode childNode =
+					(AbstractAKMGraphNode) graphConnection.getDestination();
+			if (childNode.isVisible()) {
+				visibleChildrenList.add(childNode);
+			}
+		}
+
+		return visibleChildrenList.size() > 0;
+	}
+
+	/**
+	 * @return True, if this node has parents and any of them is visible
+	 */
+	public boolean hasVisibleParents() {
+		List<Object> targetConnections = getTargetConnections();
+
+		List<AbstractAKMGraphNode> visibleParentsList = new ArrayList<AbstractAKMGraphNode>();
+
+		for (Object connection : targetConnections) {
+			GraphConnection graphConnection = (GraphConnection) connection;
+			AbstractAKMGraphNode parentNode = (AbstractAKMGraphNode) graphConnection.getSource();
+			if (parentNode.isVisible()) {
+				visibleParentsList.add(parentNode);
+			}
+		}
+
+		return visibleParentsList.size() > 0;
+	}
+
+	/**
+	 * @return A List of visible children of this node. If this node has no visible children,
+	 *         returns an empty list.
+	 */
+	public List<AbstractAKMGraphNode> getVisibleChildrenList() {
+		List<AbstractAKMGraphNode> result = new ArrayList<AbstractAKMGraphNode>();
+		List<Object> sourceConnections = getSourceConnections();
+
+		for (Object connection : sourceConnections) {
+			GraphConnection graphConnection = (GraphConnection) connection;
+			AbstractAKMGraphNode childNode =
+					(AbstractAKMGraphNode) graphConnection.getDestination();
+			if (childNode.isVisible()) {
+				result.add(childNode);
+			}
+		}
+
+		return result;
+	}
+
+	/**
+	 * @return A List of visible parents of this node. If this node has no visible parents, returns
+	 *         an empty list.
+	 */
+	public List<AbstractAKMGraphNode> getVisibleParentsList() {
+		List<AbstractAKMGraphNode> result = new ArrayList<AbstractAKMGraphNode>();
+		List<Object> targetConnections = getTargetConnections();
+
+		for (Object connection : targetConnections) {
+			GraphConnection graphConnection = (GraphConnection) connection;
+			AbstractAKMGraphNode parentNode = (AbstractAKMGraphNode) graphConnection.getSource();
+			if (parentNode.isVisible()) {
+				result.add(parentNode);
+			}
+		}
+
+		return result;
+	}
+
+	/**
+	 * @return The last visible child of this node. If this node has no visible children, return
+	 *         null.
+	 */
+	public AbstractAKMGraphNode getLastVisibleChild() {
+
+		AbstractAKMGraphNode result = null;
+
+		List<AbstractAKMGraphNode> visibleChildrenList = getVisibleChildrenList();
+		if (hasVisibleChildren()) {
+			result = visibleChildrenList.get(Math.max(visibleChildrenList.size() - 1, 0));
+		}
+
+		return result;
+	}
+
+	/**
+	 * @return The parent of this node. If it has no parents, returns null.
+	 */
+	public AbstractAKMGraphNode getParentNode() {
+
+		AbstractAKMGraphNode result = null;
+		List<Object> targetConnections = getTargetConnections();
+
+		if (!targetConnections.isEmpty()) {
+			result =
+					((AbstractAKMGraphNode) ((GraphConnection) targetConnections.get(0))
+							.getSource());
+		}
+
+		return result;
+	}
+
+	/**
+	 * @return A List of visible siblings of this node. If this node has no visible siblings,
+	 *         returns an empty list.
+	 */
+	public List<AbstractAKMGraphNode> getVisibleSiblingsList() {
+		List<AbstractAKMGraphNode> result = new ArrayList<AbstractAKMGraphNode>();
+		AbstractAKMGraphNode parent = getParentNode();
+
+		if (parent != null) {
+			result = parent.getVisibleChildrenList();
+			result.remove(this);
+		}
+
+		return result;
+	}
+
 	// ===========================================================
 	// Getter & Setter
 	// ===========================================================
 
 	/**
-	 * @return The ElementFigure of this node
+	 * @return The figure of this node
 	 */
-	public ElementFigure getElementFigure() {
-		return mElementFigure;
+	public AbstractAKMFigure getAKMFigure() {
+		return mFigure;
 	}
 
 	/**
-	 * @param pElementFigure
+	 * @param pFigure
 	 *            The ElementFigure to set
 	 */
-	public void setElementFigure(final ElementFigure pElementFigure) {
-		mElementFigure = pElementFigure;
+	public void setAKMFigure(final AbstractAKMFigure pFigure) {
+		mFigure = pFigure;
 	}
 
 	/**
@@ -776,8 +901,8 @@ public abstract class AbstractAKMGraphNode extends GraphNode {
 	 * 
 	 * @return The width of the painted figure
 	 */
-	public int getElementFigureWidth() {
-		return mElementFigure.getWidth();
+	public int getAKMFigureWidth() {
+		return mFigure.getWidth();
 	}
 
 	/**
@@ -788,29 +913,29 @@ public abstract class AbstractAKMGraphNode extends GraphNode {
 	 * 
 	 * @return The height of the painted figure
 	 */
-	public int getElementFigureHeight() {
-		return mElementFigure.getHeight();
+	public int getAKMFigureHeight() {
+		return mFigure.getHeight();
 	}
 
 	/**
 	 * @return True, if this node is expanded (all children are shown). Otherwise, returns false
 	 */
 	public boolean isExpanded() {
-		return mElementFigure.isExpanded();
+		return mFigure.isExpanded();
 	}
 
 	/**
 	 * @return True, if this node it collapsed (no children are shown). Otherwise, returns false
 	 */
 	public boolean isCollasped() {
-		return !mElementFigure.isExpanded();
+		return !mFigure.isExpanded();
 	}
 
 	/**
 	 * Set state to expanded
 	 */
 	public void setIsExpanded() {
-		mElementFigure.setIsExpanded();
+		mFigure.setIsExpanded();
 
 	}
 
@@ -819,7 +944,7 @@ public abstract class AbstractAKMGraphNode extends GraphNode {
 	 */
 	public void setIsCollapsed() {
 
-		mElementFigure.setIsCollapsed();
+		mFigure.setIsCollapsed();
 	}
 
 	/**

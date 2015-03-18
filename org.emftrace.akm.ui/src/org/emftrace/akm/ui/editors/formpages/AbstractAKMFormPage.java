@@ -63,7 +63,9 @@ public abstract class AbstractAKMFormPage extends FormPage {
 	public void setFocus() {
 		super.setFocus();
 		managedFormComposite.setFocus();
-		managedFormComposite.getChildren()[0].setFocus();
+		if (managedFormComposite.getChildren().length > 0) {
+			managedFormComposite.getChildren()[0].setFocus();
+		}
 	}
 
 	/*

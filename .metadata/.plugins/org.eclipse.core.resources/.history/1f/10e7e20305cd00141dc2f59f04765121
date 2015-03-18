@@ -1,0 +1,68 @@
+package org.emftrace.akm.ui.zest.figures;
+
+import java.util.List;
+
+import org.eclipse.draw2d.GridData;
+import org.eclipse.draw2d.Label;
+import org.emftrace.metamodel.ArchitectureKnowledgeModel.Benefit;
+import org.emftrace.metamodel.ArchitectureKnowledgeModel.Drawback;
+
+public class DrawbacksFigure extends AbstractASTAFigure {
+
+	// ===========================================================
+	// Constants
+	// ===========================================================
+
+	// ===========================================================
+	// Fields
+	// ===========================================================
+
+	// ===========================================================
+	// Constructors
+	// ===========================================================
+
+	public DrawbacksFigure(final List<Drawback> pDrawbacksList) {
+
+		super();
+
+		Label titleLabel = getTitleLabel();
+
+		mBorderFigure.add(titleLabel);
+
+		addDrawbacks(pDrawbacksList);
+	}
+
+	// ===========================================================
+	// Getter & Setter
+	// ===========================================================
+
+	// ===========================================================
+	// Methods for/from SuperClass/Interfaces
+	// ===========================================================
+
+	@Override
+	public Label getTitleLabel() {
+		Label titleLabel = new Label("Drawbacks");
+		titleLabel.setFont(DEFAULT_FONT_TITLE);
+		return titleLabel;
+	}
+
+	// ===========================================================
+	// Methods
+	// ===========================================================
+
+	private void addDrawbacks(final List<Drawback> pDrawbacksList) {
+
+		for (Drawback drawback : pDrawbacksList) {
+			Label drawbackLabel = new Label(drawback.getName());
+			drawbackLabel.setFont(DEFAULT_FONT);
+			GridData layoutData = new GridData(GridData.BEGINNING);
+			mGridLayout.setConstraint(drawbackLabel, layoutData);
+			mBorderFigure.add(drawbackLabel);
+		}
+	}
+
+	// ===========================================================
+	// Inner and Anonymous Classes
+	// ===========================================================
+}

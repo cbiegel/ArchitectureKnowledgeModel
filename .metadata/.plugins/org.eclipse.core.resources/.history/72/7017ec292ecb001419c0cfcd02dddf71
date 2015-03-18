@@ -1,0 +1,76 @@
+package org.emftrace.akm.ui.zest.nodes;
+
+import org.eclipse.zest.core.widgets.IContainer;
+import org.emftrace.metamodel.ArchitectureKnowledgeModel.TechnologyFeature;
+import org.emftrace.metamodel.ArchitectureKnowledgeModel.TechnologySolution;
+import org.emftrace.quarc.ui.zest.figures.ElementFigure;
+
+/**
+ * A GraphNode for representing a TechnologyFeature element with a custom figure (ElementFigure)
+ * 
+ * @author Christopher Biegel
+ */
+public class TechnologyFeatureGraphNode extends AbstractAKMGraphNode {
+
+	// ===========================================================
+	// Fields
+	// ===========================================================
+
+	/**
+	 * The represented TechnologyFeature object
+	 */
+	private TechnologyFeature mTechnologyFeature;
+
+	// ===========================================================
+	// Constructors
+	// ===========================================================
+
+	/**
+	 * The default constructor
+	 * 
+	 * @param pGraphModel
+	 *            The graph that contains this node
+	 * @param pStyle
+	 *            The SWT style used for this node
+	 * @param pElementFigure
+	 *            The custom figure for the node
+	 * @param pLevel
+	 *            The level of the node within the graph (e.g. ArchitectureKnowledgeModel = 0,
+	 *            TechnologySolution = 1, TechnologyFeature = 2, ...)
+	 * @param pSublevel
+	 *            The sub level of the node (e.g. count of ancestors)
+	 * @param pTechnologyFeature
+	 *            The element represented by this node
+	 */
+	public TechnologyFeatureGraphNode(final IContainer pGraphModel, final int pStyle,
+			final ElementFigure pElementFigure, final int pLevel, final int pSublevel,
+			final TechnologyFeature pTechnologyFeature) {
+
+		super(pGraphModel, pStyle, pElementFigure, pLevel, pSublevel, pTechnologyFeature);
+
+		mTechnologyFeature = pTechnologyFeature;
+	}
+
+	// ===========================================================
+	// Getter & Setter
+	// ===========================================================
+	
+	/**
+	 * Getter for the represented Element
+	 * 
+	 * @return The element represented by this node
+	 */
+	public TechnologyFeature getTechnologyFeature() {
+		return mTechnologyFeature;
+	}
+
+	// ===========================================================
+	// Methods for/from SuperClass/Interfaces
+	// ===========================================================
+	
+	@Override
+	public String toString() {
+		// must be overridden due to GraphNode using text attribute for toString
+		return "TechnologyFeatureGraphNode \"" + mTechnologyFeature.getName() + "\"";
+	}
+}

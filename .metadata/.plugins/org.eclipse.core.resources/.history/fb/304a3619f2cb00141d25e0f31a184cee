@@ -1,0 +1,64 @@
+package org.emftrace.akm.ui.helpers;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import org.eclipse.swt.graphics.Color;
+import org.eclipse.swt.widgets.Display;
+import org.emftrace.metamodel.ArchitectureKnowledgeModel.CapabilityType;
+
+public class CapabilityTypeColorCoding {
+
+	private static final Map<CapabilityType, Color> COLOR_CODING_MAP =
+			new HashMap<CapabilityType, Color>();
+
+	// Static constructor
+	static {
+
+		Display display = Display.getCurrent();
+
+		// Development Capability = red
+		COLOR_CODING_MAP.put(CapabilityType.DEVELOPMENT_CAPABILITY, new Color(display, 255, 0, 0));
+
+		// Usability Capability = green
+		COLOR_CODING_MAP.put(CapabilityType.USABILITY_CAPABILITY, new Color(display, 0, 255, 0));
+
+		// Behavior Capability = blue
+		COLOR_CODING_MAP.put(CapabilityType.BEHAVIOR_CAPABILITY, new Color(display, 0, 0, 255));
+
+		// Interoperability Capability = orange
+		COLOR_CODING_MAP.put(CapabilityType.INTEROPERABILITY_CAPABILITY, new Color(display, 255,
+				125, 0));
+
+		// Configuration Capability = purple
+		COLOR_CODING_MAP
+				.put(CapabilityType.CONFIGURATION_CAPABILITY, new Color(display, 50, 0, 50));
+
+		// Operational Capability = brown
+		COLOR_CODING_MAP
+				.put(CapabilityType.OPERATIONAL_CAPABILITY, new Color(display, 185, 90, 50));
+
+		// Storage Capability = fuchsia
+		COLOR_CODING_MAP.put(CapabilityType.STORAGE_CAPABILITY, new Color(display, 100, 0, 100));
+
+		// Commercial Capability = yellow
+		COLOR_CODING_MAP.put(CapabilityType.COMMERCIAL_CAPABILITY, new Color(display, 100, 100, 0));
+	}
+
+	/**
+	 * Get the color for the given capability type.
+	 * 
+	 * @param pCapabilityTypeName The capability type to get the color for
+	 * @return The color for the given capability type. If the capability type is unknown, returns black color
+	 */
+	public static Color getColorForCapabilityType(final String pCapabilityTypeName) {
+		CapabilityType capabilityType = CapabilityType.valueOf(pCapabilityTypeName);
+
+		if ((capabilityType != null) && COLOR_CODING_MAP.containsKey(capabilityType)) {
+			return COLOR_CODING_MAP.get(capabilityType);
+		} else {
+			// Default: Black Color
+			return new Color(Display.getCurrent(), 255, 255, 255);
+		}
+	}
+}

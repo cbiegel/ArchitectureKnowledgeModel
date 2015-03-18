@@ -1,0 +1,83 @@
+package org.emftrace.akm.ui.zest.figures;
+
+import org.eclipse.draw2d.Graphics;
+import org.eclipse.draw2d.geometry.PointList;
+import org.eclipse.draw2d.geometry.Rectangle;
+import org.eclipse.swt.graphics.Color;
+import org.eclipse.swt.widgets.Display;
+
+public class TechnologyFeatureFigure extends AbstractDecoratorFigure {
+
+	// ===========================================================
+	// Fields
+	// ===========================================================
+
+	private Color mBorderColor;
+
+	// ===========================================================
+	// Constructors
+	// ===========================================================
+
+	public TechnologyFeatureFigure(final String pName, final boolean pIsExpandable,
+			final Color pBorderColor) {
+
+		super(pName, pIsExpandable);
+		mBorderColor = pBorderColor;
+	}
+
+	// ===========================================================
+	// Methods for/from SuperClass/Interfaces
+	// ===========================================================
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.eclipse.draw2d.Figure#paintFigure(org.eclipse.draw2d.Graphics)
+	 */
+	@Override
+	protected void paintFigure(final Graphics g) {
+		super.paintFigure(g);
+
+		Rectangle r = getClientArea();
+
+		PointList points = new PointList();
+		points.addPoint(r.x, (r.y + (r.height / 2)) - 1);
+		points.addPoint(r.x + ((r.width * 1) / 64), r.y + ((r.height * 1) / 4));
+		points.addPoint(r.x + ((r.width * 1) / 16), r.y + ((r.height * 1) / 16));
+		points.addPoint(r.x + ((r.width * 1) / 8), r.y);
+		points.addPoint(r.x + ((r.width * 3) / 16), r.y);
+		points.addPoint(r.x + ((r.width * 1) / 4), r.y + ((r.height * 1) / 16));
+		points.addPoint(r.x + ((r.width * 7) / 16), r.y + ((r.height * 1) / 8));
+		points.addPoint(r.x + ((r.width * 1) / 2), r.y + ((r.height * 1) / 8));
+		points.addPoint(r.x + ((r.width * 9) / 16), r.y + ((r.height * 1) / 8));
+		points.addPoint(r.x + ((r.width * 3) / 4), r.y + ((r.height * 1) / 16));
+		points.addPoint(r.x + ((r.width * 14) / 16), r.y);
+		points.addPoint(r.x + ((r.width * 7) / 8), r.y);
+		points.addPoint(r.x + ((r.width * 15) / 16), r.y + ((r.height * 1) / 16));
+		points.addPoint(r.x + ((r.width * 63) / 64), r.y + ((r.height * 1) / 4));
+		points.addPoint((r.x + r.width) - 1, (r.y + (r.height / 2)) - 1);
+		points.addPoint(r.x + ((r.width * 63) / 64), (r.y + ((r.height * 3) / 4)) - 1);
+		points.addPoint(r.x + ((r.width * 15) / 16), (r.y + ((r.height * 15) / 16)) - 1);
+		points.addPoint(r.x + ((r.width * 7) / 8), (r.y + r.height) - 1);
+		points.addPoint(r.x + ((r.width * 13) / 16), (r.y + r.height) - 1);
+		points.addPoint(r.x + ((r.width * 3) / 4), (r.y + ((r.height * 15) / 16)) - 1);
+		points.addPoint(r.x + ((r.width * 9) / 16), (r.y + ((r.height * 7) / 8)) - 1);
+		points.addPoint(r.x + ((r.width * 1) / 2), (r.y + ((r.height * 7) / 8)) - 1);
+		points.addPoint(r.x + ((r.width * 7) / 16), (r.y + ((r.height * 7) / 8)) - 1);
+		points.addPoint(r.x + ((r.width * 1) / 4), (r.y + ((r.height * 15) / 16)) - 1);
+		points.addPoint(r.x + ((r.width * 3) / 16), (r.y + r.height) - 1);
+		points.addPoint(r.x + ((r.width * 1) / 8), (r.y + r.height) - 1);
+		points.addPoint(r.x + ((r.width * 1) / 16), (r.y + ((r.height * 15) / 16)) - 1);
+		points.addPoint(r.x + ((r.width * 1) / 64), (r.y + ((r.height * 3) / 4)) - 1);
+		points.addPoint(r.x, (r.y + (r.height / 2)) - 1);
+
+		if (mBorderColor != null) {
+			g.setForegroundColor(mBorderColor);
+		} else {
+			g.setForegroundColor(new Color(Display.getCurrent(), 255, 255, 255));
+		}
+
+		// drawAndFillFigureBorder(g, points);
+		drawAndFillFigureBorderOval(g, r);
+	}
+}

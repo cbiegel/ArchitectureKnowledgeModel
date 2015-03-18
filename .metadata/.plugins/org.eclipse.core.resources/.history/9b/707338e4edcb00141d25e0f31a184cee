@@ -1,0 +1,9 @@
+package org.emftrace.akm.ui.helpers;
+
+import org.eclipse.swt.graphics.Color;
+import org.eclipse.swt.widgets.Display;
+
+public class CapabilityTypeColorCoding {
+
+	
+}

@@ -1,0 +1,4 @@
+package org.emftrace.akm.ui.helpers;
+
+public enum TechnologyFeatureColorCoding {
+}

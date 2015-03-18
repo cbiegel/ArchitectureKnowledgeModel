@@ -1,0 +1,171 @@
+package org.emftrace.akm.ui.zest.figures;
+
+import java.util.List;
+
+import org.eclipse.draw2d.Figure;
+import org.eclipse.draw2d.GridData;
+import org.eclipse.draw2d.Label;
+import org.eclipse.draw2d.MouseEvent;
+import org.eclipse.draw2d.MouseListener;
+import org.emftrace.akm.ui.zest.graph.AKMGraph;
+import org.emftrace.akm.ui.zest.nodes.AbstractAKMGraphNode;
+import org.emftrace.metamodel.ArchitectureKnowledgeModel.Benefit;
+
+public class BenefitsFigure extends AbstractASTAFigure {
+
+	// ===========================================================
+	// Constants
+	// ===========================================================
+
+	// ===========================================================
+	// Fields
+	// ===========================================================
+
+	// ===========================================================
+	// Constructors
+	// ===========================================================
+	public BenefitsFigure(final List<Benefit> pBenefitsList) {
+
+		super();
+
+		Label titleLabel = getTitleLabel();
+
+		mBorderFigure.add(titleLabel);
+
+		addBenefits(pBenefitsList);
+	}
+
+	// ===========================================================
+	// Getter & Setter
+	// ===========================================================
+
+	// ===========================================================
+	// Methods for/from SuperClass/Interfaces
+	// ===========================================================
+
+	@Override
+	public Label getTitleLabel() {
+		// Added 2 whitespaces in order to make the title the same length as "Drawbacks"
+		Label titleLabel = new Label("Benefits  ");
+		titleLabel.setFont(DEFAULT_FONT_TITLE);
+		GridData layoutData = new GridData(GridData.CENTER);
+		mGridLayout.setConstraint(titleLabel, layoutData);
+		return titleLabel;
+	}
+
+	// ===========================================================
+	// Methods
+	// ===========================================================
+
+	private void addBenefits(final List<Benefit> pBenefitsList) {
+
+		for (Benefit benefit : pBenefitsList) {
+			Label benefitLabel = new Label(benefit.getName());
+			benefitLabel.setFont(DEFAULT_FONT);
+			GridData layoutData = new GridData(GridData.BEGINNING);
+			mGridLayout.setConstraint(benefitLabel, layoutData);
+
+			mContentsList.add(benefitLabel);
+
+			mBorderFigure.add(benefitLabel);
+		}
+	}
+
+	/**
+	 * Creates a mouse listener to open a context menu by right clicking or to select the node by
+	 * left clicking
+	 */
+	private void addDefaultMouseListener(final Figure pFigure) {
+		final AKMGraph graph = (AKMGraph) getGraphModel();
+		final AbstractAKMGraphNode node = this;
+
+		mFigure.addMouseListener(new MouseListener() {
+
+			@Override
+			public void mousePressed(final MouseEvent me) {
+
+			}
+
+			@Override
+			public void mouseReleased(final MouseEvent me) {
+				if (me.button == 1) {
+					// left mouse button was pressed
+					setSelection(me.getState());
+				} else if (me.button == 3) {
+					// right mouse button was pressed
+
+					// get location of the mouse in the workspace
+					int x =
+							graph.getParent().getParent().getParent().getParent().getParent()
+									.getParent().getParent().getParent().getParent().getParent()
+									.getLocation().x;
+					int y =
+							graph.getParent().getParent().getParent().getParent().getParent()
+									.getParent().getParent().getParent().getParent().getParent()
+									.getLocation().y;
+					x +=
+							graph.getParent().getParent().getParent().getParent().getParent()
+									.getParent().getParent().getParent().getParent().getLocation().x;
+					y +=
+							graph.getParent().getParent().getParent().getParent().getParent()
+									.getParent().getParent().getParent().getParent().getLocation().y;
+
+					x +=
+							graph.getParent().getParent().getParent().getParent().getParent()
+									.getParent().getParent().getParent().getParent().getParent()
+									.getParent().getLocation().x;
+					y +=
+							graph.getParent().getParent().getParent().getParent().getParent()
+									.getParent().getParent().getParent().getParent().getParent()
+									.getParent().getLocation().y;
+
+					x +=
+							graph.getParent().getParent().getParent().getParent().getParent()
+									.getParent().getParent().getParent().getParent().getParent()
+									.getParent().getParent().getParent().getParent().getLocation().x;
+					y +=
+							graph.getParent().getParent().getParent().getParent().getParent()
+									.getParent().getParent().getParent().getParent().getParent()
+									.getParent().getParent().getParent().getParent().getLocation().y;
+
+					openMenu(me.x + x, me.y + y);
+				}
+			}
+
+			private void openMenu(final int xPos, final int yPos) {
+			}
+
+			private void setSelection(final int state) {
+
+				// TODO CB State-Code in Variable auslagern
+				if (state == 786432) {
+					// control was pressed & hold
+
+					if (graph.getSelection().contains(node)) {
+						// remove selected node
+
+						graph.deselectNode(node, false);
+					} else {
+						// add selected node
+						graph.selectNode(node, false);
+					}
+				} else if (graph.getSelection().contains(node)) {
+					// clear selection
+					graph.deselectNode(node, true);
+				} else {
+					// add selected node
+					graph.selectNode(node, true);
+				}
+			}
+
+			@Override
+			public void mouseDoubleClicked(final MouseEvent me) {
+
+			}
+		});
+	}
+
+	// ===========================================================
+	// Inner and Anonymous Classes
+	// ===========================================================
+}

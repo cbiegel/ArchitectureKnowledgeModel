@@ -6,13 +6,18 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecp.edit.spi.util.ECPModelElementChangeListener;
 
 /**
- * <!-- begin-user-doc --> A representation of the model object '<em><b>Base</b></em>'. <!-- end-user-doc -->
+ * <!-- begin-user-doc --> A representation of the model object '<em><b>Base</b></em>'. <!--
+ * end-user-doc -->
  * 
  * <p>
  * The following features are supported:
  * <ul>
- * <li>{@link org.emftrace.metamodel.ArchitectureKnowledgeModel.ArchitectureKnowledgeModelBase#getID <em>ID</em>}</li>
- * <li>{@link org.emftrace.metamodel.ArchitectureKnowledgeModel.ArchitectureKnowledgeModelBase#getName <em>Name</em>}</li>
+ * <li>
+ * {@link org.emftrace.metamodel.ArchitectureKnowledgeModel.ArchitectureKnowledgeModelBase#getID
+ * <em>ID</em>}</li>
+ * <li>
+ * {@link org.emftrace.metamodel.ArchitectureKnowledgeModel.ArchitectureKnowledgeModelBase#getName
+ * <em>Name</em>}</li>
  * </ul>
  * </p>
  * 
@@ -24,7 +29,8 @@ public interface ArchitectureKnowledgeModelBase extends EObject {
 	/**
 	 * Returns the value of the '<em><b>ID</b></em>' attribute. <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>ID</em>' attribute isn't clear, there really should be more of a description here...
+	 * If the meaning of the '<em>ID</em>' attribute isn't clear, there really should be more of a
+	 * description here...
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * 
@@ -37,8 +43,9 @@ public interface ArchitectureKnowledgeModelBase extends EObject {
 	String getID();
 
 	/**
-	 * Sets the value of the '{@link org.emftrace.metamodel.ArchitectureKnowledgeModel.ArchitectureKnowledgeModelBase#getID <em>ID</em>}' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Sets the value of the '
+	 * {@link org.emftrace.metamodel.ArchitectureKnowledgeModel.ArchitectureKnowledgeModelBase#getID
+	 * <em>ID</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @param value
 	 *            the new value of the '<em>ID</em>' attribute.
@@ -50,7 +57,8 @@ public interface ArchitectureKnowledgeModelBase extends EObject {
 	/**
 	 * Returns the value of the '<em><b>Name</b></em>' attribute. <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Name</em>' attribute isn't clear, there really should be more of a description here...
+	 * If the meaning of the '<em>Name</em>' attribute isn't clear, there really should be more of a
+	 * description here...
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * 
@@ -63,8 +71,9 @@ public interface ArchitectureKnowledgeModelBase extends EObject {
 	String getName();
 
 	/**
-	 * Sets the value of the '{@link org.emftrace.metamodel.ArchitectureKnowledgeModel.ArchitectureKnowledgeModelBase#getName <em>Name</em>}'
-	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Sets the value of the '
+	 * {@link org.emftrace.metamodel.ArchitectureKnowledgeModel.ArchitectureKnowledgeModelBase#getName
+	 * <em>Name</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @param value
 	 *            the new value of the '<em>Name</em>' attribute.

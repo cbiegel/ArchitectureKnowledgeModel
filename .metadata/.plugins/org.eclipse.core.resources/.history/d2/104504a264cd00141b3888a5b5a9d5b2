@@ -1,0 +1,268 @@
+package org.emftrace.akm.ui.zest.figures;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.eclipse.draw2d.GridLayout;
+import org.eclipse.draw2d.Label;
+import org.eclipse.draw2d.MouseEvent;
+import org.eclipse.draw2d.MouseListener;
+import org.eclipse.draw2d.RectangleFigure;
+import org.eclipse.swt.SWT;
+import org.eclipse.swt.graphics.Color;
+import org.eclipse.swt.graphics.Font;
+import org.emftrace.akm.ui.zest.figures.listeners.IExpandListener;
+import org.emftrace.akm.ui.zest.graph.AKMGraph;
+import org.emftrace.akm.ui.zest.nodes.AbstractAKMGraphNode;
+import org.emftrace.metamodel.ArchitectureKnowledgeModel.ASTA;
+
+public abstract class AbstractASTAFigure extends AbstractAKMFigure {
+
+	// ===========================================================
+	// Constants
+	// ===========================================================
+
+	/**
+	 * the default font size
+	 */
+	final protected static int DEFAULT_FONT_SIZE = 8;
+
+	/**
+	 * the default font for any contents
+	 */
+	final protected static Font DEFAULT_FONT = new Font(null, "Arial", DEFAULT_FONT_SIZE,
+			SWT.NORMAL);
+
+	/**
+	 * the default font for the name
+	 */
+	final protected static Font DEFAULT_FONT_TITLE = new Font(null, "Arial", DEFAULT_FONT_SIZE,
+			SWT.BOLD);
+
+	/**
+	 * 
+	 */
+	final protected List<Label> mContentsList;
+
+	// ===========================================================
+	// Fields
+	// ===========================================================
+
+	protected RectangleFigure mBorderFigure;
+
+	protected GridLayout mGridLayout;
+
+	// ===========================================================
+	// Constructors
+	// ===========================================================
+	public AbstractASTAFigure() {
+
+		mContentsList = new ArrayList<Label>();
+
+		mBorderFigure = new RectangleFigure();
+		mBorderFigure.setFill(true);
+
+		mGridLayout = new GridLayout(1, false);
+		mGridLayout.marginHeight = 10;
+		mGridLayout.marginWidth = 10;
+
+		setLayoutManager(new GridLayout(1, false));
+		mBorderFigure.setLayoutManager(mGridLayout);
+		add(mBorderFigure);
+		setOpaque(false);
+		setSize(-1, -1);
+	}
+
+	// ===========================================================
+	// Getter & Setter
+	// ===========================================================
+
+	// ===========================================================
+	// Methods for/from SuperClass/Interfaces
+	// ===========================================================
+
+	@Override
+	public void highlight() {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void unhighlight() {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void setHighlightColor(final Color pColor) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public boolean isExpanded() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public void setIsExpanded() {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void setIsCollapsed() {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void setLabelColor(final Color pColor) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void addMouseListener(final MouseListener listener) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void removeMouseListener(final MouseListener listener) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void addExpandListener(final IExpandListener expandListener) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void removeExpandListener(final IExpandListener expandListener) {
+		// TODO Auto-generated method stub
+
+	}
+
+	// ===========================================================
+	// Methods
+	// ===========================================================
+
+	public void updateContents() {
+		// TODO CB: Methode implementieren
+	}
+
+	/**
+	 * Creates a mouse listener to open a context menu by right clicking or to select the node by
+	 * left clicking
+	 */
+	public void addDMouseListener(final AKMGraph pGraph, final AbstractAKMGraphNode pNode) {
+
+		for (final Label label : mContentsList) {
+			label.addMouseListener(new MouseListener() {
+
+				@Override
+				public void mousePressed(final MouseEvent me) {
+
+				}
+
+				@Override
+				public void mouseReleased(final MouseEvent me) {
+					if (me.button == 1) {
+						// left mouse button was pressed
+						setSelection(me.getState());
+					} else if (me.button == 3) {
+						// right mouse button was pressed
+
+						// get location of the mouse in the workspace
+						int x =
+								pGraph.getParent().getParent().getParent().getParent().getParent()
+										.getParent().getParent().getParent().getParent()
+										.getParent().getLocation().x;
+						int y =
+								pGraph.getParent().getParent().getParent().getParent().getParent()
+										.getParent().getParent().getParent().getParent()
+										.getParent().getLocation().y;
+						x +=
+								pGraph.getParent().getParent().getParent().getParent().getParent()
+										.getParent().getParent().getParent().getParent()
+										.getLocation().x;
+						y +=
+								pGraph.getParent().getParent().getParent().getParent().getParent()
+										.getParent().getParent().getParent().getParent()
+										.getLocation().y;
+
+						x +=
+								pGraph.getParent().getParent().getParent().getParent().getParent()
+										.getParent().getParent().getParent().getParent()
+										.getParent().getParent().getLocation().x;
+						y +=
+								pGraph.getParent().getParent().getParent().getParent().getParent()
+										.getParent().getParent().getParent().getParent()
+										.getParent().getParent().getLocation().y;
+
+						x +=
+								pGraph.getParent().getParent().getParent().getParent().getParent()
+										.getParent().getParent().getParent().getParent()
+										.getParent().getParent().getParent().getParent()
+										.getParent().getLocation().x;
+						y +=
+								pGraph.getParent().getParent().getParent().getParent().getParent()
+										.getParent().getParent().getParent().getParent()
+										.getParent().getParent().getParent().getParent()
+										.getParent().getLocation().y;
+
+						openMenu(me.x + x, me.y + y);
+					}
+				}
+
+				private void openMenu(final int xPos, final int yPos) {
+				}
+
+				private void setSelection(final int state) {
+
+					// TODO CB State-Code in Variable auslagern
+					if (state == 786432) {
+						// control was pressed & hold
+
+						if (pGraph.getSelection().contains(pNode)) {
+							// remove selected node
+
+							pGraph.deselectNode(pNode, false);
+						} else {
+							// add selected node
+							pGraph.selectNode(pNode, false);
+						}
+					} else if (pGraph.getSelection().contains(pNode)) {
+						// clear selection
+						pGraph.deselectNode(pNode, true);
+					} else {
+						// add selected node
+						System.out.println(label.getText());
+						// pGraph.selectNode(pNode, true);
+					}
+				}
+
+				@Override
+				public void mouseDoubleClicked(final MouseEvent me) {
+
+				}
+			});
+		}
+	}
+
+	public int getContentsCount() {
+		return mContentsList.size();
+	}
+
+	abstract public Label getTitleLabel();
+
+	abstract public String getTitle();
+
+	// ===========================================================
+	// Inner and Anonymous Classes
+	// ===========================================================
+}

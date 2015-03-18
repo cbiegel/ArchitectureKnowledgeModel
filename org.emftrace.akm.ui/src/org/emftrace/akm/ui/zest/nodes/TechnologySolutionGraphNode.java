@@ -1,8 +1,8 @@
 package org.emftrace.akm.ui.zest.nodes;
 
 import org.eclipse.zest.core.widgets.IContainer;
+import org.emftrace.akm.ui.zest.figures.ElementFigure;
 import org.emftrace.metamodel.ArchitectureKnowledgeModel.TechnologySolution;
-import org.emftrace.quarc.ui.zest.figures.ElementFigure;
 
 /**
  * A GraphNode for representing a TechnologySolution element with a custom figure (ElementFigure)
@@ -40,6 +40,7 @@ public class TechnologySolutionGraphNode extends AbstractAKMGraphNode {
 		super(pGraphModel, pStyle, pElementFigure, pLevel, pSublevel, pTechnologySolution);
 
 		mTechnologySolution = pTechnologySolution;
+		collapse();
 	}
 
 	/**

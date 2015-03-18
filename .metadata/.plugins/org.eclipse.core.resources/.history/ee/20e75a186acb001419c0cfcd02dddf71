@@ -1,0 +1,230 @@
+/*******************************************************************************
+ * Copyright (c) 2010-2012 Software Systems/Process Informatics Group,
+ * Ilmenau University of Technology.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributor: Daniel Motschmann
+ ******************************************************************************/
+
+package org.emftrace.akm.ui.zest.figures;
+
+import org.eclipse.draw2d.Figure;
+import org.eclipse.draw2d.Graphics;
+import org.eclipse.draw2d.MouseListener;
+import org.eclipse.draw2d.ToolbarLayout;
+import org.eclipse.draw2d.geometry.Rectangle;
+import org.eclipse.swt.graphics.Color;
+import org.emftrace.quarc.ui.zest.figures.AbstractDecoratorFigure;
+import org.emftrace.quarc.ui.zest.figures.listeners.IExpandListener;
+
+/**
+ * A Figure for GSS Element. Contains can contain figures for decorating the button and top of the
+ * figure
+ * 
+ * @author Daniel Motschmann
+ * @version 1.0
+ */
+public class ElementFigure extends Figure {
+
+	/**
+	 * the height of the whole Figure
+	 */
+	private int height;
+
+	/**
+	 * the width of the whole Figure
+	 */
+	private int width;
+
+	/**
+	 * the AbstractDecoratorFigure for the body
+	 */
+	private AbstractDecoratorFigure bodyDecoratorFigure;
+
+	private Figure footDecoratorFigure;
+
+	private Figure headDecoratorFigure;
+
+	public AbstractDecoratorFigure getBodyDecoratorFigure() {
+		return bodyDecoratorFigure;
+	}
+
+	public Figure getHeadDecoratorFigure() {
+		return headDecoratorFigure;
+	}
+
+	public Figure getFootDecoratorFigure() {
+		return footDecoratorFigure;
+	}
+
+	/**
+	 * 
+	 * the constructor
+	 * 
+	 * @param bodyDecoratorFigure
+	 *            the AbstractDecoratorFigure for the body
+	 * @param footDecoratorFigure
+	 *            the Figure for the decoration of the bottom
+	 * @param headDecoratorFigure
+	 *            the Figure for the decoration of the top
+	 */
+	public ElementFigure(final AbstractDecoratorFigure bodyDecoratorFigure,
+			final Figure footDecoratorFigure, final Figure headDecoratorFigure) {
+
+		ToolbarLayout layout = new ToolbarLayout();
+		setLayoutManager(layout);
+		setOpaque(false);
+		this.headDecoratorFigure = headDecoratorFigure;
+		this.footDecoratorFigure = footDecoratorFigure;
+
+		this.bodyDecoratorFigure = bodyDecoratorFigure;
+		if (headDecoratorFigure != null) {
+			add(headDecoratorFigure);
+		}
+		if (bodyDecoratorFigure != null) {
+			add(bodyDecoratorFigure);
+		}
+		if (footDecoratorFigure != null) {
+			add(footDecoratorFigure);
+		}
+
+		setSize(-1, -1);
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.eclipse.draw2d.Figure#addMouseListener(org.eclipse.draw2d.MouseListener)
+	 */
+	@Override
+	public void addMouseListener(final MouseListener listener) {
+		bodyDecoratorFigure.addMouseListener(listener);
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.eclipse.draw2d.Figure#removeMouseListener(org.eclipse.draw2d.MouseListener)
+	 */
+	@Override
+	public void removeMouseListener(final MouseListener listener) {
+		bodyDecoratorFigure.removeMouseListener(listener);
+
+	}
+
+	/**
+	 * adds the specified ExpandListener
+	 * 
+	 * @param showHideListener
+	 */
+	public void addExpandListener(final IExpandListener expandListener) {
+		bodyDecoratorFigure.addExpandListener(expandListener);
+	}
+
+	/**
+	 * removes the specified ExpandListener
+	 * 
+	 * @param showHideListener
+	 */
+	public void removeExpandListener(final IExpandListener expandListener) {
+		bodyDecoratorFigure.removeExpandListener(expandListener);
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.eclipse.draw2d.Figure#paintFigure(org.eclipse.draw2d.Graphics)
+	 */
+	@Override
+	protected void paintFigure(final Graphics g) {
+		super.paintFigure(g);
+		// System.out.println("ElementFigure.paintFigure");
+		// the height and weight for the figure could only be accessed here
+		// after the figure it painted!
+		Rectangle r = getClientArea();
+		this.height = r.height;
+		this.width = r.width;
+
+	}
+
+	/**
+	 * @return the height of the whole Figure
+	 */
+	public int getHeight() {
+		return this.height;
+
+	}
+
+	/**
+	 * @return the width of the whole Figure
+	 */
+	public int getWidth() {
+		return this.width;
+	}
+
+	/**
+	 * highlights the body of the Figure
+	 */
+	public void highlight() {
+		if (bodyDecoratorFigure != null) {
+			bodyDecoratorFigure.highlight();
+		}
+	}
+
+	/**
+	 * unhighlights the body of the Figure
+	 */
+	public void unhighlight() {
+		if (bodyDecoratorFigure != null) {
+			bodyDecoratorFigure.unhighlight();
+		}
+	}
+
+	/**
+	 * sets the Color used to Highlight the node
+	 * 
+	 * @param c
+	 *            the Color used to Highlight the node
+	 */
+	public void setHighlightColor(final Color c) {
+		bodyDecoratorFigure.setHighlightColor(c);
+
+	}
+
+	/**
+	 * 
+	 * @return true if node is expanded
+	 */
+	public boolean isExpanded() {
+		return bodyDecoratorFigure.isExpanded();
+
+	}
+
+	/**
+	 * sets the node to expanded
+	 */
+	public void setIsExpanded() {
+		bodyDecoratorFigure.setIsExpanded();
+	}
+
+	/**
+	 * sets the node to collapsed
+	 */
+	public void setIsCollapsed() {
+		bodyDecoratorFigure.setIsCollapsed();
+	}
+
+	/**
+	 * setter for the foreground color of the caption
+	 * 
+	 * @param c
+	 *            a Color
+	 */
+	public void setLabelColor(final Color c) {
+		bodyDecoratorFigure.setLabelColor(c);
+	}
+
+}

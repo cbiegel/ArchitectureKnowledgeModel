@@ -131,4 +131,522 @@
   <operations xsi:type="org.eclipse.emf.emfstore.internal.server.model.versioning.operations:AttributeOperation" identifier="_1KL5osmYEeSq6saETqWL0A" clientDate="2015-03-13T16:51:36.762+0100" featureName="Description" newValue="ACED000574001954657374536F6C7574696F6E33204465736372697074696F6E">
     <modelElementId id="_zirwUMmYEeSq6saETqWL0A"/>
   </operations>
+  <operations xsi:type="org.eclipse.emf.emfstore.internal.server.model.versioning.operations:CreateDeleteOperation" identifier="_DOwptMswEeSNYq3NycnsDg" clientDate="2015-03-15T17:26:36.364+0100">
+    <modelElementId id="_DOtmYMswEeSNYq3NycnsDg"/>
+    <modelElement xsi:type="ArchitectureKnowledgeModel:TechnologyFeature"/>
+    <subOperations xsi:type="org.eclipse.emf.emfstore.internal.server.model.versioning.operations:MultiReferenceOperation" identifier="_DOwpscswEeSNYq3NycnsDg" clientDate="2015-03-15T17:26:36.363+0100" featureName="Features" add="true">
+      <modelElementId id="_UH6_QMWKEeSyTdBoaNRe0Q"/>
+      <referencedModelElements id="_DOtmYMswEeSNYq3NycnsDg"/>
+    </subOperations>
+    <eObjectToIdMap key="#//@operations.28/@modelElement">
+      <value id="_DOtmYMswEeSNYq3NycnsDg"/>
+    </eObjectToIdMap>
+  </operations>
+  <operations xsi:type="org.eclipse.emf.emfstore.internal.server.model.versioning.operations:MultiReferenceOperation" identifier="_DO3-cMswEeSNYq3NycnsDg" clientDate="2015-03-15T17:26:36.375+0100" featureName="Features" add="true">
+    <modelElementId id="_UH6_QMWKEeSyTdBoaNRe0Q"/>
+    <referencedModelElements id="_DOtmYMswEeSNYq3NycnsDg"/>
+  </operations>
+  <operations xsi:type="org.eclipse.emf.emfstore.internal.server.model.versioning.operations:AttributeOperation" identifier="_EUF6EsswEeSNYq3NycnsDg" clientDate="2015-03-15T17:26:43.633+0100" featureName="ID" newValue="ACED000574000132">
+    <modelElementId id="_DOtmYMswEeSNYq3NycnsDg"/>
+  </operations>
+  <operations xsi:type="org.eclipse.emf.emfstore.internal.server.model.versioning.operations:AttributeOperation" identifier="_EoQMMsswEeSNYq3NycnsDg" clientDate="2015-03-15T17:26:45.747+0100" featureName="ID" oldValue="ACED000574000132" newValue="ACED000574000131">
+    <modelElementId id="_DOtmYMswEeSNYq3NycnsDg"/>
+  </operations>
+  <operations xsi:type="org.eclipse.emf.emfstore.internal.server.model.versioning.operations:AttributeOperation" identifier="_GnVvEsswEeSNYq3NycnsDg" clientDate="2015-03-15T17:26:59.073+0100" featureName="Name" newValue="ACED0005740012546563686E6F6C6F67794665617475726531">
+    <modelElementId id="_DOtmYMswEeSNYq3NycnsDg"/>
+  </operations>
+  <operations xsi:type="org.eclipse.emf.emfstore.internal.server.model.versioning.operations:AttributeOperation" identifier="_LaJ90sswEeSNYq3NycnsDg" clientDate="2015-03-15T17:27:31.245+0100" featureName="Description" newValue="ACED000574001E546563686E6F6C6F67794665617475726531204465736372697074696F6E">
+    <modelElementId id="_DOtmYMswEeSNYq3NycnsDg"/>
+  </operations>
+  <operations xsi:type="org.eclipse.emf.emfstore.internal.server.model.versioning.operations:CreateDeleteOperation" identifier="_MD3pNcswEeSNYq3NycnsDg" clientDate="2015-03-15T17:27:35.619+0100">
+    <modelElementId id="_MD3pMMswEeSNYq3NycnsDg"/>
+    <modelElement xsi:type="ArchitectureKnowledgeModel:TechnologyFeature"/>
+    <subOperations xsi:type="org.eclipse.emf.emfstore.internal.server.model.versioning.operations:MultiReferenceOperation" identifier="_MD3pMsswEeSNYq3NycnsDg" clientDate="2015-03-15T17:27:35.619+0100" featureName="Features" add="true" index="1">
+      <modelElementId id="_UH6_QMWKEeSyTdBoaNRe0Q"/>
+      <referencedModelElements id="_MD3pMMswEeSNYq3NycnsDg"/>
+    </subOperations>
+    <eObjectToIdMap key="#//@operations.34/@modelElement">
+      <value id="_MD3pMMswEeSNYq3NycnsDg"/>
+    </eObjectToIdMap>
+  </operations>
+  <operations xsi:type="org.eclipse.emf.emfstore.internal.server.model.versioning.operations:MultiReferenceOperation" identifier="_MD43U8swEeSNYq3NycnsDg" clientDate="2015-03-15T17:27:35.621+0100" featureName="Features" add="true" index="1">
+    <modelElementId id="_UH6_QMWKEeSyTdBoaNRe0Q"/>
+    <referencedModelElements id="_MD3pMMswEeSNYq3NycnsDg"/>
+  </operations>
+  <operations xsi:type="org.eclipse.emf.emfstore.internal.server.model.versioning.operations:CreateDeleteOperation" identifier="_MSi-ZcswEeSNYq3NycnsDg" clientDate="2015-03-15T17:27:37.158+0100">
+    <modelElementId id="_MSi-YMswEeSNYq3NycnsDg"/>
+    <modelElement xsi:type="ArchitectureKnowledgeModel:TechnologyFeature"/>
+    <subOperations xsi:type="org.eclipse.emf.emfstore.internal.server.model.versioning.operations:MultiReferenceOperation" identifier="_MSi-YsswEeSNYq3NycnsDg" clientDate="2015-03-15T17:27:37.158+0100" featureName="Features" add="true" index="2">
+      <modelElementId id="_UH6_QMWKEeSyTdBoaNRe0Q"/>
+      <referencedModelElements id="_MSi-YMswEeSNYq3NycnsDg"/>
+    </subOperations>
+    <eObjectToIdMap key="#//@operations.36/@modelElement">
+      <value id="_MSi-YMswEeSNYq3NycnsDg"/>
+    </eObjectToIdMap>
+  </operations>
+  <operations xsi:type="org.eclipse.emf.emfstore.internal.server.model.versioning.operations:MultiReferenceOperation" identifier="_MSkMgsswEeSNYq3NycnsDg" clientDate="2015-03-15T17:27:37.160+0100" featureName="Features" add="true" index="2">
+    <modelElementId id="_UH6_QMWKEeSyTdBoaNRe0Q"/>
+    <referencedModelElements id="_MSi-YMswEeSNYq3NycnsDg"/>
+  </operations>
+  <operations xsi:type="org.eclipse.emf.emfstore.internal.server.model.versioning.operations:AttributeOperation" identifier="_MnJ8csswEeSNYq3NycnsDg" clientDate="2015-03-15T17:27:39.319+0100" featureName="ID" newValue="ACED000574000132">
+    <modelElementId id="_MD3pMMswEeSNYq3NycnsDg"/>
+  </operations>
+  <operations xsi:type="org.eclipse.emf.emfstore.internal.server.model.versioning.operations:AttributeOperation" identifier="_NP7MosswEeSNYq3NycnsDg" clientDate="2015-03-15T17:27:43.594+0100" featureName="Name" newValue="ACED0005740012546563686E6F6C6F67794665617475726532">
+    <modelElementId id="_MD3pMMswEeSNYq3NycnsDg"/>
+  </operations>
+  <operations xsi:type="org.eclipse.emf.emfstore.internal.server.model.versioning.operations:AttributeOperation" identifier="_N7hHUsswEeSNYq3NycnsDg" clientDate="2015-03-15T17:27:48.165+0100" featureName="Description" newValue="ACED000574001E546563686E6F6C6F67794665617475726532204465736372697074696F6E">
+    <modelElementId id="_MD3pMMswEeSNYq3NycnsDg"/>
+  </operations>
+  <operations xsi:type="org.eclipse.emf.emfstore.internal.server.model.versioning.operations:AttributeOperation" identifier="_Oe0BosswEeSNYq3NycnsDg" clientDate="2015-03-15T17:27:51.866+0100" featureName="CapabilityType" oldValue="ACED00057E7200406F72672E656D6674726163652E6D6574616D6F64656C2E4172636869746563747572654B6E6F776C656467654D6F64656C2E4361706162696C6974795479706500000000000000001200007872000E6A6176612E6C616E672E456E756D00000000000000001200007870740016444556454C4F504D454E545F4341504142494C495459" newValue="ACED00057E7200406F72672E656D6674726163652E6D6574616D6F64656C2E4172636869746563747572654B6E6F776C656467654D6F64656C2E4361706162696C6974795479706500000000000000001200007872000E6A6176612E6C616E672E456E756D000000000000000012000078707400134245484156494F525F4341504142494C495459">
+    <modelElementId id="_MD3pMMswEeSNYq3NycnsDg"/>
+  </operations>
+  <operations xsi:type="org.eclipse.emf.emfstore.internal.server.model.versioning.operations:AttributeOperation" identifier="_O4QcYsswEeSNYq3NycnsDg" clientDate="2015-03-15T17:27:54.534+0100" featureName="ID" newValue="ACED000574000133">
+    <modelElementId id="_MSi-YMswEeSNYq3NycnsDg"/>
+  </operations>
+  <operations xsi:type="org.eclipse.emf.emfstore.internal.server.model.versioning.operations:AttributeOperation" identifier="_PSmPAsswEeSNYq3NycnsDg" clientDate="2015-03-15T17:27:57.296+0100" featureName="Name" newValue="ACED0005740012546563686E6F6C6F67794665617475726533">
+    <modelElementId id="_MSi-YMswEeSNYq3NycnsDg"/>
+  </operations>
+  <operations xsi:type="org.eclipse.emf.emfstore.internal.server.model.versioning.operations:AttributeOperation" identifier="_QHCjssswEeSNYq3NycnsDg" clientDate="2015-03-15T17:28:02.795+0100" featureName="Description" newValue="ACED000574001E546563686E6F6C6F67794665617475726533204465736372697074696F6E">
+    <modelElementId id="_MSi-YMswEeSNYq3NycnsDg"/>
+  </operations>
+  <operations xsi:type="org.eclipse.emf.emfstore.internal.server.model.versioning.operations:CreateDeleteOperation" identifier="_nK6H9cswEeSNYq3NycnsDg" clientDate="2015-03-15T17:30:37.552+0100">
+    <modelElementId id="_nK6H8MswEeSNYq3NycnsDg"/>
+    <modelElement xsi:type="ArchitectureKnowledgeModel:TechnologyFeature"/>
+    <subOperations xsi:type="org.eclipse.emf.emfstore.internal.server.model.versioning.operations:MultiReferenceOperation" identifier="_nK6H8sswEeSNYq3NycnsDg" clientDate="2015-03-15T17:30:37.551+0100" featureName="Features" add="true">
+      <modelElementId id="_XE3tEMdBEeSiGeFB0BvR2w"/>
+      <referencedModelElements id="_nK6H8MswEeSNYq3NycnsDg"/>
+    </subOperations>
+    <eObjectToIdMap key="#//@operations.45/@modelElement">
+      <value id="_nK6H8MswEeSNYq3NycnsDg"/>
+    </eObjectToIdMap>
+  </operations>
+  <operations xsi:type="org.eclipse.emf.emfstore.internal.server.model.versioning.operations:MultiReferenceOperation" identifier="_nK79I8swEeSNYq3NycnsDg" clientDate="2015-03-15T17:30:37.554+0100" featureName="Features" add="true">
+    <modelElementId id="_XE3tEMdBEeSiGeFB0BvR2w"/>
+    <referencedModelElements id="_nK6H8MswEeSNYq3NycnsDg"/>
+  </operations>
+  <operations xsi:type="org.eclipse.emf.emfstore.internal.server.model.versioning.operations:AttributeOperation" identifier="_oDyQssswEeSNYq3NycnsDg" clientDate="2015-03-15T17:30:43.515+0100" featureName="ID" newValue="ACED0005740012546563686E6F6C6F67794665617475726534">
+    <modelElementId id="_nK6H8MswEeSNYq3NycnsDg"/>
+  </operations>
+  <operations xsi:type="org.eclipse.emf.emfstore.internal.server.model.versioning.operations:AttributeOperation" identifier="_ofpGQsswEeSNYq3NycnsDg" clientDate="2015-03-15T17:30:46.436+0100" featureName="ID" oldValue="ACED0005740012546563686E6F6C6F67794665617475726534" newValue="ACED000574000131">
+    <modelElementId id="_nK6H8MswEeSNYq3NycnsDg"/>
+  </operations>
+  <operations xsi:type="org.eclipse.emf.emfstore.internal.server.model.versioning.operations:AttributeOperation" identifier="_pRZTUsswEeSNYq3NycnsDg" clientDate="2015-03-15T17:30:51.653+0100" featureName="Name" newValue="ACED0005740012546563686E6F6C6F67794665617475726534">
+    <modelElementId id="_nK6H8MswEeSNYq3NycnsDg"/>
+  </operations>
+  <operations xsi:type="org.eclipse.emf.emfstore.internal.server.model.versioning.operations:AttributeOperation" identifier="_qIghgsswEeSNYq3NycnsDg" clientDate="2015-03-15T17:30:57.432+0100" featureName="Description" newValue="ACED000574001E546563686E6F6C6F67794665617475726534204465736372697074696F6E">
+    <modelElementId id="_nK6H8MswEeSNYq3NycnsDg"/>
+  </operations>
+  <operations xsi:type="org.eclipse.emf.emfstore.internal.server.model.versioning.operations:CreateDeleteOperation" identifier="_2phEYMvHEeSJssH6TRqaLA" clientDate="2015-03-16T11:33:15.430+0100">
+    <modelElementId id="_2pdaAMvHEeSJssH6TRqaLA"/>
+    <modelElement xsi:type="ArchitectureKnowledgeModel:ASTACatalog"/>
+    <eObjectToIdMap key="#//@operations.51/@modelElement">
+      <value id="_2pdaAMvHEeSJssH6TRqaLA"/>
+    </eObjectToIdMap>
+  </operations>
+  <operations xsi:type="org.eclipse.emf.emfstore.internal.server.model.versioning.operations:CreateDeleteOperation" identifier="_3S5YkMvHEeSJssH6TRqaLA" clientDate="2015-03-16T11:33:19.769+0100" delete="true">
+    <modelElementId id="_2pdaAMvHEeSJssH6TRqaLA"/>
+    <modelElement xsi:type="ArchitectureKnowledgeModel:ASTACatalog"/>
+    <eObjectToIdMap key="#//@operations.52/@modelElement">
+      <value id="_2pdaAMvHEeSJssH6TRqaLA"/>
+    </eObjectToIdMap>
+  </operations>
+  <operations xsi:type="org.eclipse.emf.emfstore.internal.server.model.versioning.operations:CreateDeleteOperation" identifier="_4F0DQcvHEeSJssH6TRqaLA" clientDate="2015-03-16T11:33:25.108+0100">
+    <modelElementId id="_4F0DQMvHEeSJssH6TRqaLA"/>
+    <modelElement xsi:type="ArchitectureKnowledgeModel:ArchitectureKnowledgeModel"/>
+    <eObjectToIdMap key="#//@operations.53/@modelElement">
+      <value id="_4F0DQMvHEeSJssH6TRqaLA"/>
+    </eObjectToIdMap>
+  </operations>
+  <operations xsi:type="org.eclipse.emf.emfstore.internal.server.model.versioning.operations:CreateDeleteOperation" identifier="_5iCJoMvHEeSJssH6TRqaLA" clientDate="2015-03-16T11:33:34.778+0100">
+    <modelElementId id="_5iBikMvHEeSJssH6TRqaLA"/>
+    <modelElement xsi:type="ArchitectureKnowledgeModel:TechnologySolutions"/>
+    <eObjectToIdMap key="#//@operations.54/@modelElement">
+      <value id="_5iBikMvHEeSJssH6TRqaLA"/>
+    </eObjectToIdMap>
+  </operations>
+  <operations xsi:type="org.eclipse.emf.emfstore.internal.server.model.versioning.operations:SingleReferenceOperation" identifier="_5iDXwsvHEeSJssH6TRqaLA" clientDate="2015-03-16T11:33:34.780+0100" featureName="TechnologySolutions" containmentType="CONTAINMENT">
+    <modelElementId id="_4F0DQMvHEeSJssH6TRqaLA"/>
+    <newValue id="_5iBikMvHEeSJssH6TRqaLA"/>
+  </operations>
+  <operations xsi:type="org.eclipse.emf.emfstore.internal.server.model.versioning.operations:AttributeOperation" identifier="_6JMQQsvHEeSJssH6TRqaLA" clientDate="2015-03-16T11:33:38.884+0100" featureName="ID" newValue="ACED000574000131">
+    <modelElementId id="_5iBikMvHEeSJssH6TRqaLA"/>
+  </operations>
+  <operations xsi:type="org.eclipse.emf.emfstore.internal.server.model.versioning.operations:AttributeOperation" identifier="_6R-_4svHEeSJssH6TRqaLA" clientDate="2015-03-16T11:33:39.806+0100" featureName="Name" newValue="ACED000574000131">
+    <modelElementId id="_5iBikMvHEeSJssH6TRqaLA"/>
+  </operations>
+  <operations xsi:type="org.eclipse.emf.emfstore.internal.server.model.versioning.operations:CreateDeleteOperation" identifier="_6s2W88vHEeSJssH6TRqaLA" clientDate="2015-03-16T11:33:42.623+0100">
+    <modelElementId id="_6s1v4MvHEeSJssH6TRqaLA"/>
+    <modelElement xsi:type="ArchitectureKnowledgeModel:TechnologySolution"/>
+    <subOperations xsi:type="org.eclipse.emf.emfstore.internal.server.model.versioning.operations:MultiReferenceOperation" identifier="_6s2W8MvHEeSJssH6TRqaLA" clientDate="2015-03-16T11:33:42.623+0100" featureName="TechnologySolution" add="true">
+      <modelElementId id="_5iBikMvHEeSJssH6TRqaLA"/>
+      <referencedModelElements id="_6s1v4MvHEeSJssH6TRqaLA"/>
+    </subOperations>
+    <eObjectToIdMap key="#//@operations.58/@modelElement">
+      <value id="_6s1v4MvHEeSJssH6TRqaLA"/>
+    </eObjectToIdMap>
+  </operations>
+  <operations xsi:type="org.eclipse.emf.emfstore.internal.server.model.versioning.operations:MultiReferenceOperation" identifier="_6s4MIcvHEeSJssH6TRqaLA" clientDate="2015-03-16T11:33:42.626+0100" featureName="TechnologySolution" add="true">
+    <modelElementId id="_5iBikMvHEeSJssH6TRqaLA"/>
+    <referencedModelElements id="_6s1v4MvHEeSJssH6TRqaLA"/>
+  </operations>
+  <operations xsi:type="org.eclipse.emf.emfstore.internal.server.model.versioning.operations:AttributeOperation" identifier="_64Q8wsvHEeSJssH6TRqaLA" clientDate="2015-03-16T11:33:43.820+0100" featureName="ID" newValue="ACED000574000131">
+    <modelElementId id="_6s1v4MvHEeSJssH6TRqaLA"/>
+  </operations>
+  <operations xsi:type="org.eclipse.emf.emfstore.internal.server.model.versioning.operations:AttributeOperation" identifier="_7gjr0svHEeSJssH6TRqaLA" clientDate="2015-03-16T11:33:48.045+0100" featureName="Name" newValue="ACED000574000D54657374536F6C7574696F6E31">
+    <modelElementId id="_6s1v4MvHEeSJssH6TRqaLA"/>
+  </operations>
+  <operations xsi:type="org.eclipse.emf.emfstore.internal.server.model.versioning.operations:CreateDeleteOperation" identifier="_8IEXxcvHEeSJssH6TRqaLA" clientDate="2015-03-16T11:33:52.188+0100">
+    <modelElementId id="_8IEXwMvHEeSJssH6TRqaLA"/>
+    <modelElement xsi:type="ArchitectureKnowledgeModel:TechnologyFeature"/>
+    <subOperations xsi:type="org.eclipse.emf.emfstore.internal.server.model.versioning.operations:MultiReferenceOperation" identifier="_8IEXwsvHEeSJssH6TRqaLA" clientDate="2015-03-16T11:33:52.188+0100" featureName="Features" add="true">
+      <modelElementId id="_6s1v4MvHEeSJssH6TRqaLA"/>
+      <referencedModelElements id="_8IEXwMvHEeSJssH6TRqaLA"/>
+    </subOperations>
+    <eObjectToIdMap key="#//@operations.62/@modelElement">
+      <value id="_8IEXwMvHEeSJssH6TRqaLA"/>
+    </eObjectToIdMap>
+  </operations>
+  <operations xsi:type="org.eclipse.emf.emfstore.internal.server.model.versioning.operations:MultiReferenceOperation" identifier="_8IFl4svHEeSJssH6TRqaLA" clientDate="2015-03-16T11:33:52.190+0100" featureName="Features" add="true">
+    <modelElementId id="_6s1v4MvHEeSJssH6TRqaLA"/>
+    <referencedModelElements id="_8IEXwMvHEeSJssH6TRqaLA"/>
+  </operations>
+  <operations xsi:type="org.eclipse.emf.emfstore.internal.server.model.versioning.operations:AttributeOperation" identifier="_80fY4svHEeSJssH6TRqaLA" clientDate="2015-03-16T11:33:56.846+0100" featureName="ID" newValue="ACED000574000131">
+    <modelElementId id="_8IEXwMvHEeSJssH6TRqaLA"/>
+  </operations>
+  <operations xsi:type="org.eclipse.emf.emfstore.internal.server.model.versioning.operations:AttributeOperation" identifier="_9e7dAsvHEeSJssH6TRqaLA" clientDate="2015-03-16T11:34:01.296+0100" featureName="Name" newValue="ACED0005740012546563686E6F6C6F67794665617475726531">
+    <modelElementId id="_8IEXwMvHEeSJssH6TRqaLA"/>
+  </operations>
+  <operations xsi:type="org.eclipse.emf.emfstore.internal.server.model.versioning.operations:AttributeOperation" identifier="_-AG3csvHEeSJssH6TRqaLA" clientDate="2015-03-16T11:34:04.775+0100" featureName="Description" newValue="ACED000574000F746573744465736372697074696F6E">
+    <modelElementId id="_8IEXwMvHEeSJssH6TRqaLA"/>
+  </operations>
+  <operations xsi:type="org.eclipse.emf.emfstore.internal.server.model.versioning.operations:CreateDeleteOperation" identifier="_zzNLVMvXEeSyV_DiL41YvA" clientDate="2015-03-16T13:27:28.261+0100">
+    <modelElementId id="_zzKIAMvXEeSyV_DiL41YvA"/>
+    <modelElement xsi:type="ArchitectureKnowledgeModel:TechnologyFeature"/>
+    <subOperations xsi:type="org.eclipse.emf.emfstore.internal.server.model.versioning.operations:MultiReferenceOperation" identifier="_zzNLUcvXEeSyV_DiL41YvA" clientDate="2015-03-16T13:27:28.261+0100" featureName="Features" add="true" index="1">
+      <modelElementId id="_XE3tEMdBEeSiGeFB0BvR2w"/>
+      <referencedModelElements id="_zzKIAMvXEeSyV_DiL41YvA"/>
+    </subOperations>
+    <eObjectToIdMap key="#//@operations.67/@modelElement">
+      <value id="_zzKIAMvXEeSyV_DiL41YvA"/>
+    </eObjectToIdMap>
+  </operations>
+  <operations xsi:type="org.eclipse.emf.emfstore.internal.server.model.versioning.operations:MultiReferenceOperation" identifier="_zzUgEMvXEeSyV_DiL41YvA" clientDate="2015-03-16T13:27:28.273+0100" featureName="Features" add="true" index="1">
+    <modelElementId id="_XE3tEMdBEeSiGeFB0BvR2w"/>
+    <referencedModelElements id="_zzKIAMvXEeSyV_DiL41YvA"/>
+  </operations>
+  <operations xsi:type="org.eclipse.emf.emfstore.internal.server.model.versioning.operations:AttributeOperation" identifier="_0088MsvXEeSyV_DiL41YvA" clientDate="2015-03-16T13:27:35.155+0100" featureName="ID" newValue="ACED000574000132">
+    <modelElementId id="_zzKIAMvXEeSyV_DiL41YvA"/>
+  </operations>
+  <operations xsi:type="org.eclipse.emf.emfstore.internal.server.model.versioning.operations:AttributeOperation" identifier="_1Op1osvXEeSyV_DiL41YvA" clientDate="2015-03-16T13:27:37.850+0100" featureName="Name" newValue="ACED0005740012546563686E6F6C6F67794665617475726535">
+    <modelElementId id="_zzKIAMvXEeSyV_DiL41YvA"/>
+  </operations>
+  <operations xsi:type="org.eclipse.emf.emfstore.internal.server.model.versioning.operations:AttributeOperation" identifier="_2IuRMsvXEeSyV_DiL41YvA" clientDate="2015-03-16T13:27:43.939+0100" featureName="Description" newValue="ACED000574001E546563686E6F6C6F67794665617475726535204465736372697074696F6E">
+    <modelElementId id="_zzKIAMvXEeSyV_DiL41YvA"/>
+  </operations>
+  <operations xsi:type="org.eclipse.emf.emfstore.internal.server.model.versioning.operations:CreateDeleteOperation" identifier="_n9SSVMw8EeSw2ZJEQXSwSw" clientDate="2015-03-17T01:29:07.958+0100">
+    <modelElementId id="_n9P2EMw8EeSw2ZJEQXSwSw"/>
+    <modelElement xsi:type="ArchitectureKnowledgeModel:TechnologyFeature"/>
+    <subOperations xsi:type="org.eclipse.emf.emfstore.internal.server.model.versioning.operations:MultiReferenceOperation" identifier="_n9SSUcw8EeSw2ZJEQXSwSw" clientDate="2015-03-17T01:29:07.957+0100" featureName="Features" add="true" index="3">
+      <modelElementId id="_UH6_QMWKEeSyTdBoaNRe0Q"/>
+      <referencedModelElements id="_n9P2EMw8EeSw2ZJEQXSwSw"/>
+    </subOperations>
+    <eObjectToIdMap key="#//@operations.72/@modelElement">
+      <value id="_n9P2EMw8EeSw2ZJEQXSwSw"/>
+    </eObjectToIdMap>
+  </operations>
+  <operations xsi:type="org.eclipse.emf.emfstore.internal.server.model.versioning.operations:MultiReferenceOperation" identifier="_n9YY8Mw8EeSw2ZJEQXSwSw" clientDate="2015-03-17T01:29:07.967+0100" featureName="Features" add="true" index="3">
+    <modelElementId id="_UH6_QMWKEeSyTdBoaNRe0Q"/>
+    <referencedModelElements id="_n9P2EMw8EeSw2ZJEQXSwSw"/>
+  </operations>
+  <operations xsi:type="org.eclipse.emf.emfstore.internal.server.model.versioning.operations:CreateDeleteOperation" identifier="_oa6pgcw8EeSw2ZJEQXSwSw" clientDate="2015-03-17T01:29:11.064+0100">
+    <modelElementId id="_oa6CcMw8EeSw2ZJEQXSwSw"/>
+    <modelElement xsi:type="ArchitectureKnowledgeModel:TechnologyFeature"/>
+    <subOperations xsi:type="org.eclipse.emf.emfstore.internal.server.model.versioning.operations:MultiReferenceOperation" identifier="_oa6Ccsw8EeSw2ZJEQXSwSw" clientDate="2015-03-17T01:29:11.063+0100" featureName="Features" add="true" index="4">
+      <modelElementId id="_UH6_QMWKEeSyTdBoaNRe0Q"/>
+      <referencedModelElements id="_oa6CcMw8EeSw2ZJEQXSwSw"/>
+    </subOperations>
+    <eObjectToIdMap key="#//@operations.74/@modelElement">
+      <value id="_oa6CcMw8EeSw2ZJEQXSwSw"/>
+    </eObjectToIdMap>
+  </operations>
+  <operations xsi:type="org.eclipse.emf.emfstore.internal.server.model.versioning.operations:MultiReferenceOperation" identifier="_oa7Qk8w8EeSw2ZJEQXSwSw" clientDate="2015-03-17T01:29:11.065+0100" featureName="Features" add="true" index="4">
+    <modelElementId id="_UH6_QMWKEeSyTdBoaNRe0Q"/>
+    <referencedModelElements id="_oa6CcMw8EeSw2ZJEQXSwSw"/>
+  </operations>
+  <operations xsi:type="org.eclipse.emf.emfstore.internal.server.model.versioning.operations:CreateDeleteOperation" identifier="_oqf9pcw8EeSw2ZJEQXSwSw" clientDate="2015-03-17T01:29:12.698+0100">
+    <modelElementId id="_oqf9oMw8EeSw2ZJEQXSwSw"/>
+    <modelElement xsi:type="ArchitectureKnowledgeModel:TechnologyFeature"/>
+    <subOperations xsi:type="org.eclipse.emf.emfstore.internal.server.model.versioning.operations:MultiReferenceOperation" identifier="_oqf9osw8EeSw2ZJEQXSwSw" clientDate="2015-03-17T01:29:12.698+0100" featureName="Features" add="true" index="5">
+      <modelElementId id="_UH6_QMWKEeSyTdBoaNRe0Q"/>
+      <referencedModelElements id="_oqf9oMw8EeSw2ZJEQXSwSw"/>
+    </subOperations>
+    <eObjectToIdMap key="#//@operations.76/@modelElement">
+      <value id="_oqf9oMw8EeSw2ZJEQXSwSw"/>
+    </eObjectToIdMap>
+  </operations>
+  <operations xsi:type="org.eclipse.emf.emfstore.internal.server.model.versioning.operations:MultiReferenceOperation" identifier="_oqgks8w8EeSw2ZJEQXSwSw" clientDate="2015-03-17T01:29:12.699+0100" featureName="Features" add="true" index="5">
+    <modelElementId id="_UH6_QMWKEeSyTdBoaNRe0Q"/>
+    <referencedModelElements id="_oqf9oMw8EeSw2ZJEQXSwSw"/>
+  </operations>
+  <operations xsi:type="org.eclipse.emf.emfstore.internal.server.model.versioning.operations:CreateDeleteOperation" identifier="_o_0GVMw8EeSw2ZJEQXSwSw" clientDate="2015-03-17T01:29:14.933+0100">
+    <modelElementId id="_o_zfQMw8EeSw2ZJEQXSwSw"/>
+    <modelElement xsi:type="ArchitectureKnowledgeModel:TechnologyFeature"/>
+    <subOperations xsi:type="org.eclipse.emf.emfstore.internal.server.model.versioning.operations:MultiReferenceOperation" identifier="_o_0GUcw8EeSw2ZJEQXSwSw" clientDate="2015-03-17T01:29:14.933+0100" featureName="Features" add="true" index="6">
+      <modelElementId id="_UH6_QMWKEeSyTdBoaNRe0Q"/>
+      <referencedModelElements id="_o_zfQMw8EeSw2ZJEQXSwSw"/>
+    </subOperations>
+    <eObjectToIdMap key="#//@operations.78/@modelElement">
+      <value id="_o_zfQMw8EeSw2ZJEQXSwSw"/>
+    </eObjectToIdMap>
+  </operations>
+  <operations xsi:type="org.eclipse.emf.emfstore.internal.server.model.versioning.operations:MultiReferenceOperation" identifier="_o_0tY8w8EeSw2ZJEQXSwSw" clientDate="2015-03-17T01:29:14.934+0100" featureName="Features" add="true" index="6">
+    <modelElementId id="_UH6_QMWKEeSyTdBoaNRe0Q"/>
+    <referencedModelElements id="_o_zfQMw8EeSw2ZJEQXSwSw"/>
+  </operations>
+  <operations xsi:type="org.eclipse.emf.emfstore.internal.server.model.versioning.operations:CreateDeleteOperation" identifier="_pI5w5cw8EeSw2ZJEQXSwSw" clientDate="2015-03-17T01:29:15.886+0100">
+    <modelElementId id="_pI5w4Mw8EeSw2ZJEQXSwSw"/>
+    <modelElement xsi:type="ArchitectureKnowledgeModel:TechnologyFeature"/>
+    <subOperations xsi:type="org.eclipse.emf.emfstore.internal.server.model.versioning.operations:MultiReferenceOperation" identifier="_pI5w4sw8EeSw2ZJEQXSwSw" clientDate="2015-03-17T01:29:15.886+0100" featureName="Features" add="true" index="7">
+      <modelElementId id="_UH6_QMWKEeSyTdBoaNRe0Q"/>
+      <referencedModelElements id="_pI5w4Mw8EeSw2ZJEQXSwSw"/>
+    </subOperations>
+    <eObjectToIdMap key="#//@operations.80/@modelElement">
+      <value id="_pI5w4Mw8EeSw2ZJEQXSwSw"/>
+    </eObjectToIdMap>
+  </operations>
+  <operations xsi:type="org.eclipse.emf.emfstore.internal.server.model.versioning.operations:MultiReferenceOperation" identifier="_pI6X88w8EeSw2ZJEQXSwSw" clientDate="2015-03-17T01:29:15.887+0100" featureName="Features" add="true" index="7">
+    <modelElementId id="_UH6_QMWKEeSyTdBoaNRe0Q"/>
+    <referencedModelElements id="_pI5w4Mw8EeSw2ZJEQXSwSw"/>
+  </operations>
+  <operations xsi:type="org.eclipse.emf.emfstore.internal.server.model.versioning.operations:AttributeOperation" identifier="_quFmAsw8EeSw2ZJEQXSwSw" clientDate="2015-03-17T01:29:26.496+0100" featureName="Name" newValue="ACED0005740012546563686E6F6C6F67794665617475726534">
+    <modelElementId id="_n9P2EMw8EeSw2ZJEQXSwSw"/>
+  </operations>
+  <operations xsi:type="org.eclipse.emf.emfstore.internal.server.model.versioning.operations:AttributeOperation" identifier="_qzS2Isw8EeSw2ZJEQXSwSw" clientDate="2015-03-17T01:29:27.042+0100" featureName="ID" newValue="ACED000574000134">
+    <modelElementId id="_n9P2EMw8EeSw2ZJEQXSwSw"/>
+  </operations>
+  <operations xsi:type="org.eclipse.emf.emfstore.internal.server.model.versioning.operations:AttributeOperation" identifier="_rDw7Esw8EeSw2ZJEQXSwSw" clientDate="2015-03-17T01:29:28.769+0100" featureName="Description" newValue="ACED000574000120">
+    <modelElementId id="_n9P2EMw8EeSw2ZJEQXSwSw"/>
+  </operations>
+  <operations xsi:type="org.eclipse.emf.emfstore.internal.server.model.versioning.operations:AttributeOperation" identifier="_rywvEsw8EeSw2ZJEQXSwSw" clientDate="2015-03-17T01:29:33.697+0100" featureName="Name" newValue="ACED0005740012546563686E6F6C6F67794665617475726535">
+    <modelElementId id="_oa6CcMw8EeSw2ZJEQXSwSw"/>
+  </operations>
+  <operations xsi:type="org.eclipse.emf.emfstore.internal.server.model.versioning.operations:AttributeOperation" identifier="_r6a2Qsw8EeSw2ZJEQXSwSw" clientDate="2015-03-17T01:29:34.500+0100" featureName="ID" newValue="ACED000574000135">
+    <modelElementId id="_oa6CcMw8EeSw2ZJEQXSwSw"/>
+  </operations>
+  <operations xsi:type="org.eclipse.emf.emfstore.internal.server.model.versioning.operations:AttributeOperation" identifier="_r-myssw8EeSw2ZJEQXSwSw" clientDate="2015-03-17T01:29:34.939+0100" featureName="Description" newValue="ACED000574000120">
+    <modelElementId id="_oa6CcMw8EeSw2ZJEQXSwSw"/>
+  </operations>
+  <operations xsi:type="org.eclipse.emf.emfstore.internal.server.model.versioning.operations:AttributeOperation" identifier="_spKyosw8EeSw2ZJEQXSwSw" clientDate="2015-03-17T01:29:39.402+0100" featureName="CapabilityType" oldValue="ACED00057E7200406F72672E656D6674726163652E6D6574616D6F64656C2E4172636869746563747572654B6E6F776C656467654D6F64656C2E4361706162696C6974795479706500000000000000001200007872000E6A6176612E6C616E672E456E756D000000000000000012000078707400134245484156494F525F4341504142494C495459" newValue="ACED00057E7200406F72672E656D6674726163652E6D6574616D6F64656C2E4172636869746563747572654B6E6F776C656467654D6F64656C2E4361706162696C6974795479706500000000000000001200007872000E6A6176612E6C616E672E456E756D00000000000000001200007870740018434F4E46494755524154494F4E5F4341504142494C495459">
+    <modelElementId id="_MD3pMMswEeSNYq3NycnsDg"/>
+  </operations>
+  <operations xsi:type="org.eclipse.emf.emfstore.internal.server.model.versioning.operations:AttributeOperation" identifier="_s-6ZIsw8EeSw2ZJEQXSwSw" clientDate="2015-03-17T01:29:41.682+0100" featureName="CapabilityType" oldValue="ACED00057E7200406F72672E656D6674726163652E6D6574616D6F64656C2E4172636869746563747572654B6E6F776C656467654D6F64656C2E4361706162696C6974795479706500000000000000001200007872000E6A6176612E6C616E672E456E756D00000000000000001200007870740016444556454C4F504D454E545F4341504142494C495459" newValue="ACED00057E7200406F72672E656D6674726163652E6D6574616D6F64656C2E4172636869746563747572654B6E6F776C656467654D6F64656C2E4361706162696C6974795479706500000000000000001200007872000E6A6176612E6C616E672E456E756D000000000000000012000078707400134245484156494F525F4341504142494C495459">
+    <modelElementId id="_MSi-YMswEeSNYq3NycnsDg"/>
+  </operations>
+  <operations xsi:type="org.eclipse.emf.emfstore.internal.server.model.versioning.operations:AttributeOperation" identifier="_uCqVIsw8EeSw2ZJEQXSwSw" clientDate="2015-03-17T01:29:48.786+0100" featureName="CapabilityType" oldValue="ACED00057E7200406F72672E656D6674726163652E6D6574616D6F64656C2E4172636869746563747572654B6E6F776C656467654D6F64656C2E4361706162696C6974795479706500000000000000001200007872000E6A6176612E6C616E672E456E756D00000000000000001200007870740016444556454C4F504D454E545F4341504142494C495459" newValue="ACED00057E7200406F72672E656D6674726163652E6D6574616D6F64656C2E4172636869746563747572654B6E6F776C656467654D6F64656C2E4361706162696C6974795479706500000000000000001200007872000E6A6176612E6C616E672E456E756D0000000000000000120000787074001455534142494C4954595F4341504142494C495459">
+    <modelElementId id="_n9P2EMw8EeSw2ZJEQXSwSw"/>
+  </operations>
+  <operations xsi:type="org.eclipse.emf.emfstore.internal.server.model.versioning.operations:AttributeOperation" identifier="_ujjbssw8EeSw2ZJEQXSwSw" clientDate="2015-03-17T01:29:52.235+0100" featureName="CapabilityType" oldValue="ACED00057E7200406F72672E656D6674726163652E6D6574616D6F64656C2E4172636869746563747572654B6E6F776C656467654D6F64656C2E4361706162696C6974795479706500000000000000001200007872000E6A6176612E6C616E672E456E756D00000000000000001200007870740016444556454C4F504D454E545F4341504142494C495459" newValue="ACED00057E7200406F72672E656D6674726163652E6D6574616D6F64656C2E4172636869746563747572654B6E6F776C656467654D6F64656C2E4361706162696C6974795479706500000000000000001200007872000E6A6176612E6C616E672E456E756D0000000000000000120000787074001B494E5445524F5045524142494C4954595F4341504142494C495459">
+    <modelElementId id="_oa6CcMw8EeSw2ZJEQXSwSw"/>
+  </operations>
+  <operations xsi:type="org.eclipse.emf.emfstore.internal.server.model.versioning.operations:AttributeOperation" identifier="_vU1Hosw8EeSw2ZJEQXSwSw" clientDate="2015-03-17T01:29:57.402+0100" featureName="Name" newValue="ACED0005740012546563686E6F6C6F67794665617475726536">
+    <modelElementId id="_oqf9oMw8EeSw2ZJEQXSwSw"/>
+  </operations>
+  <operations xsi:type="org.eclipse.emf.emfstore.internal.server.model.versioning.operations:AttributeOperation" identifier="_vcoYwsw8EeSw2ZJEQXSwSw" clientDate="2015-03-17T01:29:58.220+0100" featureName="ID" newValue="ACED000574000136">
+    <modelElementId id="_oqf9oMw8EeSw2ZJEQXSwSw"/>
+  </operations>
+  <operations xsi:type="org.eclipse.emf.emfstore.internal.server.model.versioning.operations:AttributeOperation" identifier="_vq6sYsw8EeSw2ZJEQXSwSw" clientDate="2015-03-17T01:29:59.718+0100" featureName="Description" newValue="ACED000574000120">
+    <modelElementId id="_oqf9oMw8EeSw2ZJEQXSwSw"/>
+  </operations>
+  <operations xsi:type="org.eclipse.emf.emfstore.internal.server.model.versioning.operations:AttributeOperation" identifier="_wY_TUsw8EeSw2ZJEQXSwSw" clientDate="2015-03-17T01:30:04.549+0100" featureName="CapabilityType" oldValue="ACED00057E7200406F72672E656D6674726163652E6D6574616D6F64656C2E4172636869746563747572654B6E6F776C656467654D6F64656C2E4361706162696C6974795479706500000000000000001200007872000E6A6176612E6C616E672E456E756D00000000000000001200007870740016444556454C4F504D454E545F4341504142494C495459" newValue="ACED00057E7200406F72672E656D6674726163652E6D6574616D6F64656C2E4172636869746563747572654B6E6F776C656467654D6F64656C2E4361706162696C6974795479706500000000000000001200007872000E6A6176612E6C616E672E456E756D0000000000000000120000787074001253544F524147455F4341504142494C495459">
+    <modelElementId id="_oqf9oMw8EeSw2ZJEQXSwSw"/>
+  </operations>
+  <operations xsi:type="org.eclipse.emf.emfstore.internal.server.model.versioning.operations:AttributeOperation" identifier="_w8aJcsw8EeSw2ZJEQXSwSw" clientDate="2015-03-17T01:30:08.263+0100" featureName="Name" newValue="ACED0005740012546563686E6F6C6F67794665617475726537">
+    <modelElementId id="_o_zfQMw8EeSw2ZJEQXSwSw"/>
+  </operations>
+  <operations xsi:type="org.eclipse.emf.emfstore.internal.server.model.versioning.operations:AttributeOperation" identifier="_xJmQ4sw8EeSw2ZJEQXSwSw" clientDate="2015-03-17T01:30:09.646+0100" featureName="ID" newValue="ACED000574000137">
+    <modelElementId id="_o_zfQMw8EeSw2ZJEQXSwSw"/>
+  </operations>
+  <operations xsi:type="org.eclipse.emf.emfstore.internal.server.model.versioning.operations:AttributeOperation" identifier="_xXp7Asw8EeSw2ZJEQXSwSw" clientDate="2015-03-17T01:30:11.120+0100" featureName="Description" newValue="ACED000574000120">
+    <modelElementId id="_o_zfQMw8EeSw2ZJEQXSwSw"/>
+  </operations>
+  <operations xsi:type="org.eclipse.emf.emfstore.internal.server.model.versioning.operations:AttributeOperation" identifier="_yB81Msw8EeSw2ZJEQXSwSw" clientDate="2015-03-17T01:30:15.555+0100" featureName="CapabilityType" oldValue="ACED00057E7200406F72672E656D6674726163652E6D6574616D6F64656C2E4172636869746563747572654B6E6F776C656467654D6F64656C2E4361706162696C6974795479706500000000000000001200007872000E6A6176612E6C616E672E456E756D00000000000000001200007870740016444556454C4F504D454E545F4341504142494C495459" newValue="ACED00057E7200406F72672E656D6674726163652E6D6574616D6F64656C2E4172636869746563747572654B6E6F776C656467654D6F64656C2E4361706162696C6974795479706500000000000000001200007872000E6A6176612E6C616E672E456E756D000000000000000012000078707400164F5045524154494F4E414C5F4341504142494C495459">
+    <modelElementId id="_o_zfQMw8EeSw2ZJEQXSwSw"/>
+  </operations>
+  <operations xsi:type="org.eclipse.emf.emfstore.internal.server.model.versioning.operations:AttributeOperation" identifier="_yoOLAcw8EeSw2ZJEQXSwSw" clientDate="2015-03-17T01:30:19.568+0100" featureName="Name" newValue="ACED0005740012546563686E6F6C6F67794665617475726538">
+    <modelElementId id="_pI5w4Mw8EeSw2ZJEQXSwSw"/>
+  </operations>
+  <operations xsi:type="org.eclipse.emf.emfstore.internal.server.model.versioning.operations:AttributeOperation" identifier="_y-zfAsw8EeSw2ZJEQXSwSw" clientDate="2015-03-17T01:30:21.936+0100" featureName="ID" newValue="ACED00057400023820">
+    <modelElementId id="_pI5w4Mw8EeSw2ZJEQXSwSw"/>
+  </operations>
+  <operations xsi:type="org.eclipse.emf.emfstore.internal.server.model.versioning.operations:AttributeOperation" identifier="_zFVk0sw8EeSw2ZJEQXSwSw" clientDate="2015-03-17T01:30:22.621+0100" featureName="Description" newValue="ACED000574000120">
+    <modelElementId id="_pI5w4Mw8EeSw2ZJEQXSwSw"/>
+  </operations>
+  <operations xsi:type="org.eclipse.emf.emfstore.internal.server.model.versioning.operations:AttributeOperation" identifier="_zV9awsw8EeSw2ZJEQXSwSw" clientDate="2015-03-17T01:30:24.364+0100" featureName="ID" oldValue="ACED00057400023820" newValue="ACED000574000138">
+    <modelElementId id="_pI5w4Mw8EeSw2ZJEQXSwSw"/>
+  </operations>
+  <operations xsi:type="org.eclipse.emf.emfstore.internal.server.model.versioning.operations:AttributeOperation" identifier="_zqmOAsw8EeSw2ZJEQXSwSw" clientDate="2015-03-17T01:30:26.528+0100" featureName="CapabilityType" oldValue="ACED00057E7200406F72672E656D6674726163652E6D6574616D6F64656C2E4172636869746563747572654B6E6F776C656467654D6F64656C2E4361706162696C6974795479706500000000000000001200007872000E6A6176612E6C616E672E456E756D00000000000000001200007870740016444556454C4F504D454E545F4341504142494C495459" newValue="ACED00057E7200406F72672E656D6674726163652E6D6574616D6F64656C2E4172636869746563747572654B6E6F776C656467654D6F64656C2E4361706162696C6974795479706500000000000000001200007872000E6A6176612E6C616E672E456E756D00000000000000001200007870740015434F4D4D45524349414C5F4341504142494C495459">
+    <modelElementId id="_pI5w4Mw8EeSw2ZJEQXSwSw"/>
+  </operations>
+  <operations xsi:type="org.eclipse.emf.emfstore.internal.server.model.versioning.operations:CreateDeleteOperation" identifier="_nCp1dMyREeSjlPXhRVGZdA" clientDate="2015-03-17T11:37:29.032+0100">
+    <modelElementId id="_nCmLEMyREeSjlPXhRVGZdA"/>
+    <modelElement xsi:type="ArchitectureKnowledgeModel:TechnologyFeature"/>
+    <subOperations xsi:type="org.eclipse.emf.emfstore.internal.server.model.versioning.operations:MultiReferenceOperation" identifier="_nCp1ccyREeSjlPXhRVGZdA" clientDate="2015-03-17T11:37:29.031+0100" featureName="Features" add="true">
+      <modelElementId id="_zirwUMmYEeSq6saETqWL0A"/>
+      <referencedModelElements id="_nCmLEMyREeSjlPXhRVGZdA"/>
+    </subOperations>
+    <eObjectToIdMap key="#//@operations.105/@modelElement">
+      <value id="_nCmLEMyREeSjlPXhRVGZdA"/>
+    </eObjectToIdMap>
+  </operations>
+  <operations xsi:type="org.eclipse.emf.emfstore.internal.server.model.versioning.operations:MultiReferenceOperation" identifier="_nCut8syREeSjlPXhRVGZdA" clientDate="2015-03-17T11:37:29.039+0100" featureName="Features" add="true">
+    <modelElementId id="_zirwUMmYEeSq6saETqWL0A"/>
+    <referencedModelElements id="_nCmLEMyREeSjlPXhRVGZdA"/>
+  </operations>
+  <operations xsi:type="org.eclipse.emf.emfstore.internal.server.model.versioning.operations:AttributeOperation" identifier="_nl3QMsyREeSjlPXhRVGZdA" clientDate="2015-03-17T11:37:32.723+0100" featureName="ID" newValue="ACED000574000131">
+    <modelElementId id="_nCmLEMyREeSjlPXhRVGZdA"/>
+  </operations>
+  <operations xsi:type="org.eclipse.emf.emfstore.internal.server.model.versioning.operations:AttributeOperation" identifier="_ntVKIsyREeSjlPXhRVGZdA" clientDate="2015-03-17T11:37:33.506+0100" featureName="Name" newValue="ACED00057400023131">
+    <modelElementId id="_nCmLEMyREeSjlPXhRVGZdA"/>
+  </operations>
+  <operations xsi:type="org.eclipse.emf.emfstore.internal.server.model.versioning.operations:AttributeOperation" identifier="_n0Jj0syREeSjlPXhRVGZdA" clientDate="2015-03-17T11:37:34.221+0100" featureName="Description" newValue="ACED000574000131">
+    <modelElementId id="_nCmLEMyREeSjlPXhRVGZdA"/>
+  </operations>
+  <operations xsi:type="org.eclipse.emf.emfstore.internal.server.model.versioning.operations:CreateDeleteOperation" identifier="_oHxqdcyREeSjlPXhRVGZdA" clientDate="2015-03-17T11:37:36.279+0100">
+    <modelElementId id="_oHxqcMyREeSjlPXhRVGZdA"/>
+    <modelElement xsi:type="ArchitectureKnowledgeModel:TechnologyFeature"/>
+    <subOperations xsi:type="org.eclipse.emf.emfstore.internal.server.model.versioning.operations:MultiReferenceOperation" identifier="_oHxqcsyREeSjlPXhRVGZdA" clientDate="2015-03-17T11:37:36.279+0100" featureName="Features" add="true" index="1">
+      <modelElementId id="_zirwUMmYEeSq6saETqWL0A"/>
+      <referencedModelElements id="_oHxqcMyREeSjlPXhRVGZdA"/>
+    </subOperations>
+    <eObjectToIdMap key="#//@operations.110/@modelElement">
+      <value id="_oHxqcMyREeSjlPXhRVGZdA"/>
+    </eObjectToIdMap>
+  </operations>
+  <operations xsi:type="org.eclipse.emf.emfstore.internal.server.model.versioning.operations:MultiReferenceOperation" identifier="_oHy4ksyREeSjlPXhRVGZdA" clientDate="2015-03-17T11:37:36.281+0100" featureName="Features" add="true" index="1">
+    <modelElementId id="_zirwUMmYEeSq6saETqWL0A"/>
+    <referencedModelElements id="_oHxqcMyREeSjlPXhRVGZdA"/>
+  </operations>
+  <operations xsi:type="org.eclipse.emf.emfstore.internal.server.model.versioning.operations:AttributeOperation" identifier="_oX9bgsyREeSjlPXhRVGZdA" clientDate="2015-03-17T11:37:37.976+0100" featureName="ID" newValue="ACED000574000132">
+    <modelElementId id="_oHxqcMyREeSjlPXhRVGZdA"/>
+  </operations>
+  <operations xsi:type="org.eclipse.emf.emfstore.internal.server.model.versioning.operations:AttributeOperation" identifier="_ocogIsyREeSjlPXhRVGZdA" clientDate="2015-03-17T11:37:38.466+0100" featureName="Name" newValue="ACED000574000132">
+    <modelElementId id="_oHxqcMyREeSjlPXhRVGZdA"/>
+  </operations>
+  <operations xsi:type="org.eclipse.emf.emfstore.internal.server.model.versioning.operations:AttributeOperation" identifier="_ohqKEMyREeSjlPXhRVGZdA" clientDate="2015-03-17T11:37:38.993+0100" featureName="Description" newValue="ACED000574000132">
+    <modelElementId id="_oHxqcMyREeSjlPXhRVGZdA"/>
+  </operations>
+  <operations xsi:type="org.eclipse.emf.emfstore.internal.server.model.versioning.operations:CreateDeleteOperation" identifier="_W4nO88zBEeSLkvfPT1stpQ" clientDate="2015-03-17T17:19:16.447+0100">
+    <modelElementId id="_W4jkkMzBEeSLkvfPT1stpQ"/>
+    <modelElement xsi:type="ArchitectureKnowledgeModel:FeatureBasedBenefit"/>
+    <subOperations xsi:type="org.eclipse.emf.emfstore.internal.server.model.versioning.operations:MultiReferenceOperation" identifier="_W4nO8MzBEeSLkvfPT1stpQ" clientDate="2015-03-17T17:19:16.447+0100" featureName="ASTA" add="true">
+      <modelElementId id="_DOtmYMswEeSNYq3NycnsDg"/>
+      <referencedModelElements id="_W4jkkMzBEeSLkvfPT1stpQ"/>
+    </subOperations>
+    <eObjectToIdMap key="#//@operations.115/@modelElement">
+      <value id="_W4jkkMzBEeSLkvfPT1stpQ"/>
+    </eObjectToIdMap>
+  </operations>
+  <operations xsi:type="org.eclipse.emf.emfstore.internal.server.model.versioning.operations:MultiReferenceOperation" identifier="_W4tVkMzBEeSLkvfPT1stpQ" clientDate="2015-03-17T17:19:16.457+0100" featureName="ASTA" add="true">
+    <modelElementId id="_DOtmYMswEeSNYq3NycnsDg"/>
+    <referencedModelElements id="_W4jkkMzBEeSLkvfPT1stpQ"/>
+  </operations>
+  <operations xsi:type="org.eclipse.emf.emfstore.internal.server.model.versioning.operations:AttributeOperation" identifier="_XMyvMszBEeSLkvfPT1stpQ" clientDate="2015-03-17T17:19:18.563+0100" featureName="ID" newValue="ACED000574000131">
+    <modelElementId id="_W4jkkMzBEeSLkvfPT1stpQ"/>
+  </operations>
+  <operations xsi:type="org.eclipse.emf.emfstore.internal.server.model.versioning.operations:AttributeOperation" identifier="_X2d-UszBEeSLkvfPT1stpQ" clientDate="2015-03-17T17:19:22.933+0100" featureName="Name" newValue="ACED000574000446424231">
+    <modelElementId id="_W4jkkMzBEeSLkvfPT1stpQ"/>
+  </operations>
+  <operations xsi:type="org.eclipse.emf.emfstore.internal.server.model.versioning.operations:AttributeOperation" identifier="_YFkxUszBEeSLkvfPT1stpQ" clientDate="2015-03-17T17:19:24.517+0100" featureName="Description" newValue="ACED000574000446424231">
+    <modelElementId id="_W4jkkMzBEeSLkvfPT1stpQ"/>
+  </operations>
+  <operations xsi:type="org.eclipse.emf.emfstore.internal.server.model.versioning.operations:AttributeOperation" identifier="_ZsDm8szBEeSLkvfPT1stpQ" clientDate="2015-03-17T17:19:35.263+0100" featureName="Condition" newValue="ACED0005740006617364616473">
+    <modelElementId id="_W4jkkMzBEeSLkvfPT1stpQ"/>
+  </operations>
+  <operations xsi:type="org.eclipse.emf.emfstore.internal.server.model.versioning.operations:CreateDeleteOperation" identifier="_eD2GlczBEeSLkvfPT1stpQ" clientDate="2015-03-17T17:20:04.601+0100">
+    <modelElementId id="_eD2GkMzBEeSLkvfPT1stpQ"/>
+    <modelElement xsi:type="ArchitectureKnowledgeModel:FeatureBasedDrawback"/>
+    <subOperations xsi:type="org.eclipse.emf.emfstore.internal.server.model.versioning.operations:MultiReferenceOperation" identifier="_eD2GkszBEeSLkvfPT1stpQ" clientDate="2015-03-17T17:20:04.601+0100" featureName="ASTA" add="true" index="1">
+      <modelElementId id="_DOtmYMswEeSNYq3NycnsDg"/>
+      <referencedModelElements id="_eD2GkMzBEeSLkvfPT1stpQ"/>
+    </subOperations>
+    <eObjectToIdMap key="#//@operations.121/@modelElement">
+      <value id="_eD2GkMzBEeSLkvfPT1stpQ"/>
+    </eObjectToIdMap>
+  </operations>
+  <operations xsi:type="org.eclipse.emf.emfstore.internal.server.model.versioning.operations:MultiReferenceOperation" identifier="_eD3Us8zBEeSLkvfPT1stpQ" clientDate="2015-03-17T17:20:04.603+0100" featureName="ASTA" add="true" index="1">
+    <modelElementId id="_DOtmYMswEeSNYq3NycnsDg"/>
+    <referencedModelElements id="_eD2GkMzBEeSLkvfPT1stpQ"/>
+  </operations>
+  <operations xsi:type="org.eclipse.emf.emfstore.internal.server.model.versioning.operations:AttributeOperation" identifier="_e15OkszBEeSLkvfPT1stpQ" clientDate="2015-03-17T17:20:09.849+0100" featureName="ID" newValue="ACED000574000132">
+    <modelElementId id="_eD2GkMzBEeSLkvfPT1stpQ"/>
+  </operations>
+  <operations xsi:type="org.eclipse.emf.emfstore.internal.server.model.versioning.operations:AttributeOperation" identifier="_fPIN8szBEeSLkvfPT1stpQ" clientDate="2015-03-17T17:20:12.495+0100" featureName="Name" newValue="ACED000574000446424431">
+    <modelElementId id="_eD2GkMzBEeSLkvfPT1stpQ"/>
+  </operations>
+  <operations xsi:type="org.eclipse.emf.emfstore.internal.server.model.versioning.operations:AttributeOperation" identifier="_fuuUAszBEeSLkvfPT1stpQ" clientDate="2015-03-17T17:20:15.808+0100" featureName="Description" newValue="ACED000574000446424431">
+    <modelElementId id="_eD2GkMzBEeSLkvfPT1stpQ"/>
+  </operations>
+  <operations xsi:type="org.eclipse.emf.emfstore.internal.server.model.versioning.operations:AttributeOperation" identifier="_f6xL8szBEeSLkvfPT1stpQ" clientDate="2015-03-17T17:20:17.071+0100" featureName="Condition" newValue="ACED000574000461646164">
+    <modelElementId id="_eD2GkMzBEeSLkvfPT1stpQ"/>
+  </operations>
+  <operations xsi:type="org.eclipse.emf.emfstore.internal.server.model.versioning.operations:CreateDeleteOperation" identifier="_g8K-lMzBEeSLkvfPT1stpQ" clientDate="2015-03-17T17:20:23.929+0100">
+    <modelElementId id="_g8KXgMzBEeSLkvfPT1stpQ"/>
+    <modelElement xsi:type="ArchitectureKnowledgeModel:ConcernBasedBenefit"/>
+    <subOperations xsi:type="org.eclipse.emf.emfstore.internal.server.model.versioning.operations:MultiReferenceOperation" identifier="_g8K-kczBEeSLkvfPT1stpQ" clientDate="2015-03-17T17:20:23.929+0100" featureName="ASTA" add="true" index="2">
+      <modelElementId id="_DOtmYMswEeSNYq3NycnsDg"/>
+      <referencedModelElements id="_g8KXgMzBEeSLkvfPT1stpQ"/>
+    </subOperations>
+    <eObjectToIdMap key="#//@operations.127/@modelElement">
+      <value id="_g8KXgMzBEeSLkvfPT1stpQ"/>
+    </eObjectToIdMap>
+  </operations>
+  <operations xsi:type="org.eclipse.emf.emfstore.internal.server.model.versioning.operations:MultiReferenceOperation" identifier="_g8Llo8zBEeSLkvfPT1stpQ" clientDate="2015-03-17T17:20:23.930+0100" featureName="ASTA" add="true" index="2">
+    <modelElementId id="_DOtmYMswEeSNYq3NycnsDg"/>
+    <referencedModelElements id="_g8KXgMzBEeSLkvfPT1stpQ"/>
+  </operations>
+  <operations xsi:type="org.eclipse.emf.emfstore.internal.server.model.versioning.operations:AttributeOperation" identifier="_hLGycszBEeSLkvfPT1stpQ" clientDate="2015-03-17T17:20:25.495+0100" featureName="ID" newValue="ACED000574000133">
+    <modelElementId id="_g8KXgMzBEeSLkvfPT1stpQ"/>
+  </operations>
+  <operations xsi:type="org.eclipse.emf.emfstore.internal.server.model.versioning.operations:AttributeOperation" identifier="_hhq4UszBEeSLkvfPT1stpQ" clientDate="2015-03-17T17:20:27.861+0100" featureName="Name" newValue="ACED000574000443424231">
+    <modelElementId id="_g8KXgMzBEeSLkvfPT1stpQ"/>
+  </operations>
+  <operations xsi:type="org.eclipse.emf.emfstore.internal.server.model.versioning.operations:AttributeOperation" identifier="_h4hSEszBEeSLkvfPT1stpQ" clientDate="2015-03-17T17:20:30.257+0100" featureName="Description" newValue="ACED000574000443424231">
+    <modelElementId id="_g8KXgMzBEeSLkvfPT1stpQ"/>
+  </operations>
+  <operations xsi:type="org.eclipse.emf.emfstore.internal.server.model.versioning.operations:AttributeOperation" identifier="_iGs4AszBEeSLkvfPT1stpQ" clientDate="2015-03-17T17:20:31.744+0100" featureName="Condition" newValue="ACED00057400056164616461">
+    <modelElementId id="_g8KXgMzBEeSLkvfPT1stpQ"/>
+  </operations>
+  <operations xsi:type="org.eclipse.emf.emfstore.internal.server.model.versioning.operations:AttributeOperation" identifier="_ilynwczBEeSLkvfPT1stpQ" clientDate="2015-03-17T17:20:35.004+0100" featureName="Concern" newValue="ACED0005740008436F6E6365726E31">
+    <modelElementId id="_g8KXgMzBEeSLkvfPT1stpQ"/>
+  </operations>
+  <operations xsi:type="org.eclipse.emf.emfstore.internal.server.model.versioning.operations:CreateDeleteOperation" identifier="_jP24dczBEeSLkvfPT1stpQ" clientDate="2015-03-17T17:20:39.415+0100">
+    <modelElementId id="_jP24cMzBEeSLkvfPT1stpQ"/>
+    <modelElement xsi:type="ArchitectureKnowledgeModel:ConcernBasedDrawback"/>
+    <subOperations xsi:type="org.eclipse.emf.emfstore.internal.server.model.versioning.operations:MultiReferenceOperation" identifier="_jP24cszBEeSLkvfPT1stpQ" clientDate="2015-03-17T17:20:39.415+0100" featureName="ASTA" add="true" index="3">
+      <modelElementId id="_DOtmYMswEeSNYq3NycnsDg"/>
+      <referencedModelElements id="_jP24cMzBEeSLkvfPT1stpQ"/>
+    </subOperations>
+    <eObjectToIdMap key="#//@operations.134/@modelElement">
+      <value id="_jP24cMzBEeSLkvfPT1stpQ"/>
+    </eObjectToIdMap>
+  </operations>
+  <operations xsi:type="org.eclipse.emf.emfstore.internal.server.model.versioning.operations:MultiReferenceOperation" identifier="_jP3fg8zBEeSLkvfPT1stpQ" clientDate="2015-03-17T17:20:39.416+0100" featureName="ASTA" add="true" index="3">
+    <modelElementId id="_DOtmYMswEeSNYq3NycnsDg"/>
+    <referencedModelElements id="_jP24cMzBEeSLkvfPT1stpQ"/>
+  </operations>
+  <operations xsi:type="org.eclipse.emf.emfstore.internal.server.model.versioning.operations:AttributeOperation" identifier="_joBg0szBEeSLkvfPT1stpQ" clientDate="2015-03-17T17:20:41.949+0100" featureName="ID" newValue="ACED000574000134">
+    <modelElementId id="_jP24cMzBEeSLkvfPT1stpQ"/>
+  </operations>
+  <operations xsi:type="org.eclipse.emf.emfstore.internal.server.model.versioning.operations:AttributeOperation" identifier="_kEhPkszBEeSLkvfPT1stpQ" clientDate="2015-03-17T17:20:44.937+0100" featureName="Name" newValue="ACED000574000443424431">
+    <modelElementId id="_jP24cMzBEeSLkvfPT1stpQ"/>
+  </operations>
+  <operations xsi:type="org.eclipse.emf.emfstore.internal.server.model.versioning.operations:AttributeOperation" identifier="_kQtRcszBEeSLkvfPT1stpQ" clientDate="2015-03-17T17:20:46.215+0100" featureName="Description" newValue="ACED000574000443424431">
+    <modelElementId id="_jP24cMzBEeSLkvfPT1stpQ"/>
+  </operations>
+  <operations xsi:type="org.eclipse.emf.emfstore.internal.server.model.versioning.operations:AttributeOperation" identifier="_kcK6kczBEeSLkvfPT1stpQ" clientDate="2015-03-17T17:20:47.417+0100" featureName="Condition" newValue="ACED0005740006616461646171">
+    <modelElementId id="_jP24cMzBEeSLkvfPT1stpQ"/>
+  </operations>
+  <operations xsi:type="org.eclipse.emf.emfstore.internal.server.model.versioning.operations:AttributeOperation" identifier="_k5lPUMzBEeSLkvfPT1stpQ" clientDate="2015-03-17T17:20:50.501+0100" featureName="Concern" newValue="ACED0005740008436F6E6365726E32">
+    <modelElementId id="_jP24cMzBEeSLkvfPT1stpQ"/>
+  </operations>
 </org.eclipse.emf.emfstore.internal.server.model.versioning:ChangePackage>
