@@ -274,9 +274,9 @@ public abstract class AbstractAKMGraphNode extends GraphNode {
 			}
 
 			@Override
-			public void collapsed() {
+			public void collapsed(final boolean pApplyLayout) {
 
-				thisNode.collapse();
+				thisNode.collapse(pApplyLayout);
 			}
 		});
 	}
@@ -335,49 +335,14 @@ public abstract class AbstractAKMGraphNode extends GraphNode {
 					// left mouse button was pressed
 					setSelection(me.getState());
 				} else if (me.button == 3) {
+
 					// right mouse button was pressed
-
-					// get location of the mouse in the workspace
-					int x =
-							graph.getParent().getParent().getParent().getParent().getParent()
-									.getParent().getParent().getParent().getParent().getParent()
-									.getLocation().x;
-					int y =
-							graph.getParent().getParent().getParent().getParent().getParent()
-									.getParent().getParent().getParent().getParent().getParent()
-									.getLocation().y;
-					x +=
-							graph.getParent().getParent().getParent().getParent().getParent()
-									.getParent().getParent().getParent().getParent().getLocation().x;
-					y +=
-							graph.getParent().getParent().getParent().getParent().getParent()
-									.getParent().getParent().getParent().getParent().getLocation().y;
-
-					x +=
-							graph.getParent().getParent().getParent().getParent().getParent()
-									.getParent().getParent().getParent().getParent().getParent()
-									.getParent().getLocation().x;
-					y +=
-							graph.getParent().getParent().getParent().getParent().getParent()
-									.getParent().getParent().getParent().getParent().getParent()
-									.getParent().getLocation().y;
-
-					x +=
-							graph.getParent().getParent().getParent().getParent().getParent()
-									.getParent().getParent().getParent().getParent().getParent()
-									.getParent().getParent().getParent().getParent().getLocation().x;
-					y +=
-							graph.getParent().getParent().getParent().getParent().getParent()
-									.getParent().getParent().getParent().getParent().getParent()
-									.getParent().getParent().getParent().getParent().getLocation().y;
-
-					openMenu(me.x + x, me.y + y);
+					openMenu();
 				}
 			}
 
-			private void openMenu(final int xPos, final int yPos) {
+			private void openMenu() {
 				if (mMenu != null) {
-					mMenu.setLocation(xPos, yPos);
 					mMenu.setVisible(true);
 				}
 			}
@@ -481,11 +446,19 @@ public abstract class AbstractAKMGraphNode extends GraphNode {
 	}
 
 	/**
+	 * Collapses all children of this node
+	 */
+	public void collapseChildren() {
+		collapseChildren(this);
+		graph.applyLayout();
+	}
+
+	/**
 	 * hides all children of the node
 	 */
 	public void hideChildren() {
 		hideChildren(this);
-		graph.applyLayout();
+		// graph.applyLayout();
 	}
 
 	/**
@@ -495,13 +468,18 @@ public abstract class AbstractAKMGraphNode extends GraphNode {
 	 *            AN AbstractAKMGraphNode
 	 */
 	private void showChildren(final AbstractAKMGraphNode pNode) {
-		for (Object connection : pNode.getTargetConnections()) {
+		for (Object connection : pNode.getSourceConnections()) {
+
+			GraphConnection graphConnection = (GraphConnection) connection;
+
 			AbstractAKMGraphNode childNode =
-					(AbstractAKMGraphNode) ((GraphConnection) connection).getSource();
+					(AbstractAKMGraphNode) graphConnection.getDestination();
 			childNode.show();
 			if (childNode.isExpanded()) {
 				showChildren(childNode);
 			}
+
+			graphConnection.setVisible(true);
 		}
 	}
 
@@ -512,9 +490,9 @@ public abstract class AbstractAKMGraphNode extends GraphNode {
 	 *            An AbstractAKMGraphNode
 	 */
 	private void hideChildren(final AbstractAKMGraphNode pNode) {
-		for (Object connection : pNode.getTargetConnections()) {
+		for (Object connection : pNode.getSourceConnections()) {
 			AbstractAKMGraphNode childNode =
-					(AbstractAKMGraphNode) ((GraphConnection) connection).getSource();
+					(AbstractAKMGraphNode) ((GraphConnection) connection).getDestination();
 			childNode.hide();
 			hideChildren(childNode);
 		}
@@ -553,16 +531,18 @@ public abstract class AbstractAKMGraphNode extends GraphNode {
 	 * Expand this node
 	 */
 	public void expand() {
-		expandChildren(this);
+		expand(this);
 		graph.applyLayout();
 	}
 
 	/**
 	 * Collapse this node
 	 */
-	public void collapse() {
-		collapseChildren(this);
-		graph.applyLayout();
+	public void collapse(final boolean pApplyLayout) {
+		collapse(this);
+		if (pApplyLayout) {
+			graph.applyLayout();
+		}
 	}
 
 	/**
@@ -644,7 +624,7 @@ public abstract class AbstractAKMGraphNode extends GraphNode {
 	 * @param pNode
 	 *            The node to expand its children of
 	 */
-	private void expandChildren(final AbstractAKMGraphNode pNode) {
+	private void expand(final AbstractAKMGraphNode pNode) {
 
 		for (Object connection : pNode.getSourceConnections()) {
 			AbstractAKMGraphNode childNode =
@@ -653,28 +633,9 @@ public abstract class AbstractAKMGraphNode extends GraphNode {
 			childNode.show();
 			((GraphConnection) connection).setVisible(true);
 
-			// TODO CB: Auskommentierten Code entfernen. Wird diese Logik benötigt?
-			// if (childNode.isExpanded() && childNode.isVisible()) {
-			// ((GraphConnection) connection).setVisible(true);
-			// } else {
-			// ((GraphConnection) connection).setVisible(false);
-			// }
-			//
-			// }
-			//
-			// // show all children
-			// for (Object connection : pNode.getTargetConnections()) {
-			// AbstractAKMGraphNode childNode =
-			// (AbstractAKMGraphNode) ((GraphConnection) connection).getSource();
-			//
-			// if (!childNode.isVisible()) {
-			// childNode.show();
-			//
-			// }
-			// ((GraphConnection) connection).setVisible(true);
-			// if (childNode.isExpanded()) {
-			// expandChildren(childNode);
-			// }
+			if (childNode.isExpanded()) {
+				childNode.showChildren();
+			}
 		}
 	}
 
@@ -684,18 +645,31 @@ public abstract class AbstractAKMGraphNode extends GraphNode {
 	 * @param pNode
 	 *            The node to collapse its children of
 	 */
-	private void collapseChildren(final AbstractAKMGraphNode node) {
+	private void collapseChildren(final AbstractAKMGraphNode pNode) {
 
-		for (Object connection : node.getSourceConnections()) {
+		for (Object connection : pNode.getSourceConnections()) {
+			GraphConnection graphConnection = (GraphConnection) connection;
 
 			AbstractAKMGraphNode childNode =
-					(AbstractAKMGraphNode) ((GraphConnection) connection).getDestination();
+					(AbstractAKMGraphNode) graphConnection.getDestination();
 
-			// TODO CB: Die gelöschte Logik, falls eine Node mehrere Parents hat wieder einführen?
+			collapse(childNode);
+			childNode.setIsCollapsed(true);
+		}
+	}
+
+	private void collapse(final AbstractAKMGraphNode pNode) {
+
+		for (Object connection : pNode.getSourceConnections()) {
+
+			GraphConnection graphConnection = (GraphConnection) connection;
+
+			AbstractAKMGraphNode childNode =
+					(AbstractAKMGraphNode) graphConnection.getDestination();
 
 			childNode.hide();
-			collapseChildren(childNode);
-			((GraphConnection) connection).setVisible(false);
+			collapse(childNode);
+			graphConnection.setVisible(false);
 		}
 	}
 
@@ -715,7 +689,7 @@ public abstract class AbstractAKMGraphNode extends GraphNode {
 
 			((GraphConnection) connection).setVisible(true);
 
-			if (parentNode.isCollasped()) {
+			if (parentNode.isCollapsed()) {
 				expandParents(parentNode);
 
 			}
@@ -927,7 +901,7 @@ public abstract class AbstractAKMGraphNode extends GraphNode {
 	/**
 	 * @return True, if this node it collapsed (no children are shown). Otherwise, returns false
 	 */
-	public boolean isCollasped() {
+	public boolean isCollapsed() {
 		return !mFigure.isExpanded();
 	}
 
@@ -942,9 +916,9 @@ public abstract class AbstractAKMGraphNode extends GraphNode {
 	/**
 	 * Set state to collapsed
 	 */
-	public void setIsCollapsed() {
+	public void setIsCollapsed(final boolean pApplyLayout) {
 
-		mFigure.setIsCollapsed();
+		mFigure.setIsCollapsed(pApplyLayout);
 	}
 
 	/**

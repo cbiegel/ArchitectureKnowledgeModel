@@ -92,21 +92,21 @@ public class FeaturesExplorationGraphBuilder extends AbstractElementGraphBuilder
 
 				// Create drawbacks and benefits nodes and connect them with the TechnologyFeature
 				AbstractAKMGraphNode benefitsNode =
-						createBenefitsNode(pZestGraph, benefitsList, 2, 1, true, false);
+						createBenefitsNode(pZestGraph, benefitsList, 2, 1, technologyFeature);
 				AbstractAKMGraphNode drawbacksNode =
-						createDrawbacksNode(pZestGraph, drawbacksList, 2, 1, true, false);
+						createDrawbacksNode(pZestGraph, drawbacksList, 2, 1, technologyFeature);
 
 				createConnection(technologyFeatureNode, benefitsNode);
 				createConnection(technologyFeatureNode, drawbacksNode);
 
 				// Collapse the TechnologyFeature nodes initially to save space on the graph
-				technologyFeatureNode.collapse();
-				technologyFeatureNode.setIsCollapsed();
+				technologyFeatureNode.collapse(true);
+				technologyFeatureNode.setIsCollapsed(true);
 			}
 
 			// Collapse the TechnologySolution nodes initially to save space on the graph
-			technologySolutionNode.collapse();
-			technologySolutionNode.setIsCollapsed();
+			technologySolutionNode.collapse(true);
+			technologySolutionNode.setIsCollapsed(true);
 		}
 	}
 

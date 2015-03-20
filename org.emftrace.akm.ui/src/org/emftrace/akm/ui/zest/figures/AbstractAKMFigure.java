@@ -94,7 +94,7 @@ public abstract class AbstractAKMFigure extends Figure {
 
 	abstract public void setIsExpanded();
 
-	abstract public void setIsCollapsed();
+	abstract public void setIsCollapsed(final boolean pApplyLayout);
 
 	abstract public void setLabelColor(final Color pColor);
 

@@ -1,5 +1,6 @@
 package org.emftrace.akm.ui.zest.figures;
 
+import java.awt.MouseInfo;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
@@ -15,6 +16,7 @@ import org.eclipse.draw2d.RectangleFigure;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.Font;
+import org.eclipse.swt.widgets.Menu;
 import org.emftrace.akm.ui.zest.figures.listeners.IExpandListener;
 import org.emftrace.akm.ui.zest.graph.AKMGraph;
 import org.emftrace.akm.ui.zest.nodes.AbstractAKMGraphNode;
@@ -64,6 +66,8 @@ public abstract class AbstractASTAFigure extends AbstractAKMFigure {
 
 	private Label mSelectedLabel;
 
+	private Map<Label, Menu> mContextMenuMap;
+
 	// ===========================================================
 	// Constructors
 	// ===========================================================
@@ -72,6 +76,7 @@ public abstract class AbstractASTAFigure extends AbstractAKMFigure {
 		mContentsList = new ArrayList<Label>();
 		mASTAMap = new HashMap<Label, ASTA>();
 		mLabelMap = new HashMap<String, Label>();
+		mContextMenuMap = new HashMap<Label, Menu>();
 
 		mBorderFigure = new RectangleFigure();
 		mBorderFigure.setFill(true);
@@ -126,7 +131,7 @@ public abstract class AbstractASTAFigure extends AbstractAKMFigure {
 	}
 
 	@Override
-	public void setIsCollapsed() {
+	public void setIsCollapsed(final boolean pApplyLayout) {
 		// TODO Auto-generated method stub
 
 	}
@@ -145,8 +150,8 @@ public abstract class AbstractASTAFigure extends AbstractAKMFigure {
 
 	@Override
 	public void removeMouseListener(final MouseListener listener) {
-		// TODO Auto-generated method stub
 
+		mBorderFigure.removeMouseListener(listener);
 	}
 
 	@Override
@@ -205,6 +210,7 @@ public abstract class AbstractASTAFigure extends AbstractAKMFigure {
 	public void addCustomMouseListener(final AKMGraph pGraph, final AbstractAKMGraphNode pNode) {
 
 		for (final Label label : mContentsList) {
+
 			label.addMouseListener(new MouseListener() {
 
 				@Override
@@ -218,51 +224,24 @@ public abstract class AbstractASTAFigure extends AbstractAKMFigure {
 						// left mouse button was pressed
 						setSelection(me.getState());
 					} else if (me.button == 3) {
-						// right mouse button was pressed
 
-						// get location of the mouse in the workspace
-						int x =
-								pGraph.getParent().getParent().getParent().getParent().getParent()
-										.getParent().getParent().getParent().getParent()
-										.getParent().getLocation().x;
-						int y =
-								pGraph.getParent().getParent().getParent().getParent().getParent()
-										.getParent().getParent().getParent().getParent()
-										.getParent().getLocation().y;
-						x +=
-								pGraph.getParent().getParent().getParent().getParent().getParent()
-										.getParent().getParent().getParent().getParent()
-										.getLocation().x;
-						y +=
-								pGraph.getParent().getParent().getParent().getParent().getParent()
-										.getParent().getParent().getParent().getParent()
-										.getLocation().y;
+						// The location of the mouse event is relative to the location within the
+						// graph. The menu coordinates are relative to the display (screen).
+						// Therefore, it requires the location on the display.
+						java.awt.Point displayLocation = MouseInfo.getPointerInfo().getLocation();
 
-						x +=
-								pGraph.getParent().getParent().getParent().getParent().getParent()
-										.getParent().getParent().getParent().getParent()
-										.getParent().getParent().getLocation().x;
-						y +=
-								pGraph.getParent().getParent().getParent().getParent().getParent()
-										.getParent().getParent().getParent().getParent()
-										.getParent().getParent().getLocation().y;
-
-						x +=
-								pGraph.getParent().getParent().getParent().getParent().getParent()
-										.getParent().getParent().getParent().getParent()
-										.getParent().getParent().getParent().getParent()
-										.getParent().getLocation().x;
-						y +=
-								pGraph.getParent().getParent().getParent().getParent().getParent()
-										.getParent().getParent().getParent().getParent()
-										.getParent().getParent().getParent().getParent()
-										.getParent().getLocation().y;
-
-						openMenu(me.x + x, me.y + y);
+						openMenu(displayLocation.x, displayLocation.y);
 					}
 				}
 
-				private void openMenu(final int xPos, final int yPos) {
+				private void openMenu(final int pXPos, final int pYPos) {
+
+					Menu contextMenu = mContextMenuMap.get(label);
+
+					if (contextMenu != null) {
+						contextMenu.setLocation(pXPos, pYPos);
+						contextMenu.setVisible(true);
+					}
 				}
 
 				private void setSelection(final int state) {
@@ -315,6 +294,14 @@ public abstract class AbstractASTAFigure extends AbstractAKMFigure {
 	public ASTA getASTAElementForLabel(final Label pLabel) {
 
 		return mASTAMap.get(pLabel);
+	}
+
+	public Label getLabelForASTAElement(final ASTA pASTAElement) {
+		return mLabelMap.get(pASTAElement.getName());
+	}
+
+	public void setContextMenu(final Label pLabel, final Menu pMenu) {
+		mContextMenuMap.put(pLabel, pMenu);
 	}
 
 	abstract public Label getTitleLabel();

@@ -48,7 +48,6 @@ public class TechnologyFeatureFigure extends AbstractDecoratorFigure {
 			g.setForegroundColor(new Color(Display.getCurrent(), 255, 255, 255));
 		}
 
-		// drawAndFillFigureBorder(g, points);
 		drawAndFillFigureBorderOval(g, r);
 	}
 }

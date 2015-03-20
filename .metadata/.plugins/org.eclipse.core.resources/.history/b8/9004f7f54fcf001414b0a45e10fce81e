@@ -1,0 +1,336 @@
+/*******************************************************************************
+ * Copyright (c) 2010-2012 Software Systems/Process Informatics Group,
+ * Ilmenau University of Technology.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributor: Daniel Motschmann
+ ******************************************************************************/
+
+package org.emftrace.akm.ui.zest.figures;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.eclipse.draw2d.Figure;
+import org.eclipse.draw2d.Label;
+import org.eclipse.draw2d.MouseEvent;
+import org.eclipse.draw2d.MouseListener;
+import org.eclipse.draw2d.OrderedLayout;
+import org.eclipse.draw2d.ToolbarLayout;
+import org.eclipse.swt.graphics.Color;
+import org.eclipse.swt.graphics.Font;
+import org.emftrace.akm.ui.zest.figures.listeners.IExpandListener;
+
+/**
+ * A Figure for the name and importance (local priority) of an Element. The Figure contains an icon
+ * and observer for expanding and collapsing the node as well.
+ * 
+ * @author Daniel Motschmann
+ * @version 1.0
+ */
+public class NameFigure extends Figure {
+
+	/**
+	 * char for the collapsed symbol
+	 */
+	private final static String BLACK_RIGHT_POINTING_TRIANGLE_UNICODE_CHAR = "\u25BA";
+
+	/**
+	 * char for the expanded symbol
+	 */
+	private final static String BLACK_DOWN_POINTING_TRIANGLE_UNICODE_CHAR = "\u25BC";
+
+	/**
+	 * is the node expanded or collapsed
+	 */
+	private boolean isExpanded;
+
+	/**
+	 * a List with all currently listening ExpandListeners
+	 */
+	private List<IExpandListener> expandListeners;
+
+	/**
+	 * the font used to draw the name
+	 */
+	private Font font;
+
+	/**
+	 * the caption for the name of the element
+	 */
+	private String name;
+
+	/**
+	 * a Label for the expand / collapse figure
+	 */
+	private Label expandLabel;
+
+	/**
+	 * a Label used to draw the name
+	 */
+	private Label nameLabel;
+
+	/**
+	 * a Label used to draw the importance
+	 */
+	private Label importanceLabel;
+	/**
+	 * node has incoming connections and could be expanded or collapsed
+	 */
+	private boolean isExpandable;
+
+	/**
+	 * the (GRL) importance of the element; equals the priority of GSS
+	 */
+	private Float importance;
+
+	/**
+	 * Getter for the (GRL) importance of the element; equals the priority of GSS
+	 * 
+	 * @return the importance
+	 */
+	public Float getImportance() {
+		return importance;
+	}
+
+	/**
+	 * Setter for the (GRL) importance of the element; equals the priority of GSS
+	 */
+	public void setImportance(final Float value) {
+		this.importance = value;
+		formatAndDrawImportanceCaption();
+	}
+
+	/**
+	 * an alternative constructor without setting an importance
+	 * 
+	 * @param font
+	 *            the font used to draw the name
+	 * @param name
+	 *            the caption for the name of the element
+	 * @param isExpandable
+	 *            node has incoming connections and could be expanded or collapsed
+	 */
+	public NameFigure(final Font font, final String name, final boolean isExpandable) {
+		this(font, name, isExpandable, null);
+	}
+
+	/**
+	 * an alternative constructor
+	 * 
+	 * @param font
+	 *            the font used to draw the name
+	 * @param name
+	 *            the caption for the name of the element
+	 * @param isExpandable
+	 *            node has incoming connections and could be expanded or collapsed
+	 * @param importance
+	 *            the (GRL) importance of the element; equals the priority of GSS
+	 */
+	public NameFigure(final Font font, final String name, final boolean isExpandable,
+			final Float importance) {
+		super();
+
+		this.isExpanded = true;
+
+		expandListeners = new ArrayList<IExpandListener>();
+
+		this.font = font;
+		this.name = name;
+		this.isExpandable = isExpandable;
+		ToolbarLayout layout = new ToolbarLayout(true);
+
+		layout.setMinorAlignment(OrderedLayout.ALIGN_CENTER);
+		setLayoutManager(layout);
+		setOpaque(false);
+
+		expandLabel = new Label();
+		if (isExpandable == true) {
+			expandLabel.setFont(this.font);
+
+			expandLabel.addMouseListener(new MouseListener() {
+
+				@Override
+				public void mousePressed(final MouseEvent me) {
+
+				}
+
+				@Override
+				public void mouseReleased(final MouseEvent me) {
+					if (me.button == 1) {
+						if (isExpanded) {
+							setIsCollapsed();
+						} else {
+							setIsExpanded();
+						}
+					}
+				}
+
+				@Override
+				public void mouseDoubleClicked(final MouseEvent me) {
+				}
+
+			});
+			setIsExpanded();
+			add(expandLabel);
+		}
+		nameLabel = new Label();
+		nameLabel.setFont(this.font);
+
+		formatAndDrawNameCaption();
+		add(nameLabel);
+
+		this.importance = importance;
+		importanceLabel = new Label();
+		importanceLabel.setFont(this.font);
+		formatAndDrawImportanceCaption();
+		add(importanceLabel);
+		setSize(-1, -1);
+	}
+
+	/**
+	 * Setter for name
+	 * 
+	 * @param name
+	 *            a new name
+	 */
+	public void setName(final String name) {
+		this.name = name;
+		formatAndDrawNameCaption();
+	}
+
+	/**
+	 * formats and draws the name
+	 */
+	private void formatAndDrawNameCaption() {
+		if (importance == null) {
+			if (isExpandable) {
+				nameLabel.setText(this.name + "      ");
+			} else {
+				nameLabel.setText("      " + this.name + "      ");
+			}
+		} else {
+			if (isExpandable) {
+				nameLabel.setText(this.name + " ");
+			} else {
+				nameLabel.setText("      " + this.name + " ");
+			}
+		}
+		// setSize(-1, -1);
+		// nameLabel.repaint();
+		repaint();
+	}
+
+	/**
+	 * draws the importance label
+	 */
+	private void formatAndDrawImportanceCaption() {
+		formatAndDrawNameCaption();
+		importanceLabel.setText(importance == null ? "" : " (" + String.format("%.2f", importance)
+				+ ")      ");
+		// setSize(-1, -1);
+		// importanceLabel. repaint();
+		repaint();
+	}
+
+	/**
+	 * draws the expandLabel with the specified text
+	 * 
+	 * @param expandText
+	 *            a String or char to show the node is collapsed or expanded
+	 */
+	private void setExpandFigureText(final String expandText) {
+		expandLabel.setText("      " + expandText + " ");
+		// setSize(-1, -1);
+		// expandLabel.repaint();
+		repaint();
+	}
+
+	/**
+	 * adds the specified ExpandListener
+	 * 
+	 * @param expandListener
+	 *            a ExpandListener
+	 */
+	public void addExpandListener(final IExpandListener expandListener) {
+		expandListeners.add(expandListener);
+	}
+
+	/**
+	 * removes the specified ExpandListener
+	 * 
+	 * @param expandListener
+	 *            a ExpandListener
+	 */
+	public void removeExpandListener(final IExpandListener expandListener) {
+		expandListeners.remove(expandListener);
+	}
+
+	/**
+	 * fires a notification to all listening ExpandListeners
+	 * 
+	 * @param expanded
+	 *            the node it expanded or not
+	 */
+	private void notifyExpandListener(final boolean expanded, final boolean pApplyLayout) {
+		try {
+
+			if (expanded) {
+				for (IExpandListener listener : expandListeners) {
+					listener.expanded();
+				}
+			} else {
+				for (IExpandListener listener : expandListeners) {
+					listener.collapsed(pApplyLayout);
+				}
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+	}
+
+	/**
+	 * @return the node it expanded or not
+	 */
+	public boolean isExpanded() {
+		return this.isExpanded;
+	}
+
+	/**
+	 * expands the node and notify all listeners
+	 */
+	public void setIsExpanded() {
+		this.isExpanded = true;
+		notifyExpandListener(true, true);
+		setExpandFigureText(BLACK_DOWN_POINTING_TRIANGLE_UNICODE_CHAR);
+
+	}
+
+	/**
+	 * collapses the node and notify all listeners
+	 */
+	public void setIsCollapsed(final boolean pApplyLayout) {
+		this.isExpanded = false;
+		notifyExpandListener(false, pApplyLayout);
+		setExpandFigureText(BLACK_RIGHT_POINTING_TRIANGLE_UNICODE_CHAR);
+
+	}
+
+	/**
+	 * setter for the foreground color of the labels
+	 * 
+	 * @param c
+	 *            a Color
+	 */
+	public void setLabelColor(final Color c) {
+
+		expandLabel.setForegroundColor(c);
+		nameLabel.setForegroundColor(c);
+		importanceLabel.setForegroundColor(c);
+	}
+
+}

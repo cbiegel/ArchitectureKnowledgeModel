@@ -162,7 +162,7 @@ public class NameFigure extends Figure {
 				public void mouseReleased(final MouseEvent me) {
 					if (me.button == 1) {
 						if (isExpanded) {
-							setIsCollapsed();
+							setIsCollapsed(true);
 						} else {
 							setIsExpanded();
 						}
@@ -275,7 +275,7 @@ public class NameFigure extends Figure {
 	 * @param expanded
 	 *            the node it expanded or not
 	 */
-	private void notifyExpandListener(final boolean expanded) {
+	private void notifyExpandListener(final boolean expanded, final boolean pApplyLayout) {
 		try {
 
 			if (expanded) {
@@ -284,7 +284,7 @@ public class NameFigure extends Figure {
 				}
 			} else {
 				for (IExpandListener listener : expandListeners) {
-					listener.collapsed();
+					listener.collapsed(pApplyLayout);
 				}
 			}
 		} catch (Exception e) {
@@ -305,7 +305,7 @@ public class NameFigure extends Figure {
 	 */
 	public void setIsExpanded() {
 		this.isExpanded = true;
-		notifyExpandListener(true);
+		notifyExpandListener(true, true);
 		setExpandFigureText(BLACK_DOWN_POINTING_TRIANGLE_UNICODE_CHAR);
 
 	}
@@ -313,9 +313,9 @@ public class NameFigure extends Figure {
 	/**
 	 * collapses the node and notify all listeners
 	 */
-	public void setIsCollapsed() {
+	public void setIsCollapsed(final boolean pApplyLayout) {
 		this.isExpanded = false;
-		notifyExpandListener(false);
+		notifyExpandListener(false, pApplyLayout);
 		setExpandFigureText(BLACK_RIGHT_POINTING_TRIANGLE_UNICODE_CHAR);
 
 	}

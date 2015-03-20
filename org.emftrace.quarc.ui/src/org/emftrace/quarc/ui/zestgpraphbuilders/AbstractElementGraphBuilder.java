@@ -7,8 +7,7 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributor: Daniel Motschmann
- ******************************************************************************/ 
-
+ ******************************************************************************/
 
 package org.emftrace.quarc.ui.zestgpraphbuilders;
 
@@ -70,24 +69,23 @@ import org.emftrace.quarc.ui.zest.connections.GSSRelationConnection;
 import org.emftrace.quarc.ui.zest.figures.AbstractDecoratorFigure;
 import org.emftrace.quarc.ui.zest.figures.ElementFigure;
 import org.emftrace.quarc.ui.zest.figures.FlawFigure;
-import org.emftrace.quarc.ui.zest.figures.SolutionInstrumentFigure;
 import org.emftrace.quarc.ui.zest.figures.PreconditionFigure;
 import org.emftrace.quarc.ui.zest.figures.PrincipleFigure;
 import org.emftrace.quarc.ui.zest.figures.RefinementType;
 import org.emftrace.quarc.ui.zest.figures.RefinementTypeFigure;
 import org.emftrace.quarc.ui.zest.figures.SoftGoalFigure;
+import org.emftrace.quarc.ui.zest.figures.SolutionInstrumentFigure;
 import org.emftrace.quarc.ui.zest.graph.GSSGraph;
 import org.emftrace.quarc.ui.zest.layouts.GSSGraphLayoutAlgorithm;
 import org.emftrace.quarc.ui.zest.nodes.GSSElementGraphNode;
 import org.emftrace.ui.editors.builders.AbstractGUIBuilder;
 import org.emftrace.ui.modelelementopener.EMFTraceModelElementOpener;
 
-
 /**
  * the base for all GraphBuilders
  * 
  * @author Daniel Motschmann
- *
+ * 
  */
 public abstract class AbstractElementGraphBuilder extends AbstractGUIBuilder {
 	/**
@@ -99,8 +97,7 @@ public abstract class AbstractElementGraphBuilder extends AbstractGUIBuilder {
 	 * a ZoomManager for the zest graph
 	 */
 	private ZoomManager zoomManager;
-	
-	
+
 	/**
 	 * the input of the builder
 	 */
@@ -111,7 +108,6 @@ public abstract class AbstractElementGraphBuilder extends AbstractGUIBuilder {
 	 */
 	private int style;
 
-	
 	/**
 	 * a map for GraphNodes of Elements
 	 */
@@ -126,13 +122,12 @@ public abstract class AbstractElementGraphBuilder extends AbstractGUIBuilder {
 	 * a map for the Connections of Relations
 	 */
 	protected HashMap<Relation, GraphConnection> relationMap;
-	
+
 	/**
 	 * a map for the Relations of Connections
 	 */
 	protected HashMap<GraphConnection, Relation> connectionMap;
 
-	
 	/**
 	 * the used WorkbenchPartSite
 	 */
@@ -153,7 +148,6 @@ public abstract class AbstractElementGraphBuilder extends AbstractGUIBuilder {
 	 */
 	private Map<ECPModelElementChangeListener, Element> ecpModelChangeListenerMap;
 
-	
 	/**
 	 * @return the zest Graph
 	 */
@@ -164,9 +158,10 @@ public abstract class AbstractElementGraphBuilder extends AbstractGUIBuilder {
 	/**
 	 * Setter for input (the Element to display)
 	 * 
-	 * @param inputContainer a EObject used as input for the builder
+	 * @param inputContainer
+	 *            a EObject used as input for the builder
 	 */
-	public void setInput(EObject inputContainer) {
+	public void setInput(final EObject inputContainer) {
 		this.inputContainer = inputContainer;
 	}
 
@@ -181,14 +176,15 @@ public abstract class AbstractElementGraphBuilder extends AbstractGUIBuilder {
 	 * An interface for the SelectionProvider of Eclipse
 	 */
 	private ISelectionProvider selectionProvider;
-	
-	
+
 	/**
 	 * A list with SelectionChangedListeners used by the SelectionProvider
 	 */
 	private List<ISelectionChangedListener> selectionChangedListeners;
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see sharedcomponents.builders.guis.AbstractGUIBuilder#doBuild()
 	 */
 	@Override
@@ -198,31 +194,24 @@ public abstract class AbstractElementGraphBuilder extends AbstractGUIBuilder {
 		bodyComposite.setLayout(new GridLayout(6, false));
 
 		zestGraph = new GSSGraph(bodyComposite, SWT.BORDER);
-		zestGraph.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true, 6,
-				1));
-		GSSGraphLayoutAlgorithm gssLayout = new GSSGraphLayoutAlgorithm(
-				LayoutStyles.NONE, zestGraph);
+		zestGraph.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true, 6, 1));
+		GSSGraphLayoutAlgorithm gssLayout =
+				new GSSGraphLayoutAlgorithm(LayoutStyles.NONE, zestGraph);
 
 		gssLayout.setCaptionsForLayers("goals", 0);
-		gssLayout
-				.setToolTipsForLayers(
-						createTooltipFigure("all goals of the goal solution scheme"),
-						0);
+		gssLayout.setToolTipsForLayers(
+				createTooltipFigure("all goals of the goal solution scheme"), 0);
 
 		gssLayout.setCaptionsForLayers("principles", 1);
-		gssLayout
-				.setToolTipsForLayers(
-						createTooltipFigure("all principles of the goal solution scheme"),
-						1);
+		gssLayout.setToolTipsForLayers(
+				createTooltipFigure("all principles of the goal solution scheme"), 1);
 
 		gssLayout.setCaptionsForLayers("solution instruments", 2);
-		gssLayout
-				.setToolTipsForLayers(
-						createTooltipFigure("all solution instruments of the goal solution scheme"),
-						2);
-		
+		gssLayout.setToolTipsForLayers(
+				createTooltipFigure("all solution instruments of the goal solution scheme"), 2);
+
 		buildCustomGraph(zestGraph);
-		
+
 		zestGraph.setConnectionStyle(ZestStyles.CONNECTIONS_DIRECTED);
 
 		selectionChangedListeners = new ArrayList<ISelectionChangedListener>();
@@ -230,13 +219,12 @@ public abstract class AbstractElementGraphBuilder extends AbstractGUIBuilder {
 		selectionProvider = new ISelectionProvider() {
 
 			@Override
-			public void setSelection(ISelection selection) {
+			public void setSelection(final ISelection selection) {
 
 			}
 
 			@Override
-			public void removeSelectionChangedListener(
-					ISelectionChangedListener listener) {
+			public void removeSelectionChangedListener(final ISelectionChangedListener listener) {
 				selectionChangedListeners.remove(listener);
 
 			}
@@ -247,8 +235,7 @@ public abstract class AbstractElementGraphBuilder extends AbstractGUIBuilder {
 			}
 
 			@Override
-			public void addSelectionChangedListener(
-					ISelectionChangedListener listener) {
+			public void addSelectionChangedListener(final ISelectionChangedListener listener) {
 				selectionChangedListeners.add(listener);
 
 			}
@@ -256,34 +243,30 @@ public abstract class AbstractElementGraphBuilder extends AbstractGUIBuilder {
 
 		iWorkbenchPartSite.setSelectionProvider(selectionProvider);
 
-
 		zestGraph.addSelectionListener(new SelectionListener() {
 
 			@Override
-			public void widgetSelected(SelectionEvent e) {
+			public void widgetSelected(final SelectionEvent e) {
 				notifySelectionService();
-				/*Display.getDefault().asyncExec(new Runnable() {
-
-					@Override
-					public void run() {
-						notifySelectionService();
-					}
-				});*/
+				/*
+				 * Display.getDefault().asyncExec(new Runnable() {
+				 * 
+				 * @Override public void run() { notifySelectionService(); } });
+				 */
 			}
 
 			@Override
-			public void widgetDefaultSelected(SelectionEvent e) {
+			public void widgetDefaultSelected(final SelectionEvent e) {
 			}
-	
+
 		});
 
 		Label zoomLabel = new Label(bodyComposite, SWT.NONE);
 
-		zoomLabel.setLayoutData(new org.eclipse.swt.layout.GridData(SWT.RIGHT,
-				SWT.TOP, true, false, 1, 1));
+		zoomLabel.setLayoutData(new org.eclipse.swt.layout.GridData(SWT.RIGHT, SWT.TOP, true,
+				false, 1, 1));
 		zoomLabel.setText("zoom level");
 		zoomLabel.setBackground(zoomLabel.getParent().getBackground());
-
 
 		Button bMinus = new Button(bodyComposite, SWT.NONE);
 		bMinus.setText("-");
@@ -299,9 +282,9 @@ public abstract class AbstractElementGraphBuilder extends AbstractGUIBuilder {
 		zoomScale.setPageIncrement(1);
 		zoomScale.setIncrement(1);
 		zoomScale.setBackground(zoomScale.getParent().getBackground());
-		
+
 		zoomScale.setToolTipText("select the zoom level here");
-		
+
 		Button bPlus = new Button(bodyComposite, SWT.NONE);
 		bPlus.setText("+");
 		bPlus.setLayoutData(new GridData(1, 1, false, false));
@@ -311,47 +294,46 @@ public abstract class AbstractElementGraphBuilder extends AbstractGUIBuilder {
 		bMinus.addSelectionListener(new SelectionListener() {
 
 			@Override
-			public void widgetSelected(SelectionEvent e) {
+			public void widgetSelected(final SelectionEvent e) {
 				zoomScale.setSelection(zoomScale.getSelection() - 1);
 				updateZoom();
 			}
 
 			@Override
-			public void widgetDefaultSelected(SelectionEvent e) {
+			public void widgetDefaultSelected(final SelectionEvent e) {
 			}
 		});
 		bPlus.addSelectionListener(new SelectionListener() {
 
 			@Override
-			public void widgetSelected(SelectionEvent e) {
+			public void widgetSelected(final SelectionEvent e) {
 				zoomScale.setSelection(zoomScale.getSelection() + 1);
 				updateZoom();
 			}
 
 			@Override
-			public void widgetDefaultSelected(SelectionEvent e) {
+			public void widgetDefaultSelected(final SelectionEvent e) {
 			}
 		});
 
 		zoomLevelLabel = new Label(bodyComposite, SWT.NONE);
-		zoomLevelLabel.setLayoutData(new org.eclipse.swt.layout.GridData(
-				SWT.RIGHT, SWT.TOP, false, false, 1, 1));
+		zoomLevelLabel.setLayoutData(new org.eclipse.swt.layout.GridData(SWT.RIGHT, SWT.TOP, false,
+				false, 1, 1));
 		zoomLevelLabel.setText("100%");
 		zoomLevelLabel.setBackground(zoomLevelLabel.getParent().getBackground());
 		zoomLevelLabel.setToolTipText("the current zoom level");
 
-		zoomManager = new ZoomManager(zestGraph.getRootLayer(),
-				zestGraph.getViewport());
+		zoomManager = new ZoomManager(zestGraph.getRootLayer(), zestGraph.getViewport());
 
 		zoomScale.addSelectionListener(new SelectionListener() {
 
 			@Override
-			public void widgetSelected(SelectionEvent e) {
+			public void widgetSelected(final SelectionEvent e) {
 				updateZoom();
 			}
 
 			@Override
-			public void widgetDefaultSelected(SelectionEvent e) {
+			public void widgetDefaultSelected(final SelectionEvent e) {
 
 			}
 		});
@@ -363,14 +345,13 @@ public abstract class AbstractElementGraphBuilder extends AbstractGUIBuilder {
 		bReset.setToolTipText("resets the layout");
 		bReset.addSelectionListener(new SelectionListener() {
 
-
 			@Override
-			public void widgetSelected(SelectionEvent e) {
+			public void widgetSelected(final SelectionEvent e) {
 				for (Object node : zestGraph.getNodes()) {
 					if (node instanceof GSSElementGraphNode) {
 						((GSSElementGraphNode) node).setIsExpanded();
 						((GSSElementGraphNode) node).show();
-						
+
 					}
 
 				}
@@ -378,7 +359,7 @@ public abstract class AbstractElementGraphBuilder extends AbstractGUIBuilder {
 			}
 
 			@Override
-			public void widgetDefaultSelected(SelectionEvent e) {
+			public void widgetDefaultSelected(final SelectionEvent e) {
 
 			}
 		});
@@ -391,8 +372,8 @@ public abstract class AbstractElementGraphBuilder extends AbstractGUIBuilder {
 	public void notifySelectionService() {
 		for (ISelectionChangedListener listener : selectionChangedListeners) {
 
-			SelectionChangedEvent event = new SelectionChangedEvent(
-					selectionProvider, new StructuredSelection(
+			SelectionChangedEvent event =
+					new SelectionChangedEvent(selectionProvider, new StructuredSelection(
 							zestGraph.getSelection()));
 			try {
 				listener.selectionChanged(event);
@@ -404,7 +385,7 @@ public abstract class AbstractElementGraphBuilder extends AbstractGUIBuilder {
 	}
 
 	/**
-	 * sets the zoom level selected by the zoomScale 
+	 * sets the zoom level selected by the zoomScale
 	 */
 	protected void updateZoom() {
 
@@ -446,9 +427,9 @@ public abstract class AbstractElementGraphBuilder extends AbstractGUIBuilder {
 	 * @param inputObject
 	 *            a container with elements for the Graph
 	 */
-	public AbstractElementGraphBuilder(Composite parentComposite, int style,
-			IWorkbenchPartSite iWorkbenchPartSite, EObject inputContainer,
-			AccessLayer accessLayer) {
+	public AbstractElementGraphBuilder(final Composite parentComposite, final int style,
+			final IWorkbenchPartSite iWorkbenchPartSite, final EObject inputContainer,
+			final AccessLayer accessLayer) {
 		super(accessLayer, parentComposite);
 		this.style = style;
 		this.inputContainer = inputContainer;
@@ -468,74 +449,93 @@ public abstract class AbstractElementGraphBuilder extends AbstractGUIBuilder {
 	 *            a Zest Graph
 	 * @return a List with all created nodes
 	 */
-	protected void buildCustomGraph(GSSGraph zestGraph) {
+	protected void buildCustomGraph(final GSSGraph zestGraph) {
 
 		initCache();
 		nodeMap.clear();
 
 		zestGraph.addSelectionListener(new SelectionAdapter() {
-			public void widgetSelected(SelectionEvent e) {
+			@Override
+			public void widgetSelected(final SelectionEvent e) {
 
 				for (Object node : ((Graph) e.widget).getNodes()) {
 					((GraphNode) node).unhighlight();
-					if (node instanceof GSSElementGraphNode)
+					if (node instanceof GSSElementGraphNode) {
 						((GSSElementGraphNode) node).unmark();
+					}
 				}
 				for (Object connection : ((Graph) e.widget).getConnections()) {
 					((GraphConnection) connection).unhighlight();
 				}
-				for (int i = 0; i < ((Graph) e.widget).getSelection().size(); i++)
+				for (int i = 0; i < ((Graph) e.widget).getSelection().size(); i++) {
 					if (((Graph) e.widget).getSelection().get(i) instanceof GSSElementGraphNode) {
-						GSSElementGraphNode selectedNode = (GSSElementGraphNode) ((Graph) e.widget)
-								.getSelection().get(i);
+						GSSElementGraphNode selectedNode =
+								(GSSElementGraphNode) ((Graph) e.widget).getSelection().get(i);
 
 						selectedNode.highlight();
 						selectedNode.mark();
 						selectedNode.markChildren();
 						selectedNode.markParents();
 					}
+				}
 			}
 		});
 	}
 
 	/**
 	 * creates a new GSSElementGraphNode for the specified Element
-	 * @param graph the containment zest Graph
-	 * @param style the SWT style of the new node
-	 * @param element an Element
-	 * @param level the level of the node
-	 * @param sublevel the sub level of the node
-	 * @param isLeaf is node a Leaf? (has no incoming refinement relations)
-	 * @param isExpandable is node expandable?
+	 * 
+	 * @param graph
+	 *            the containment zest Graph
+	 * @param style
+	 *            the SWT style of the new node
+	 * @param element
+	 *            an Element
+	 * @param level
+	 *            the level of the node
+	 * @param sublevel
+	 *            the sub level of the node
+	 * @param isLeaf
+	 *            is node a Leaf? (has no incoming refinement relations)
+	 * @param isExpandable
+	 *            is node expandable?
 	 * @return the created GSSElementGraphNode
 	 */
-	protected GSSElementGraphNode createNode(GSSGraph graph, int style,
-			Element element, int level, int sublevel, boolean isLeaf,
-			boolean isExpandable) {
-		return this.createNode(graph, style, element, level, sublevel, isLeaf,
-				isExpandable, null);
+	protected GSSElementGraphNode createNode(final GSSGraph graph, final int style,
+			final Element element, final int level, final int sublevel, final boolean isLeaf,
+			final boolean isExpandable) {
+		return this.createNode(graph, style, element, level, sublevel, isLeaf, isExpandable, null);
 	}
 
 	/**
-	 * creates a new GSSElementGraphNode for the specified Element with the specified decoration for the top
-	 * @param graph the containment zest Graph
-	 * @param style the SWT style of the new node
-	 * @param element an Element
-	 * @param level the level of the node
-	 * @param sublevel the sub level of the node
-	 * @param isLeaf is node a Leaf? (has no incoming refinement relations)
-	 * @param isExpandable is node expandable?
-	 * @param topFigure a Figure used for decorating the top of the node
+	 * creates a new GSSElementGraphNode for the specified Element with the specified decoration for
+	 * the top
+	 * 
+	 * @param graph
+	 *            the containment zest Graph
+	 * @param style
+	 *            the SWT style of the new node
+	 * @param element
+	 *            an Element
+	 * @param level
+	 *            the level of the node
+	 * @param sublevel
+	 *            the sub level of the node
+	 * @param isLeaf
+	 *            is node a Leaf? (has no incoming refinement relations)
+	 * @param isExpandable
+	 *            is node expandable?
+	 * @param topFigure
+	 *            a Figure used for decorating the top of the node
 	 * @return the created GSSElementGraphNode
 	 */
-	protected GSSElementGraphNode createNode(GSSGraph graph, int style,
-			Element element, int level, int sublevel, boolean isLeaf,
-			boolean isExpandable, Figure topFigure) {
-		ElementFigure figure = createElementFigure(element, isLeaf,
-				isExpandable, topFigure);
+	protected GSSElementGraphNode createNode(final GSSGraph graph, final int style,
+			final Element element, final int level, final int sublevel, final boolean isLeaf,
+			final boolean isExpandable, final Figure topFigure) {
+		ElementFigure figure = createElementFigure(element, isLeaf, isExpandable, topFigure);
 
-		GSSElementGraphNode node = new GSSElementGraphNode(graph, style,
-				figure, level, sublevel, element);
+		GSSElementGraphNode node =
+				new GSSElementGraphNode(graph, style, figure, level, sublevel, element);
 		nodeMap.put(element, node);
 
 		setDefaultMenu(node, element);
@@ -547,36 +547,43 @@ public abstract class AbstractElementGraphBuilder extends AbstractGUIBuilder {
 	 * creates a draw2d Figure for an element
 	 * 
 	 */
-	protected ElementFigure createElementFigure(final Element element,
-			boolean isLeaf, boolean isExpandable, Figure topFigure) {
+	protected ElementFigure createElementFigure(final Element element, final boolean isLeaf,
+			final boolean isExpandable, final Figure topFigure) {
 
 		ElementFigure elementFigure = null;
 		Figure decompostionTypeFigure = null;
 
 		if (!isLeaf) {
 			String decompostionType;
-			if (element instanceof SolutionInstrument)
+			if (element instanceof SolutionInstrument) {
 				decompostionType = RefinementType.IsA;
-			else
+			} else {
 				decompostionType = RefinementType.AND;
+			}
 			decompostionTypeFigure = new RefinementTypeFigure(decompostionType);
 
 		}
-		
+
 		Figure globalTopFigure = new Figure();
-		
-		if (topFigure != null)
+
+		if (topFigure != null) {
 			globalTopFigure.add(topFigure);
-		
-		
-		if (element instanceof ConstrainedElement && ((ConstrainedElement)element).getPrecondition() != null &&  (!((ConstrainedElement)element).getPrecondition().getLogicConditions().isEmpty() ||  !((ConstrainedElement)element).getPrecondition().getBaseConditions().isEmpty())){
-			
-			PreconditionFigure preconditionFigure = new PreconditionFigure(PreconditionFinder.formatConditionString(((ConstrainedElement)element).getPrecondition()));
-			globalTopFigure.add(preconditionFigure);
-			
 		}
 
-		
+		if ((element instanceof ConstrainedElement)
+				&& (((ConstrainedElement) element).getPrecondition() != null)
+				&& (!((ConstrainedElement) element).getPrecondition().getLogicConditions()
+						.isEmpty() || !((ConstrainedElement) element).getPrecondition()
+						.getBaseConditions().isEmpty())) {
+
+			PreconditionFigure preconditionFigure =
+					new PreconditionFigure(
+							PreconditionFinder.formatConditionString(((ConstrainedElement) element)
+									.getPrecondition()));
+			globalTopFigure.add(preconditionFigure);
+
+		}
+
 		ToolbarLayout globalTopFigureLayout = new ToolbarLayout(false);
 
 		globalTopFigureLayout.setMinorAlignment(OrderedLayout.ALIGN_BOTTOMRIGHT);
@@ -586,47 +593,43 @@ public abstract class AbstractElementGraphBuilder extends AbstractGUIBuilder {
 		AbstractDecoratorFigure bodyFigure = null;
 		if (element instanceof Goal) {
 			bodyFigure = new SoftGoalFigure(element.getName(), isExpandable);
-			elementFigure = new ElementFigure(bodyFigure,
-					decompostionTypeFigure, globalTopFigure);
+			elementFigure = new ElementFigure(bodyFigure, decompostionTypeFigure, globalTopFigure);
 		} else if (element instanceof Flaw) {
-			bodyFigure = new FlawFigure(element.getName(),
-					((Flaw) element).getInterpretationRule(), ((Flaw) element).getMetrics(), isExpandable);
-			elementFigure = new ElementFigure(bodyFigure,
-					decompostionTypeFigure, globalTopFigure);
+			bodyFigure =
+					new FlawFigure(element.getName(), ((Flaw) element).getInterpretationRule(),
+							((Flaw) element).getMetrics(), isExpandable);
+			elementFigure = new ElementFigure(bodyFigure, decompostionTypeFigure, globalTopFigure);
 		} else if (element instanceof Principle) {
 			bodyFigure = new PrincipleFigure(element.getName(), isExpandable);
-			elementFigure = new ElementFigure(bodyFigure,
-					decompostionTypeFigure, globalTopFigure);
+			elementFigure = new ElementFigure(bodyFigure, decompostionTypeFigure, globalTopFigure);
 		} else if (element instanceof Refactoring) {
 			bodyFigure = new SolutionInstrumentFigure(element.getName(), isExpandable);
-			elementFigure = new ElementFigure(bodyFigure,
-					decompostionTypeFigure, globalTopFigure);
+			elementFigure = new ElementFigure(bodyFigure, decompostionTypeFigure, globalTopFigure);
 		} else if (element instanceof Pattern) {
 			bodyFigure = new SolutionInstrumentFigure(element.getName(), isExpandable);
-			elementFigure = new ElementFigure(bodyFigure,
-					decompostionTypeFigure, globalTopFigure);
+			elementFigure = new ElementFigure(bodyFigure, decompostionTypeFigure, globalTopFigure);
 		}
-		if (bodyFigure != null && element != null) {
+		if ((bodyFigure != null) && (element != null)) {
 			final AbstractDecoratorFigure finalBodyFigure = bodyFigure;
 
-			ECPModelElementChangeListener ecpModelChangeListener = new ECPModelElementChangeListener(element) {
-				
-				@Override
-				public void onChange(Notification notification) {
-					finalBodyFigure.setName(element.getName());
-				}
-			};
-			
+			ECPModelElementChangeListener ecpModelChangeListener =
+					new ECPModelElementChangeListener(element) {
+
+						@Override
+						public void onChange(final Notification notification) {
+							finalBodyFigure.setName(element.getName());
+						}
+					};
+
 			ecpModelChangeListenerMap.put(ecpModelChangeListener, element);
 			element.addModelElementChangeListener(ecpModelChangeListener);
 
 		}
 
-		elementFigure.setToolTip(createTooltipFigure(element));	
+		elementFigure.setToolTip(createTooltipFigure(element));
 		return elementFigure;
 
 	}
-
 
 	/**
 	 * finds the created GraphNode of the specified Element
@@ -635,7 +638,7 @@ public abstract class AbstractElementGraphBuilder extends AbstractGUIBuilder {
 	 *            a Element
 	 * @return the GraphNode of the specified Element
 	 */
-	public GSSElementGraphNode getNodeForElement(Element element) {
+	public GSSElementGraphNode getNodeForElement(final Element element) {
 		if (nodeMap.containsKey(element)) {
 			return nodeMap.get(element);
 		}
@@ -645,10 +648,11 @@ public abstract class AbstractElementGraphBuilder extends AbstractGUIBuilder {
 	/**
 	 * finds the Element for a Node
 	 * 
-	 * @param node a GSSElementGraphNode
+	 * @param node
+	 *            a GSSElementGraphNode
 	 * @return the Element displayed by the specified node
 	 */
-	public Element getElementForNode(GSSElementGraphNode node) {
+	public Element getElementForNode(final GSSElementGraphNode node) {
 		return node.getElement();
 	}
 
@@ -659,7 +663,7 @@ public abstract class AbstractElementGraphBuilder extends AbstractGUIBuilder {
 	 *            a Element
 	 * @return the GraphNode of the specified Element
 	 */
-	protected GraphConnection findConnectionForRelation(Relation relation) {
+	protected GraphConnection findConnectionForRelation(final Relation relation) {
 		if (relationMap.containsKey(relation)) {
 			return relationMap.get(relation);
 		}
@@ -676,23 +680,24 @@ public abstract class AbstractElementGraphBuilder extends AbstractGUIBuilder {
 		Element target = cacheManager.getTargetOfRelation(relation);
 		Element source = cacheManager.getSourceOfRelation(relation);
 		GraphNode targetNode = getNodeForElement(target);
-		
-		if (targetNode == null)
+
+		if (targetNode == null) {
 			new Exception(relation + " has no vaild traget").printStackTrace();
-	
-		
+		}
+
 		GraphNode sourceNode = getNodeForElement(source);
-		
-		if (sourceNode == null)
+
+		if (sourceNode == null) {
 			new Exception(relation + " has no vaild source").printStackTrace();
-		
+		}
+
 		String weight = cacheManager.getRelationWeightString(relation);
 
-		final GSSRelationConnection connection = new GSSRelationConnection(zestGraph,
-				ZestStyles.CONNECTIONS_DIRECTED, sourceNode, targetNode, relation);
-		ConnectionDecorator.decoradeConnection(connection, relation, target,
-				source, weight);
-		
+		final GSSRelationConnection connection =
+				new GSSRelationConnection(zestGraph, ZestStyles.CONNECTIONS_DIRECTED, sourceNode,
+						targetNode, relation);
+		ConnectionDecorator.decoradeConnection(connection, relation, target, source, weight);
+
 		putRelationToCache(connection, relation);
 
 		addDefaultMenu(connection, relation);
@@ -702,11 +707,13 @@ public abstract class AbstractElementGraphBuilder extends AbstractGUIBuilder {
 
 	/**
 	 * put the specified pair of connection and relation into a cache
-	 * @param connection a GraphConnection
-	 * @param relation a Relation
+	 * 
+	 * @param connection
+	 *            a GraphConnection
+	 * @param relation
+	 *            a Relation
 	 */
-	private void putRelationToCache(GraphConnection connection,
-			Relation relation) {
+	private void putRelationToCache(final GraphConnection connection, final Relation relation) {
 		relationMap.put(relation, connection);
 		connectionMap.put(connection, relation);
 
@@ -714,11 +721,13 @@ public abstract class AbstractElementGraphBuilder extends AbstractGUIBuilder {
 
 	/**
 	 * adds the Default Popup Menu to a Connection
-	 * @param connection a GraphConnection
-	 * @param relation the Relation of the GraphConnection
+	 * 
+	 * @param connection
+	 *            a GraphConnection
+	 * @param relation
+	 *            the Relation of the GraphConnection
 	 */
-	private void addDefaultMenu(GraphConnection connection,
-			final Relation relation) {
+	private void addDefaultMenu(final GraphConnection connection, final Relation relation) {
 
 		final Menu menu = new Menu(zestGraph.getShell(), SWT.POP_UP);
 
@@ -727,7 +736,7 @@ public abstract class AbstractElementGraphBuilder extends AbstractGUIBuilder {
 		item.addSelectionListener(new SelectionListener() {
 
 			@Override
-			public void widgetSelected(SelectionEvent e) {
+			public void widgetSelected(final SelectionEvent e) {
 				// if (EMFTraceModelElementOpener.canOpen(relation)) {
 				// ModelOpenHelper.openModel(relation);
 				EMFTraceModelElementOpener.open(relation);
@@ -735,7 +744,7 @@ public abstract class AbstractElementGraphBuilder extends AbstractGUIBuilder {
 			}
 
 			@Override
-			public void widgetDefaultSelected(SelectionEvent e) {
+			public void widgetDefaultSelected(final SelectionEvent e) {
 			}
 		});
 
@@ -743,53 +752,58 @@ public abstract class AbstractElementGraphBuilder extends AbstractGUIBuilder {
 				.addMouseListener(new org.eclipse.draw2d.MouseListener() {
 
 					@Override
-					public void mousePressed(org.eclipse.draw2d.MouseEvent me) {
+					public void mousePressed(final org.eclipse.draw2d.MouseEvent me) {
 
 					}
 
 					@Override
-					public void mouseReleased(org.eclipse.draw2d.MouseEvent me) {
+					public void mouseReleased(final org.eclipse.draw2d.MouseEvent me) {
 						if (me.button == 3) {
+
+							Composite test =
+									zestGraph.getParent().getParent().getParent().getParent()
+											.getParent().getParent().getParent().getParent()
+											.getParent().getParent();
 
 							int x = me.x;
 							int y = me.y;
-							x += zestGraph.getParent().getParent().getParent()
-									.getParent().getParent().getParent()
-									.getParent().getParent().getParent()
-									.getParent().getLocation().x;
+							x +=
+									zestGraph.getParent().getParent().getParent().getParent()
+											.getParent().getParent().getParent().getParent()
+											.getParent().getParent().getLocation().x;
 
-							y += zestGraph.getParent().getParent().getParent()
-									.getParent().getParent().getParent()
-									.getParent().getParent().getParent()
-									.getParent().getLocation().y;
-							x += zestGraph.getParent().getParent().getParent()
-									.getParent().getParent().getParent()
-									.getParent().getParent().getParent()
-									.getLocation().x;
-							y += zestGraph.getParent().getParent().getParent()
-									.getParent().getParent().getParent()
-									.getParent().getParent().getParent()
-									.getLocation().y;
+							y +=
+									zestGraph.getParent().getParent().getParent().getParent()
+											.getParent().getParent().getParent().getParent()
+											.getParent().getParent().getLocation().y;
+							x +=
+									zestGraph.getParent().getParent().getParent().getParent()
+											.getParent().getParent().getParent().getParent()
+											.getParent().getLocation().x;
+							y +=
+									zestGraph.getParent().getParent().getParent().getParent()
+											.getParent().getParent().getParent().getParent()
+											.getParent().getLocation().y;
 
-							x += zestGraph.getParent().getParent().getParent()
-									.getParent().getParent().getParent()
-									.getParent().getParent().getParent()
-									.getParent().getParent().getLocation().x;
-							y += zestGraph.getParent().getParent().getParent()
-									.getParent().getParent().getParent()
-									.getParent().getParent().getParent()
-									.getParent().getParent().getLocation().y;
+							x +=
+									zestGraph.getParent().getParent().getParent().getParent()
+											.getParent().getParent().getParent().getParent()
+											.getParent().getParent().getParent().getLocation().x;
+							y +=
+									zestGraph.getParent().getParent().getParent().getParent()
+											.getParent().getParent().getParent().getParent()
+											.getParent().getParent().getParent().getLocation().y;
 
-							x += zestGraph.getParent().getParent().getParent()
-									.getParent().getParent().getParent()
-									.getParent().getParent().getParent()
-									.getParent().getParent().getParent()
-									.getParent().getParent().getLocation().x;
-							y += zestGraph.getParent().getParent().getParent()
-									.getParent().getParent().getParent()
-									.getParent().getParent().getParent()
-									.getParent().getParent().getParent()
-									.getParent().getParent().getLocation().y;
+							x +=
+									zestGraph.getParent().getParent().getParent().getParent()
+											.getParent().getParent().getParent().getParent()
+											.getParent().getParent().getParent().getParent()
+											.getParent().getParent().getLocation().x;
+							y +=
+									zestGraph.getParent().getParent().getParent().getParent()
+											.getParent().getParent().getParent().getParent()
+											.getParent().getParent().getParent().getParent()
+											.getParent().getParent().getLocation().y;
 
 							if (menu != null) {
 								menu.setLocation(x, y);
@@ -800,8 +814,7 @@ public abstract class AbstractElementGraphBuilder extends AbstractGUIBuilder {
 					}
 
 					@Override
-					public void mouseDoubleClicked(
-							org.eclipse.draw2d.MouseEvent me) {
+					public void mouseDoubleClicked(final org.eclipse.draw2d.MouseEvent me) {
 
 					}
 
@@ -809,7 +822,7 @@ public abstract class AbstractElementGraphBuilder extends AbstractGUIBuilder {
 	}
 
 	/**
-	 * removes all ModelElementChangeListeners added by the builder from every Element 
+	 * removes all ModelElementChangeListeners added by the builder from every Element
 	 */
 	protected void removeAllModelElementChangeListeners() {
 		for (Entry<ECPModelElementChangeListener, Element> entry : ecpModelChangeListenerMap
@@ -823,6 +836,7 @@ public abstract class AbstractElementGraphBuilder extends AbstractGUIBuilder {
 	 * 
 	 * @see sharedcomponents.builders.guis.AbstractGUIBuilder#dispose()
 	 */
+	@Override
 	public void dispose() {
 		removeAllModelElementChangeListeners();
 	}
@@ -835,8 +849,10 @@ public abstract class AbstractElementGraphBuilder extends AbstractGUIBuilder {
 	/**
 	 * setter for a Popup-Menu for a Node
 	 * 
-	 * @param node a GSSElementGraphNode
-	 * @param element the Element displayed by the node
+	 * @param node
+	 *            a GSSElementGraphNode
+	 * @param element
+	 *            the Element displayed by the node
 	 */
 	protected void setDefaultMenu(final GSSElementGraphNode node, final Element element) {
 		// Menu menu = new
@@ -849,45 +865,42 @@ public abstract class AbstractElementGraphBuilder extends AbstractGUIBuilder {
 		item.addSelectionListener(new SelectionListener() {
 
 			@Override
-			public void widgetSelected(SelectionEvent e) {
+			public void widgetSelected(final SelectionEvent e) {
 				// if (QUARCModelElementOpener.canOpen(element)) {
-				//ModelOpenHelper.openModel(element);
+				// ModelOpenHelper.openModel(element);
 				EMFTraceModelElementOpener.open(element);
 				// }
 			}
 
 			@Override
-			public void widgetDefaultSelected(SelectionEvent e) {
+			public void widgetDefaultSelected(final SelectionEvent e) {
 			}
 		});
 
 		/*
 		 * 
-		 * final MenuItem hideItem = new MenuItem(menu, SWT.PUSH);
-		 * hideItem.setText("hide"); hideItem.addSelectionListener(new
-		 * SelectionListener() {
+		 * final MenuItem hideItem = new MenuItem(menu, SWT.PUSH); hideItem.setText("hide");
+		 * hideItem.addSelectionListener(new SelectionListener() {
 		 * 
-		 * @Override public void widgetSelected(SelectionEvent e) { if
-		 * (hideItem.getText() == "hide") { hideItem.setText("shown");
-		 * node.hide(); zestGraph.applyLayout();
+		 * @Override public void widgetSelected(SelectionEvent e) { if (hideItem.getText() ==
+		 * "hide") { hideItem.setText("shown"); node.hide(); zestGraph.applyLayout();
 		 * 
-		 * } else { hideItem.setText("hide"); node.show();
-		 * zestGraph.applyLayout(); } }
+		 * } else { hideItem.setText("hide"); node.show(); zestGraph.applyLayout(); } }
 		 * 
 		 * @Override public void widgetDefaultSelected(SelectionEvent e) { }
 		 * 
 		 * });
 		 * 
 		 * final MenuItem hideChildrenItem = new MenuItem(menu, SWT.PUSH);
-		 * hideChildrenItem.setText("hide all children");
-		 * hideChildrenItem.addSelectionListener(new SelectionListener() {
+		 * hideChildrenItem.setText("hide all children"); hideChildrenItem.addSelectionListener(new
+		 * SelectionListener() {
 		 * 
-		 * @Override public void widgetSelected(SelectionEvent e) { if
-		 * (node.isCollasped()) { hideChildrenItem.setText("show all children");
-		 * node.hideChildren(); zestGraph.applyLayout();
+		 * @Override public void widgetSelected(SelectionEvent e) { if (node.isCollasped()) {
+		 * hideChildrenItem.setText("show all children"); node.hideChildren();
+		 * zestGraph.applyLayout();
 		 * 
-		 * } else { hideChildrenItem.setText("hide all children");
-		 * node.showChildren(); zestGraph.applyLayout(); } }
+		 * } else { hideChildrenItem.setText("hide all children"); node.showChildren();
+		 * zestGraph.applyLayout(); } }
 		 * 
 		 * @Override public void widgetDefaultSelected(SelectionEvent e) { }
 		 * 
@@ -898,11 +911,12 @@ public abstract class AbstractElementGraphBuilder extends AbstractGUIBuilder {
 		item.addSelectionListener(new SelectionListener() {
 
 			@Override
-			public void widgetSelected(SelectionEvent e) {
-				for (Object node : zestGraph.getNodes())
+			public void widgetSelected(final SelectionEvent e) {
+				for (Object node : zestGraph.getNodes()) {
 					if (node instanceof GSSElementGraphNode) {
 						((GSSElementGraphNode) node).hide();
 					}
+				}
 				node.show();
 
 				node.showParents();
@@ -910,7 +924,7 @@ public abstract class AbstractElementGraphBuilder extends AbstractGUIBuilder {
 			}
 
 			@Override
-			public void widgetDefaultSelected(SelectionEvent e) {
+			public void widgetDefaultSelected(final SelectionEvent e) {
 			}
 
 		});
@@ -920,18 +934,19 @@ public abstract class AbstractElementGraphBuilder extends AbstractGUIBuilder {
 		item.addSelectionListener(new SelectionListener() {
 
 			@Override
-			public void widgetSelected(SelectionEvent e) {
-				for (Object node : zestGraph.getNodes())
+			public void widgetSelected(final SelectionEvent e) {
+				for (Object node : zestGraph.getNodes()) {
 					if (node instanceof GSSElementGraphNode) {
 						((GSSElementGraphNode) node).hide();
 					}
+				}
 				node.show();
 				node.showChildren();
 				zestGraph.applyLayout();
 			}
 
 			@Override
-			public void widgetDefaultSelected(SelectionEvent e) {
+			public void widgetDefaultSelected(final SelectionEvent e) {
 			}
 
 		});
@@ -941,11 +956,12 @@ public abstract class AbstractElementGraphBuilder extends AbstractGUIBuilder {
 		item.addSelectionListener(new SelectionListener() {
 
 			@Override
-			public void widgetSelected(SelectionEvent e) {
-				for (Object node : zestGraph.getNodes())
+			public void widgetSelected(final SelectionEvent e) {
+				for (Object node : zestGraph.getNodes()) {
 					if (node instanceof GSSElementGraphNode) {
 						((GSSElementGraphNode) node).hide();
 					}
+				}
 				node.show();
 				node.showChildren();
 				node.showParents();
@@ -953,7 +969,7 @@ public abstract class AbstractElementGraphBuilder extends AbstractGUIBuilder {
 			}
 
 			@Override
-			public void widgetDefaultSelected(SelectionEvent e) {
+			public void widgetDefaultSelected(final SelectionEvent e) {
 			}
 
 		});
@@ -962,16 +978,17 @@ public abstract class AbstractElementGraphBuilder extends AbstractGUIBuilder {
 
 	}
 
-	protected static Font defaultLabelFont = new Font(null, "Arial", 10,
-			SWT.NORMAL);
-	protected static Font defaultTitleFont = new Font(null, "Arial", 12,
-			SWT.BOLD);
+	protected static Font defaultLabelFont = new Font(null, "Arial", 10, SWT.NORMAL);
+	protected static Font defaultTitleFont = new Font(null, "Arial", 12, SWT.BOLD);
+
 	/**
 	 * creates a Figure for a Tooltip for the specified Element
-	 * @param element an Element
+	 * 
+	 * @param element
+	 *            an Element
 	 * @return the created IFigure
 	 */
-	protected IFigure createTooltipFigure(Element element) {
+	protected IFigure createTooltipFigure(final Element element) {
 
 		Figure tooltipFigure = new Figure();
 
@@ -979,26 +996,36 @@ public abstract class AbstractElementGraphBuilder extends AbstractGUIBuilder {
 		tooltipFigure.setLayoutManager(layout);
 		tooltipFigure.setOpaque(true);
 		String name = element.getName();
-		if (name == null)
+		if (name == null) {
 			name = "";
-		org.eclipse.draw2d.Label titleLabel = new org.eclipse.draw2d.Label(
-				"   " + element.getName() + "   ");
+		}
+		org.eclipse.draw2d.Label titleLabel =
+				new org.eclipse.draw2d.Label("   " + element.getName() + "   ");
 		titleLabel.setFont(defaultTitleFont);
 		tooltipFigure.add(titleLabel);
 
 		String attributesAndFeaturesText = "\n";
-		if (element.getDescription() != null)
-			attributesAndFeaturesText += " Description: \n "
-					+ formatDescription(element.getDescription());
-			
-		if (element instanceof ConstrainedElement && ((ConstrainedElement)element).getPrecondition() != null &&  (!((ConstrainedElement)element).getPrecondition().getLogicConditions().isEmpty() ||  !((ConstrainedElement)element).getPrecondition().getBaseConditions().isEmpty())){
-			
-			attributesAndFeaturesText += " Precondition: \n " + PreconditionFinder.formatConditionString(((ConstrainedElement)element).getPrecondition());
-	
+		if (element.getDescription() != null) {
+			attributesAndFeaturesText +=
+					" Description: \n " + formatDescription(element.getDescription());
 		}
 
-		org.eclipse.draw2d.Label attributesAndFeaturesLabel = new org.eclipse.draw2d.Label(
-				" " + attributesAndFeaturesText + " \n");
+		if ((element instanceof ConstrainedElement)
+				&& (((ConstrainedElement) element).getPrecondition() != null)
+				&& (!((ConstrainedElement) element).getPrecondition().getLogicConditions()
+						.isEmpty() || !((ConstrainedElement) element).getPrecondition()
+						.getBaseConditions().isEmpty())) {
+
+			attributesAndFeaturesText +=
+					" Precondition: \n "
+							+ PreconditionFinder
+									.formatConditionString(((ConstrainedElement) element)
+											.getPrecondition());
+
+		}
+
+		org.eclipse.draw2d.Label attributesAndFeaturesLabel =
+				new org.eclipse.draw2d.Label(" " + attributesAndFeaturesText + " \n");
 		attributesAndFeaturesLabel.setFont(defaultLabelFont);
 		tooltipFigure.add(attributesAndFeaturesLabel);
 		tooltipFigure.setSize(-1, -1);
@@ -1006,18 +1033,22 @@ public abstract class AbstractElementGraphBuilder extends AbstractGUIBuilder {
 		return tooltipFigure;
 	}
 
-	private String formatDescription(String description) {
-		if (description.length() > 75)
+	private String formatDescription(final String description) {
+		if (description.length() > 75) {
 			return description.substring(0, 72) + "[...]";
-			else return description;
+		} else {
+			return description;
+		}
 	}
 
 	/**
 	 * creates a Figure for a Tooltip for the specified text
-	 * @param text a String
+	 * 
+	 * @param text
+	 *            a String
 	 * @return the created IFigure
 	 */
-	protected static IFigure createTooltipFigure(String text) {
+	protected static IFigure createTooltipFigure(final String text) {
 
 		Figure tooltipFigure = new Figure();
 
@@ -1036,10 +1067,12 @@ public abstract class AbstractElementGraphBuilder extends AbstractGUIBuilder {
 
 	/**
 	 * finds the Relation for a GraphConnection
-	 * @param connection a GraphConnection
+	 * 
+	 * @param connection
+	 *            a GraphConnection
 	 * @return the Relation displayed by the GraphConnection
 	 */
-	protected Relation findRelationForConnection(GraphConnection connection) {
+	protected Relation findRelationForConnection(final GraphConnection connection) {
 		return connectionMap.get(connection);
 	}
 
@@ -1053,7 +1086,7 @@ public abstract class AbstractElementGraphBuilder extends AbstractGUIBuilder {
 				GSSElementGraphNode gssElementGraphNode = (GSSElementGraphNode) node;
 				// // Element element = gssElementGraphNode.getElement();
 				if (((GSSElementGraphNode) node).isMarked()
-						&& gssElementGraphNode.getTargetConnections().size() == 0) {
+						&& (gssElementGraphNode.getTargetConnections().size() == 0)) {
 					markedObjects.add(gssElementGraphNode.getElement());
 				}
 			}
@@ -1071,7 +1104,7 @@ public abstract class AbstractElementGraphBuilder extends AbstractGUIBuilder {
 				GSSElementGraphNode gssElementGraphNode = (GSSElementGraphNode) node;
 				// // Element element = gssElementGraphNode.getElement();
 				if (((GSSElementGraphNode) node).isMarked()
-						&& gssElementGraphNode.getSourceConnections().size() == 0) {
+						&& (gssElementGraphNode.getSourceConnections().size() == 0)) {
 					markedObjects.add(gssElementGraphNode.getElement());
 				}
 			}
@@ -1101,14 +1134,16 @@ public abstract class AbstractElementGraphBuilder extends AbstractGUIBuilder {
 	public List<Element> getDirectChildrenOfSelectedElements() {
 		List<Element> directChildren = new ArrayList<Element>();
 
-		if (!zestGraph.getSelection().isEmpty())
-			for (int i = 0; i < zestGraph.getSelection().size(); i++)
-				for (Object connection : ((GraphNode) zestGraph.getSelection()
-						.get(i)).getTargetConnections()) {
-					GSSElementGraphNode child = (GSSElementGraphNode) ((GraphConnection) connection)
-							.getSource();
+		if (!zestGraph.getSelection().isEmpty()) {
+			for (int i = 0; i < zestGraph.getSelection().size(); i++) {
+				for (Object connection : ((GraphNode) zestGraph.getSelection().get(i))
+						.getTargetConnections()) {
+					GSSElementGraphNode child =
+							(GSSElementGraphNode) ((GraphConnection) connection).getSource();
 					directChildren.add(child.getElement());
 				}
+			}
+		}
 
 		return directChildren;
 	}
@@ -1118,14 +1153,16 @@ public abstract class AbstractElementGraphBuilder extends AbstractGUIBuilder {
 	 */
 	public List<Element> getDirectParentsOfSelectedElements() {
 		List<Element> directParents = new ArrayList<Element>();
-		if (!zestGraph.getSelection().isEmpty())
-			for (int i = 0; i < zestGraph.getSelection().size(); i++)
-				for (Object connection : ((GraphNode) zestGraph.getSelection()
-						.get(i)).getSourceConnections()) {
-					GSSElementGraphNode parent = (GSSElementGraphNode) ((GraphConnection) connection)
-							.getDestination();
+		if (!zestGraph.getSelection().isEmpty()) {
+			for (int i = 0; i < zestGraph.getSelection().size(); i++) {
+				for (Object connection : ((GraphNode) zestGraph.getSelection().get(i))
+						.getSourceConnections()) {
+					GSSElementGraphNode parent =
+							(GSSElementGraphNode) ((GraphConnection) connection).getDestination();
 					directParents.add(parent.getElement());
 				}
+			}
+		}
 		return directParents;
 	}
 
@@ -1134,12 +1171,12 @@ public abstract class AbstractElementGraphBuilder extends AbstractGUIBuilder {
 	 */
 	public List<Element> getSelectedElements() {
 		List<Element> result = new ArrayList<Element>();
-		for (int i = 0; i < zestGraph.getSelection().size(); i++)
+		for (int i = 0; i < zestGraph.getSelection().size(); i++) {
 			if (zestGraph.getSelection().get(i) instanceof GSSElementGraphNode) {
-				GSSElementGraphNode node = (GSSElementGraphNode) zestGraph
-						.getSelection().get(i);
-				result.add( node.getElement());
+				GSSElementGraphNode node = (GSSElementGraphNode) zestGraph.getSelection().get(i);
+				result.add(node.getElement());
 			}
+		}
 		return result;
 	}
 
@@ -1152,17 +1189,14 @@ public abstract class AbstractElementGraphBuilder extends AbstractGUIBuilder {
 			if (node instanceof GSSElementGraphNode) {
 				GSSElementGraphNode gssElementGraphNode = (GSSElementGraphNode) node;
 				if (((GSSElementGraphNode) node).isMarked()
-						&& gssElementGraphNode.getElement() instanceof Goal
-						&& cacheManager
-								.isLeaf(gssElementGraphNode.getElement())) {
+						&& (gssElementGraphNode.getElement() instanceof Goal)
+						&& cacheManager.isLeaf(gssElementGraphNode.getElement())) {
 					markedLeafGoals.add(gssElementGraphNode.getElement());
 				}
 			}
 		}
 		return markedLeafGoals;
 	}
-	
-	
 
 	/**
 	 * @return a List with all marked leaf solution principles / flaws
@@ -1173,17 +1207,16 @@ public abstract class AbstractElementGraphBuilder extends AbstractGUIBuilder {
 			if (node instanceof GSSElementGraphNode) {
 				GSSElementGraphNode gssElementGraphNode = (GSSElementGraphNode) node;
 				if (((GSSElementGraphNode) node).isMarked()
-						&& (gssElementGraphNode.getElement() instanceof Principle ||gssElementGraphNode.getElement() instanceof Flaw  )
-						&& cacheManager
-								.isLeaf(gssElementGraphNode.getElement())) {
+						&& ((gssElementGraphNode.getElement() instanceof Principle) || (gssElementGraphNode
+								.getElement() instanceof Flaw))
+						&& cacheManager.isLeaf(gssElementGraphNode.getElement())) {
 					markedLeafPrinciples.add(gssElementGraphNode.getElement());
 				}
 			}
 		}
 		return markedLeafPrinciples;
 	}
-	
-	
+
 	/**
 	 * @return a List with all marked leaf solution instruments
 	 */
@@ -1193,9 +1226,8 @@ public abstract class AbstractElementGraphBuilder extends AbstractGUIBuilder {
 			if (node instanceof GSSElementGraphNode) {
 				GSSElementGraphNode gssElementGraphNode = (GSSElementGraphNode) node;
 				if (((GSSElementGraphNode) node).isMarked()
-						&& gssElementGraphNode.getElement() instanceof SolutionInstrument
-						&& cacheManager
-								.isLeaf(gssElementGraphNode.getElement())) {
+						&& (gssElementGraphNode.getElement() instanceof SolutionInstrument)
+						&& cacheManager.isLeaf(gssElementGraphNode.getElement())) {
 					markedLeafSolutionInstruments.add(gssElementGraphNode.getElement());
 				}
 			}
@@ -1210,54 +1242,62 @@ public abstract class AbstractElementGraphBuilder extends AbstractGUIBuilder {
 		return cacheManager;
 	}
 
-	
-	/** setter for the importance (priority) label of a node
-	 * @param node a GSSElementGraphNode
-	 * @param element the Element of the GSSElementGraphNode
+	/**
+	 * setter for the importance (priority) label of a node
+	 * 
+	 * @param node
+	 *            a GSSElementGraphNode
+	 * @param element
+	 *            the Element of the GSSElementGraphNode
 	 */
 	protected void setNodeImportance(final GSSElementGraphNode node, final Element element) {
 		cacheManager.addCacheChangedListener(new ICacheChangedListener() {
-			
+
 			@Override
 			public void changed() {
-				
+
 				updateNodeImportance(node, element);
-				
+
 			}
 		});
-		updateNodeImportance(node,element);	
+		updateNodeImportance(node, element);
 	}
-	
-	/** updates the importance (priority) label of a node
-	 * @param node a GSSElementGraphNode
-	 * @param element the Element of the GSSElementGraphNode
+
+	/**
+	 * updates the importance (priority) label of a node
+	 * 
+	 * @param node
+	 *            a GSSElementGraphNode
+	 * @param element
+	 *            the Element of the GSSElementGraphNode
 	 */
-	protected void updateNodeImportance(GSSElementGraphNode node, Element element){
-		Float importance = cacheManager.getSelectedGoalPriority( (Goal) element);
-	node.getElementFigure().getBodyDecoratorFigure().setImportance( importance!= null? importance : 0f);
-}
-	
-	
+	protected void updateNodeImportance(final GSSElementGraphNode node, final Element element) {
+		Float importance = cacheManager.getSelectedGoalPriority((Goal) element);
+		node.getElementFigure().getBodyDecoratorFigure()
+				.setImportance(importance != null ? importance : 0f);
+	}
+
 	/**
 	 * display a Message Box with the specified message
-	 * @param message a message
+	 * 
+	 * @param message
+	 *            a message
 	 * @return user selected "Yes"
 	 */
-	protected boolean displayQuestionMessagebox(String message) {
+	protected boolean displayQuestionMessagebox(final String message) {
 
-		int messageBoxStyle = SWT.ICON_QUESTION | SWT.YES | SWT.NO ;
-	    
-		   
+		int messageBoxStyle = SWT.ICON_QUESTION | SWT.YES | SWT.NO;
+
 		MessageBox messageBox = new MessageBox(zestGraph.getShell(), messageBoxStyle);
-	    messageBox.setMessage(message);
+		messageBox.setMessage(message);
 
-	    int rc = messageBox.open();
+		int rc = messageBox.open();
 
-	    if (rc == SWT.YES)
+		if (rc == SWT.YES) {
 			return true;
-	    else
-		return false;
-	  
+		} else {
+			return false;
+		}
 
 	}
 }

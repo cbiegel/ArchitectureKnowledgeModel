@@ -7,6 +7,7 @@ import java.util.Map;
 
 import org.eclipse.draw2d.ColorConstants;
 import org.eclipse.draw2d.Figure;
+import org.eclipse.draw2d.FlowLayout;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.OrderedLayout;
 import org.eclipse.draw2d.ToolbarLayout;
@@ -176,8 +177,12 @@ public abstract class AbstractElementGraphBuilder extends AbstractGUIBuilder {
 	 */
 	private List<ISelectionChangedListener> mSelectionChangedListeners;
 
+	private List<AbstractAKMGraphNode> mCurrentlyVisibleNodesList;
+
 	protected static Font defaultLabelFont = new Font(null, "Arial", 10, SWT.NORMAL);
 	protected static Font defaultTitleFont = new Font(null, "Arial", 12, SWT.BOLD);
+
+	private MenuItem mDefaultMenuItem;
 
 	/**
 	 * the constructor
@@ -201,6 +206,7 @@ public abstract class AbstractElementGraphBuilder extends AbstractGUIBuilder {
 				new HashMap<ECPModelElementChangeListener, ArchitectureKnowledgeModelBase>();
 		mCapabilityTypeButtonMap = new HashMap<CapabilityType, Button>();
 		mASTATypeButtonMap = new HashMap<String, Button>();
+		mCurrentlyVisibleNodesList = new ArrayList<AbstractAKMGraphNode>();
 	}
 
 	@Override
@@ -399,12 +405,38 @@ public abstract class AbstractElementGraphBuilder extends AbstractGUIBuilder {
 
 			@Override
 			public void widgetSelected(final SelectionEvent e) {
+
+				// Reset nodes
 				for (Object node : mZestGraph.getNodes()) {
-					if (node instanceof AbstractAKMGraphNode) {
-						((AbstractAKMGraphNode) node).setIsExpanded();
-						((AbstractAKMGraphNode) node).show();
+					if (node instanceof AKMElementGraphNode) {
+						((AbstractAKMGraphNode) node).setVisible(true);
+					} else if (node instanceof TechnologySolutionGraphNode) {
+						((AbstractAKMGraphNode) node).setVisible(true);
+						((AbstractAKMGraphNode) node).collapseChildren();
+						((AbstractAKMGraphNode) node).collapse(true);
+						((AbstractAKMGraphNode) node).setIsCollapsed(true);
+					} else if (node instanceof AbstractAKMGraphNode) {
+						((AbstractAKMGraphNode) node).hide();
 					}
 				}
+
+				// Deselect all nodes
+				mZestGraph.deselectAllNodes();
+
+				// Reset capability type filters
+				for (Button button : mCapabilityTypeButtonMap.values()) {
+					if (!button.getSelection()) {
+						button.setSelection(true);
+					}
+				}
+
+				// Reset ASTA type filters
+				for (Button button : mASTATypeButtonMap.values()) {
+					if (!button.getSelection()) {
+						button.setSelection(true);
+					}
+				}
+
 				mZestGraph.applyLayout();
 			}
 
@@ -972,7 +1004,7 @@ public abstract class AbstractElementGraphBuilder extends AbstractGUIBuilder {
 
 		mNodeMap.put(pAKMElement, node);
 
-		setDefaultMenu(node, pAKMElement);
+		setContextMenu(node, pAKMElement);
 		return node;
 	}
 
@@ -997,11 +1029,17 @@ public abstract class AbstractElementGraphBuilder extends AbstractGUIBuilder {
 	 */
 	protected AbstractAKMGraphNode createBenefitsNode(final AKMGraph pGraph,
 			final List<Benefit> pBenefitsList, final int pLevel, final int pSublevel,
-			final boolean pIsLeaf, final boolean isExpandable) {
+			final TechnologyFeature pParentElement) {
 
-		BenefitsFigure benefitFigure = createBenefitFigure(pBenefitsList);
+		BenefitsFigure benefitFigure = createBenefitFigure(pBenefitsList, pParentElement);
 
 		ASTAGraphNode node = new ASTAGraphNode(pGraph, SWT.NONE, benefitFigure, pLevel, pSublevel);
+
+		mNodeMap.put(null, node);
+
+		for (Benefit benefit : pBenefitsList) {
+			setContextMenu(node, benefit);
+		}
 
 		return node;
 	}
@@ -1027,11 +1065,17 @@ public abstract class AbstractElementGraphBuilder extends AbstractGUIBuilder {
 	 */
 	protected AbstractAKMGraphNode createDrawbacksNode(final AKMGraph pGraph,
 			final List<Drawback> pDrawbacksList, final int pLevel, final int pSublevel,
-			final boolean pIsLeaf, final boolean isExpandable) {
+			final TechnologyFeature pParentElement) {
 
-		DrawbacksFigure drawbackFigure = createDrawbackFigure(pDrawbacksList);
+		DrawbacksFigure drawbackFigure = createDrawbackFigure(pDrawbacksList, pParentElement);
 
 		ASTAGraphNode node = new ASTAGraphNode(pGraph, SWT.NONE, drawbackFigure, pLevel, pSublevel);
+
+		mNodeMap.put(null, node);
+
+		for (Drawback drawback : pDrawbacksList) {
+			setContextMenu(node, drawback);
+		}
 
 		return node;
 	}
@@ -1045,7 +1089,7 @@ public abstract class AbstractElementGraphBuilder extends AbstractGUIBuilder {
 			final boolean isLeaf, final boolean isExpandable, final Figure topFigure) {
 
 		ElementFigure elementFigure = null;
-		Figure decompostionTypeFigure = null;
+		Figure footFigure = null;
 
 		// if (!isLeaf) {
 		// // TODO CB Relations-Typ dynamisch ermitteln
@@ -1080,6 +1124,12 @@ public abstract class AbstractElementGraphBuilder extends AbstractGUIBuilder {
 			Color capabilityColor =
 					CapabilityTypeColorCoding.getColorForCapabilityType(technologyFeature
 							.getCapabilityType());
+
+			// if (!technologyFeature.getASTA().isEmpty()) {
+			// footFigure = new org.eclipse.draw2d.Label("ASTA");
+			// footFigure.setFont(defaultLabelFont);
+			// }
+
 			bodyFigure =
 					new TechnologyFeatureFigure(pAKMElement.getName(), isExpandable,
 							capabilityColor);
@@ -1089,7 +1139,7 @@ public abstract class AbstractElementGraphBuilder extends AbstractGUIBuilder {
 			bodyFigure = new SoftGoalFigure(pAKMElement.getName(), isExpandable);
 		}
 
-		elementFigure = new ElementFigure(bodyFigure, decompostionTypeFigure, globalTopFigure);
+		elementFigure = new ElementFigure(bodyFigure, footFigure, globalTopFigure);
 
 		if ((bodyFigure != null) && (pAKMElement != null)) {
 			final AbstractDecoratorFigure finalBodyFigure = bodyFigure;
@@ -1112,16 +1162,22 @@ public abstract class AbstractElementGraphBuilder extends AbstractGUIBuilder {
 		return elementFigure;
 	}
 
-	protected BenefitsFigure createBenefitFigure(final List<Benefit> pBenefitsList) {
+	protected BenefitsFigure createBenefitFigure(final List<Benefit> pBenefitsList,
+			final TechnologyFeature pParentElement) {
 
 		BenefitsFigure figure = new BenefitsFigure(pBenefitsList);
+
+		figure.setToolTip(createBenefitsDrawbacksTooltipFigure("Benefits", pParentElement));
 
 		return figure;
 	}
 
-	protected DrawbacksFigure createDrawbackFigure(final List<Drawback> pDrawbacksList) {
+	protected DrawbacksFigure createDrawbackFigure(final List<Drawback> pDrawbacksList,
+			final TechnologyFeature pParentElement) {
 
 		DrawbacksFigure figure = new DrawbacksFigure(pDrawbacksList);
+
+		figure.setToolTip(createBenefitsDrawbacksTooltipFigure("Drawbacks", pParentElement));
 
 		return figure;
 	}
@@ -1169,21 +1225,84 @@ public abstract class AbstractElementGraphBuilder extends AbstractGUIBuilder {
 	}
 
 	/**
-	 * setter for a Popup-Menu for a Node
+	 * Creates a Figure for a Tooltip for the AKM element
 	 * 
-	 * @param pNode
-	 *            a GSSElementGraphNode
 	 * @param pAKMElement
-	 *            the Element displayed by the node
+	 *            An AKM element (e.g. TechnologySolution, Feature, ...)
+	 * @return The created IFigure
 	 */
-	protected void setDefaultMenu(final AbstractAKMGraphNode pNode,
+	protected IFigure createBenefitsDrawbacksTooltipFigure(final String pAstaType,
+			final TechnologyFeature pParentElement) {
+
+		Figure tooltipFigure = new Figure();
+
+		FlowLayout layout = new FlowLayout(true);
+		tooltipFigure.setLayoutManager(layout);
+		tooltipFigure.setOpaque(true);
+		String parentName = pParentElement.getName();
+		org.eclipse.draw2d.Label titleLabel = null;
+		org.eclipse.draw2d.Label parentNameLabel = null;
+
+		if (parentName != null) {
+
+			parentNameLabel = new org.eclipse.draw2d.Label(parentName);
+			parentNameLabel.setFont(new Font(null, "Arial", 10, SWT.BOLD));
+
+			titleLabel = new org.eclipse.draw2d.Label(pAstaType + " of");
+			titleLabel.setFont(defaultLabelFont);
+		} else {
+			titleLabel = new org.eclipse.draw2d.Label("");
+			parentNameLabel = new org.eclipse.draw2d.Label("");
+		}
+
+		tooltipFigure.add(titleLabel);
+		tooltipFigure.add(parentNameLabel);
+		tooltipFigure.setSize(-1, -1);
+
+		return tooltipFigure;
+	}
+
+	protected void setContextMenu(final AbstractAKMGraphNode pNode,
 			final ArchitectureKnowledgeModelBase pAKMElement) {
 
 		Menu menu = new Menu(getZestGraph().getShell(), SWT.POP_UP);
 
-		MenuItem item = new MenuItem(menu, SWT.PUSH);
-		item.setText("open");
-		item.addSelectionListener(new SelectionListener() {
+		if (!(pNode instanceof ASTAGraphNode)) {
+			addOpenElementMenuItem(menu, pAKMElement);
+
+			if (pNode instanceof TechnologySolutionGraphNode) {
+				addFeaturesExplorationMenuItem(menu, pNode, pAKMElement);
+			}
+
+			addCloseMenuMenuItem(menu);
+			pNode.setMenu(menu);
+		} else {
+			// TODO CB: Add B&D-Exploration MenuItem
+
+			ASTAGraphNode astaNode = (ASTAGraphNode) pNode;
+			AbstractASTAFigure astaFigure = (AbstractASTAFigure) astaNode.getAKMFigure();
+			ASTA astaElement = (ASTA) pAKMElement;
+			org.eclipse.draw2d.Label label = astaFigure.getLabelForASTAElement(astaElement);
+
+			addOpenElementMenuItem(menu, pAKMElement);
+			addCloseMenuMenuItem(menu);
+
+			astaFigure.setContextMenu(label, menu);
+		}
+	}
+
+	/**
+	 * setter for a Popup-Menu for a Node
+	 * 
+	 * @param pAKMElement
+	 *            the Element displayed by the node
+	 */
+	protected void addOpenElementMenuItem(final Menu pMenu,
+			final ArchitectureKnowledgeModelBase pAKMElement) {
+
+		mDefaultMenuItem = new MenuItem(pMenu, SWT.PUSH);
+		mDefaultMenuItem.setText("Open Element");
+		mDefaultMenuItem.addSelectionListener(new SelectionListener() {
 
 			@Override
 			public void widgetSelected(final SelectionEvent e) {
@@ -1195,43 +1314,43 @@ public abstract class AbstractElementGraphBuilder extends AbstractGUIBuilder {
 			public void widgetDefaultSelected(final SelectionEvent e) {
 			}
 		});
+	}
 
-		item = new MenuItem(menu, SWT.PUSH);
-		item.setText("show this node with predecessors offset");
-		item.addSelectionListener(new SelectionListener() {
+	protected void addFeaturesExplorationMenuItem(final Menu pMenu,
+			final AbstractAKMGraphNode pNode, final ArchitectureKnowledgeModelBase pAKMElement) {
 
-			@Override
-			public void widgetSelected(final SelectionEvent e) {
-				for (Object node : mZestGraph.getNodes()) {
-					if (node instanceof AbstractAKMGraphNode) {
-						((AbstractAKMGraphNode) node).hide();
-					}
-				}
-				pNode.show();
-
-				pNode.showParents();
-				mZestGraph.applyLayout();
-			}
-
-			@Override
-			public void widgetDefaultSelected(final SelectionEvent e) {
-			}
-
-		});
-
-		item = new MenuItem(menu, SWT.PUSH);
-		item.setText("show only this node with successors only");
-		item.addSelectionListener(new SelectionListener() {
+		MenuItem featuresExplorationMenuItem = new MenuItem(pMenu, SWT.PUSH);
+		featuresExplorationMenuItem.setText("Explore Features");
+		featuresExplorationMenuItem.addSelectionListener(new SelectionListener() {
 
 			@Override
 			public void widgetSelected(final SelectionEvent e) {
+
+				mCurrentlyVisibleNodesList.clear();
+
 				for (Object node : mZestGraph.getNodes()) {
 					if (node instanceof AbstractAKMGraphNode) {
-						((AbstractAKMGraphNode) node).hide();
+
+						AbstractAKMGraphNode akmNode = (AbstractAKMGraphNode) node;
+
+						// Save the current state of visible nodes
+						if (akmNode.isVisible()) {
+							mCurrentlyVisibleNodesList.add(akmNode);
+						}
+
+						akmNode.hide();
 					}
 				}
 				pNode.show();
 				pNode.showChildren();
+				pNode.collapseChildren();
+
+				Menu menu = new Menu(getZestGraph().getShell(), SWT.POP_UP);
+				AbstractElementGraphBuilder.this.addOpenElementMenuItem(menu, pAKMElement);
+				AbstractElementGraphBuilder.this.addExitFeaturesExplorationMenuItem(menu, pNode,
+						pAKMElement);
+				pNode.setMenu(menu);
+
 				mZestGraph.applyLayout();
 			}
 
@@ -1240,21 +1359,80 @@ public abstract class AbstractElementGraphBuilder extends AbstractGUIBuilder {
 			}
 
 		});
+	}
 
-		item = new MenuItem(menu, SWT.PUSH);
-		item.setText("show this node with predecessors and successors only");
-		item.addSelectionListener(new SelectionListener() {
+	protected void addExitFeaturesExplorationMenuItem(final Menu pMenu,
+			final AbstractAKMGraphNode pNode, final ArchitectureKnowledgeModelBase pAKMElement) {
+
+		MenuItem exitFeaturesExplorationMenuItem = new MenuItem(pMenu, SWT.PUSH);
+		exitFeaturesExplorationMenuItem.setText("Exit Features Exploration");
+		exitFeaturesExplorationMenuItem.addSelectionListener(new SelectionListener() {
 
 			@Override
 			public void widgetSelected(final SelectionEvent e) {
+
+				// TODO CB: Vorherigen Zustand des Graphen wiederherstellen
 				for (Object node : mZestGraph.getNodes()) {
 					if (node instanceof AbstractAKMGraphNode) {
-						((AbstractAKMGraphNode) node).hide();
+						AbstractAKMGraphNode akmNode = (AbstractAKMGraphNode) node;
+
+						if (mCurrentlyVisibleNodesList.contains(akmNode)) {
+							akmNode.setVisible(true);
+						} else {
+							akmNode.setVisible(false);
+						}
 					}
 				}
-				pNode.show();
-				pNode.showChildren();
-				pNode.showParents();
+
+				Menu menu = new Menu(getZestGraph().getShell(), SWT.POP_UP);
+				AbstractElementGraphBuilder.this.addOpenElementMenuItem(menu, pAKMElement);
+				AbstractElementGraphBuilder.this.addFeaturesExplorationMenuItem(menu, pNode,
+						pAKMElement);
+				pNode.setMenu(menu);
+
+				mZestGraph.applyLayout();
+			}
+
+			@Override
+			public void widgetDefaultSelected(final SelectionEvent e) {
+			}
+		});
+	}
+
+	protected void addBenefitsDrawbacksExplorationMenuItem(final Menu pMenu,
+			final AbstractAKMGraphNode pNode, final ArchitectureKnowledgeModelBase pAKMElement) {
+
+		MenuItem featuresExplorationMenuItem = new MenuItem(pMenu, SWT.PUSH);
+		featuresExplorationMenuItem.setText("Explore this ASTA");
+		featuresExplorationMenuItem.addSelectionListener(new SelectionListener() {
+
+			@Override
+			public void widgetSelected(final SelectionEvent e) {
+
+				mCurrentlyVisibleNodesList.clear();
+
+				for (Object node : mZestGraph.getNodes()) {
+					if (node instanceof AbstractAKMGraphNode) {
+
+						AbstractAKMGraphNode akmNode = (AbstractAKMGraphNode) node;
+
+						// Save the current state of visible nodes
+						if (akmNode.isVisible()) {
+							mCurrentlyVisibleNodesList.add(akmNode);
+						}
+
+						akmNode.hide();
+					}
+				}
+
+				// TODO CB: B&D-Exploration initialisieren (Layout)
+
+				Menu menu = new Menu(getZestGraph().getShell(), SWT.POP_UP);
+				AbstractElementGraphBuilder.this.addOpenElementMenuItem(menu, pAKMElement);
+				// TODO CB: ExitB&D-View
+
+				pNode.setMenu(menu);
+
 				mZestGraph.applyLayout();
 			}
 
@@ -1263,8 +1441,12 @@ public abstract class AbstractElementGraphBuilder extends AbstractGUIBuilder {
 			}
 
 		});
+	}
 
-		pNode.setMenu(menu);
+	protected void addCloseMenuMenuItem(final Menu pMenu) {
+
+		MenuItem closeMenuMenuItem = new MenuItem(pMenu, SWT.PUSH);
+		closeMenuMenuItem.setText("Close");
 	}
 
 	/**

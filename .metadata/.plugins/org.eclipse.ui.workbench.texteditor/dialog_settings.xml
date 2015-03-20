@@ -6,20 +6,20 @@
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="false" key="isRegEx"/>
-		<item value="IFigure" key="selection"/>
+		<item value="ElementFig" key="selection"/>
 		<item value="false" key="casesensitive"/>
 		<item value="false" key="incremental"/>
 		<item value="true" key="wrap"/>
-		<item value="true" key="wholeword"/>
+		<item value="false" key="wholeword"/>
 		<list key="findhistory">
-			<item value="IFigure"/>
-			<item value="akmgraph"/>
-			<item value="mCapabilityTypeButtonMap"/>
-			<item value="astatype"/>
-			<item value="benefit"/>
 			<item value="elementfig"/>
-			<item value="widgetselec"/>
-			<item value="mSelectionListenerList"/>
+			<item value="createELement"/>
+			<item value="mFigure"/>
+			<item value="system.out"/>
+			<item value="setsel"/>
+			<item value="unhigh"/>
+			<item value="selected"/>
+			<item value="reset layo"/>
 		</list>
 		<list key="replacehistory">
 			<item value="AbstractAKMGraphNode"/>

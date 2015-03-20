@@ -422,8 +422,8 @@ public abstract class AbstractDecoratorFigure extends Figure {
 	/**
 	 * the node to collapsed
 	 */
-	public void setIsCollapsed() {
-		nameDecoratorFigure.setIsCollapsed();
+	public void setIsCollapsed(final boolean pApplyLayout) {
+		nameDecoratorFigure.setIsCollapsed(pApplyLayout);
 	}
 
 	/**

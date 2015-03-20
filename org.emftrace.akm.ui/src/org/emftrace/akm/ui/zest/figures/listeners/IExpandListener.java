@@ -27,6 +27,6 @@ public interface IExpandListener {
 	/**
 	 * the node was collapsed by the user
 	 */
-	public void collapsed();
+	public void collapsed(final boolean pApplyLayout);
 
 }

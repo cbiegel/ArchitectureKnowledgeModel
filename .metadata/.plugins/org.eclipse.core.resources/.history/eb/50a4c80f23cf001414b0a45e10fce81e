@@ -1,0 +1,1269 @@
+/*******************************************************************************
+ * Copyright (c) 2010-2012 Software Systems/Process Informatics Group,
+ * Ilmenau University of Technology.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributor: Daniel Motschmann
+ ******************************************************************************/ 
+
+
+package org.emftrace.quarc.ui.zestgpraphbuilders;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
+
+import org.eclipse.draw2d.Figure;
+import org.eclipse.draw2d.IFigure;
+import org.eclipse.draw2d.OrderedLayout;
+import org.eclipse.draw2d.PolylineConnection;
+import org.eclipse.draw2d.ToolbarLayout;
+import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecp.edit.spi.util.ECPModelElementChangeListener;
+import org.eclipse.jface.viewers.ISelection;
+import org.eclipse.jface.viewers.ISelectionChangedListener;
+import org.eclipse.jface.viewers.ISelectionProvider;
+import org.eclipse.jface.viewers.SelectionChangedEvent;
+import org.eclipse.jface.viewers.StructuredSelection;
+import org.eclipse.swt.SWT;
+import org.eclipse.swt.events.SelectionAdapter;
+import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.swt.events.SelectionListener;
+import org.eclipse.swt.graphics.Font;
+import org.eclipse.swt.layout.GridData;
+import org.eclipse.swt.layout.GridLayout;
+import org.eclipse.swt.widgets.Button;
+import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Label;
+import org.eclipse.swt.widgets.Menu;
+import org.eclipse.swt.widgets.MenuItem;
+import org.eclipse.swt.widgets.MessageBox;
+import org.eclipse.swt.widgets.Scale;
+import org.eclipse.ui.IWorkbenchPartSite;
+import org.eclipse.zest.core.viewers.internal.ZoomManager;
+import org.eclipse.zest.core.widgets.Graph;
+import org.eclipse.zest.core.widgets.GraphConnection;
+import org.eclipse.zest.core.widgets.GraphNode;
+import org.eclipse.zest.core.widgets.ZestStyles;
+import org.eclipse.zest.layouts.LayoutStyles;
+import org.emftrace.core.accesslayer.AccessLayer;
+import org.emftrace.metamodel.QUARCModel.GSS.ConstrainedElement;
+import org.emftrace.metamodel.QUARCModel.GSS.Element;
+import org.emftrace.metamodel.QUARCModel.GSS.Flaw;
+import org.emftrace.metamodel.QUARCModel.GSS.Goal;
+import org.emftrace.metamodel.QUARCModel.GSS.Pattern;
+import org.emftrace.metamodel.QUARCModel.GSS.Principle;
+import org.emftrace.metamodel.QUARCModel.GSS.Refactoring;
+import org.emftrace.metamodel.QUARCModel.GSS.Relation;
+import org.emftrace.metamodel.QUARCModel.GSS.SolutionInstrument;
+import org.emftrace.quarc.core.cache.CacheManager;
+import org.emftrace.quarc.core.cache.ICacheChangedListener;
+import org.emftrace.quarc.core.helpers.PreconditionFinder;
+import org.emftrace.quarc.ui.zest.connections.ConnectionDecorator;
+import org.emftrace.quarc.ui.zest.connections.GSSRelationConnection;
+import org.emftrace.quarc.ui.zest.figures.AbstractDecoratorFigure;
+import org.emftrace.quarc.ui.zest.figures.ElementFigure;
+import org.emftrace.quarc.ui.zest.figures.FlawFigure;
+import org.emftrace.quarc.ui.zest.figures.SolutionInstrumentFigure;
+import org.emftrace.quarc.ui.zest.figures.PreconditionFigure;
+import org.emftrace.quarc.ui.zest.figures.PrincipleFigure;
+import org.emftrace.quarc.ui.zest.figures.RefinementType;
+import org.emftrace.quarc.ui.zest.figures.RefinementTypeFigure;
+import org.emftrace.quarc.ui.zest.figures.SoftGoalFigure;
+import org.emftrace.quarc.ui.zest.graph.GSSGraph;
+import org.emftrace.quarc.ui.zest.layouts.GSSGraphLayoutAlgorithm;
+import org.emftrace.quarc.ui.zest.nodes.GSSElementGraphNode;
+import org.emftrace.ui.editors.builders.AbstractGUIBuilder;
+import org.emftrace.ui.modelelementopener.EMFTraceModelElementOpener;
+
+
+/**
+ * the base for all GraphBuilders
+ * 
+ * @author Daniel Motschmann
+ *
+ */
+public abstract class AbstractElementGraphBuilder extends AbstractGUIBuilder {
+	/**
+	 * the shown zest graph
+	 */
+	protected GSSGraph zestGraph;
+
+	/**
+	 * a ZoomManager for the zest graph
+	 */
+	private ZoomManager zoomManager;
+	
+	
+	/**
+	 * the input of the builder
+	 */
+	protected EObject inputContainer;
+
+	/**
+	 * the SWT style
+	 */
+	private int style;
+
+	
+	/**
+	 * a map for GraphNodes of Elements
+	 */
+	protected HashMap<Element, GSSElementGraphNode> nodeMap;
+
+	/**
+	 * the used CacheManager
+	 */
+	protected CacheManager cacheManager;
+
+	/**
+	 * a map for the Connections of Relations
+	 */
+	protected HashMap<Relation, GraphConnection> relationMap;
+	
+	/**
+	 * a map for the Relations of Connections
+	 */
+	protected HashMap<GraphConnection, Relation> connectionMap;
+
+	
+	/**
+	 * the used WorkbenchPartSite
+	 */
+	protected IWorkbenchPartSite iWorkbenchPartSite;
+
+	/**
+	 * the scale used for select the zoom level
+	 */
+	private Scale zoomScale;
+
+	/**
+	 * a label used for show the current zoom level
+	 */
+	private Label zoomLevelLabel;
+
+	/**
+	 * a map for the Elements and their added ModelElementChangeListeners
+	 */
+	private Map<ECPModelElementChangeListener, Element> ecpModelChangeListenerMap;
+
+	
+	/**
+	 * @return the zest Graph
+	 */
+	public GSSGraph getZestGraph() {
+		return zestGraph;
+	}
+
+	/**
+	 * Setter for input (the Element to display)
+	 * 
+	 * @param inputContainer a EObject used as input for the builder
+	 */
+	public void setInput(EObject inputContainer) {
+		this.inputContainer = inputContainer;
+	}
+
+	/**
+	 * @return the input EObject
+	 */
+	public EObject getInput() {
+		return this.inputContainer;
+	}
+
+	/**
+	 * An interface for the SelectionProvider of Eclipse
+	 */
+	private ISelectionProvider selectionProvider;
+	
+	
+	/**
+	 * A list with SelectionChangedListeners used by the SelectionProvider
+	 */
+	private List<ISelectionChangedListener> selectionChangedListeners;
+
+	/* (non-Javadoc)
+	 * @see sharedcomponents.builders.guis.AbstractGUIBuilder#doBuild()
+	 */
+	@Override
+	protected void doBuild() {
+		super.doBuild();
+
+		bodyComposite.setLayout(new GridLayout(6, false));
+
+		zestGraph = new GSSGraph(bodyComposite, SWT.BORDER);
+		zestGraph.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true, 6,
+				1));
+		GSSGraphLayoutAlgorithm gssLayout = new GSSGraphLayoutAlgorithm(
+				LayoutStyles.NONE, zestGraph);
+
+		gssLayout.setCaptionsForLayers("goals", 0);
+		gssLayout
+				.setToolTipsForLayers(
+						createTooltipFigure("all goals of the goal solution scheme"),
+						0);
+
+		gssLayout.setCaptionsForLayers("principles", 1);
+		gssLayout
+				.setToolTipsForLayers(
+						createTooltipFigure("all principles of the goal solution scheme"),
+						1);
+
+		gssLayout.setCaptionsForLayers("solution instruments", 2);
+		gssLayout
+				.setToolTipsForLayers(
+						createTooltipFigure("all solution instruments of the goal solution scheme"),
+						2);
+		
+		buildCustomGraph(zestGraph);
+		
+		zestGraph.setConnectionStyle(ZestStyles.CONNECTIONS_DIRECTED);
+
+		selectionChangedListeners = new ArrayList<ISelectionChangedListener>();
+
+		selectionProvider = new ISelectionProvider() {
+
+			@Override
+			public void setSelection(ISelection selection) {
+
+			}
+
+			@Override
+			public void removeSelectionChangedListener(
+					ISelectionChangedListener listener) {
+				selectionChangedListeners.remove(listener);
+
+			}
+
+			@Override
+			public ISelection getSelection() {
+				return new StructuredSelection(zestGraph.getSelection());
+			}
+
+			@Override
+			public void addSelectionChangedListener(
+					ISelectionChangedListener listener) {
+				selectionChangedListeners.add(listener);
+
+			}
+		};
+
+		iWorkbenchPartSite.setSelectionProvider(selectionProvider);
+
+
+		zestGraph.addSelectionListener(new SelectionListener() {
+
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				notifySelectionService();
+				/*Display.getDefault().asyncExec(new Runnable() {
+
+					@Override
+					public void run() {
+						notifySelectionService();
+					}
+				});*/
+			}
+
+			@Override
+			public void widgetDefaultSelected(SelectionEvent e) {
+			}
+	
+		});
+
+		Label zoomLabel = new Label(bodyComposite, SWT.NONE);
+
+		zoomLabel.setLayoutData(new org.eclipse.swt.layout.GridData(SWT.RIGHT,
+				SWT.TOP, true, false, 1, 1));
+		zoomLabel.setText("zoom level");
+		zoomLabel.setBackground(zoomLabel.getParent().getBackground());
+
+
+		Button bMinus = new Button(bodyComposite, SWT.NONE);
+		bMinus.setText("-");
+		bMinus.setLayoutData(new GridData(1, 1, false, false));
+		bMinus.setBackground(bMinus.getParent().getBackground());
+		bMinus.setToolTipText("decrement the zoom level");
+
+		zoomScale = new Scale(bodyComposite, SWT.NONE);
+		zoomScale.setLayoutData(new GridData(1, 1, false, false));
+		zoomScale.setMinimum(0);
+		zoomScale.setMaximum(4);
+		zoomScale.setSelection(2);
+		zoomScale.setPageIncrement(1);
+		zoomScale.setIncrement(1);
+		zoomScale.setBackground(zoomScale.getParent().getBackground());
+		
+		zoomScale.setToolTipText("select the zoom level here");
+		
+		Button bPlus = new Button(bodyComposite, SWT.NONE);
+		bPlus.setText("+");
+		bPlus.setLayoutData(new GridData(1, 1, false, false));
+		bPlus.setBackground(bPlus.getParent().getBackground());
+		bPlus.setToolTipText("increment the zoom level");
+
+		bMinus.addSelectionListener(new SelectionListener() {
+
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				zoomScale.setSelection(zoomScale.getSelection() - 1);
+				updateZoom();
+			}
+
+			@Override
+			public void widgetDefaultSelected(SelectionEvent e) {
+			}
+		});
+		bPlus.addSelectionListener(new SelectionListener() {
+
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				zoomScale.setSelection(zoomScale.getSelection() + 1);
+				updateZoom();
+			}
+
+			@Override
+			public void widgetDefaultSelected(SelectionEvent e) {
+			}
+		});
+
+		zoomLevelLabel = new Label(bodyComposite, SWT.NONE);
+		zoomLevelLabel.setLayoutData(new org.eclipse.swt.layout.GridData(
+				SWT.RIGHT, SWT.TOP, false, false, 1, 1));
+		zoomLevelLabel.setText("100%");
+		zoomLevelLabel.setBackground(zoomLevelLabel.getParent().getBackground());
+		zoomLevelLabel.setToolTipText("the current zoom level");
+
+		zoomManager = new ZoomManager(zestGraph.getRootLayer(),
+				zestGraph.getViewport());
+
+		zoomScale.addSelectionListener(new SelectionListener() {
+
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				updateZoom();
+			}
+
+			@Override
+			public void widgetDefaultSelected(SelectionEvent e) {
+
+			}
+		});
+
+		Button bReset = new Button(bodyComposite, SWT.NONE);
+		bReset.setText("reset layout");
+		bReset.setLayoutData(new GridData(1, 1, false, false));
+		bReset.setBackground(bReset.getParent().getBackground());
+		bReset.setToolTipText("resets the layout");
+		bReset.addSelectionListener(new SelectionListener() {
+
+
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				for (Object node : zestGraph.getNodes()) {
+					if (node instanceof GSSElementGraphNode) {
+						((GSSElementGraphNode) node).setIsExpanded();
+						((GSSElementGraphNode) node).show();
+						
+					}
+
+				}
+				zestGraph.applyLayout();
+			}
+
+			@Override
+			public void widgetDefaultSelected(SelectionEvent e) {
+
+			}
+		});
+
+	}
+
+	/**
+	 * fires a SelectionChangedEvent to all listening SelectionChangedListeners
+	 */
+	public void notifySelectionService() {
+		for (ISelectionChangedListener listener : selectionChangedListeners) {
+
+			SelectionChangedEvent event = new SelectionChangedEvent(
+					selectionProvider, new StructuredSelection(
+							zestGraph.getSelection()));
+			try {
+				listener.selectionChanged(event);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+
+	}
+
+	/**
+	 * sets the zoom level selected by the zoomScale 
+	 */
+	protected void updateZoom() {
+
+		double zoomlevel = 1.0d;
+		switch (zoomScale.getSelection()) {
+		case 0:
+			zoomlevel = 0.50;
+			zoomLevelLabel.setText("50%");
+			break;
+
+		case 1:
+			zoomlevel = 0.75d;
+			zoomLevelLabel.setText("75%");
+			break;
+		case 2:
+			zoomlevel = 1.0d;
+			zoomLevelLabel.setText("100%");
+			break;
+		case 3:
+			zoomlevel = 2.0d;
+			zoomLevelLabel.setText("200%");
+			break;
+		case 4:
+			zoomlevel = 4.0d;
+			zoomLevelLabel.setText("400%");
+			break;
+
+		}
+		zoomManager.setZoom(zoomlevel);
+	}
+
+	/**
+	 * the constructor
+	 * 
+	 * @param parent
+	 *            the parent Composite
+	 * @param style
+	 *            the SWT sytle
+	 * @param inputObject
+	 *            a container with elements for the Graph
+	 */
+	public AbstractElementGraphBuilder(Composite parentComposite, int style,
+			IWorkbenchPartSite iWorkbenchPartSite, EObject inputContainer,
+			AccessLayer accessLayer) {
+		super(accessLayer, parentComposite);
+		this.style = style;
+		this.inputContainer = inputContainer;
+		this.nodeMap = new HashMap<Element, GSSElementGraphNode>();
+		this.relationMap = new HashMap<Relation, GraphConnection>();
+		this.connectionMap = new HashMap<GraphConnection, Relation>();
+		this.iWorkbenchPartSite = iWorkbenchPartSite;
+		this.ecpModelChangeListenerMap = new HashMap<ECPModelElementChangeListener, Element>();
+
+	}
+
+	/**
+	 * implementation of the creation of a Zest graph<br>
+	 * must be extended by subclasses
+	 * 
+	 * @param zestGraph
+	 *            a Zest Graph
+	 * @return a List with all created nodes
+	 */
+	protected void buildCustomGraph(GSSGraph zestGraph) {
+
+		initCache();
+		nodeMap.clear();
+
+		zestGraph.addSelectionListener(new SelectionAdapter() {
+			public void widgetSelected(SelectionEvent e) {
+
+				for (Object node : ((Graph) e.widget).getNodes()) {
+					((GraphNode) node).unhighlight();
+					if (node instanceof GSSElementGraphNode)
+						((GSSElementGraphNode) node).unmark();
+				}
+				for (Object connection : ((Graph) e.widget).getConnections()) {
+					((GraphConnection) connection).unhighlight();
+				}
+				for (int i = 0; i < ((Graph) e.widget).getSelection().size(); i++)
+					if (((Graph) e.widget).getSelection().get(i) instanceof GSSElementGraphNode) {
+						GSSElementGraphNode selectedNode = (GSSElementGraphNode) ((Graph) e.widget)
+								.getSelection().get(i);
+
+						selectedNode.highlight();
+						selectedNode.mark();
+						selectedNode.markChildren();
+						selectedNode.markParents();
+					}
+			}
+		});
+	}
+
+	/**
+	 * creates a new GSSElementGraphNode for the specified Element
+	 * @param graph the containment zest Graph
+	 * @param style the SWT style of the new node
+	 * @param element an Element
+	 * @param level the level of the node
+	 * @param sublevel the sub level of the node
+	 * @param isLeaf is node a Leaf? (has no incoming refinement relations)
+	 * @param isExpandable is node expandable?
+	 * @return the created GSSElementGraphNode
+	 */
+	protected GSSElementGraphNode createNode(GSSGraph graph, int style,
+			Element element, int level, int sublevel, boolean isLeaf,
+			boolean isExpandable) {
+		return this.createNode(graph, style, element, level, sublevel, isLeaf,
+				isExpandable, null);
+	}
+
+	/**
+	 * creates a new GSSElementGraphNode for the specified Element with the specified decoration for the top
+	 * @param graph the containment zest Graph
+	 * @param style the SWT style of the new node
+	 * @param element an Element
+	 * @param level the level of the node
+	 * @param sublevel the sub level of the node
+	 * @param isLeaf is node a Leaf? (has no incoming refinement relations)
+	 * @param isExpandable is node expandable?
+	 * @param topFigure a Figure used for decorating the top of the node
+	 * @return the created GSSElementGraphNode
+	 */
+	protected GSSElementGraphNode createNode(GSSGraph graph, int style,
+			Element element, int level, int sublevel, boolean isLeaf,
+			boolean isExpandable, Figure topFigure) {
+		ElementFigure figure = createElementFigure(element, isLeaf,
+				isExpandable, topFigure);
+
+		GSSElementGraphNode node = new GSSElementGraphNode(graph, style,
+				figure, level, sublevel, element);
+		nodeMap.put(element, node);
+
+		setDefaultMenu(node, element);
+		return node;
+	}
+
+	/**
+	 * 
+	 * creates a draw2d Figure for an element
+	 * 
+	 */
+	protected ElementFigure createElementFigure(final Element element,
+			boolean isLeaf, boolean isExpandable, Figure topFigure) {
+
+		ElementFigure elementFigure = null;
+		Figure decompostionTypeFigure = null;
+
+		if (!isLeaf) {
+			String decompostionType;
+			if (element instanceof SolutionInstrument)
+				decompostionType = RefinementType.IsA;
+			else
+				decompostionType = RefinementType.AND;
+			decompostionTypeFigure = new RefinementTypeFigure(decompostionType);
+
+		}
+		
+		Figure globalTopFigure = new Figure();
+		
+		if (topFigure != null)
+			globalTopFigure.add(topFigure);
+		
+		
+		if (element instanceof ConstrainedElement && ((ConstrainedElement)element).getPrecondition() != null &&  (!((ConstrainedElement)element).getPrecondition().getLogicConditions().isEmpty() ||  !((ConstrainedElement)element).getPrecondition().getBaseConditions().isEmpty())){
+			
+			PreconditionFigure preconditionFigure = new PreconditionFigure(PreconditionFinder.formatConditionString(((ConstrainedElement)element).getPrecondition()));
+			globalTopFigure.add(preconditionFigure);
+			
+		}
+
+		
+		ToolbarLayout globalTopFigureLayout = new ToolbarLayout(false);
+
+		globalTopFigureLayout.setMinorAlignment(OrderedLayout.ALIGN_BOTTOMRIGHT);
+		globalTopFigure.setLayoutManager(globalTopFigureLayout);
+		globalTopFigure.setOpaque(false);
+
+		AbstractDecoratorFigure bodyFigure = null;
+		if (element instanceof Goal) {
+			bodyFigure = new SoftGoalFigure(element.getName(), isExpandable);
+			elementFigure = new ElementFigure(bodyFigure,
+					decompostionTypeFigure, globalTopFigure);
+		} else if (element instanceof Flaw) {
+			bodyFigure = new FlawFigure(element.getName(),
+					((Flaw) element).getInterpretationRule(), ((Flaw) element).getMetrics(), isExpandable);
+			elementFigure = new ElementFigure(bodyFigure,
+					decompostionTypeFigure, globalTopFigure);
+		} else if (element instanceof Principle) {
+			bodyFigure = new PrincipleFigure(element.getName(), isExpandable);
+			elementFigure = new ElementFigure(bodyFigure,
+					decompostionTypeFigure, globalTopFigure);
+		} else if (element instanceof Refactoring) {
+			bodyFigure = new SolutionInstrumentFigure(element.getName(), isExpandable);
+			elementFigure = new ElementFigure(bodyFigure,
+					decompostionTypeFigure, globalTopFigure);
+		} else if (element instanceof Pattern) {
+			bodyFigure = new SolutionInstrumentFigure(element.getName(), isExpandable);
+			elementFigure = new ElementFigure(bodyFigure,
+					decompostionTypeFigure, globalTopFigure);
+		}
+		if (bodyFigure != null && element != null) {
+			final AbstractDecoratorFigure finalBodyFigure = bodyFigure;
+
+			ECPModelElementChangeListener ecpModelChangeListener = new ECPModelElementChangeListener(element) {
+				
+				@Override
+				public void onChange(Notification notification) {
+					finalBodyFigure.setName(element.getName());
+				}
+			};
+			
+			ecpModelChangeListenerMap.put(ecpModelChangeListener, element);
+			element.addModelElementChangeListener(ecpModelChangeListener);
+
+		}
+
+		elementFigure.setToolTip(createTooltipFigure(element));	
+		return elementFigure;
+
+	}
+
+
+	/**
+	 * finds the created GraphNode of the specified Element
+	 * 
+	 * @param target
+	 *            a Element
+	 * @return the GraphNode of the specified Element
+	 */
+	public GSSElementGraphNode getNodeForElement(Element element) {
+		if (nodeMap.containsKey(element)) {
+			return nodeMap.get(element);
+		}
+		return null;
+	}
+
+	/**
+	 * finds the Element for a Node
+	 * 
+	 * @param node a GSSElementGraphNode
+	 * @return the Element displayed by the specified node
+	 */
+	public Element getElementForNode(GSSElementGraphNode node) {
+		return node.getElement();
+	}
+
+	/**
+	 * finds the created GraphNode of the specified Element
+	 * 
+	 * @param target
+	 *            a Element
+	 * @return the GraphNode of the specified Element
+	 */
+	protected GraphConnection findConnectionForRelation(Relation relation) {
+		if (relationMap.containsKey(relation)) {
+			return relationMap.get(relation);
+		}
+		return null;
+	}
+
+	/**
+	 * creates a connection for a relation
+	 * 
+	 * @param relation
+	 *            a Relation between Elements
+	 */
+	protected GraphConnection createConnection(final Relation relation) {
+		Element target = cacheManager.getTargetOfRelation(relation);
+		Element source = cacheManager.getSourceOfRelation(relation);
+		GraphNode targetNode = getNodeForElement(target);
+		
+		if (targetNode == null)
+			new Exception(relation + " has no vaild traget").printStackTrace();
+	
+		
+		GraphNode sourceNode = getNodeForElement(source);
+		
+		if (sourceNode == null)
+			new Exception(relation + " has no vaild source").printStackTrace();
+		
+		String weight = cacheManager.getRelationWeightString(relation);
+
+		final GSSRelationConnection connection = new GSSRelationConnection(zestGraph,
+				ZestStyles.CONNECTIONS_DIRECTED, sourceNode, targetNode, relation);
+		ConnectionDecorator.decoradeConnection(connection, relation, target,
+				source, weight);
+		
+		putRelationToCache(connection, relation);
+
+		addDefaultMenu(connection, relation);
+		return connection;
+
+	}
+
+	/**
+	 * put the specified pair of connection and relation into a cache
+	 * @param connection a GraphConnection
+	 * @param relation a Relation
+	 */
+	private void putRelationToCache(GraphConnection connection,
+			Relation relation) {
+		relationMap.put(relation, connection);
+		connectionMap.put(connection, relation);
+
+	}
+
+	/**
+	 * adds the Default Popup Menu to a Connection
+	 * @param connection a GraphConnection
+	 * @param relation the Relation of the GraphConnection
+	 */
+	private void addDefaultMenu(GraphConnection connection,
+			final Relation relation) {
+
+		final Menu menu = new Menu(zestGraph.getShell(), SWT.POP_UP);
+
+		MenuItem item = new MenuItem(menu, SWT.PUSH);
+		item.setText("open");
+		item.addSelectionListener(new SelectionListener() {
+
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				// if (EMFTraceModelElementOpener.canOpen(relation)) {
+				// ModelOpenHelper.openModel(relation);
+				EMFTraceModelElementOpener.open(relation);
+				// }
+			}
+
+			@Override
+			public void widgetDefaultSelected(SelectionEvent e) {
+			}
+		});
+
+		((PolylineConnection) connection.getConnectionFigure())
+				.addMouseListener(new org.eclipse.draw2d.MouseListener() {
+
+					@Override
+					public void mousePressed(org.eclipse.draw2d.MouseEvent me) {
+
+					}
+
+					@Override
+					public void mouseReleased(org.eclipse.draw2d.MouseEvent me) {
+						if (me.button == 3) {
+
+							
+							Composite test = zestGraph.getParent().getParent().getParent()
+							.getParent().getParent().getParent()
+							.getParent().getParent().getParent()
+							.getParent();
+							
+							int x = me.x;
+							int y = me.y;
+							x += zestGraph.getParent().getParent().getParent()
+									.getParent().getParent().getParent()
+									.getParent().getParent().getParent()
+									.getParent().getLocation().x;
+
+							y += zestGraph.getParent().getParent().getParent()
+									.getParent().getParent().getParent()
+									.getParent().getParent().getParent()
+									.getParent().getLocation().y;
+							x += zestGraph.getParent().getParent().getParent()
+									.getParent().getParent().getParent()
+									.getParent().getParent().getParent()
+									.getLocation().x;
+							y += zestGraph.getParent().getParent().getParent()
+									.getParent().getParent().getParent()
+									.getParent().getParent().getParent()
+									.getLocation().y;
+
+							x += zestGraph.getParent().getParent().getParent()
+									.getParent().getParent().getParent()
+									.getParent().getParent().getParent()
+									.getParent().getParent().getLocation().x;
+							y += zestGraph.getParent().getParent().getParent()
+									.getParent().getParent().getParent()
+									.getParent().getParent().getParent()
+									.getParent().getParent().getLocation().y;
+
+							x += zestGraph.getParent().getParent().getParent()
+									.getParent().getParent().getParent()
+									.getParent().getParent().getParent()
+									.getParent().getParent().getParent()
+									.getParent().getParent().getLocation().x;
+							y += zestGraph.getParent().getParent().getParent()
+									.getParent().getParent().getParent()
+									.getParent().getParent().getParent()
+									.getParent().getParent().getParent()
+									.getParent().getParent().getLocation().y;
+
+							if (menu != null) {
+								menu.setLocation(x, y);
+								menu.setVisible(true);
+							}
+						}
+
+					}
+
+					@Override
+					public void mouseDoubleClicked(
+							org.eclipse.draw2d.MouseEvent me) {
+
+					}
+
+				});
+	}
+
+	/**
+	 * removes all ModelElementChangeListeners added by the builder from every Element 
+	 */
+	protected void removeAllModelElementChangeListeners() {
+		for (Entry<ECPModelElementChangeListener, Element> entry : ecpModelChangeListenerMap
+				.entrySet()) {
+			entry.getValue().removeModelElementChangeListener(entry.getKey());
+		}
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see sharedcomponents.builders.guis.AbstractGUIBuilder#dispose()
+	 */
+	public void dispose() {
+		removeAllModelElementChangeListeners();
+	}
+
+	/**
+	 * inits the Cachemanager
+	 */
+	protected abstract void initCache();
+
+	/**
+	 * setter for a Popup-Menu for a Node
+	 * 
+	 * @param node a GSSElementGraphNode
+	 * @param element the Element displayed by the node
+	 */
+	protected void setDefaultMenu(final GSSElementGraphNode node, final Element element) {
+		// Menu menu = new
+		// Menu(iWorkbenchPartSite.getPart().getSite().getShell(), SWT.POP_UP);
+
+		Menu menu = new Menu(getZestGraph().getShell(), SWT.POP_UP);
+
+		MenuItem item = new MenuItem(menu, SWT.PUSH);
+		item.setText("open");
+		item.addSelectionListener(new SelectionListener() {
+
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				// if (QUARCModelElementOpener.canOpen(element)) {
+				//ModelOpenHelper.openModel(element);
+				EMFTraceModelElementOpener.open(element);
+				// }
+			}
+
+			@Override
+			public void widgetDefaultSelected(SelectionEvent e) {
+			}
+		});
+
+		/*
+		 * 
+		 * final MenuItem hideItem = new MenuItem(menu, SWT.PUSH);
+		 * hideItem.setText("hide"); hideItem.addSelectionListener(new
+		 * SelectionListener() {
+		 * 
+		 * @Override public void widgetSelected(SelectionEvent e) { if
+		 * (hideItem.getText() == "hide") { hideItem.setText("shown");
+		 * node.hide(); zestGraph.applyLayout();
+		 * 
+		 * } else { hideItem.setText("hide"); node.show();
+		 * zestGraph.applyLayout(); } }
+		 * 
+		 * @Override public void widgetDefaultSelected(SelectionEvent e) { }
+		 * 
+		 * });
+		 * 
+		 * final MenuItem hideChildrenItem = new MenuItem(menu, SWT.PUSH);
+		 * hideChildrenItem.setText("hide all children");
+		 * hideChildrenItem.addSelectionListener(new SelectionListener() {
+		 * 
+		 * @Override public void widgetSelected(SelectionEvent e) { if
+		 * (node.isCollasped()) { hideChildrenItem.setText("show all children");
+		 * node.hideChildren(); zestGraph.applyLayout();
+		 * 
+		 * } else { hideChildrenItem.setText("hide all children");
+		 * node.showChildren(); zestGraph.applyLayout(); } }
+		 * 
+		 * @Override public void widgetDefaultSelected(SelectionEvent e) { }
+		 * 
+		 * });
+		 */
+		item = new MenuItem(menu, SWT.PUSH);
+		item.setText("show this node with predecessors offset");
+		item.addSelectionListener(new SelectionListener() {
+
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				for (Object node : zestGraph.getNodes())
+					if (node instanceof GSSElementGraphNode) {
+						((GSSElementGraphNode) node).hide();
+					}
+				node.show();
+
+				node.showParents();
+				zestGraph.applyLayout();
+			}
+
+			@Override
+			public void widgetDefaultSelected(SelectionEvent e) {
+			}
+
+		});
+
+		item = new MenuItem(menu, SWT.PUSH);
+		item.setText("show only this node with successors only");
+		item.addSelectionListener(new SelectionListener() {
+
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				for (Object node : zestGraph.getNodes())
+					if (node instanceof GSSElementGraphNode) {
+						((GSSElementGraphNode) node).hide();
+					}
+				node.show();
+				node.showChildren();
+				zestGraph.applyLayout();
+			}
+
+			@Override
+			public void widgetDefaultSelected(SelectionEvent e) {
+			}
+
+		});
+
+		item = new MenuItem(menu, SWT.PUSH);
+		item.setText("show this node with predecessors and successors only");
+		item.addSelectionListener(new SelectionListener() {
+
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				for (Object node : zestGraph.getNodes())
+					if (node instanceof GSSElementGraphNode) {
+						((GSSElementGraphNode) node).hide();
+					}
+				node.show();
+				node.showChildren();
+				node.showParents();
+				zestGraph.applyLayout();
+			}
+
+			@Override
+			public void widgetDefaultSelected(SelectionEvent e) {
+			}
+
+		});
+
+		node.setMenu(menu);
+
+	}
+
+	protected static Font defaultLabelFont = new Font(null, "Arial", 10,
+			SWT.NORMAL);
+	protected static Font defaultTitleFont = new Font(null, "Arial", 12,
+			SWT.BOLD);
+	/**
+	 * creates a Figure for a Tooltip for the specified Element
+	 * @param element an Element
+	 * @return the created IFigure
+	 */
+	protected IFigure createTooltipFigure(Element element) {
+
+		Figure tooltipFigure = new Figure();
+
+		ToolbarLayout layout = new ToolbarLayout();
+		tooltipFigure.setLayoutManager(layout);
+		tooltipFigure.setOpaque(true);
+		String name = element.getName();
+		if (name == null)
+			name = "";
+		org.eclipse.draw2d.Label titleLabel = new org.eclipse.draw2d.Label(
+				"   " + element.getName() + "   ");
+		titleLabel.setFont(defaultTitleFont);
+		tooltipFigure.add(titleLabel);
+
+		String attributesAndFeaturesText = "\n";
+		if (element.getDescription() != null)
+			attributesAndFeaturesText += " Description: \n "
+					+ formatDescription(element.getDescription());
+			
+		if (element instanceof ConstrainedElement && ((ConstrainedElement)element).getPrecondition() != null &&  (!((ConstrainedElement)element).getPrecondition().getLogicConditions().isEmpty() ||  !((ConstrainedElement)element).getPrecondition().getBaseConditions().isEmpty())){
+			
+			attributesAndFeaturesText += " Precondition: \n " + PreconditionFinder.formatConditionString(((ConstrainedElement)element).getPrecondition());
+	
+		}
+
+		org.eclipse.draw2d.Label attributesAndFeaturesLabel = new org.eclipse.draw2d.Label(
+				" " + attributesAndFeaturesText + " \n");
+		attributesAndFeaturesLabel.setFont(defaultLabelFont);
+		tooltipFigure.add(attributesAndFeaturesLabel);
+		tooltipFigure.setSize(-1, -1);
+
+		return tooltipFigure;
+	}
+
+	private String formatDescription(String description) {
+		if (description.length() > 75)
+			return description.substring(0, 72) + "[...]";
+			else return description;
+	}
+
+	/**
+	 * creates a Figure for a Tooltip for the specified text
+	 * @param text a String
+	 * @return the created IFigure
+	 */
+	protected static IFigure createTooltipFigure(String text) {
+
+		Figure tooltipFigure = new Figure();
+
+		ToolbarLayout layout = new ToolbarLayout();
+		tooltipFigure.setLayoutManager(layout);
+		tooltipFigure.setOpaque(true);
+
+		org.eclipse.draw2d.Label label = new org.eclipse.draw2d.Label(text);
+		label.setFont(new Font(null, "Arial", 10, SWT.NORMAL));
+		tooltipFigure.add(label);
+
+		tooltipFigure.setSize(-1, -1);
+
+		return tooltipFigure;
+	}
+
+	/**
+	 * finds the Relation for a GraphConnection
+	 * @param connection a GraphConnection
+	 * @return the Relation displayed by the GraphConnection
+	 */
+	protected Relation findRelationForConnection(GraphConnection connection) {
+		return connectionMap.get(connection);
+	}
+
+	/**
+	 * @return a List with all marked leaf Objects
+	 */
+	public List<Element> getMarkedLeafObjects() {
+		List<Element> markedObjects = new ArrayList<Element>();
+		for (Object node : zestGraph.getNodes()) {
+			if (node instanceof GSSElementGraphNode) {
+				GSSElementGraphNode gssElementGraphNode = (GSSElementGraphNode) node;
+				// // Element element = gssElementGraphNode.getElement();
+				if (((GSSElementGraphNode) node).isMarked()
+						&& gssElementGraphNode.getTargetConnections().size() == 0) {
+					markedObjects.add(gssElementGraphNode.getElement());
+				}
+			}
+		}
+		return markedObjects;
+	}
+
+	/**
+	 * @return a List with all marked root Objects
+	 */
+	public List<Element> getMarkedRootObjects() {
+		List<Element> markedObjects = new ArrayList<Element>();
+		for (Object node : zestGraph.getNodes()) {
+			if (node instanceof GSSElementGraphNode) {
+				GSSElementGraphNode gssElementGraphNode = (GSSElementGraphNode) node;
+				// // Element element = gssElementGraphNode.getElement();
+				if (((GSSElementGraphNode) node).isMarked()
+						&& gssElementGraphNode.getSourceConnections().size() == 0) {
+					markedObjects.add(gssElementGraphNode.getElement());
+				}
+			}
+		}
+		return markedObjects;
+	}
+
+	/**
+	 * @return a List with all marked Objects
+	 */
+	public List<Element> getMarkedObjects() {
+		List<Element> markedObjects = new ArrayList<Element>();
+		for (Object node : zestGraph.getNodes()) {
+			if (node instanceof GSSElementGraphNode) {
+				GSSElementGraphNode gssElementGraphNode = (GSSElementGraphNode) node;
+				if (((GSSElementGraphNode) node).isMarked()) {
+					markedObjects.add(gssElementGraphNode.getElement());
+				}
+			}
+		}
+		return markedObjects;
+	}
+
+	/**
+	 * @return a List with all direct children of the selected nodes
+	 */
+	public List<Element> getDirectChildrenOfSelectedElements() {
+		List<Element> directChildren = new ArrayList<Element>();
+
+		if (!zestGraph.getSelection().isEmpty())
+			for (int i = 0; i < zestGraph.getSelection().size(); i++)
+				for (Object connection : ((GraphNode) zestGraph.getSelection()
+						.get(i)).getTargetConnections()) {
+					GSSElementGraphNode child = (GSSElementGraphNode) ((GraphConnection) connection)
+							.getSource();
+					directChildren.add(child.getElement());
+				}
+
+		return directChildren;
+	}
+
+	/**
+	 * @return a List with all direct parents of the selected nodes
+	 */
+	public List<Element> getDirectParentsOfSelectedElements() {
+		List<Element> directParents = new ArrayList<Element>();
+		if (!zestGraph.getSelection().isEmpty())
+			for (int i = 0; i < zestGraph.getSelection().size(); i++)
+				for (Object connection : ((GraphNode) zestGraph.getSelection()
+						.get(i)).getSourceConnections()) {
+					GSSElementGraphNode parent = (GSSElementGraphNode) ((GraphConnection) connection)
+							.getDestination();
+					directParents.add(parent.getElement());
+				}
+		return directParents;
+	}
+
+	/**
+	 * @return a List with the elements ofs all selected nodes
+	 */
+	public List<Element> getSelectedElements() {
+		List<Element> result = new ArrayList<Element>();
+		for (int i = 0; i < zestGraph.getSelection().size(); i++)
+			if (zestGraph.getSelection().get(i) instanceof GSSElementGraphNode) {
+				GSSElementGraphNode node = (GSSElementGraphNode) zestGraph
+						.getSelection().get(i);
+				result.add( node.getElement());
+			}
+		return result;
+	}
+
+	/**
+	 * @return a List with all marked leaf goals
+	 */
+	public List<Element> getMarkedLeafGoals() {
+		List<Element> markedLeafGoals = new ArrayList<Element>();
+		for (Object node : zestGraph.getNodes()) {
+			if (node instanceof GSSElementGraphNode) {
+				GSSElementGraphNode gssElementGraphNode = (GSSElementGraphNode) node;
+				if (((GSSElementGraphNode) node).isMarked()
+						&& gssElementGraphNode.getElement() instanceof Goal
+						&& cacheManager
+								.isLeaf(gssElementGraphNode.getElement())) {
+					markedLeafGoals.add(gssElementGraphNode.getElement());
+				}
+			}
+		}
+		return markedLeafGoals;
+	}
+	
+	
+
+	/**
+	 * @return a List with all marked leaf solution principles / flaws
+	 */
+	public List<Element> getMarkedLeafPrinciples() {
+		List<Element> markedLeafPrinciples = new ArrayList<Element>();
+		for (Object node : zestGraph.getNodes()) {
+			if (node instanceof GSSElementGraphNode) {
+				GSSElementGraphNode gssElementGraphNode = (GSSElementGraphNode) node;
+				if (((GSSElementGraphNode) node).isMarked()
+						&& (gssElementGraphNode.getElement() instanceof Principle ||gssElementGraphNode.getElement() instanceof Flaw  )
+						&& cacheManager
+								.isLeaf(gssElementGraphNode.getElement())) {
+					markedLeafPrinciples.add(gssElementGraphNode.getElement());
+				}
+			}
+		}
+		return markedLeafPrinciples;
+	}
+	
+	
+	/**
+	 * @return a List with all marked leaf solution instruments
+	 */
+	public List<Element> getMarkedLeafSolutionInstruments() {
+		List<Element> markedLeafSolutionInstruments = new ArrayList<Element>();
+		for (Object node : zestGraph.getNodes()) {
+			if (node instanceof GSSElementGraphNode) {
+				GSSElementGraphNode gssElementGraphNode = (GSSElementGraphNode) node;
+				if (((GSSElementGraphNode) node).isMarked()
+						&& gssElementGraphNode.getElement() instanceof SolutionInstrument
+						&& cacheManager
+								.isLeaf(gssElementGraphNode.getElement())) {
+					markedLeafSolutionInstruments.add(gssElementGraphNode.getElement());
+				}
+			}
+		}
+		return markedLeafSolutionInstruments;
+	}
+
+	/**
+	 * @return the used CacheManager
+	 */
+	public CacheManager getCacheManager() {
+		return cacheManager;
+	}
+
+	
+	/** setter for the importance (priority) label of a node
+	 * @param node a GSSElementGraphNode
+	 * @param element the Element of the GSSElementGraphNode
+	 */
+	protected void setNodeImportance(final GSSElementGraphNode node, final Element element) {
+		cacheManager.addCacheChangedListener(new ICacheChangedListener() {
+			
+			@Override
+			public void changed() {
+				
+				updateNodeImportance(node, element);
+				
+			}
+		});
+		updateNodeImportance(node,element);	
+	}
+	
+	/** updates the importance (priority) label of a node
+	 * @param node a GSSElementGraphNode
+	 * @param element the Element of the GSSElementGraphNode
+	 */
+	protected void updateNodeImportance(GSSElementGraphNode node, Element element){
+		Float importance = cacheManager.getSelectedGoalPriority( (Goal) element);
+	node.getElementFigure().getBodyDecoratorFigure().setImportance( importance!= null? importance : 0f);
+}
+	
+	
+	/**
+	 * display a Message Box with the specified message
+	 * @param message a message
+	 * @return user selected "Yes"
+	 */
+	protected boolean displayQuestionMessagebox(String message) {
+
+		int messageBoxStyle = SWT.ICON_QUESTION | SWT.YES | SWT.NO ;
+	    
+		   
+		MessageBox messageBox = new MessageBox(zestGraph.getShell(), messageBoxStyle);
+	    messageBox.setMessage(message);
+
+	    int rc = messageBox.open();
+
+	    if (rc == SWT.YES)
+			return true;
+	    else
+		return false;
+	  
+
+	}
+}

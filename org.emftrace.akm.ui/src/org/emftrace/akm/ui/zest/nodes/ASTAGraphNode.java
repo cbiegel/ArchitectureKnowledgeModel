@@ -1,8 +1,11 @@
 package org.emftrace.akm.ui.zest.nodes;
 
+import java.util.List;
+
 import org.eclipse.zest.core.widgets.IContainer;
 import org.emftrace.akm.ui.zest.figures.AbstractASTAFigure;
 import org.emftrace.akm.ui.zest.graph.AKMGraph;
+import org.emftrace.metamodel.ArchitectureKnowledgeModel.ASTA;
 
 /**
  * A GraphNode for representing an ASTA element with a custom figure (ElementFigure).<br>
@@ -66,6 +69,10 @@ public class ASTAGraphNode extends AbstractAKMGraphNode {
 
 	public int getContentCount() {
 		return mFigure.getContentsCount();
+	}
+
+	public List<ASTA> getASTAList() {
+		return mFigure.getContents();
 	}
 
 	// ===========================================================

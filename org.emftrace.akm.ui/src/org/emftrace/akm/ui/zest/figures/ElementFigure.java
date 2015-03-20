@@ -221,8 +221,8 @@ public class ElementFigure extends AbstractAKMFigure {
 	 * sets the node to collapsed
 	 */
 	@Override
-	public void setIsCollapsed() {
-		bodyDecoratorFigure.setIsCollapsed();
+	public void setIsCollapsed(final boolean pApplyLayout) {
+		bodyDecoratorFigure.setIsCollapsed(pApplyLayout);
 	}
 
 	/**

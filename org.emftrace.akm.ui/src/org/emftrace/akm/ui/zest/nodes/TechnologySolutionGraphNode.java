@@ -40,7 +40,7 @@ public class TechnologySolutionGraphNode extends AbstractAKMGraphNode {
 		super(pGraphModel, pStyle, pElementFigure, pLevel, pSublevel, pTechnologySolution);
 
 		mTechnologySolution = pTechnologySolution;
-		collapse();
+		collapse(true);
 	}
 
 	/**
