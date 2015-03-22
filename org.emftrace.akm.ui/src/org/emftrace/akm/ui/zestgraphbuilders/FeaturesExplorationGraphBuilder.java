@@ -53,7 +53,7 @@ public class FeaturesExplorationGraphBuilder extends AbstractElementGraphBuilder
 		ArchitectureKnowledgeModel model = cacheManager.getModel();
 
 		// Create a node for the ArchitectureKnowledgeModel element
-		createAKMElementNode(pZestGraph, SWT.NONE, model, 0, 0, false, true);
+		createAKMElementNode(pZestGraph, SWT.NONE, model, 0, 0, false, true, false);
 
 		// Get the TechnologySolutions of the model
 		TechnologySolutions technologySolutions = model.getTechnologySolutions();
@@ -69,10 +69,12 @@ public class FeaturesExplorationGraphBuilder extends AbstractElementGraphBuilder
 		// Create a node for each TechnologySolution element in the AKM element and connect them
 		for (TechnologySolution technologySolution : technologySolutionList) {
 
+			boolean expandable = !technologySolution.getFeatures().isEmpty();
+
 			// Create the node
 			AbstractAKMGraphNode technologySolutionNode =
 					createAKMElementNode(pZestGraph, SWT.NONE, technologySolution, 1, 0, false,
-							true);
+							expandable, false);
 			// Create a connection between the parent and this node
 			createConnection(model, technologySolution);
 
@@ -80,10 +82,11 @@ public class FeaturesExplorationGraphBuilder extends AbstractElementGraphBuilder
 			// and connect them
 			for (TechnologyFeature technologyFeature : technologySolution.getFeatures()) {
 
+				expandable = !technologyFeature.getASTA().isEmpty();
 				// Create the node
 				AbstractAKMGraphNode technologyFeatureNode =
 						createAKMElementNode(pZestGraph, SWT.NONE, technologyFeature, 2, 0, false,
-								true);
+								expandable, false);
 				// Create a connection between the parent and this node
 				createConnection(technologySolution, technologyFeature);
 
@@ -91,13 +94,17 @@ public class FeaturesExplorationGraphBuilder extends AbstractElementGraphBuilder
 				List<Drawback> drawbacksList = getDrawbacksList(technologyFeature.getASTA());
 
 				// Create drawbacks and benefits nodes and connect them with the TechnologyFeature
-				AbstractAKMGraphNode benefitsNode =
-						createBenefitsNode(pZestGraph, benefitsList, 2, 1, technologyFeature);
-				AbstractAKMGraphNode drawbacksNode =
-						createDrawbacksNode(pZestGraph, drawbacksList, 2, 1, technologyFeature);
+				if (!benefitsList.isEmpty()) {
+					AbstractAKMGraphNode benefitsNode =
+							createBenefitsNode(pZestGraph, benefitsList, 2, 1, technologyFeature);
+					createConnection(technologyFeatureNode, benefitsNode);
+				}
 
-				createConnection(technologyFeatureNode, benefitsNode);
-				createConnection(technologyFeatureNode, drawbacksNode);
+				if (!drawbacksList.isEmpty()) {
+					AbstractAKMGraphNode drawbacksNode =
+							createDrawbacksNode(pZestGraph, drawbacksList, 2, 1, technologyFeature);
+					createConnection(technologyFeatureNode, drawbacksNode);
+				}
 
 				// Collapse the TechnologyFeature nodes initially to save space on the graph
 				technologyFeatureNode.collapse(true);

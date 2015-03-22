@@ -1,0 +1,130 @@
+package org.emftrace.akm.ui.windows;
+
+import org.eclipse.swt.SWT;
+import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.swt.events.SelectionListener;
+import org.eclipse.swt.layout.GridData;
+import org.eclipse.swt.layout.GridLayout;
+import org.eclipse.swt.widgets.Button;
+import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Display;
+import org.eclipse.swt.widgets.Group;
+import org.eclipse.swt.widgets.Label;
+import org.eclipse.swt.widgets.Shell;
+import org.eclipse.swt.widgets.Text;
+
+public class EditAKMElementWindow {
+	// ===========================================================
+	// Constants
+	// ===========================================================
+
+	// ===========================================================
+	// Fields
+	// ===========================================================
+
+	private Shell mShell;
+	private Label mIDLabel;
+	private Label mNameLabel;
+	private Text mIDTextfield;
+	private Text mNameTextfield;
+	private Button mConfirmButton;
+	private Composite mMainComposite;
+	private Group mContentsComposite;
+
+	// ===========================================================
+	// Constructors
+	// ===========================================================
+
+	public EditAKMElementWindow(final Shell pParentShell) {
+		mShell = new Shell(Display.getCurrent());
+		mShell.setLayout(new GridLayout(1, false));
+		mShell.setText("Edit Architecture Knowledge Model Element");
+
+		mMainComposite = new Composite(mShell, SWT.BORDER);
+		GridLayout mainLayout = new GridLayout(1, false);
+		mainLayout.marginTop = 10;
+		mainLayout.marginBottom = 10;
+		mainLayout.marginLeft = 10;
+		mainLayout.marginRight = 10;
+		mMainComposite.setLayout(mainLayout);
+		mMainComposite.setLayoutData(new GridData(GridData.FILL, GridData.FILL, true, true));
+
+		mContentsComposite = new Group(mMainComposite, SWT.SHADOW_ETCHED_IN);
+		mContentsComposite.setText("Edit Attributes");
+		GridLayout contentsLayout = new GridLayout(2, false);
+		contentsLayout.marginTop = 30;
+		contentsLayout.marginBottom = 30;
+		contentsLayout.marginLeft = 30;
+		contentsLayout.marginRight = 30;
+		contentsLayout.horizontalSpacing = 50;
+		mContentsComposite.setLayout(contentsLayout);
+		mContentsComposite.setLayoutData(new GridData(GridData.FILL, GridData.FILL, true, true));
+
+		mIDLabel = new Label(mMainComposite, SWT.NONE);
+
+		initializeContents();
+
+		mShell.setSize(500, 250);
+		mShell.setLocation(pParentShell.getLocation());
+		mShell.open();
+	}
+
+	// ===========================================================
+	// Getter & Setter
+	// ===========================================================
+
+	// ===========================================================
+	// Methods for/from SuperClass/Interfaces
+	// ===========================================================
+
+	// ===========================================================
+	// Methods
+	// ===========================================================
+
+	public void openWindow() {
+
+	}
+
+	private void initializeContents() {
+
+		mIDLabel = new Label(mContentsComposite, SWT.NONE);
+		mIDLabel.setText("ID");
+
+		mIDTextfield = new Text(mContentsComposite, SWT.SINGLE);
+		mIDTextfield.setLayoutData(new GridData(GridData.FILL, GridData.BEGINNING, true, false));
+
+		mNameLabel = new Label(mContentsComposite, SWT.NONE);
+		mNameLabel.setText("Name");
+
+		mNameTextfield = new Text(mContentsComposite, SWT.SINGLE);
+		mNameTextfield.setLayoutData(new GridData(GridData.FILL, GridData.BEGINNING, true, false));
+
+		mConfirmButton = new Button(mMainComposite, SWT.NONE);
+		mConfirmButton.setText("    OK    ");
+		mConfirmButton.setLayoutData(new GridData(GridData.END, SWT.BEGINNING, false, false));
+		addOKButtonListener(mConfirmButton);
+	}
+
+	private void addOKButtonListener(final Button pButton) {
+		pButton.addSelectionListener(new SelectionListener() {
+
+			@Override
+			public void widgetSelected(final SelectionEvent e) {
+				isValidInput(mNameTextfield);
+			}
+
+			@Override
+			public void widgetDefaultSelected(final SelectionEvent e) {
+			}
+		});
+	}
+
+	private boolean isValidInput(final Text pTextField) {
+
+		return !pTextField.getText().equals("");
+	}
+
+	// ===========================================================
+	// Inner and Anonymous Classes
+	// ===========================================================
+}

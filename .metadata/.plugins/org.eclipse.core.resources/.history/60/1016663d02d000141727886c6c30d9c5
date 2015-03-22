@@ -1,0 +1,46 @@
+package org.emftrace.akm.ui.zest.nodes;
+
+import org.eclipse.zest.core.widgets.IContainer;
+import org.emftrace.akm.ui.zest.figures.AbstractAKMFigure;
+import org.emftrace.metamodel.ArchitectureKnowledgeModel.ASTA;
+
+public class ASTAExplorationGraphNode extends AbstractAKMGraphNode {
+
+	// ===========================================================
+	// Constants
+	// ===========================================================
+
+	// ===========================================================
+	// Fields
+	// ===========================================================
+
+	private ASTA mASTAElement;
+
+	// ===========================================================
+	// Constructors
+	// ===========================================================
+
+	public ASTAExplorationGraphNode(final IContainer pGraphModel, final int pStyle,
+			final AbstractAKMFigure pElementFigure, final int pLevel, final int pSublevel,
+			final ASTA pASTAElement) {
+		super(pGraphModel, pStyle, pElementFigure, pLevel, pSublevel, pASTAElement);
+
+		mASTAElement = pASTAElement;
+	}
+
+	// ===========================================================
+	// Getter & Setter
+	// ===========================================================
+
+	// ===========================================================
+	// Methods for/from SuperClass/Interfaces
+	// ===========================================================
+
+	// ===========================================================
+	// Methods
+	// ===========================================================
+
+	// ===========================================================
+	// Inner and Anonymous Classes
+	// ===========================================================
+}

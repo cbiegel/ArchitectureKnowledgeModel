@@ -1,0 +1,277 @@
+package org.emftrace.akm.ui.zest.layouts;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map.Entry;
+
+import org.eclipse.swt.events.DisposeEvent;
+import org.eclipse.swt.events.DisposeListener;
+import org.eclipse.swt.events.PaintEvent;
+import org.eclipse.swt.events.PaintListener;
+import org.eclipse.zest.core.widgets.Graph;
+import org.eclipse.zest.core.widgets.GraphNode;
+import org.eclipse.zest.layouts.algorithms.AbstractLayoutAlgorithm;
+import org.eclipse.zest.layouts.dataStructures.InternalNode;
+import org.eclipse.zest.layouts.dataStructures.InternalRelationship;
+import org.emftrace.akm.ui.zest.nodes.AbstractAKMGraphNode;
+
+public class BenefitsAndDrawbacksExplorationLayoutAlgorithm extends AbstractLayoutAlgorithm {
+
+	// ===========================================================
+	// Constants
+	// ===========================================================
+
+	private int xOffset = 50;
+	private int yOffset = 50;
+	private int leftSpace = 40;
+	private int topSpace = 20;
+
+	// ===========================================================
+	// Fields
+	// ===========================================================
+
+	private Graph mGraph;
+	private PaintListener mPaintListener;
+	private HashMap<Integer, Integer> sublevelCount;
+	private HashMap<Integer, Integer> totalLevelOffset;
+	private int longestX;
+	private int longestY;
+	private int highestNumberOfNodes;
+	private int highestNumberOfNodesLevel;
+
+	// ===========================================================
+	// Constructors
+	// ===========================================================
+
+	public BenefitsAndDrawbacksExplorationLayoutAlgorithm(final int pStyles, final Graph pGraph) {
+		super(pStyles);
+		mGraph = pGraph;
+
+		// Layout must be applied _after_ the zest graph is completely painted.
+		// Otherwise the LayoutAlgorithm can't get the dimensions of the Figures.
+		mPaintListener = new PaintListener() {
+
+			@Override
+			public void paintControl(final PaintEvent e) {
+				mGraph.applyLayout();
+			}
+		};
+
+		mGraph.getGraph().addPaintListener(mPaintListener);
+		mGraph.getGraph().addDisposeListener(new DisposeListener() {
+
+			@Override
+			public void widgetDisposed(final DisposeEvent e) {
+				if (mPaintListener != null) {
+					mGraph.getGraph().removePaintListener(mPaintListener);
+				}
+				mGraph.getGraph().removeDisposeListener(this);
+
+			}
+		});
+	}
+
+	// ===========================================================
+	// Getter & Setter
+	// ===========================================================
+
+	// ===========================================================
+	// Methods for/from SuperClass/Interfaces
+	// ===========================================================
+
+	@Override
+	protected void applyLayoutInternal(final InternalNode[] entitiesToLayout,
+			final InternalRelationship[] relationshipsToConsider, final double boundsX,
+			final double boundsY, final double boundsWidth, final double boundsHeight) {
+
+		List<AbstractAKMGraphNode> nodes = new ArrayList<AbstractAKMGraphNode>();
+		for (InternalNode internalNode : entitiesToLayout) {
+
+			if (internalNode.getLayoutEntity().getGraphData() instanceof AbstractAKMGraphNode) {
+				AbstractAKMGraphNode graphNode =
+						(AbstractAKMGraphNode) internalNode.getLayoutEntity().getGraphData();
+
+				if (graphNode.isVisible()) {
+					nodes.add(graphNode);
+
+				} else {
+					((GraphNode) internalNode.getLayoutEntity().getGraphData()).setLocation(0, 0);
+				}
+			}
+		}
+
+		createLayout(nodes);
+	}
+
+	@Override
+	public void setLayoutArea(final double x, final double y, final double width,
+			final double height) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	protected boolean isValidConfiguration(final boolean asynchronous, final boolean continuous) {
+		return true;
+	}
+
+	@Override
+	protected void preLayoutAlgorithm(final InternalNode[] entitiesToLayout,
+			final InternalRelationship[] relationshipsToConsider, final double x, final double y,
+			final double width, final double height) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	protected void postLayoutAlgorithm(final InternalNode[] entitiesToLayout,
+			final InternalRelationship[] relationshipsToConsider) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	protected int getTotalNumberOfLayoutSteps() {
+		return 0;
+	}
+
+	@Override
+	protected int getCurrentLayoutStep() {
+		return 0;
+	}
+
+	// ===========================================================
+	// Methods
+	// ===========================================================
+
+	/**
+	 * Create the layout
+	 * 
+	 * @param nodes
+	 *            a List with all AbstractAKMGraphNodes of the Graph
+	 */
+	private void createLayout(final List<AbstractAKMGraphNode> nodes) {
+
+		// find the highest sublevel of each level
+		sublevelCount = new HashMap<Integer, Integer>();
+		for (AbstractAKMGraphNode node : nodes) {
+			if (!(sublevelCount.containsKey(node.getLevel()))
+					|| ((node.getSubLevel() + 1) > sublevelCount.get(node.getLevel()))) {
+				sublevelCount.put(node.getLevel(), node.getSubLevel() + 1);
+			}
+		}
+
+		// calculates and caches the sum of sublevels of all levels over a level
+		totalLevelOffset = new HashMap<Integer, Integer>();
+		for (Integer level : sublevelCount.keySet()) {
+			int sum = 0;
+			for (Entry<Integer, Integer> entrySet : sublevelCount.entrySet()) {
+				if (entrySet.getKey() < level) {
+					sum += entrySet.getValue();
+				}
+			}
+
+			totalLevelOffset.put(level, sum);
+		}
+
+		// create the level-hierarchy:
+		// the hierarchy consists of levels with sublevels
+		List<List<AbstractAKMGraphNode>> levelList = new ArrayList<List<AbstractAKMGraphNode>>();
+		for (int i = 0; i < nodes.size(); i++) {
+			int totalLevel =
+					totalLevelOffset.get(nodes.get(i).getLevel()) + nodes.get(i).getSubLevel();
+			if (levelList.size() <= totalLevel) {
+				int requiredLevels = (totalLevel - levelList.size()) + 1;
+				for (int j = 0; j < requiredLevels; j++) {
+					levelList.add(new ArrayList<AbstractAKMGraphNode>());
+				}
+
+				levelList.get(totalLevel).add(nodes.get(i));
+			} else {
+				levelList.get(totalLevel).add(nodes.get(i));
+			}
+		}
+
+		highestNumberOfNodes = calcHighestNumberOfNodes(levelList);
+		longestX = calcLongestX(levelList);
+		longestY = calcLongestY(levelList);
+		// align nodes and compute positions:
+		adjustLevels(levelList);
+	}
+
+	private int calcHighestNumberOfNodes(final List<List<AbstractAKMGraphNode>> levels) {
+		int highestNumberOfNodes = 0;
+
+		for (int i = 0; i < levels.size(); i++) {
+			if (levels.get(i).size() > highestNumberOfNodes) {
+				highestNumberOfNodes = levels.get(i).size();
+				highestNumberOfNodesLevel = i;
+			}
+		}
+		return highestNumberOfNodes;
+	}
+
+	private int calcLongestX(final List<List<AbstractAKMGraphNode>> levels) {
+		int longestX = 0;
+		for (int i = 0; i < levels.size(); i++) {
+			for (int j = 0; j < levels.get(i).size(); j++) {
+				if (levels.get(i).get(j).getAKMFigureWidth() > longestX) {
+					longestX = levels.get(i).get(j).getAKMFigureWidth();
+				}
+			}
+		}
+		return longestX;
+	}
+
+	private int calcLongestY(final List<List<AbstractAKMGraphNode>> levels) {
+		int longestY = 0;
+		for (int k = 0; k < levels.size(); k++) {
+			for (int j = 0; j < levels.get(k).size(); j++) {
+				if (levels.get(k).get(j).getAKMFigureHeight() > longestY) {
+					longestY = levels.get(k).get(j).getAKMFigureHeight();
+				}
+			}
+		}
+		return longestY;
+	}
+
+	/**
+	 * sets the location for each node
+	 * 
+	 * @param levels
+	 *            a level hierarchy
+	 */
+	private void adjustLevels(final List<List<AbstractAKMGraphNode>> levels) {
+		// search for the level with the largest amount of nodes:
+
+		if ((longestX != 0) && (mPaintListener != null)) {
+			mGraph.removePaintListener(mPaintListener);
+			mPaintListener = null;
+		}
+
+		if (highestNumberOfNodesLevel == 0) {
+			calculateNodePositionsBeginningWithFirstLevel(levels);
+		}
+
+		// TODO CB: Beginnging with 3rd level
+	}
+
+	private void calculateNodePositionsBeginningWithFirstLevel(
+			final List<List<AbstractAKMGraphNode>> pLevelsList) {
+
+		for (int i = 0; i < pLevelsList.get(0).size(); i++) {
+			calculateNodePosition(pLevelsList.get(0).get(i), pLevelsList, 0, i, longestX);
+		}
+	}
+
+	private void calculateNodePosition(final AbstractAKMGraphNode pNode,
+			final List<List<AbstractAKMGraphNode>> pLevelsList, final int pLevel,
+			final int pLevelIndex, final int pLengthOffset) {
+
+	}
+
+	// ===========================================================
+	// Inner and Anonymous Classes
+	// ===========================================================
+}

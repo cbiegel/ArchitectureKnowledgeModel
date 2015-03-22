@@ -16,6 +16,7 @@ import org.eclipse.draw2d.RectangleFigure;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.Font;
+import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Menu;
 import org.emftrace.akm.ui.zest.figures.listeners.IExpandListener;
 import org.emftrace.akm.ui.zest.graph.AKMGraph;
@@ -68,6 +69,10 @@ public abstract class AbstractASTAFigure extends AbstractAKMFigure {
 
 	private Map<Label, Menu> mContextMenuMap;
 
+	private Color mDefaultColor;
+
+	private Color mHighlightColor;
+
 	// ===========================================================
 	// Constructors
 	// ===========================================================
@@ -80,6 +85,8 @@ public abstract class AbstractASTAFigure extends AbstractAKMFigure {
 
 		mBorderFigure = new RectangleFigure();
 		mBorderFigure.setFill(true);
+
+		mDefaultColor = mBorderFigure.getBackgroundColor();
 
 		mGridLayout = new GridLayout(1, false);
 		mGridLayout.marginHeight = 10;
@@ -101,21 +108,23 @@ public abstract class AbstractASTAFigure extends AbstractAKMFigure {
 	// ===========================================================
 
 	@Override
-	public void highlight() {
-		// TODO Auto-generated method stub
+	public void repaint() {
+		super.repaint();
+	}
 
+	@Override
+	public void highlight() {
+		mBorderFigure.setBackgroundColor(mHighlightColor);
 	}
 
 	@Override
 	public void unhighlight() {
-		// TODO Auto-generated method stub
-
+		mBorderFigure.setBackgroundColor(getBackgroundColor());
 	}
 
 	@Override
 	public void setHighlightColor(final Color pColor) {
-		// TODO Auto-generated method stub
-
+		mHighlightColor = pColor;
 	}
 
 	@Override
@@ -138,8 +147,13 @@ public abstract class AbstractASTAFigure extends AbstractAKMFigure {
 
 	@Override
 	public void setLabelColor(final Color pColor) {
-		// TODO Auto-generated method stub
-
+		for (Label label : mContentsList) {
+			label.setOpaque(false);
+			label.setBackgroundColor(getBackgroundColor());
+			if (!label.hasFocus()) {
+				label.setForegroundColor(pColor);
+			}
+		}
 	}
 
 	@Override
@@ -164,6 +178,10 @@ public abstract class AbstractASTAFigure extends AbstractAKMFigure {
 	public void removeExpandListener(final IExpandListener expandListener) {
 		// TODO Auto-generated method stub
 
+	}
+
+	public Color getHighlightColor() {
+		return mHighlightColor;
 	}
 
 	// ===========================================================
@@ -223,6 +241,19 @@ public abstract class AbstractASTAFigure extends AbstractAKMFigure {
 					if (me.button == 1) {
 						// left mouse button was pressed
 						setSelection(me.getState());
+						label.setOpaque(true);
+						label.setBackgroundColor(mHighlightColor);
+						label.setForegroundColor(new Color(Display.getCurrent(), 255, 255, 255));
+
+						mBorderFigure.setBackgroundColor(Display.getDefault().getSystemColor(
+								SWT.COLOR_TITLE_BACKGROUND_GRADIENT));
+						for (Label otherLabel : mContentsList) {
+							if (otherLabel != label) {
+								otherLabel.setForegroundColor(new Color(Display.getCurrent(), 0, 0,
+										0));
+							}
+						}
+
 					} else if (me.button == 3) {
 
 						// The location of the mouse event is relative to the location within the

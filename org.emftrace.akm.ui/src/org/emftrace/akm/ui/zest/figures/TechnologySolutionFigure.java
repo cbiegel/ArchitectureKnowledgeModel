@@ -54,14 +54,6 @@ public class TechnologySolutionFigure extends AbstractDecoratorFigure {
 		points.addPoint(x, (y + r.height) - cutoff);
 		points.addPoint(x, y + cutoff);
 
-		// PointList points = new PointList();
-		// points.addPoint(r.x, r.y - (r.height / 2));
-		// points.addPoint(r.x + (r.width / 2), r.y);
-		// points.addPoint(r.x + r.width, r.y - (r.height / 2));
-		// points.addPoint(r.x + (r.width / 2), r.y - r.height);
-		// points.addPoint(r.x, r.y - (r.height / 2));
-
-		// drawAndFillFigureBorder(g, points);
 		drawAndFillFigureBorder(g, points);
 	}
 }

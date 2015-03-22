@@ -19,6 +19,7 @@
 	<item value="0" key="org.eclipse.jdt.uiformatter_page.white_space.java_view.inner"/>
 	<item value="3" key="CallHierarchyViewPart.orientation"/>
 	<item value="743" key="org.eclipse.jdt.uicleanup_pagemodify_dialog.preferred_height"/>
+	<item value="filter_imports;" key="filters_last_used"/>
 	<item value="8" key="org.eclipse.jdt.uiformatter_pagemodify_dialog.last_focus"/>
 	<item value="3" key="TypeHierarchyViewPart.orientation"/>
 	<item value="false" key="org.eclipse.jdt.ui.formatter_page.show_invisible_characters"/>

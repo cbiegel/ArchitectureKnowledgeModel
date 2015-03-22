@@ -1,0 +1,118 @@
+package org.emftrace.akm.ui.zest.layouts;
+
+import org.eclipse.swt.events.DisposeEvent;
+import org.eclipse.swt.events.DisposeListener;
+import org.eclipse.swt.events.PaintEvent;
+import org.eclipse.swt.events.PaintListener;
+import org.eclipse.zest.core.widgets.Graph;
+import org.eclipse.zest.layouts.algorithms.AbstractLayoutAlgorithm;
+import org.eclipse.zest.layouts.dataStructures.InternalNode;
+import org.eclipse.zest.layouts.dataStructures.InternalRelationship;
+
+public class BenefitsAndDrawbacksExplorationLayoutAlgorithm extends AbstractLayoutAlgorithm {
+
+	// ===========================================================
+	// Constants
+	// ===========================================================
+
+	// ===========================================================
+	// Fields
+	// ===========================================================
+
+	private Graph mGraph;
+
+	private PaintListener mPaintListener;
+
+	// ===========================================================
+	// Constructors
+	// ===========================================================
+
+	public BenefitsAndDrawbacksExplorationLayoutAlgorithm(final int pStyles, final Graph pGraph) {
+		super(pStyles);
+		mGraph = pGraph;
+
+		// Layout must be applied _after_ the zest graph is completely painted.
+		// Otherwise the LayoutAlgorithm can't get the dimensions of the Figures.
+		mPaintListener = new PaintListener() {
+
+			@Override
+			public void paintControl(final PaintEvent e) {
+				mGraph.applyLayout();
+			}
+		};
+
+		mGraph.getGraph().addPaintListener(mPaintListener);
+		mGraph.getGraph().addDisposeListener(new DisposeListener() {
+
+			@Override
+			public void widgetDisposed(final DisposeEvent e) {
+				if (mPaintListener != null) {
+					mGraph.getGraph().removePaintListener(mPaintListener);
+				}
+				mGraph.getGraph().removeDisposeListener(this);
+
+			}
+		});
+	}
+
+	// ===========================================================
+	// Getter & Setter
+	// ===========================================================
+
+	// ===========================================================
+	// Methods for/from SuperClass/Interfaces
+	// ===========================================================
+
+	@Override
+	protected void applyLayoutInternal(final InternalNode[] entitiesToLayout,
+			final InternalRelationship[] relationshipsToConsider, final double boundsX,
+			final double boundsY, final double boundsWidth, final double boundsHeight) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void setLayoutArea(final double x, final double y, final double width,
+			final double height) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	protected boolean isValidConfiguration(final boolean asynchronous, final boolean continuous) {
+		return true;
+	}
+
+	@Override
+	protected void preLayoutAlgorithm(final InternalNode[] entitiesToLayout,
+			final InternalRelationship[] relationshipsToConsider, final double x, final double y,
+			final double width, final double height) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	protected void postLayoutAlgorithm(final InternalNode[] entitiesToLayout,
+			final InternalRelationship[] relationshipsToConsider) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	protected int getTotalNumberOfLayoutSteps() {
+		return 0;
+	}
+
+	@Override
+	protected int getCurrentLayoutStep() {
+		return 0;
+	}
+
+	// ===========================================================
+	// Methods
+	// ===========================================================
+
+	// ===========================================================
+	// Inner and Anonymous Classes
+	// ===========================================================
+}

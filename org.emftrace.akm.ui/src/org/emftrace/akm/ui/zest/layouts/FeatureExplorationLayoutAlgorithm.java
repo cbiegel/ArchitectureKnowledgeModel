@@ -61,7 +61,7 @@ public class FeatureExplorationLayoutAlgorithm extends AbstractLayoutAlgorithm {
 		graph.setLayoutAlgorithm(this, false);
 
 		// Layout must be applied _after_ the zest graph is completely painted.
-		// Otherwise the LayoutAlgorithm can't get the dimensions of the ElementFigures.
+		// Otherwise the LayoutAlgorithm can't get the dimensions of the Figures.
 		paintListener = new PaintListener() {
 
 			@Override
@@ -343,7 +343,7 @@ public class FeatureExplorationLayoutAlgorithm extends AbstractLayoutAlgorithm {
 			for (int j = 0; j < levels.get(i).size(); j++) {
 
 				AbstractAKMGraphNode node = levels.get(i).get(j);
-				updateNodePosition(node, levels, i, j, lengthOffset, false);
+				calculateNodePosition(node, levels, i, j, lengthOffset, false);
 			}
 		}
 
@@ -358,7 +358,7 @@ public class FeatureExplorationLayoutAlgorithm extends AbstractLayoutAlgorithm {
 					int parentIndex = levels.get(i - 1).indexOf(parentNode);
 
 					if (parentIndex > 0) {
-						calculateNodePosition(levels, i, j, node, parentIndex, lengthOffset);
+						updateNodePosition(levels, i, j, node, parentIndex, lengthOffset);
 					}
 
 				}
@@ -395,7 +395,7 @@ public class FeatureExplorationLayoutAlgorithm extends AbstractLayoutAlgorithm {
 									updateNodesAffectedByNodeChange(node, levels, 3, j,
 											lengthOffset);
 								} else {
-									calculateNodePosition(levels, 3, j, node, parentIndex,
+									updateNodePosition(levels, 3, j, node, parentIndex,
 											lengthOffset);
 								}
 							} else {
@@ -413,14 +413,14 @@ public class FeatureExplorationLayoutAlgorithm extends AbstractLayoutAlgorithm {
 										updateNodesAffectedByNodeChange(node, levels, 3, j,
 												lengthOffset);
 									} else {
-										calculateNodePosition(levels, 3, j, node, parentIndex,
+										updateNodePosition(levels, 3, j, node, parentIndex,
 												lengthOffset);
 									}
 								}
 							}
 
 						} else {
-							calculateNodePosition(levels, 3, j, node, parentIndex, lengthOffset);
+							updateNodePosition(levels, 3, j, node, parentIndex, lengthOffset);
 						}
 					} else {
 
@@ -437,7 +437,7 @@ public class FeatureExplorationLayoutAlgorithm extends AbstractLayoutAlgorithm {
 		}
 	}
 
-	private void calculateNodePosition(final List<List<AbstractAKMGraphNode>> pLevelsList,
+	private void updateNodePosition(final List<List<AbstractAKMGraphNode>> pLevelsList,
 			final int pLevel, final int pLevelIndex, final AbstractAKMGraphNode pNode,
 			final int pParentIndex, final int pLengthOffset) {
 
@@ -481,7 +481,7 @@ public class FeatureExplorationLayoutAlgorithm extends AbstractLayoutAlgorithm {
 		}
 	}
 
-	private void updateNodePosition(final AbstractAKMGraphNode pNode,
+	private void calculateNodePosition(final AbstractAKMGraphNode pNode,
 			final List<List<AbstractAKMGraphNode>> pLevelsList, final int pLevel,
 			final int pLevelIndex, final int pLengthOffset, final boolean isThirdLevel) {
 
@@ -563,20 +563,20 @@ public class FeatureExplorationLayoutAlgorithm extends AbstractLayoutAlgorithm {
 			int maxIndexInCurrentLevel =
 					Math.min(pLevelsList.get(pLevel).size() - 1, pLevelIndex + siblingsCount);
 
-			updateNodePosition(sibling, pLevelsList, pLevel, maxIndexInCurrentLevel, pLengthOffset,
-					false);
+			calculateNodePosition(sibling, pLevelsList, pLevel, maxIndexInCurrentLevel,
+					pLengthOffset, false);
 		}
 
 		for (int level = pLevel - 1; level >= 0; level--) {
 			for (int index = 0; index <= (pLevelsList.get(level).size() - 1); index++) {
 
-				// TODO CB: Logik für 3. Level anpassen
 				AbstractAKMGraphNode nodeToUpdate = pLevelsList.get(level).get(index);
 				if (level == 2) {
-					updateNodePosition(nodeToUpdate, pLevelsList, level, index, pLengthOffset, true);
+					calculateNodePosition(nodeToUpdate, pLevelsList, level, index, pLengthOffset,
+							true);
 					updateNodesAffectedByNodeChange(pNode, pLevelsList, 2, index, pLengthOffset);
 				} else {
-					updateNodePosition(nodeToUpdate, pLevelsList, level, index, pLengthOffset,
+					calculateNodePosition(nodeToUpdate, pLevelsList, level, index, pLengthOffset,
 							false);
 				}
 			}
@@ -605,6 +605,10 @@ public class FeatureExplorationLayoutAlgorithm extends AbstractLayoutAlgorithm {
 			}
 		}
 		return longestX;
+	}
+
+	public void setThisLayoutAlgorithm() {
+		graph.setLayoutAlgorithm(this, false);
 	}
 
 	@Override

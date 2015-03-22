@@ -6,20 +6,20 @@
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="false" key="isRegEx"/>
-		<item value="ElementFig" key="selection"/>
+		<item value="setLabel" key="selection"/>
 		<item value="false" key="casesensitive"/>
 		<item value="false" key="incremental"/>
 		<item value="true" key="wrap"/>
 		<item value="false" key="wholeword"/>
 		<list key="findhistory">
-			<item value="elementfig"/>
-			<item value="createELement"/>
-			<item value="mFigure"/>
-			<item value="system.out"/>
-			<item value="setsel"/>
-			<item value="unhigh"/>
-			<item value="selected"/>
-			<item value="reset layo"/>
+			<item value="setlabel"/>
+			<item value="listener"/>
+			<item value="high"/>
+			<item value="foregr"/>
+			<item value="gethigh"/>
+			<item value="ishigh"/>
+			<item value="labelcol"/>
+			<item value="color"/>
 		</list>
 		<list key="replacehistory">
 			<item value="AbstractAKMGraphNode"/>
@@ -32,7 +32,7 @@
 		<item value="257" key="DIALOG_WIDTH"/>
 		<item value="1|Segoe UI|9.0|0|WINDOWS|1|-12|0|0|0|400|0|0|0|1|0|0|0|0|Segoe UI" key="DIALOG_FONT_NAME"/>
 		<item value="380" key="DIALOG_HEIGHT"/>
-		<item value="492" key="DIALOG_Y_ORIGIN"/>
-		<item value="1533" key="DIALOG_X_ORIGIN"/>
+		<item value="435" key="DIALOG_Y_ORIGIN"/>
+		<item value="1276" key="DIALOG_X_ORIGIN"/>
 	</section>
 </section>

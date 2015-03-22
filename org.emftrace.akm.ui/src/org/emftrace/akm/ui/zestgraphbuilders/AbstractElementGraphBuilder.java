@@ -2,8 +2,10 @@ package org.emftrace.akm.ui.zestgraphbuilders;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 
 import org.eclipse.draw2d.ColorConstants;
 import org.eclipse.draw2d.Figure;
@@ -52,7 +54,9 @@ import org.eclipse.zest.layouts.LayoutStyles;
 import org.emftrace.akm.core.cache.CacheManager;
 import org.emftrace.akm.ui.helpers.CapabilityTypeColorCoding;
 import org.emftrace.akm.ui.services.ConnectionDecoratorService;
+import org.emftrace.akm.ui.windows.EditAKMElementWindow;
 import org.emftrace.akm.ui.zest.figures.AKMElementFigure;
+import org.emftrace.akm.ui.zest.figures.ASTAExplorationFigure;
 import org.emftrace.akm.ui.zest.figures.AbstractASTAFigure;
 import org.emftrace.akm.ui.zest.figures.AbstractDecoratorFigure;
 import org.emftrace.akm.ui.zest.figures.BenefitsFigure;
@@ -62,10 +66,13 @@ import org.emftrace.akm.ui.zest.figures.SoftGoalFigure;
 import org.emftrace.akm.ui.zest.figures.TechnologyFeatureFigure;
 import org.emftrace.akm.ui.zest.figures.TechnologySolutionFigure;
 import org.emftrace.akm.ui.zest.graph.AKMGraph;
+import org.emftrace.akm.ui.zest.layouts.BenefitsAndDrawbacksExplorationLayoutAlgorithm;
 import org.emftrace.akm.ui.zest.layouts.FeatureExplorationLayoutAlgorithm;
 import org.emftrace.akm.ui.zest.nodes.AKMElementGraphNode;
+import org.emftrace.akm.ui.zest.nodes.ASTAExplorationGraphNode;
 import org.emftrace.akm.ui.zest.nodes.ASTAGraphNode;
 import org.emftrace.akm.ui.zest.nodes.AbstractAKMGraphNode;
+import org.emftrace.akm.ui.zest.nodes.LayerLabelGraphNode;
 import org.emftrace.akm.ui.zest.nodes.TechnologyFeatureGraphNode;
 import org.emftrace.akm.ui.zest.nodes.TechnologySolutionGraphNode;
 import org.emftrace.core.accesslayer.AccessLayer;
@@ -179,10 +186,16 @@ public abstract class AbstractElementGraphBuilder extends AbstractGUIBuilder {
 
 	private List<AbstractAKMGraphNode> mCurrentlyVisibleNodesList;
 
+	private FeatureExplorationLayoutAlgorithm mDefaultLayout;
+
 	protected static Font defaultLabelFont = new Font(null, "Arial", 10, SWT.NORMAL);
 	protected static Font defaultTitleFont = new Font(null, "Arial", 12, SWT.BOLD);
 
 	private MenuItem mDefaultMenuItem;
+
+	private Map<ArchitectureKnowledgeModelBase, AbstractAKMGraphNode> mBenefitDrawbackExplorationNodeMap;
+
+	private List<GraphConnection> mBenefitDrawbackConnectionList;
 
 	/**
 	 * the constructor
@@ -207,6 +220,9 @@ public abstract class AbstractElementGraphBuilder extends AbstractGUIBuilder {
 		mCapabilityTypeButtonMap = new HashMap<CapabilityType, Button>();
 		mASTATypeButtonMap = new HashMap<String, Button>();
 		mCurrentlyVisibleNodesList = new ArrayList<AbstractAKMGraphNode>();
+		mBenefitDrawbackExplorationNodeMap =
+				new HashMap<ArchitectureKnowledgeModelBase, AbstractAKMGraphNode>();
+		mBenefitDrawbackConnectionList = new ArrayList<GraphConnection>();
 	}
 
 	@Override
@@ -606,17 +622,18 @@ public abstract class AbstractElementGraphBuilder extends AbstractGUIBuilder {
 		// Fill the detail composite with general contents (information about the currently selected
 		// node)
 		// The Name element
-		if (!(pSelectedNode instanceof ASTAGraphNode)) {
-			createLabelWithSeparator("Name", detailsTitlesComposite, true);
+		if (!(pSelectedNode instanceof ASTAGraphNode)
+				&& !(pSelectedNode instanceof ASTAExplorationGraphNode)) {
+			createLabelWithSeparator("Name", detailsTitlesComposite, false, true);
 			if (abstractNodeElement.getName() != null) {
 				createLabelWithSeparator(abstractNodeElement.getName(), detailsContentsComposite,
-						false);
+						true, false);
 			}
 			// The ID element
-			createLabelWithSeparator("ID", detailsTitlesComposite, true);
+			createLabelWithSeparator("ID", detailsTitlesComposite, false, true);
 			if (abstractNodeElement.getID() != null) {
 				createLabelWithSeparator(abstractNodeElement.getID(), detailsContentsComposite,
-						false);
+						true, false);
 			}
 
 			// Fill the detail composite with node-specific information
@@ -625,10 +642,10 @@ public abstract class AbstractElementGraphBuilder extends AbstractGUIBuilder {
 				TechnologySolution technologySolutionElement =
 						(TechnologySolution) abstractNodeElement;
 				// The Description element
-				createLabelWithoutSeparator("Description", detailsTitlesComposite, true);
+				createLabelWithoutSeparator("Description", detailsTitlesComposite, false, true);
 				if (technologySolutionElement.getDescription() != null) {
 					createLabelWithoutSeparator(technologySolutionElement.getDescription(),
-							detailsContentsComposite, false);
+							detailsContentsComposite, true, false);
 				}
 			} else if (abstractNodeElement instanceof TechnologyFeature) {
 
@@ -636,19 +653,26 @@ public abstract class AbstractElementGraphBuilder extends AbstractGUIBuilder {
 						(TechnologyFeature) abstractNodeElement;
 
 				// The Capability Type element
-				createLabelWithSeparator("Capability Type", detailsTitlesComposite, true);
+				createLabelWithSeparator("Capability Type", detailsTitlesComposite, false, true);
 				if (technologyFeatureElement.getCapabilityType() != null) {
 					createLabelWithSeparator(technologyFeatureElement.getCapabilityType()
-							.getLiteral(), detailsContentsComposite, false);
+							.getLiteral(), detailsContentsComposite, true, false);
 				}
 
 				// The Description element
-				createLabelWithoutSeparator("Description", detailsTitlesComposite, true);
+				createLabelWithoutSeparator("Description", detailsTitlesComposite, false, true);
 				if (technologyFeatureElement.getDescription() != null) {
 					createLabelWithoutSeparator(technologyFeatureElement.getDescription(),
-							detailsContentsComposite, false);
+							detailsContentsComposite, true, false);
 				}
 			}
+		} else if (pSelectedNode instanceof ASTAExplorationGraphNode) {
+
+			ASTAExplorationGraphNode astaNode = (ASTAExplorationGraphNode) pSelectedNode;
+			ASTA astaElement = astaNode.getASTAElement();
+
+			updateASTAElementDetails(astaElement, detailsTitlesComposite, detailsContentsComposite);
+
 		} else {
 
 			ASTAGraphNode astaNode = (ASTAGraphNode) pSelectedNode;
@@ -656,67 +680,15 @@ public abstract class AbstractElementGraphBuilder extends AbstractGUIBuilder {
 
 			if (!figure.isLabelSelected()) {
 
-				createLabelWithoutSeparator(astaNode.getTitle(), detailsTitlesComposite, true);
+				createLabelWithoutSeparator(astaNode.getTitle(), detailsTitlesComposite, false,
+						true);
 				createLabelWithoutSeparator("" + astaNode.getContentCount(),
-						detailsContentsComposite, false);
+						detailsContentsComposite, true, false);
 			} else {
 				ASTA selectedElement = figure.getASTAElementForLabel(figure.getSelectedLabel());
 
-				// The name element
-				createLabelWithSeparator("Name", detailsTitlesComposite, true);
-				if (selectedElement.getName() != null) {
-					createLabelWithSeparator(selectedElement.getName(), detailsContentsComposite,
-							false);
-				}
-
-				// The type element
-				String typeString =
-						selectedElement.getClass().getSimpleName().replaceAll("Impl", "");
-				createLabelWithSeparator("Type", detailsTitlesComposite, true);
-				createLabelWithSeparator(typeString, detailsContentsComposite, false);
-
-				// Check to see if the ASTA element is concern-based
-				if (selectedElement instanceof ConcernBasedBenefit) {
-					ConcernBasedBenefit concernBasedelement = (ConcernBasedBenefit) selectedElement;
-
-					// The concern element
-					createLabelWithSeparator("Concern", detailsTitlesComposite, true);
-					if (concernBasedelement.getConcern() != null) {
-						createLabelWithSeparator(concernBasedelement.getConcern(),
-								detailsContentsComposite, false);
-					}
-				} else if (selectedElement instanceof ConcernBasedDrawback) {
-					ConcernBasedDrawback concernBasedelement =
-							(ConcernBasedDrawback) selectedElement;
-
-					// The concern element
-					createLabelWithSeparator("Concern", detailsTitlesComposite, true);
-					if (concernBasedelement.getConcern() != null) {
-						createLabelWithSeparator(concernBasedelement.getConcern(),
-								detailsContentsComposite, false);
-					}
-				}
-
-				// The condition element
-				createLabelWithSeparator("Condition", detailsTitlesComposite, true);
-				if (selectedElement.getCondition() != null) {
-					createLabelWithSeparator(selectedElement.getCondition(),
-							detailsContentsComposite, false);
-				}
-
-				// The capability type element
-				createLabelWithSeparator("Capability Type", detailsTitlesComposite, true);
-				if (selectedElement.getCapabilityType() != null) {
-					createLabelWithSeparator(selectedElement.getCapabilityType().getLiteral(),
-							detailsContentsComposite, false);
-				}
-
-				// The description element
-				createLabelWithoutSeparator("Description", detailsTitlesComposite, true);
-				if (selectedElement.getDescription() != null) {
-					createLabelWithoutSeparator(selectedElement.getDescription(),
-							detailsContentsComposite, false);
-				}
+				updateASTAElementDetails(selectedElement, detailsTitlesComposite,
+						detailsContentsComposite);
 			}
 		}
 
@@ -728,16 +700,77 @@ public abstract class AbstractElementGraphBuilder extends AbstractGUIBuilder {
 		mDetailGroup.layout();
 	}
 
+	private void updateASTAElementDetails(final ASTA pASTAElement,
+			final Composite pDetailsTitlesComposite, final Composite pDetailsContentsComposite) {
+
+		// The name element
+		createLabelWithSeparator("Name", pDetailsTitlesComposite, false, true);
+		if (pASTAElement.getName() != null) {
+			createLabelWithSeparator(pASTAElement.getName(), pDetailsContentsComposite, true, false);
+		}
+
+		// The type element
+		String typeString = pASTAElement.getClass().getSimpleName().replaceAll("Impl", "");
+		createLabelWithSeparator("Type", pDetailsTitlesComposite, false, true);
+		createLabelWithSeparator(typeString, pDetailsContentsComposite, true, false);
+
+		// Check to see if the ASTA element is concern-based
+		if (pASTAElement instanceof ConcernBasedBenefit) {
+			ConcernBasedBenefit concernBasedelement = (ConcernBasedBenefit) pASTAElement;
+
+			// The concern element
+			createLabelWithSeparator("Concern", pDetailsTitlesComposite, false, true);
+			if (concernBasedelement.getConcern() != null) {
+				createLabelWithSeparator(concernBasedelement.getConcern(),
+						pDetailsContentsComposite, true, false);
+			}
+		} else if (pASTAElement instanceof ConcernBasedDrawback) {
+			ConcernBasedDrawback concernBasedelement = (ConcernBasedDrawback) pASTAElement;
+
+			// The concern element
+			createLabelWithSeparator("Concern", pDetailsTitlesComposite, false, true);
+			if (concernBasedelement.getConcern() != null) {
+				createLabelWithSeparator(concernBasedelement.getConcern(),
+						pDetailsContentsComposite, true, false);
+			}
+		}
+
+		// The condition element
+		createLabelWithSeparator("Condition", pDetailsTitlesComposite, false, true);
+		if (pASTAElement.getCondition() != null) {
+			createLabelWithSeparator(pASTAElement.getCondition(), pDetailsContentsComposite, true,
+					false);
+		}
+
+		// The capability type element
+		createLabelWithSeparator("Capability Type", pDetailsTitlesComposite, false, true);
+		if (pASTAElement.getCapabilityType() != null) {
+			createLabelWithSeparator(pASTAElement.getCapabilityType().getLiteral(),
+					pDetailsContentsComposite, true, false);
+		}
+
+		// The description element
+		createLabelWithoutSeparator("Description", pDetailsTitlesComposite, false, true);
+		if (pASTAElement.getDescription() != null) {
+			createLabelWithoutSeparator(pASTAElement.getDescription(), pDetailsContentsComposite,
+					true, false);
+		}
+	}
+
 	/**
 	 * Creates a Label with the given text and parent. Also creates a separator and adds it to the
 	 * parent after the label.
 	 */
 	private void createLabelWithSeparator(final String pLabelText, final Composite pParent,
-			final boolean pAddWhiteSpace) {
+			final boolean pAddWhiteSpaceBeginning, final boolean pAddWhiteSpaceEnd) {
 
 		String text = pLabelText;
 
-		if (pAddWhiteSpace) {
+		if (pAddWhiteSpaceBeginning) {
+			text = "    " + pLabelText;
+		}
+
+		if (pAddWhiteSpaceEnd) {
 			text += "    ";
 		}
 
@@ -752,10 +785,14 @@ public abstract class AbstractElementGraphBuilder extends AbstractGUIBuilder {
 	}
 
 	private void createLabelWithoutSeparator(final String pLabelText, final Composite pParent,
-			final boolean pAddWhiteSpace) {
+			final boolean pAddWhiteSpaceBeginning, final boolean pAddWhiteSpaceEnd) {
 		String text = pLabelText;
 
-		if (pAddWhiteSpace) {
+		if (pAddWhiteSpaceBeginning) {
+			text = "    " + pLabelText;
+		}
+
+		if (pAddWhiteSpaceEnd) {
 			text += "    ";
 		}
 
@@ -968,9 +1005,11 @@ public abstract class AbstractElementGraphBuilder extends AbstractGUIBuilder {
 	 */
 	protected AbstractAKMGraphNode createAKMElementNode(final AKMGraph pGraph, final int pStyle,
 			final ArchitectureKnowledgeModelBase pAKMElement, final int pLevel,
-			final int pSublevel, final boolean pIsLeaf, final boolean isExpandable) {
+			final int pSublevel, final boolean pIsLeaf, final boolean isExpandable,
+			final boolean pIsASTAExploration) {
 
-		ElementFigure elementFigure = createElementFigure(pAKMElement, pIsLeaf, isExpandable, null);
+		ElementFigure elementFigure =
+				createElementFigure(pAKMElement, pIsLeaf, isExpandable, null, pIsASTAExploration);
 
 		AbstractAKMGraphNode node = null;
 
@@ -992,6 +1031,12 @@ public abstract class AbstractElementGraphBuilder extends AbstractGUIBuilder {
 			node =
 					new TechnologyFeatureGraphNode(pGraph, pStyle, elementFigure, pLevel,
 							pSublevel, technologyFeature);
+		} else if ((pAKMElement instanceof ASTA) && pIsASTAExploration) {
+
+			ASTA asta = (ASTA) pAKMElement;
+			node =
+					new ASTAExplorationGraphNode(pGraph, pStyle, elementFigure, pLevel, pSublevel,
+							asta);
 		}
 
 		// Throw exception if the type of the node is unknown
@@ -1004,7 +1049,7 @@ public abstract class AbstractElementGraphBuilder extends AbstractGUIBuilder {
 
 		mNodeMap.put(pAKMElement, node);
 
-		setContextMenu(node, pAKMElement);
+		setContextMenu(node, pAKMElement, pIsASTAExploration);
 		return node;
 	}
 
@@ -1038,7 +1083,7 @@ public abstract class AbstractElementGraphBuilder extends AbstractGUIBuilder {
 		mNodeMap.put(null, node);
 
 		for (Benefit benefit : pBenefitsList) {
-			setContextMenu(node, benefit);
+			setContextMenu(node, benefit, false);
 		}
 
 		return node;
@@ -1074,7 +1119,7 @@ public abstract class AbstractElementGraphBuilder extends AbstractGUIBuilder {
 		mNodeMap.put(null, node);
 
 		for (Drawback drawback : pDrawbacksList) {
-			setContextMenu(node, drawback);
+			setContextMenu(node, drawback, false);
 		}
 
 		return node;
@@ -1086,7 +1131,8 @@ public abstract class AbstractElementGraphBuilder extends AbstractGUIBuilder {
 	 * 
 	 */
 	protected ElementFigure createElementFigure(final ArchitectureKnowledgeModelBase pAKMElement,
-			final boolean isLeaf, final boolean isExpandable, final Figure topFigure) {
+			final boolean isLeaf, final boolean isExpandable, final Figure topFigure,
+			final boolean pIsASTAExploration) {
 
 		ElementFigure elementFigure = null;
 		Figure footFigure = null;
@@ -1133,6 +1179,11 @@ public abstract class AbstractElementGraphBuilder extends AbstractGUIBuilder {
 			bodyFigure =
 					new TechnologyFeatureFigure(pAKMElement.getName(), isExpandable,
 							capabilityColor);
+		} else if ((pAKMElement instanceof ASTA) && pIsASTAExploration) {
+			ASTA asta = (ASTA) pAKMElement;
+
+			bodyFigure = new ASTAExplorationFigure(asta.getName(), isExpandable);
+
 		} else {
 
 			// TODO CB: SoftGoalFigure entfernen
@@ -1263,21 +1314,27 @@ public abstract class AbstractElementGraphBuilder extends AbstractGUIBuilder {
 	}
 
 	protected void setContextMenu(final AbstractAKMGraphNode pNode,
-			final ArchitectureKnowledgeModelBase pAKMElement) {
+			final ArchitectureKnowledgeModelBase pAKMElement, final boolean pIsASTAExploration) {
 
 		Menu menu = new Menu(getZestGraph().getShell(), SWT.POP_UP);
 
 		if (!(pNode instanceof ASTAGraphNode)) {
-			addOpenElementMenuItem(menu, pAKMElement);
+			if (!(pNode instanceof AKMElementGraphNode)) {
+				addOpenElementMenuItem(menu, pAKMElement);
+			} else {
+				ArchitectureKnowledgeModel model = (ArchitectureKnowledgeModel) pAKMElement;
+				addEditIDAndNameMenuItem(menu, model);
+			}
 
 			if (pNode instanceof TechnologySolutionGraphNode) {
-				addFeaturesExplorationMenuItem(menu, pNode, pAKMElement);
+				if (!pIsASTAExploration) {
+					addFeaturesExplorationMenuItem(menu, pNode, pAKMElement);
+				}
 			}
 
 			addCloseMenuMenuItem(menu);
 			pNode.setMenu(menu);
 		} else {
-			// TODO CB: Add B&D-Exploration MenuItem
 
 			ASTAGraphNode astaNode = (ASTAGraphNode) pNode;
 			AbstractASTAFigure astaFigure = (AbstractASTAFigure) astaNode.getAKMFigure();
@@ -1285,6 +1342,7 @@ public abstract class AbstractElementGraphBuilder extends AbstractGUIBuilder {
 			org.eclipse.draw2d.Label label = astaFigure.getLabelForASTAElement(astaElement);
 
 			addOpenElementMenuItem(menu, pAKMElement);
+			addBenefitsDrawbacksExplorationMenuItem(menu, astaNode, astaElement);
 			addCloseMenuMenuItem(menu);
 
 			astaFigure.setContextMenu(label, menu);
@@ -1341,6 +1399,8 @@ public abstract class AbstractElementGraphBuilder extends AbstractGUIBuilder {
 						akmNode.hide();
 					}
 				}
+
+				// Show only this node (TechnologySolution) and its children
 				pNode.show();
 				pNode.showChildren();
 				pNode.collapseChildren();
@@ -1349,6 +1409,7 @@ public abstract class AbstractElementGraphBuilder extends AbstractGUIBuilder {
 				AbstractElementGraphBuilder.this.addOpenElementMenuItem(menu, pAKMElement);
 				AbstractElementGraphBuilder.this.addExitFeaturesExplorationMenuItem(menu, pNode,
 						pAKMElement);
+				AbstractElementGraphBuilder.this.addCloseMenuMenuItem(menu);
 				pNode.setMenu(menu);
 
 				mZestGraph.applyLayout();
@@ -1371,7 +1432,6 @@ public abstract class AbstractElementGraphBuilder extends AbstractGUIBuilder {
 			@Override
 			public void widgetSelected(final SelectionEvent e) {
 
-				// TODO CB: Vorherigen Zustand des Graphen wiederherstellen
 				for (Object node : mZestGraph.getNodes()) {
 					if (node instanceof AbstractAKMGraphNode) {
 						AbstractAKMGraphNode akmNode = (AbstractAKMGraphNode) node;
@@ -1388,6 +1448,7 @@ public abstract class AbstractElementGraphBuilder extends AbstractGUIBuilder {
 				AbstractElementGraphBuilder.this.addOpenElementMenuItem(menu, pAKMElement);
 				AbstractElementGraphBuilder.this.addFeaturesExplorationMenuItem(menu, pNode,
 						pAKMElement);
+				AbstractElementGraphBuilder.this.addCloseMenuMenuItem(menu);
 				pNode.setMenu(menu);
 
 				mZestGraph.applyLayout();
@@ -1399,8 +1460,27 @@ public abstract class AbstractElementGraphBuilder extends AbstractGUIBuilder {
 		});
 	}
 
+	protected void addEditIDAndNameMenuItem(final Menu pMenu,
+			final ArchitectureKnowledgeModel pModel) {
+
+		MenuItem editMenuItem = new MenuItem(pMenu, SWT.PUSH);
+		editMenuItem.setText("Edit This Element");
+		editMenuItem.addSelectionListener(new SelectionListener() {
+
+			@Override
+			public void widgetSelected(final SelectionEvent e) {
+
+				new EditAKMElementWindow(mZestGraph.getShell(), pModel);
+			}
+
+			@Override
+			public void widgetDefaultSelected(final SelectionEvent e) {
+			}
+		});
+	}
+
 	protected void addBenefitsDrawbacksExplorationMenuItem(final Menu pMenu,
-			final AbstractAKMGraphNode pNode, final ArchitectureKnowledgeModelBase pAKMElement) {
+			final ASTAGraphNode pNode, final ASTA pAKMElement) {
 
 		MenuItem featuresExplorationMenuItem = new MenuItem(pMenu, SWT.PUSH);
 		featuresExplorationMenuItem.setText("Explore this ASTA");
@@ -1409,29 +1489,67 @@ public abstract class AbstractElementGraphBuilder extends AbstractGUIBuilder {
 			@Override
 			public void widgetSelected(final SelectionEvent e) {
 
-				mCurrentlyVisibleNodesList.clear();
+				// Save the current graph's layout algorithm
+				mDefaultLayout =
+						(FeatureExplorationLayoutAlgorithm) mZestGraph.getLayoutAlgorithm();
 
+				// Save the current state of visible nodes
+				mCurrentlyVisibleNodesList.clear();
 				for (Object node : mZestGraph.getNodes()) {
 					if (node instanceof AbstractAKMGraphNode) {
 
 						AbstractAKMGraphNode akmNode = (AbstractAKMGraphNode) node;
 
-						// Save the current state of visible nodes
 						if (akmNode.isVisible()) {
 							mCurrentlyVisibleNodesList.add(akmNode);
 						}
 
 						akmNode.hide();
+
+					} else if (node instanceof LayerLabelGraphNode) {
+						((LayerLabelGraphNode) node).setVisible(false);
 					}
 				}
 
 				// TODO CB: B&D-Exploration initialisieren (Layout)
+				initializeBenefitsAndDrawbacksExploration(pAKMElement);
 
-				Menu menu = new Menu(getZestGraph().getShell(), SWT.POP_UP);
-				AbstractElementGraphBuilder.this.addOpenElementMenuItem(menu, pAKMElement);
-				// TODO CB: ExitB&D-View
+				mZestGraph.applyLayout();
+			}
 
-				pNode.setMenu(menu);
+			@Override
+			public void widgetDefaultSelected(final SelectionEvent e) {
+			}
+
+		});
+	}
+
+	protected void addExitBenefitsDrawbacksExplorationMenuItem(final Menu pMenu,
+			final ASTA pAKMElement) {
+
+		MenuItem featuresExplorationMenuItem = new MenuItem(pMenu, SWT.PUSH);
+		featuresExplorationMenuItem.setText("Exit ASTA Exploration");
+		featuresExplorationMenuItem.addSelectionListener(new SelectionListener() {
+
+			@Override
+			public void widgetSelected(final SelectionEvent e) {
+
+				// TODO CB: Vorherigen Zustand des Graphen wiederherstellen
+				for (Object node : mZestGraph.getNodes()) {
+					if (node instanceof AbstractAKMGraphNode) {
+						AbstractAKMGraphNode akmNode = (AbstractAKMGraphNode) node;
+
+						if (mCurrentlyVisibleNodesList.contains(akmNode)) {
+							akmNode.setVisible(true);
+						} else {
+							akmNode.setVisible(false);
+						}
+					}
+				}
+
+				cleanupBenefitDrawbackExploration();
+
+				mDefaultLayout.setThisLayoutAlgorithm();
 
 				mZestGraph.applyLayout();
 			}
@@ -1447,6 +1565,96 @@ public abstract class AbstractElementGraphBuilder extends AbstractGUIBuilder {
 
 		MenuItem closeMenuMenuItem = new MenuItem(pMenu, SWT.PUSH);
 		closeMenuMenuItem.setText("Close");
+	}
+
+	private void initializeBenefitsAndDrawbacksExploration(final ASTA pASTAElement) {
+
+		mBenefitDrawbackExplorationNodeMap.clear();
+
+		AbstractAKMGraphNode astaNode =
+				createAKMElementNode(mZestGraph, SWT.NONE, pASTAElement, 1, 0, false, false, true);
+		mBenefitDrawbackExplorationNodeMap.put(pASTAElement, astaNode);
+
+		Menu menu = new Menu(getZestGraph().getShell(), SWT.POP_UP);
+		addOpenElementMenuItem(menu, pASTAElement);
+		addExitBenefitsDrawbacksExplorationMenuItem(menu, pASTAElement);
+		addCloseMenuMenuItem(menu);
+		astaNode.setMenu(menu);
+
+		List<Object> graphNodesList = new ArrayList<Object>(mZestGraph.getNodes());
+
+		for (Object node : graphNodesList) {
+			if (node instanceof TechnologyFeatureGraphNode) {
+				TechnologyFeatureGraphNode technologyFeatureNode =
+						(TechnologyFeatureGraphNode) node;
+				TechnologyFeature technologyFeature =
+						(TechnologyFeature) technologyFeatureNode.getAKMBaseElement();
+
+				if (technologyFeature.getASTA().contains(pASTAElement)) {
+					TechnologySolutionGraphNode technologySolutionNode =
+							(TechnologySolutionGraphNode) technologyFeatureNode.getParentNode();
+					TechnologySolution technologySolution =
+							(TechnologySolution) technologySolutionNode.getAKMBaseElement();
+
+					AbstractAKMGraphNode newNode =
+							createAKMElementNode(mZestGraph, SWT.NONE, technologySolution, 0, 0,
+									false, false, true);
+					mBenefitDrawbackExplorationNodeMap.put(technologySolution, newNode);
+					GraphConnection connection = createConnection(newNode, astaNode);
+					connection.setText("has");
+				}
+			}
+		}
+
+		if (pASTAElement instanceof Drawback) {
+			// TODO CB: Drawbacks solved by
+		}
+
+		new BenefitsAndDrawbacksExplorationLayoutAlgorithm(ZestStyles.NODES_NO_LAYOUT_RESIZE,
+				mZestGraph);
+
+		// Set filter buttons to inactive
+		for (Button button : mCapabilityTypeButtonMap.values()) {
+			button.setEnabled(false);
+		}
+		for (Button button : mASTATypeButtonMap.values()) {
+			button.setEnabled(false);
+		}
+	}
+
+	private void cleanupBenefitDrawbackExploration() {
+
+		// Clean up the node map
+		for (Iterator<Map.Entry<ArchitectureKnowledgeModelBase, AbstractAKMGraphNode>> it =
+				mNodeMap.entrySet().iterator(); it.hasNext();) {
+			Map.Entry<ArchitectureKnowledgeModelBase, AbstractAKMGraphNode> entry = it.next();
+			for (Entry<ArchitectureKnowledgeModelBase, AbstractAKMGraphNode> benefitDrawbackEntry : mBenefitDrawbackExplorationNodeMap
+					.entrySet()) {
+				if (entry == benefitDrawbackEntry) {
+					it.remove();
+				}
+			}
+		}
+
+		// Remove the nodes from the graph
+		for (AbstractAKMGraphNode node : mBenefitDrawbackExplorationNodeMap.values()) {
+			node.setVisible(false);
+			node.dispose();
+		}
+
+		// Remove the connections from the graph
+		for (GraphConnection connection : mBenefitDrawbackConnectionList) {
+			connection.setVisible(false);
+			connection.dispose();
+		}
+
+		// Enable filter buttons
+		for (Button button : mCapabilityTypeButtonMap.values()) {
+			button.setEnabled(true);
+		}
+		for (Button button : mASTATypeButtonMap.values()) {
+			button.setEnabled(true);
+		}
 	}
 
 	/**

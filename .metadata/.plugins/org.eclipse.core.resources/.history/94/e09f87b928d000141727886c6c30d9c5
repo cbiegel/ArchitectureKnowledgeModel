@@ -1,0 +1,161 @@
+package org.emftrace.akm.ui.zestgraphbuilders;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.swt.SWT;
+import org.eclipse.swt.widgets.Composite;
+import org.eclipse.ui.IWorkbenchPartSite;
+import org.emftrace.akm.ui.zest.graph.AKMGraph;
+import org.emftrace.akm.ui.zest.nodes.AbstractAKMGraphNode;
+import org.emftrace.core.accesslayer.AccessLayer;
+import org.emftrace.metamodel.ArchitectureKnowledgeModel.ASTA;
+import org.emftrace.metamodel.ArchitectureKnowledgeModel.ArchitectureKnowledgeModel;
+import org.emftrace.metamodel.ArchitectureKnowledgeModel.Benefit;
+import org.emftrace.metamodel.ArchitectureKnowledgeModel.Drawback;
+import org.emftrace.metamodel.ArchitectureKnowledgeModel.TechnologyFeature;
+import org.emftrace.metamodel.ArchitectureKnowledgeModel.TechnologySolution;
+import org.emftrace.metamodel.ArchitectureKnowledgeModel.TechnologySolutions;
+
+public class FeaturesExplorationGraphBuilder extends AbstractElementGraphBuilder {
+
+	private ArchitectureKnowledgeModel mModel;
+
+	public FeaturesExplorationGraphBuilder(final Composite pParentComposite, final int pStyle,
+			final IWorkbenchPartSite pWorkbenchPartSite, final ArchitectureKnowledgeModel pModel,
+			final AccessLayer pAccessLayer) {
+
+		super(pParentComposite, pStyle, pWorkbenchPartSite, pModel, pAccessLayer);
+
+		mModel = pModel;
+	}
+
+	@Override
+	protected void initCache() {
+
+		cacheManager = new org.emftrace.akm.core.cache.CacheManager(mModel, accessLayer);
+		cacheManager.initCache();
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see zestgpraphbuilders.AbstractElementGraphBuilder#
+	 * buildCustomGraph(org.eclipse.zest.core.widgets.Graph)
+	 */
+	@Override
+	protected void buildCustomGraph(final AKMGraph pZestGraph) {
+
+		super.buildCustomGraph(pZestGraph);
+
+		// Get the AKM object
+		ArchitectureKnowledgeModel model = cacheManager.getModel();
+
+		// Create a node for the ArchitectureKnowledgeModel element
+		createAKMElementNode(pZestGraph, SWT.NONE, model, 0, 0, false, true, false);
+
+		// Get the TechnologySolutions of the model
+		TechnologySolutions technologySolutions = model.getTechnologySolutions();
+
+		// Stop building the graph if there are no TechnologySolutions
+		if (technologySolutions == null) {
+			return;
+		}
+
+		EList<TechnologySolution> technologySolutionList =
+				technologySolutions.getTechnologySolution();
+
+		// Create a node for each TechnologySolution element in the AKM element and connect them
+		for (TechnologySolution technologySolution : technologySolutionList) {
+			
+			boolean expandable = !technologySolution.getFeatures().isEmpty();
+
+			// Create the node
+			AbstractAKMGraphNode technologySolutionNode =
+					createAKMElementNode(pZestGraph, SWT.NONE, technologySolution, 1, 0, false,
+							expandable, false);
+			// Create a connection between the parent and this node
+			createConnection(model, technologySolution);
+
+			// Create a node for each TechnologyFeature element in the TechnologySolution element
+			// and connect them
+			for (TechnologyFeature technologyFeature : technologySolution.getFeatures()) {
+
+				expandable = !technologyFeature.getASTA().isEmpty();
+				// Create the node
+				AbstractAKMGraphNode technologyFeatureNode =
+						createAKMElementNode(pZestGraph, SWT.NONE, technologyFeature, 2, 0, false,
+								expandable, false);
+				// Create a connection between the parent and this node
+				createConnection(technologySolution, technologyFeature);
+
+				List<Benefit> benefitsList = getBenefitsList(technologyFeature.getASTA());
+				List<Drawback> drawbacksList = getDrawbacksList(technologyFeature.getASTA());
+
+				// Create drawbacks and benefits nodes and connect them with the TechnologyFeature
+				if (!benefitsList.isEmpty()) {
+					AbstractAKMGraphNode benefitsNode =
+							createBenefitsNode(pZestGraph, benefitsList, 2, 1, technologyFeature);
+					createConnection(technologyFeatureNode, benefitsNode);
+				}
+
+				if (!drawbacksList.isEmpty()) {
+					AbstractAKMGraphNode drawbacksNode =
+							createDrawbacksNode(pZestGraph, drawbacksList, 2, 1, technologyFeature);
+					createConnection(technologyFeatureNode, drawbacksNode);
+				}
+
+				// Collapse the TechnologyFeature nodes initially to save space on the graph
+				technologyFeatureNode.collapse(true);
+				technologyFeatureNode.setIsCollapsed(true);
+			}
+
+			// Collapse the TechnologySolution nodes initially to save space on the graph
+			technologySolutionNode.collapse(true);
+			technologySolutionNode.setIsCollapsed(true);
+		}
+	}
+
+	/**
+	 * Filters the given list for Benefit elements.
+	 * 
+	 * @param pASTAList
+	 *            The list of all ASTA elements to filter
+	 * @return A List containing a list of all Benefits. If there are no benefits, this list is
+	 *         empty.
+	 */
+	private List<Benefit> getBenefitsList(final List<ASTA> pASTAList) {
+		List<Benefit> result = new ArrayList<Benefit>();
+
+		for (ASTA asta : pASTAList) {
+			if (asta instanceof Benefit) {
+				Benefit benefit = (Benefit) asta;
+				result.add(benefit);
+			}
+		}
+
+		return result;
+	}
+
+	/**
+	 * Filters the given list for Benefit elements.
+	 * 
+	 * @param pASTAList
+	 *            The list of all ASTA elements to filter
+	 * @return A List containing a list of all Benefits. If there are no benefits, this list is
+	 *         empty.
+	 */
+	private List<Drawback> getDrawbacksList(final List<ASTA> pASTAList) {
+		List<Drawback> result = new ArrayList<Drawback>();
+
+		for (ASTA asta : pASTAList) {
+			if (asta instanceof Drawback) {
+				Drawback drawback = (Drawback) asta;
+				result.add(drawback);
+			}
+		}
+
+		return result;
+	}
+}
