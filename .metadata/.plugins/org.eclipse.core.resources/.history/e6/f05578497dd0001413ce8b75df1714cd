@@ -1,0 +1,71 @@
+package org.emftrace.akm.ui.helpers;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import org.eclipse.swt.graphics.Color;
+import org.eclipse.swt.widgets.Display;
+import org.emftrace.metamodel.ArchitectureKnowledgeModel.CapabilityType;
+import org.emftrace.metamodel.ArchitectureKnowledgeModel.TechnologyFeature;
+
+/**
+ * This class is a utility class.<br>It stores the colors that are associated with the {@link TechnologyFeature}s' {@link CapabilityType}.
+ * @author Christopher Biegel
+ *
+ */
+public class CapabilityTypeColorCoding {
+
+	private static final Map<CapabilityType, Color> COLOR_CODING_MAP =
+			new HashMap<CapabilityType, Color>();
+
+	// Static constructor
+	static {
+
+		Display display = Display.getCurrent();
+
+		// Development Capability = red
+		COLOR_CODING_MAP.put(CapabilityType.DEVELOPMENT_CAPABILITY, new Color(display, 255, 0, 0));
+
+		// Usability Capability = green
+		COLOR_CODING_MAP.put(CapabilityType.USABILITY_CAPABILITY, new Color(display, 0, 255, 0));
+
+		// Behavior Capability = blue
+		COLOR_CODING_MAP.put(CapabilityType.BEHAVIOR_CAPABILITY, new Color(display, 0, 0, 255));
+
+		// Interoperability Capability = orange
+		COLOR_CODING_MAP.put(CapabilityType.INTEROPERABILITY_CAPABILITY, new Color(display, 255,
+				125, 0));
+
+		// Configuration Capability = magenta
+		COLOR_CODING_MAP.put(CapabilityType.CONFIGURATION_CAPABILITY, new Color(display, 255, 0,
+				255));
+
+		// Operational Capability = cyan
+		COLOR_CODING_MAP
+				.put(CapabilityType.OPERATIONAL_CAPABILITY, new Color(display, 0, 255, 255));
+
+		// Storage Capability = yellowgreen
+		COLOR_CODING_MAP.put(CapabilityType.STORAGE_CAPABILITY, new Color(display, 154, 205, 50));
+
+		// Commercial Capability = yellow
+		COLOR_CODING_MAP.put(CapabilityType.COMMERCIAL_CAPABILITY, new Color(display, 255, 255, 0));
+	}
+
+	/**
+	 * Get the color for the given capability type.
+	 * 
+	 * @param pCapabilityType
+	 *            The capability type to get the color for
+	 * @return The color for the given capability type. If the capability type is unknown, returns
+	 *         black color.
+	 */
+	public static Color getColorForCapabilityType(final CapabilityType pCapabilityType) {
+
+		if ((pCapabilityType != null) && COLOR_CODING_MAP.containsKey(pCapabilityType)) {
+			return COLOR_CODING_MAP.get(pCapabilityType);
+		} else {
+			// Default: Black Color
+			return new Color(Display.getCurrent(), 255, 255, 255);
+		}
+	}
+}

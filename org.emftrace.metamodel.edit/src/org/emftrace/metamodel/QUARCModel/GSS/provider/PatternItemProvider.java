@@ -1,7 +1,10 @@
 /**
+ * <copyright>
+ * </copyright>
+ *
+ * $Id$
  */
 package org.emftrace.metamodel.QUARCModel.GSS.provider;
-
 
 import java.util.Collection;
 import java.util.List;
@@ -18,7 +21,6 @@ import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
-
 import org.emftrace.metamodel.QUARCModel.GSS.GSSPackage;
 import org.emftrace.metamodel.QUARCModel.GSS.Pattern;
 
@@ -36,6 +38,8 @@ public class PatternItemProvider
 		ITreeItemContentProvider,
 		IItemLabelProvider,
 		IItemPropertySource {
+
+
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
@@ -145,14 +149,14 @@ public class PatternItemProvider
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public String getText(Object object) {
 		String label = ((Pattern)object).getName();
 		return label == null || label.length() == 0 ?
 			getString("_UI_Pattern_type") :
-			getString("_UI_Pattern_type") + " " + label;
+			getString("_UI_Pattern_type") + " \"" + label+"\"";
 	}
 
 	/**

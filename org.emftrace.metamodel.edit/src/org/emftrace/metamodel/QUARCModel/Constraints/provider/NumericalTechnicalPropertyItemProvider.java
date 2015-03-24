@@ -1,7 +1,10 @@
 /**
+ * <copyright>
+ * </copyright>
+ *
+ * $Id$
  */
 package org.emftrace.metamodel.QUARCModel.Constraints.provider;
-
 
 import java.util.Collection;
 import java.util.List;
@@ -18,7 +21,6 @@ import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
-
 import org.emftrace.metamodel.QUARCModel.Constraints.ConstraintsPackage;
 import org.emftrace.metamodel.QUARCModel.Constraints.NumericalTechnicalProperty;
 
@@ -36,6 +38,9 @@ public class NumericalTechnicalPropertyItemProvider
 		ITreeItemContentProvider,
 		IItemLabelProvider,
 		IItemPropertySource {
+	
+
+
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
@@ -157,14 +162,14 @@ public class NumericalTechnicalPropertyItemProvider
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public String getText(Object object) {
 		String label = ((NumericalTechnicalProperty)object).getName();
 		return label == null || label.length() == 0 ?
 			getString("_UI_NumericalTechnicalProperty_type") :
-			getString("_UI_NumericalTechnicalProperty_type") + " " + label;
+			getString("_UI_NumericalTechnicalProperty_type") + " \"" + label+"\"";
 	}
 
 	/**
@@ -200,5 +205,6 @@ public class NumericalTechnicalPropertyItemProvider
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 	}
+
 
 }

@@ -1,4 +1,8 @@
 /**
+ * <copyright>
+ * </copyright>
+ *
+ * $Id$
  */
 package org.emftrace.metamodel.QUARCModel.Query.provider;
 
@@ -32,6 +36,8 @@ public class SelectedPrinciplesSetItemProvider
 		ITreeItemContentProvider,
 		IItemLabelProvider,
 		IItemPropertySource {
+
+
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
@@ -72,12 +78,15 @@ public class SelectedPrinciplesSetItemProvider
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public String getText(Object object) {
-		SelectedPrinciplesSet selectedPrinciplesSet = (SelectedPrinciplesSet)object;
-		return getString("_UI_SelectedPrinciplesSet_type") + " " + selectedPrinciplesSet.isChanged();
+		SelectedPrinciplesSet selectedPrinciplesSet = (SelectedPrinciplesSet)object;	
+		if (selectedPrinciplesSet.isChanged())
+		return getString("_UI_SelectedPrinciplesSet_type") + " (modified)";
+			else
+		return getString("_UI_SelectedPrinciplesSet_type");	
 	}
 
 	/**

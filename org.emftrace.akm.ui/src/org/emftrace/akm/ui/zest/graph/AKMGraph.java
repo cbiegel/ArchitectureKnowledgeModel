@@ -10,14 +10,29 @@ import org.eclipse.swt.widgets.Event;
 import org.eclipse.zest.core.widgets.Graph;
 import org.eclipse.zest.core.widgets.GraphItem;
 import org.emftrace.akm.ui.zest.nodes.AbstractAKMGraphNode;
+import org.emftrace.metamodel.ArchitectureKnowledgeModel.ArchitectureKnowledgeModel;
 
 /**
+ * The Graph that is used to to display an {@link ArchitectureKnowledgeModel} and its components.<br>
+ * This class originates from the QUARC project and was modified for the AKM project.
  * 
  * @author Christopher Biegel
  * 
  */
 public class AKMGraph extends Graph {
 
+	// ===========================================================
+	// Constructors
+	// ===========================================================
+
+	/**
+	 * The constructor.
+	 * 
+	 * @param pParent
+	 *            The parent Composite of this graph
+	 * @param pStyle
+	 *            The SWT style for this graph
+	 */
 	public AKMGraph(final Composite pParent, final int pStyle) {
 		super(pParent, pStyle);
 
@@ -35,6 +50,10 @@ public class AKMGraph extends Graph {
 			}
 		});
 	}
+
+	// ===========================================================
+	// Methods
+	// ===========================================================
 
 	/**
 	 * Selects the specified node.

@@ -23,8 +23,8 @@ import org.emftrace.akm.ui.zest.graph.AKMGraph;
 import org.emftrace.metamodel.ArchitectureKnowledgeModel.ArchitectureKnowledgeModelBase;
 
 /**
- * This abstract class serves as a super class for all types of GraphNodes of an
- * {@link org.emftrace.akm.ui.zest.graph.AKMGraph}.
+ * This abstract class serves as a super class for all types of GraphNodes of an {@link AKMGraph}.<br>
+ * This class contains parts of the QUARC project and was modified for the AKM project.
  * 
  * @author Christopher Biegel
  * 
@@ -349,9 +349,8 @@ public abstract class AbstractAKMGraphNode extends GraphNode {
 
 			private void setSelection(final int state) {
 
-				// TODO CB State-Code in Variable auslagern
 				if (state == 786432) {
-					// control was pressed & hold
+					// control was pressed
 
 					if (graph.getSelection().contains(node)) {
 						// remove selected node

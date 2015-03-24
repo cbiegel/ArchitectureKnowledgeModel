@@ -4,7 +4,7 @@
     <TechnologySolutions xmi:id="_Exu4YMWKEeSyTdBoaNRe0Q" ID="1" Name="Test" TechnologySolution="#_UH6_QMWKEeSyTdBoaNRe0Q #_XE3tEMdBEeSiGeFB0BvR2w #_zirwUMmYEeSq6saETqWL0A"/>
     <ConceptualSolutions xmi:id="_E9SoIMWKEeSyTdBoaNRe0Q"/>
     <DevelopmentEnvironments xmi:id="_FGyiYMWKEeSyTdBoaNRe0Q"/>
-    <Relations xmi:id="_FOYYIMWKEeSyTdBoaNRe0Q"/>
+    <Relations xmi:id="_FOYYIMWKEeSyTdBoaNRe0Q" ASTARelation="#_tMCFsNH7EeSpMojCHWqE-g #_4w6RkNIQEeSYkupwPwvU3A"/>
   </modelElements>
   <modelElements xsi:type="ArchitectureKnowledgeModel:TechnologySolution" xmi:id="_UH6_QMWKEeSyTdBoaNRe0Q" ID="1" Name="TestSolution" Description="This is a test solution" Features="#_DOtmYMswEeSNYq3NycnsDg #_MD3pMMswEeSNYq3NycnsDg #_MSi-YMswEeSNYq3NycnsDg #_n9P2EMw8EeSw2ZJEQXSwSw #_oa6CcMw8EeSw2ZJEQXSwSw #_oqf9oMw8EeSw2ZJEQXSwSw #_o_zfQMw8EeSw2ZJEQXSwSw #_pI5w4Mw8EeSw2ZJEQXSwSw"/>
   <modelElements xsi:type="ArchitectureKnowledgeModel:TechnologySolution" xmi:id="_XE3tEMdBEeSiGeFB0BvR2w" ID="2" Name="TestSolution2" Description="This is a second test solution!" Features="#_nK6H8MswEeSNYq3NycnsDg #_zzKIAMvXEeSyV_DiL41YvA"/>
@@ -27,7 +27,9 @@
   <modelElements xsi:type="ArchitectureKnowledgeModel:TechnologyFeature" xmi:id="_nCmLEMyREeSjlPXhRVGZdA" ID="1" Name="11" Description="1"/>
   <modelElements xsi:type="ArchitectureKnowledgeModel:TechnologyFeature" xmi:id="_oHxqcMyREeSjlPXhRVGZdA" ID="2" Name="2" Description="2"/>
   <modelElements xsi:type="ArchitectureKnowledgeModel:FeatureBasedBenefit" xmi:id="_W4jkkMzBEeSLkvfPT1stpQ" ID="1" Name="FBB1" Description="FBB1" Condition="asdads"/>
-  <modelElements xsi:type="ArchitectureKnowledgeModel:FeatureBasedDrawback" xmi:id="_eD2GkMzBEeSLkvfPT1stpQ" ID="2" Name="FBD1" Description="FBD1" Condition="adad"/>
+  <modelElements xsi:type="ArchitectureKnowledgeModel:FeatureBasedDrawback" xmi:id="_eD2GkMzBEeSLkvfPT1stpQ" ID="2" Name="Drawback1" Description="FBD1" Condition="adad"/>
   <modelElements xsi:type="ArchitectureKnowledgeModel:ConcernBasedBenefit" xmi:id="_g8KXgMzBEeSLkvfPT1stpQ" ID="3" Name="CBB1" Description="CBB1" Condition="adada" Concern="Concern1"/>
   <modelElements xsi:type="ArchitectureKnowledgeModel:ConcernBasedDrawback" xmi:id="_jP24cMzBEeSLkvfPT1stpQ" ID="4" Name="CBD1" Description="CBD1" Condition="adadaq" Concern="Concern2"/>
+  <modelElements xsi:type="ArchitectureKnowledgeModel:ASTARelation" xmi:id="_tMCFsNH7EeSpMojCHWqE-g" ID="1" Name="test" Description="testDescription ASTA Relation" SourceElement="#_eD2GkMzBEeSLkvfPT1stpQ" TargetElement="#_nCmLEMyREeSjlPXhRVGZdA"/>
+  <modelElements xsi:type="ArchitectureKnowledgeModel:ASTARelation" xmi:id="_4w6RkNIQEeSYkupwPwvU3A" ID="2" Name="2" Description="test Description 2" SourceElement="#_eD2GkMzBEeSLkvfPT1stpQ" TargetElement="#_oHxqcMyREeSjlPXhRVGZdA" Type="improvedBy"/>
 </org.eclipse.emf.emfstore.internal.common.model:Project>

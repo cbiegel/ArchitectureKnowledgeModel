@@ -1,7 +1,10 @@
 /**
+ * <copyright>
+ * </copyright>
+ *
+ * $Id$
  */
 package org.emftrace.metamodel.QUARCModel.Constraints.provider;
-
 
 import java.util.Collection;
 import java.util.List;
@@ -18,7 +21,6 @@ import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
-
 import org.emftrace.metamodel.QUARCModel.Constraints.ConstraintsPackage;
 import org.emftrace.metamodel.QUARCModel.Constraints.EnumTechnicalProperty;
 
@@ -36,6 +38,7 @@ public class EnumTechnicalPropertyItemProvider
 		ITreeItemContentProvider,
 		IItemLabelProvider,
 		IItemPropertySource {
+	
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
@@ -99,14 +102,14 @@ public class EnumTechnicalPropertyItemProvider
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public String getText(Object object) {
 		String label = ((EnumTechnicalProperty)object).getName();
 		return label == null || label.length() == 0 ?
 			getString("_UI_EnumTechnicalProperty_type") :
-			getString("_UI_EnumTechnicalProperty_type") + " " + label;
+			getString("_UI_EnumTechnicalProperty_type") + " \"" + label+"\"";
 	}
 
 	/**
@@ -139,5 +142,7 @@ public class EnumTechnicalPropertyItemProvider
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 	}
+
+	
 
 }

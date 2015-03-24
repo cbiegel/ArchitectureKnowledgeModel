@@ -174,8 +174,8 @@
    <extension point="org.eclipse.emf.ecore.generated_package">
       <!-- @generated MetaModel -->
       <package
-            uri="TechnologySolutionCatalogPackage"
-            class="org.emftrace.metamodel.ArchitectureKnowledgeModel.TechnologySolutionCatalogPackage.TechnologySolutionCatalogPackagePackage"
+            uri="ArchitectureKnowledgeCatalogPackage"
+            class="org.emftrace.metamodel.ArchitectureKnowledgeModel.ArchitectureKnowledgeCatalogPackage.ArchitectureKnowledgeCatalogPackagePackage"
             genModel="model/MetaModel.genmodel"/>
    </extension>
 

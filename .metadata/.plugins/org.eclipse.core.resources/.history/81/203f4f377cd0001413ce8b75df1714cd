@@ -1,0 +1,90 @@
+package org.emftrace.akm.ui.editors.formpages;
+
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.swt.widgets.Composite;
+import org.eclipse.ui.forms.editor.FormEditor;
+import org.eclipse.ui.forms.editor.FormPage;
+import org.emftrace.akm.ui.zestgraphbuilders.AbstractElementGraphBuilder;
+import org.emftrace.core.accesslayer.AccessLayer;
+
+/**
+ * The used FormPage to build a Graph
+ * 
+ * @author Christopher Biegel
+ * 
+ */
+public abstract class AbstractAKMFormPage extends FormPage {
+
+	/**
+	 * The AKM Element of this formpage
+	 */
+	protected EObject mModelElement;
+
+	/**
+	 * The AccessLayer
+	 */
+	protected AccessLayer mAccessLayer;
+
+	/**
+	 * The Composite of the ManagedForm
+	 */
+	protected Composite mManagedFormComposite;
+
+	/**
+	 * The builder for the controls
+	 */
+	protected AbstractElementGraphBuilder mBuilder;
+
+	/**
+	 * Constructor
+	 * 
+	 * @param pEditor
+	 *            The parent FormEditor
+	 * @param pId
+	 *            The page id
+	 * @param pTitle
+	 *            The page title for this formpage
+	 * @param pModelElement
+	 *            The ModelElement for this formpage
+	 */
+	public AbstractAKMFormPage(final FormEditor pEditor, final String pId, final String pTitle,
+			final EObject pModelElement) {
+		super(pEditor, pId, pTitle);
+		this.mModelElement = pModelElement;
+		this.mAccessLayer = new AccessLayer(false);
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.eclipse.ui.forms.editor.FormPage#setFocus()
+	 */
+	@Override
+	public void setFocus() {
+		super.setFocus();
+		mManagedFormComposite.setFocus();
+		if (mManagedFormComposite.getChildren().length > 0) {
+			mManagedFormComposite.getChildren()[0].setFocus();
+		}
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.eclipse.ui.forms.editor.FormPage#dispose()
+	 */
+	@Override
+	public void dispose() {
+		// dispose listener etc. here
+
+		if (mBuilder != null) {
+			mBuilder.dispose();
+		}
+		super.dispose();
+	}
+
+	public AbstractElementGraphBuilder getBuilder() {
+		return mBuilder;
+	}
+
+}

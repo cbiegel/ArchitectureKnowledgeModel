@@ -1,0 +1,5 @@
+1427185389840	Rename method 'calculateNodePositionsBeginningWithFirstLevel'
+1427185429039	Rename method 'calculateNodePositionOnSecondLevel'
+1427185729654	Rename method 'calculateNodePositionsBeginningWithThirdLevel'
+1427186213069	Rename local variable 'newNode'
+1427186532885	Rename local variable 'connection'

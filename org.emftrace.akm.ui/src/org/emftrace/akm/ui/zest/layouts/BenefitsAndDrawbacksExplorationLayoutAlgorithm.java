@@ -17,35 +17,96 @@ import org.eclipse.zest.layouts.dataStructures.InternalRelationship;
 import org.emftrace.akm.ui.zest.nodes.AbstractAKMGraphNode;
 import org.emftrace.akm.ui.zest.nodes.LayerLabelGraphNode;
 
+/**
+ * A layout algorithm that is used to calculate the position of nodes in the Benefit&Drawback view.<br>
+ * This class contains parts of the QUARC project and was modified for the AKM project.
+ * 
+ * @author Christopher Biegel
+ * 
+ */
 public class BenefitsAndDrawbacksExplorationLayoutAlgorithm extends AbstractLayoutAlgorithm {
 
 	// ===========================================================
 	// Constants
 	// ===========================================================
 
-	private int xOffset = 50;
-	private int yOffset = 50;
-	private int leftSpace = 40;
-	private int topSpace = 20;
+	/**
+	 * The default horizontal offset
+	 */
+	private final int mXOffset = 50;
+
+	/**
+	 * The default vertical offset between levels
+	 */
+	private final int mYOffset = 50;
+
+	/**
+	 * The default margin to the left side of the graph
+	 */
+	private final int mLeftSpace = 40;
+
+	/**
+	 * The default margin to the top side of the graph
+	 */
+	private final int mTopSpace = 20;
 
 	// ===========================================================
 	// Fields
 	// ===========================================================
 
+	/**
+	 * The graph this layout is applied to
+	 */
 	private Graph mGraph;
+
+	/**
+	 * The PaintListener of this layout algorithm
+	 */
 	private PaintListener mPaintListener;
-	private HashMap<Integer, Integer> sublevelCount;
-	private HashMap<Integer, Integer> totalLevelOffset;
-	private int longestX;
-	private int longestY;
-	private int highestNumberOfNodes;
-	private int highestNumberOfNodesLevel;
-	private double startingLevelCenter;
+
+	/**
+	 * The amount of sublevels in the node hierarchy
+	 */
+	private HashMap<Integer, Integer> mSublevelCount;
+
+	/**
+	 * The amount of levels in the node hierarchy
+	 */
+	private HashMap<Integer, Integer> mTotalLevelOffset;
+
+	/**
+	 * The width of the widest node
+	 */
+	private int mLongestX;
+
+	/**
+	 * The length of the highest node
+	 */
+	private int mLongestY;
+
+	/**
+	 * The index of the level that contains the highest amount of nodes in the node hierarchy
+	 */
+	private int mHighestNumberOfNodesLevel;
+
+	/**
+	 * The horizontal center position of the level that is used as the starting level for the
+	 * algorithm
+	 */
+	private double mStartingLevelCenter;
 
 	// ===========================================================
 	// Constructors
 	// ===========================================================
 
+	/**
+	 * Constructor.
+	 * 
+	 * @param pStyles
+	 *            The styles to apply to this layout algorithm
+	 * @param pGraph
+	 *            The graph to apply this layout algorithm to
+	 */
 	public BenefitsAndDrawbacksExplorationLayoutAlgorithm(final int pStyles, final Graph pGraph) {
 		super(pStyles);
 		mGraph = pGraph;
@@ -73,10 +134,6 @@ public class BenefitsAndDrawbacksExplorationLayoutAlgorithm extends AbstractLayo
 			}
 		});
 	}
-
-	// ===========================================================
-	// Getter & Setter
-	// ===========================================================
 
 	// ===========================================================
 	// Methods for/from SuperClass/Interfaces
@@ -150,90 +207,91 @@ public class BenefitsAndDrawbacksExplorationLayoutAlgorithm extends AbstractLayo
 	// ===========================================================
 
 	/**
-	 * Create the layout
+	 * Creates the layout
 	 * 
-	 * @param nodes
-	 *            a List with all AbstractAKMGraphNodes of the Graph
+	 * @param pNodesList
+	 *            A List with all {@link AbstractAKMGraphNodes} of the graph
 	 */
-	private void createLayout(final List<AbstractAKMGraphNode> nodes) {
+	private void createLayout(final List<AbstractAKMGraphNode> pNodesList) {
 
-		// find the highest sublevel of each level
-		sublevelCount = new HashMap<Integer, Integer>();
-		for (AbstractAKMGraphNode node : nodes) {
-			if (!(sublevelCount.containsKey(node.getLevel()))
-					|| ((node.getSubLevel() + 1) > sublevelCount.get(node.getLevel()))) {
-				sublevelCount.put(node.getLevel(), node.getSubLevel() + 1);
+		// Find the highest sublevel of each level
+		mSublevelCount = new HashMap<Integer, Integer>();
+		for (AbstractAKMGraphNode node : pNodesList) {
+			if (!(mSublevelCount.containsKey(node.getLevel()))
+					|| ((node.getSubLevel() + 1) > mSublevelCount.get(node.getLevel()))) {
+				mSublevelCount.put(node.getLevel(), node.getSubLevel() + 1);
 			}
 		}
 
-		// calculates and caches the sum of sublevels of all levels over a level
-		totalLevelOffset = new HashMap<Integer, Integer>();
-		for (Integer level : sublevelCount.keySet()) {
+		// Calculate and store the sum of sublevels of all levels over a level
+		mTotalLevelOffset = new HashMap<Integer, Integer>();
+		for (Integer level : mSublevelCount.keySet()) {
 			int sum = 0;
-			for (Entry<Integer, Integer> entrySet : sublevelCount.entrySet()) {
+			for (Entry<Integer, Integer> entrySet : mSublevelCount.entrySet()) {
 				if (entrySet.getKey() < level) {
 					sum += entrySet.getValue();
 				}
 			}
 
-			totalLevelOffset.put(level, sum);
+			mTotalLevelOffset.put(level, sum);
 		}
 
-		// create the level-hierarchy:
-		// the hierarchy consists of levels with sublevels
+		// Create the level-hierarchy:
 		List<List<AbstractAKMGraphNode>> levelList = new ArrayList<List<AbstractAKMGraphNode>>();
-		for (int i = 0; i < nodes.size(); i++) {
+		for (int i = 0; i < pNodesList.size(); i++) {
 			int totalLevel =
-					totalLevelOffset.get(nodes.get(i).getLevel()) + nodes.get(i).getSubLevel();
+					mTotalLevelOffset.get(pNodesList.get(i).getLevel())
+							+ pNodesList.get(i).getSubLevel();
 			if (levelList.size() <= totalLevel) {
 				int requiredLevels = (totalLevel - levelList.size()) + 1;
 				for (int j = 0; j < requiredLevels; j++) {
 					levelList.add(new ArrayList<AbstractAKMGraphNode>());
 				}
 
-				levelList.get(totalLevel).add(nodes.get(i));
+				levelList.get(totalLevel).add(pNodesList.get(i));
 			} else {
-				levelList.get(totalLevel).add(nodes.get(i));
+				levelList.get(totalLevel).add(pNodesList.get(i));
 			}
 		}
 
-		highestNumberOfNodes = calcHighestNumberOfNodes(levelList);
-		longestX = calcLongestX(levelList);
-		longestY = calcLongestY(levelList);
-		// align nodes and compute positions:
+		mLongestX = calcLongestX(levelList);
+		mLongestY = calcLongestY(levelList);
+		// Align nodes and compute positions:
 		adjustLevels(levelList);
 	}
 
-	private int calcHighestNumberOfNodes(final List<List<AbstractAKMGraphNode>> levels) {
-		int highestNumberOfNodes = 0;
-
-		for (int i = 0; i < levels.size(); i++) {
-			if (levels.get(i).size() > highestNumberOfNodes) {
-				highestNumberOfNodes = levels.get(i).size();
-				highestNumberOfNodesLevel = i;
-			}
-		}
-		return highestNumberOfNodes;
-	}
-
-	private int calcLongestX(final List<List<AbstractAKMGraphNode>> levels) {
+	/**
+	 * Calculates the width of the widest node
+	 * 
+	 * @param pLevelsList
+	 *            A list that contains the node hierarchy
+	 * @return The width of the widest node in the node hierarchy
+	 */
+	private int calcLongestX(final List<List<AbstractAKMGraphNode>> pLevelsList) {
 		int longestX = 0;
-		for (int i = 0; i < levels.size(); i++) {
-			for (int j = 0; j < levels.get(i).size(); j++) {
-				if (levels.get(i).get(j).getAKMFigureWidth() > longestX) {
-					longestX = levels.get(i).get(j).getAKMFigureWidth();
+		for (int i = 0; i < pLevelsList.size(); i++) {
+			for (int j = 0; j < pLevelsList.get(i).size(); j++) {
+				if (pLevelsList.get(i).get(j).getAKMFigureWidth() > longestX) {
+					longestX = pLevelsList.get(i).get(j).getAKMFigureWidth();
 				}
 			}
 		}
 		return longestX;
 	}
 
-	private int calcLongestY(final List<List<AbstractAKMGraphNode>> levels) {
+	/**
+	 * Calculates the height of the highest node
+	 * 
+	 * @param pLevelsList
+	 *            A list that contains the node hierarchy
+	 * @return The height of the highest node in the node hierarchy
+	 */
+	private int calcLongestY(final List<List<AbstractAKMGraphNode>> pLevelsList) {
 		int longestY = 0;
-		for (int k = 0; k < levels.size(); k++) {
-			for (int j = 0; j < levels.get(k).size(); j++) {
-				if (levels.get(k).get(j).getAKMFigureHeight() > longestY) {
-					longestY = levels.get(k).get(j).getAKMFigureHeight();
+		for (int k = 0; k < pLevelsList.size(); k++) {
+			for (int j = 0; j < pLevelsList.get(k).size(); j++) {
+				if (pLevelsList.get(k).get(j).getAKMFigureHeight() > longestY) {
+					longestY = pLevelsList.get(k).get(j).getAKMFigureHeight();
 				}
 			}
 		}
@@ -241,66 +299,117 @@ public class BenefitsAndDrawbacksExplorationLayoutAlgorithm extends AbstractLayo
 	}
 
 	/**
-	 * sets the location for each node
+	 * Sets the location for each node
 	 * 
-	 * @param levels
-	 *            a level hierarchy
+	 * @param pLevelsList
+	 *            A list that contains the node hierarchy
 	 */
-	private void adjustLevels(final List<List<AbstractAKMGraphNode>> levels) {
-		// search for the level with the largest amount of nodes:
+	private void adjustLevels(final List<List<AbstractAKMGraphNode>> pLevelsList) {
 
-		if ((longestX != 0) && (mPaintListener != null)) {
+		if ((mLongestX != 0) && (mPaintListener != null)) {
 			mGraph.removePaintListener(mPaintListener);
 			mPaintListener = null;
 		}
+		// Search for the level with the largest amount of nodes
+		calculateHighestNumberOfNodesLevel(pLevelsList);
 
-		if (highestNumberOfNodesLevel == 0) {
-			calculateNodePositionsBeginningWithFirstLevel(levels);
-		} else if (highestNumberOfNodesLevel == 2) {
-			calculateNodePositionsBeginningWithThirdLevel(levels);
+		if (mHighestNumberOfNodesLevel == 1) {
+			calculateNodePositionsBeginningWithSecondLevel(pLevelsList);
+		} else if (mHighestNumberOfNodesLevel == 3) {
+			calculateNodePositionsBeginningWithFourthLevel(pLevelsList);
 		}
 	}
 
-	private void calculateNodePositionsBeginningWithFirstLevel(
+	/**
+	 * Start the layout algorithm beginning with the second level (level index = 1)
+	 * 
+	 * @param pLevelsList
+	 *            A list that contains the node hierarchy
+	 */
+	private void calculateNodePositionsBeginningWithSecondLevel(
 			final List<List<AbstractAKMGraphNode>> pLevelsList) {
 
+		// Calculate node positions on second level
+		for (int i = 0; i < pLevelsList.get(1).size(); i++) {
+			calculateNodePositionOnStartingLevel(pLevelsList.get(1).get(i), pLevelsList, 1, i,
+					mLongestX);
+		}
+		// Calculate parent positions (first level)
 		for (int i = 0; i < pLevelsList.get(0).size(); i++) {
-			calculateNodePositionOnStartingLevel(pLevelsList.get(0).get(i), pLevelsList, 0, i,
-					longestX);
+			AbstractAKMGraphNode parentNode = pLevelsList.get(0).get(i);
+			calculateParentNodePosition(parentNode, 0, mLongestX);
 		}
 
-		double xStart = pLevelsList.get(0).get(0).getLocation().x;
-		AbstractAKMGraphNode lastNode = pLevelsList.get(0).get(pLevelsList.get(0).size() - 1);
+		// Calculate the center of nodes on the second level
+		double xStart = pLevelsList.get(1).get(0).getLocation().x;
+		AbstractAKMGraphNode lastNode = pLevelsList.get(1).get(pLevelsList.get(1).size() - 1);
 		double xEnd = lastNode.getLocation().x + lastNode.getSize().width;
-		startingLevelCenter = leftSpace + ((xEnd - xStart) / 2);
+		mStartingLevelCenter = mLeftSpace + ((xEnd - xStart) / 2);
 
-		calculateNodePositionOnSecondLevel(pLevelsList.get(1).get(0));
+		// Calculate the position of the node on the third level
+		calculateNodePositionOnThirdLevel(pLevelsList.get(2).get(0));
 
-		if (pLevelsList.size() > 2) {
-			calculateNodePositionsOnLastLevel(pLevelsList, 2, longestX);
+		if (pLevelsList.size() > 3) {
+			calculateNodePositionsOnLastLevel(pLevelsList, 3, mLongestX);
+			// Calculate parent positions (first level)
+			for (int i = 0; i < pLevelsList.get(4).size(); i++) {
+				AbstractAKMGraphNode parentNode = pLevelsList.get(4).get(i);
+				calculateParentNodePosition(parentNode, 4, mLongestX);
+			}
 		}
 	}
 
-	private void calculateNodePositionsBeginningWithThirdLevel(
+	/**
+	 * Start the layout algorithm beginning with the fourth level (level index = 3)
+	 * 
+	 * @param pLevelsList
+	 *            A list that contains the node hierarchy
+	 */
+	private void calculateNodePositionsBeginningWithFourthLevel(
 			final List<List<AbstractAKMGraphNode>> pLevelsList) {
 
-		for (int i = 0; i < pLevelsList.get(2).size(); i++) {
-			calculateNodePositionOnStartingLevel(pLevelsList.get(2).get(i), pLevelsList, 2, i,
-					longestX);
+		// Calculate node positions on the 4th level
+		for (int i = 0; i < pLevelsList.get(3).size(); i++) {
+			calculateNodePositionOnStartingLevel(pLevelsList.get(3).get(i), pLevelsList, 2, i,
+					mLongestX);
+		}
+		// Calculate parent positions (first level)
+		for (int i = 0; i < pLevelsList.get(4).size(); i++) {
+			AbstractAKMGraphNode parentNode = pLevelsList.get(4).get(i);
+			calculateParentNodePosition(parentNode, 4, mLongestX);
 		}
 
-		double xStart = pLevelsList.get(2).get(0).getLocation().x;
-		AbstractAKMGraphNode lastNode = pLevelsList.get(2).get(pLevelsList.get(2).size() - 1);
+		double xStart = pLevelsList.get(3).get(0).getLocation().x;
+		AbstractAKMGraphNode lastNode = pLevelsList.get(3).get(pLevelsList.get(3).size() - 1);
 		double xEnd = lastNode.getLocation().x + lastNode.getSize().width;
-		startingLevelCenter = leftSpace + ((xEnd - xStart) / 2);
+		mStartingLevelCenter = mLeftSpace + ((xEnd - xStart) / 2);
 
-		calculateNodePositionOnSecondLevel(pLevelsList.get(1).get(0));
+		calculateNodePositionOnThirdLevel(pLevelsList.get(2).get(0));
 
-		if (pLevelsList.size() > 2) {
-			calculateNodePositionsOnLastLevel(pLevelsList, 0, longestX);
+		if (pLevelsList.size() > 3) {
+			calculateNodePositionsOnLastLevel(pLevelsList, 1, mLongestX);
+			// Calculate parent positions (first level)
+			for (int i = 0; i < pLevelsList.get(0).size(); i++) {
+				AbstractAKMGraphNode parentNode = pLevelsList.get(0).get(i);
+				calculateParentNodePosition(parentNode, 0, mLongestX);
+			}
 		}
 	}
 
+	/**
+	 * Calculates the position of a node on the level the algorithm started with
+	 * 
+	 * @param pNode
+	 *            The node to calculate the position of
+	 * @param pLevelsList
+	 *            A list that contains the node hierarchy
+	 * @param pLevel
+	 *            The level of the current node
+	 * @param pLevelIndex
+	 *            The index of the current node within the level
+	 * @param pLengthOffset
+	 *            Additional horizontal offset between nodes
+	 */
 	private void calculateNodePositionOnStartingLevel(final AbstractAKMGraphNode pNode,
 			final List<List<AbstractAKMGraphNode>> pLevelsList, final int pLevel,
 			final int pLevelIndex, final int pLengthOffset) {
@@ -309,31 +418,47 @@ public class BenefitsAndDrawbacksExplorationLayoutAlgorithm extends AbstractLayo
 		double yPos = 0;
 
 		if (pLevelIndex == 0) {
-			xPos = leftSpace;
+			xPos = mLeftSpace;
 		} else {
 			AbstractAKMGraphNode previousNode = pLevelsList.get(pLevel).get(pLevelIndex - 1);
 			xPos =
-					previousNode.getLocation().x + previousNode.getSize().width + xOffset
+					previousNode.getLocation().x + previousNode.getSize().width + mXOffset
 							+ pLengthOffset;
 		}
 
 		yPos =
-				topSpace
-						+ ((totalLevelOffset.get(pNode.getLevel()) + pNode.getSubLevel()) * (longestY + yOffset));
+				mTopSpace
+						+ ((mTotalLevelOffset.get(pNode.getLevel()) + pNode.getSubLevel()) * (mLongestY + mYOffset));
 
 		pNode.setLocation(xPos, yPos);
 	}
 
-	private void calculateNodePositionOnSecondLevel(final AbstractAKMGraphNode pNode) {
+	/**
+	 * Calculates the position of the node on the third level (the ASTA node) (level index = 2)
+	 * 
+	 * @param pNode
+	 *            The node to calculate the position of
+	 */
+	private void calculateNodePositionOnThirdLevel(final AbstractAKMGraphNode pNode) {
 
-		double xPos = startingLevelCenter - (pNode.getSize().width / 2);
+		double xPos = mStartingLevelCenter - (pNode.getSize().width / 2);
 		double yPos =
-				topSpace
-						+ ((totalLevelOffset.get(pNode.getLevel()) + pNode.getSubLevel()) * (longestY + yOffset));
+				mTopSpace
+						+ ((mTotalLevelOffset.get(pNode.getLevel()) + pNode.getSubLevel()) * (mLongestY + mYOffset));
 
 		pNode.setLocation(xPos, yPos);
 	}
 
+	/**
+	 * Calculates the position of all nodes in the last level of the algorithm
+	 * 
+	 * @param pLevelsList
+	 *            A list that contains the node hierarchy
+	 * @param pLevel
+	 *            The last level of the algorithm
+	 * @param pLengthOffset
+	 *            Additional horizontal offset between nodes
+	 */
 	private void calculateNodePositionsOnLastLevel(
 			final List<List<AbstractAKMGraphNode>> pLevelsList, final int pLevel,
 			final int pLengthOffset) {
@@ -344,8 +469,8 @@ public class BenefitsAndDrawbacksExplorationLayoutAlgorithm extends AbstractLayo
 			return;
 		}
 
-		double xPos = leftSpace;
-		double yPos = topSpace + (totalLevelOffset.get(pLevel) * (longestY + yOffset));
+		double xPos = mLeftSpace;
+		double yPos = mTopSpace + (mTotalLevelOffset.get(pLevel) * (mLongestY + mYOffset));
 
 		// nodesCount is even
 		if ((nodesCount % 2) == 0) {
@@ -358,13 +483,13 @@ public class BenefitsAndDrawbacksExplorationLayoutAlgorithm extends AbstractLayo
 				AbstractAKMGraphNode node = pLevelsList.get(pLevel).get(i);
 
 				if (previousNode == null) {
-					xPos = startingLevelCenter + ((xOffset + pLengthOffset) / 2);
+					xPos = mStartingLevelCenter + ((mXOffset + pLengthOffset) / 2);
 					node.setLocation(xPos, yPos);
 					previousNode = node;
 					nodeRightToCenter = node;
 				} else {
 					xPos =
-							previousNode.getLocation().x + previousNode.getSize().width + xOffset
+							previousNode.getLocation().x + previousNode.getSize().width + mXOffset
 									+ pLengthOffset;
 					node.setLocation(xPos, yPos);
 					previousNode = node;
@@ -379,7 +504,7 @@ public class BenefitsAndDrawbacksExplorationLayoutAlgorithm extends AbstractLayo
 				AbstractAKMGraphNode node = pLevelsList.get(pLevel).get(i);
 
 				xPos =
-						previousNode.getLocation().x - node.getSize().width - xOffset
+						previousNode.getLocation().x - node.getSize().width - mXOffset
 								- pLengthOffset;
 				node.setLocation(xPos, yPos);
 				previousNode = node;
@@ -390,7 +515,7 @@ public class BenefitsAndDrawbacksExplorationLayoutAlgorithm extends AbstractLayo
 			int centerNodeIndex = nodesCount / 2;
 			// Set location of center node
 			AbstractAKMGraphNode centerNode = pLevelsList.get(pLevel).get(centerNodeIndex);
-			xPos = startingLevelCenter - (centerNode.getSize().width / 2);
+			xPos = mStartingLevelCenter - (centerNode.getSize().width / 2);
 			centerNode.setLocation(xPos, yPos);
 			AbstractAKMGraphNode previousNode = centerNode;
 
@@ -399,7 +524,7 @@ public class BenefitsAndDrawbacksExplorationLayoutAlgorithm extends AbstractLayo
 				for (int i = centerNodeIndex + 1; i <= (nodesCount - 1); i++) {
 					AbstractAKMGraphNode node = pLevelsList.get(pLevel).get(i);
 					xPos =
-							previousNode.getLocation().x + previousNode.getSize().width + xOffset
+							previousNode.getLocation().x + previousNode.getSize().width + mXOffset
 									+ pLengthOffset;
 					node.setLocation(xPos, yPos);
 					previousNode = node;
@@ -411,7 +536,7 @@ public class BenefitsAndDrawbacksExplorationLayoutAlgorithm extends AbstractLayo
 				for (int i = centerNodeIndex - 1; i >= 0; i--) {
 					AbstractAKMGraphNode node = pLevelsList.get(pLevel).get(i);
 					xPos =
-							previousNode.getLocation().x - node.getSize().width - xOffset
+							previousNode.getLocation().x - node.getSize().width - mXOffset
 									- pLengthOffset;
 					node.setLocation(xPos, yPos);
 					previousNode = node;
@@ -420,7 +545,59 @@ public class BenefitsAndDrawbacksExplorationLayoutAlgorithm extends AbstractLayo
 		}
 	}
 
-	// ===========================================================
-	// Inner and Anonymous Classes
-	// ===========================================================
+	private void calculateParentNodePosition(final AbstractAKMGraphNode pNode, final int pLevel,
+			final int pLengthOffset) {
+
+		double childrenFirstXPos = 0;
+		double childrenLastXPos = 0;
+		double childrenHorizontalSpan = 0;
+		double childrenHorizontalSpanHalf = 0;
+		if (pNode.hasVisibleChildren()) {
+
+			List<AbstractAKMGraphNode> visibleChildrenList = pNode.getVisibleChildrenList();
+
+			AbstractAKMGraphNode firstChild = visibleChildrenList.get(0);
+			AbstractAKMGraphNode lastChild =
+					visibleChildrenList.get(visibleChildrenList.size() - 1);
+
+			childrenFirstXPos = firstChild.getLocation().x;
+			childrenLastXPos = lastChild.getLocation().x + lastChild.getSize().width();
+			childrenHorizontalSpan = childrenLastXPos - childrenFirstXPos;
+			childrenHorizontalSpanHalf = childrenHorizontalSpan / 2;
+		}
+
+		double centerPosition = childrenLastXPos - childrenHorizontalSpanHalf;
+		double nodeWidth = pNode.getSize().width();
+		double nodeWidthHalf = nodeWidth / 2;
+
+		double xPos = Math.max(centerPosition - nodeWidthHalf, 0);
+		double yPos =
+				mTopSpace
+						+ ((mTotalLevelOffset.get(pNode.getLevel()) + pNode.getSubLevel()) * (mLongestY + mYOffset));
+
+		pNode.setLocation(xPos, yPos);
+	}
+
+	private void calculateHighestNumberOfNodesLevel(
+			final List<List<AbstractAKMGraphNode>> pLevelsList) {
+
+		if (pLevelsList.size() < 4) {
+			mHighestNumberOfNodesLevel = 1;
+			return;
+		}
+
+		if (pLevelsList.get(1).size() >= pLevelsList.get(3).size()) {
+			mHighestNumberOfNodesLevel = 1;
+		} else {
+			mHighestNumberOfNodesLevel = 3;
+		}
+	}
+
+	/**
+	 * Set the LayoutAlgorithm of the graph to this layout
+	 */
+	public void setThisLayoutAlgorithm() {
+		mGraph.setLayoutAlgorithm(this, false);
+	}
+
 }

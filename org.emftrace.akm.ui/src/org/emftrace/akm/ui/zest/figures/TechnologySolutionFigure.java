@@ -3,7 +3,14 @@ package org.emftrace.akm.ui.zest.figures;
 import org.eclipse.draw2d.Graphics;
 import org.eclipse.draw2d.geometry.PointList;
 import org.eclipse.draw2d.geometry.Rectangle;
+import org.emftrace.akm.ui.zest.nodes.TechnologySolutionGraphNode;
 
+/**
+ * The figure used for {@link TechnologySolutionGraphNode}s.
+ * 
+ * @author Christopher Biegel
+ * 
+ */
 public class TechnologySolutionFigure extends AbstractDecoratorFigure {
 
 	// ===========================================================
@@ -13,24 +20,19 @@ public class TechnologySolutionFigure extends AbstractDecoratorFigure {
 	/**
 	 * The constructor
 	 * 
-	 * @param name
-	 *            the name of the Element
-	 * @param isExpandable
-	 *            node is expandable or not
+	 * @param pName
+	 *            The name of this figure's element (will be displayed)
+	 * @param pIsExpandable
+	 *            Whether this figure is expandable or not
 	 */
-	public TechnologySolutionFigure(final String name, final boolean isExpandable) {
-		super(name, isExpandable);
+	public TechnologySolutionFigure(final String pName, final boolean pIsExpandable) {
+		super(pName, pIsExpandable);
 	}
 
 	// ===========================================================
 	// Methods for/from SuperClass/Interfaces
 	// ===========================================================
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.eclipse.draw2d.Figure#paintFigure(org.eclipse.draw2d.Graphics)
-	 */
 	@Override
 	protected void paintFigure(final Graphics g) {
 		super.paintFigure(g);

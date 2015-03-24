@@ -4,9 +4,9 @@
 package org.emftrace.akm.core.cache;
 
 /**
- * An interface for a listener which can be used to notify about changes in a cache.
+ * An interface for a listener which can be used to notify about changes in a cache.<br>
+ * This class was taken from the QUARC project
  * 
- * @author Christopher Biegel
  */
 public interface ICacheChangedListener {
 

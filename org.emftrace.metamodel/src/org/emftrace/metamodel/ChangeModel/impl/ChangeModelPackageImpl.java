@@ -13,11 +13,11 @@ import org.eclipse.emf.ecore.impl.EPackageImpl;
 
 import org.eclipse.emf.ecore.xml.namespace.XMLNamespacePackage;
 
+import org.emftrace.metamodel.ArchitectureKnowledgeModel.ArchitectureKnowledgeCatalogPackage.ArchitectureKnowledgeCatalogPackagePackage;
+
+import org.emftrace.metamodel.ArchitectureKnowledgeModel.ArchitectureKnowledgeCatalogPackage.impl.ArchitectureKnowledgeCatalogPackagePackageImpl;
+
 import org.emftrace.metamodel.ArchitectureKnowledgeModel.ArchitectureKnowledgeModelPackage;
-
-import org.emftrace.metamodel.ArchitectureKnowledgeModel.TechnologySolutionCatalogPackage.TechnologySolutionCatalogPackagePackage;
-
-import org.emftrace.metamodel.ArchitectureKnowledgeModel.TechnologySolutionCatalogPackage.impl.TechnologySolutionCatalogPackagePackageImpl;
 
 import org.emftrace.metamodel.ArchitectureKnowledgeModel.impl.ArchitectureKnowledgeModelPackageImpl;
 
@@ -236,7 +236,7 @@ public class ChangeModelPackageImpl extends EPackageImpl implements ChangeModelP
 		QueryPackageImpl theQueryPackage = (QueryPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(QueryPackage.eNS_URI) instanceof QueryPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(QueryPackage.eNS_URI) : QueryPackage.eINSTANCE);
 		PackagesPackageImpl thePackagesPackage = (PackagesPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(PackagesPackage.eNS_URI) instanceof PackagesPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(PackagesPackage.eNS_URI) : PackagesPackage.eINSTANCE);
 		ArchitectureKnowledgeModelPackageImpl theArchitectureKnowledgeModelPackage = (ArchitectureKnowledgeModelPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(ArchitectureKnowledgeModelPackage.eNS_URI) instanceof ArchitectureKnowledgeModelPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(ArchitectureKnowledgeModelPackage.eNS_URI) : ArchitectureKnowledgeModelPackage.eINSTANCE);
-		TechnologySolutionCatalogPackagePackageImpl theTechnologySolutionCatalogPackagePackage = (TechnologySolutionCatalogPackagePackageImpl)(EPackage.Registry.INSTANCE.getEPackage(TechnologySolutionCatalogPackagePackage.eNS_URI) instanceof TechnologySolutionCatalogPackagePackageImpl ? EPackage.Registry.INSTANCE.getEPackage(TechnologySolutionCatalogPackagePackage.eNS_URI) : TechnologySolutionCatalogPackagePackage.eINSTANCE);
+		ArchitectureKnowledgeCatalogPackagePackageImpl theArchitectureKnowledgeCatalogPackagePackage = (ArchitectureKnowledgeCatalogPackagePackageImpl)(EPackage.Registry.INSTANCE.getEPackage(ArchitectureKnowledgeCatalogPackagePackage.eNS_URI) instanceof ArchitectureKnowledgeCatalogPackagePackageImpl ? EPackage.Registry.INSTANCE.getEPackage(ArchitectureKnowledgeCatalogPackagePackage.eNS_URI) : ArchitectureKnowledgeCatalogPackagePackage.eINSTANCE);
 
 		// Load packages
 		theOWLModelPackage.loadPackage();
@@ -256,7 +256,7 @@ public class ChangeModelPackageImpl extends EPackageImpl implements ChangeModelP
 		theQueryPackage.createPackageContents();
 		thePackagesPackage.createPackageContents();
 		theArchitectureKnowledgeModelPackage.createPackageContents();
-		theTechnologySolutionCatalogPackagePackage.createPackageContents();
+		theArchitectureKnowledgeCatalogPackagePackage.createPackageContents();
 
 		// Initialize created meta-data
 		theChangeModelPackage.initializePackageContents();
@@ -271,7 +271,7 @@ public class ChangeModelPackageImpl extends EPackageImpl implements ChangeModelP
 		theQueryPackage.initializePackageContents();
 		thePackagesPackage.initializePackageContents();
 		theArchitectureKnowledgeModelPackage.initializePackageContents();
-		theTechnologySolutionCatalogPackagePackage.initializePackageContents();
+		theArchitectureKnowledgeCatalogPackagePackage.initializePackageContents();
 
 		// Fix loaded packages
 		theOWLModelPackage.fixPackageContents();

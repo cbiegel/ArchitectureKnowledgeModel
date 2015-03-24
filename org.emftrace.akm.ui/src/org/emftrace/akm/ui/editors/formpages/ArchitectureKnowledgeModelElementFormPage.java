@@ -5,30 +5,51 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.ui.forms.IManagedForm;
 import org.eclipse.ui.forms.editor.FormEditor;
-import org.emftrace.akm.ui.zestgraphbuilders.FeaturesExplorationGraphBuilder;
+import org.emftrace.akm.ui.zestgraphbuilders.AKMGraphBuilder;
 import org.emftrace.metamodel.ArchitectureKnowledgeModel.ArchitectureKnowledgeModel;
 
+/**
+ * Implementation of {@link AbstractAKMFormPage}.<br>
+ * This specific class initializes a {@link AKMGraphBuilder}.
+ * 
+ * @author Christopher Biegel
+ * 
+ */
 public class ArchitectureKnowledgeModelElementFormPage extends AbstractAKMFormPage {
 
-	public ArchitectureKnowledgeModelElementFormPage(final FormEditor editor, final String id,
-			final String title, final EObject modelElement) {
-		super(editor, id, title, modelElement);
-	}
+	// ===========================================================
+	// Constructors
+	// ===========================================================
 
-	/*
-	 * (non-Javadoc)
+	/**
+	 * Constructor
 	 * 
-	 * @see
-	 * org.eclipse.ui.forms.editor.FormPage#createFormContent(org.eclipse.ui
-	 * .forms.IManagedForm)
+	 * @param pEditor
+	 *            The parent FormEditor
+	 * @param pId
+	 *            The page id
+	 * @param pTitle
+	 *            The page title for this formpage
+	 * @param pModelElement
+	 *            The ModelElement for this formpage
 	 */
-	@Override
-	protected void createFormContent(final IManagedForm managedForm) {
-		super.createFormContent(managedForm);
-		managedFormComposite = managedForm.getForm().getBody();
-		managedFormComposite.setLayout(new FillLayout()); // set any Layout
-		builder = new FeaturesExplorationGraphBuilder(managedFormComposite, SWT.NONE, getSite(), (ArchitectureKnowledgeModel)modelElement, accessLayer);
-		builder.build();
+	public ArchitectureKnowledgeModelElementFormPage(final FormEditor pEditor, final String pId,
+			final String pTitle, final EObject pModelElement) {
+		super(pEditor, pId, pTitle, pModelElement);
 	}
 
+	// ===========================================================
+	// Methods for/from SuperClass/Interfaces
+	// ===========================================================
+
+	@Override
+	protected void createFormContent(final IManagedForm pManagedForm) {
+		super.createFormContent(pManagedForm);
+		mManagedFormComposite = pManagedForm.getForm().getBody();
+		mManagedFormComposite.setLayout(new FillLayout()); // set any Layout
+		mBuilder =
+				new AKMGraphBuilder(mManagedFormComposite, SWT.NONE, getSite(),
+						(ArchitectureKnowledgeModel) mModelElement, mAccessLayer);
+		mBuilder.build();
+	}
 }

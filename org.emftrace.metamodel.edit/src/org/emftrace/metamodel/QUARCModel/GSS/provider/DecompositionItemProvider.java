@@ -1,4 +1,8 @@
 /**
+ * <copyright>
+ * </copyright>
+ *
+ * $Id$
  */
 package org.emftrace.metamodel.QUARCModel.GSS.provider;
 
@@ -15,6 +19,7 @@ import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
+import org.emftrace.metamodel.QUARCModel.GSS.Decomposition;
 
 /**
  * This is the item provider adapter for a {@link org.emftrace.metamodel.QUARCModel.GSS.Decomposition} object.
@@ -30,6 +35,7 @@ public class DecompositionItemProvider
 		ITreeItemContentProvider,
 		IItemLabelProvider,
 		IItemPropertySource {
+
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
@@ -70,11 +76,11 @@ public class DecompositionItemProvider
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public String getText(Object object) {
-		return getString("_UI_Decomposition_type");
+		return getString("_UI_Decomposition_type") + " " + getLabel((Decomposition)object);
 	}
 
 	/**

@@ -8,51 +8,63 @@ import org.emftrace.akm.ui.zestgraphbuilders.AbstractElementGraphBuilder;
 import org.emftrace.core.accesslayer.AccessLayer;
 
 /**
- * the used FormPage to build a Graph
+ * The used FormPage to build a Graph
  * 
- * @author Daniel Motschmann
+ * @author Christopher Biegel
  * 
  */
 public abstract class AbstractAKMFormPage extends FormPage {
 
-	/**
-	 * the ModelElement form the Input
-	 */
-	protected EObject modelElement;
+	// ===========================================================
+	// Fields
+	// ===========================================================
 
 	/**
-	 * the AccessLayer
+	 * The AKM Element of this formpage
 	 */
-	protected AccessLayer accessLayer;
+	protected EObject mModelElement;
 
 	/**
-	 * the Composite of the ManagedForm
+	 * The AccessLayer
 	 */
-	protected Composite managedFormComposite;
+	protected AccessLayer mAccessLayer;
 
 	/**
-	 * the builder for the controls
+	 * The Composite of the ManagedForm
 	 */
-	protected AbstractElementGraphBuilder builder;
+	protected Composite mManagedFormComposite;
 
 	/**
-	 * the constructor for GSSQueryFormPage
+	 * The builder for the controls
+	 */
+	protected AbstractElementGraphBuilder mBuilder;
+
+	// ===========================================================
+	// Constructors
+	// ===========================================================
+
+	/**
+	 * Constructor
 	 * 
-	 * @param editor
-	 *            the parent FormEditor
-	 * @param id
-	 *            the page id
-	 * @param title
-	 *            the page title
-	 * @param modelElement
-	 *            a ModelElement
+	 * @param pEditor
+	 *            The parent FormEditor
+	 * @param pId
+	 *            The page id
+	 * @param pTitle
+	 *            The page title for this formpage
+	 * @param pModelElement
+	 *            The ModelElement for this formpage
 	 */
-	public AbstractAKMFormPage(final FormEditor editor, final String id, final String title,
-			final EObject modelElement) {
-		super(editor, id, title);
-		this.modelElement = modelElement;
-		this.accessLayer = new AccessLayer(false);
+	public AbstractAKMFormPage(final FormEditor pEditor, final String pId, final String pTitle,
+			final EObject pModelElement) {
+		super(pEditor, pId, pTitle);
+		this.mModelElement = pModelElement;
+		this.mAccessLayer = new AccessLayer(false);
 	}
+
+	// ===========================================================
+	// Methods for/from SuperClass/Interfaces
+	// ===========================================================
 
 	/*
 	 * (non-Javadoc)
@@ -62,9 +74,9 @@ public abstract class AbstractAKMFormPage extends FormPage {
 	@Override
 	public void setFocus() {
 		super.setFocus();
-		managedFormComposite.setFocus();
-		if (managedFormComposite.getChildren().length > 0) {
-			managedFormComposite.getChildren()[0].setFocus();
+		mManagedFormComposite.setFocus();
+		if (mManagedFormComposite.getChildren().length > 0) {
+			mManagedFormComposite.getChildren()[0].setFocus();
 		}
 	}
 
@@ -77,14 +89,13 @@ public abstract class AbstractAKMFormPage extends FormPage {
 	public void dispose() {
 		// dispose listener etc. here
 
-		if (builder != null) {
-			builder.dispose();
+		if (mBuilder != null) {
+			mBuilder.dispose();
 		}
 		super.dispose();
 	}
 
 	public AbstractElementGraphBuilder getBuilder() {
-		return builder;
+		return mBuilder;
 	}
-
 }

@@ -4,19 +4,39 @@ import org.eclipse.draw2d.Graphics;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.widgets.Display;
+import org.emftrace.akm.ui.zest.nodes.TechnologyFeatureGraphNode;
 
+/**
+ * The figure for {@link TechnologyFeatureGraphNode}s.
+ * 
+ * @author Christopher Biegel
+ * 
+ */
 public class TechnologyFeatureFigure extends AbstractDecoratorFigure {
 
 	// ===========================================================
 	// Fields
 	// ===========================================================
 
+	/**
+	 * The color of this figure's border
+	 */
 	private Color mBorderColor;
 
 	// ===========================================================
 	// Constructors
 	// ===========================================================
 
+	/**
+	 * The constructor.
+	 * 
+	 * @param pName
+	 *            The name of this figure's element (will be displayed)
+	 * @param pIsExpandable
+	 *            Whether this figure is expandable or not
+	 * @param pBorderColor
+	 *            The color of this figure's border
+	 */
 	public TechnologyFeatureFigure(final String pName, final boolean pIsExpandable,
 			final Color pBorderColor) {
 
@@ -28,11 +48,6 @@ public class TechnologyFeatureFigure extends AbstractDecoratorFigure {
 	// Methods for/from SuperClass/Interfaces
 	// ===========================================================
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.eclipse.draw2d.Figure#paintFigure(org.eclipse.draw2d.Graphics)
-	 */
 	@Override
 	protected void paintFigure(final Graphics g) {
 		super.paintFigure(g);

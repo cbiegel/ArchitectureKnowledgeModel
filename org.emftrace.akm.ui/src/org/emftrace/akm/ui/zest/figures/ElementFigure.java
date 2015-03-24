@@ -21,7 +21,8 @@ import org.emftrace.akm.ui.zest.figures.listeners.IExpandListener;
 
 /**
  * A Figure for GSS Element. Contains can contain figures for decorating the button and top of the
- * figure
+ * figure.<br>
+ * This class was taken from the QUARC project
  * 
  * @author Daniel Motschmann
  * @version 1.0

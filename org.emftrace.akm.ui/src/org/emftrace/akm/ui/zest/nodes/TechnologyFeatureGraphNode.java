@@ -1,6 +1,5 @@
 package org.emftrace.akm.ui.zest.nodes;
 
-import org.eclipse.swt.graphics.Color;
 import org.eclipse.zest.core.widgets.IContainer;
 import org.emftrace.akm.ui.zest.figures.ElementFigure;
 import org.emftrace.metamodel.ArchitectureKnowledgeModel.TechnologyFeature;
@@ -17,7 +16,7 @@ public class TechnologyFeatureGraphNode extends AbstractAKMGraphNode {
 	// ===========================================================
 
 	/**
-	 * The represented TechnologyFeature object
+	 * The represented {@link TechnologyFeature} object
 	 */
 	private TechnologyFeature mTechnologyFeature;
 

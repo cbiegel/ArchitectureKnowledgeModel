@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map>
+	<bundle bundleID="1178" class="org.eclipse.gmt.modisco.java.plugin.JavaPlugin" localization="plugin" name="%Bundle-Name" project="org.eclipse.gmt.modisco.java" provider="%Bundle-Vendor">
+		<library name="org.eclipse.gmt.modisco.java_0.11.2.201401201005.jar"/>
+	</bundle>
+	<bundle bundleID="1179" localization="plugin" name="%pluginName" project="org.emftrace.metamodel" provider="TU Ilmenau">
+		<library name="."/>
+	</bundle>
+	<bundle bundleID="1180" localization="OSGI-INF/l10n/bundle" name="Jfreechart" project="jfreechart">
+		<library name="."/>
+	</bundle>
+	<bundle bundleID="1181" class="org.emftrace.ui.activator.Activator" localization="OSGI-INF/l10n/bundle" name="%pluginName" project="org.emftrace.ui" provider="TU Ilmenau">
+		<library name="."/>
+	</bundle>
+	<bundle bundleID="1188" class="org.emftrace.akm.core.Activator" localization="OSGI-INF/l10n/bundle" name="Core" project="org.emftrace.akm.core"/>
+	<bundle bundleID="1182" class="org.emftrace.core.activator.Activator" localization="OSGI-INF/l10n/bundle" name="%pluginName" project="org.emftrace.core" provider="TU Ilmenau">
+		<library name="."/>
+	</bundle>
+	<bundle bundleID="1183" class="org.eclipse.gmt.modisco.java.emf.provider.JavaEditPlugin$Implementation" localization="plugin" name="%pluginName" project="org.eclipse.gmt.modisco.java.edit" provider="%providerName">
+		<library name="."/>
+	</bundle>
+	<bundle bundleID="1184" class="org.emftrace.quarc.core.Activator" localization="OSGI-INF/l10n/bundle" name="Core" project="org.emftrace.quarc.core"/>
+	<bundle bundleID="1185" class="org.emftrace.quarc.ui.Activator" localization="OSGI-INF/l10n/bundle" name="Ui" project="org.emftrace.quarc.ui"/>
+	<bundle bundleID="1187" class="org.emftrace.akm.ui.Activator" localization="OSGI-INF/l10n/bundle" name="Ui" project="org.emftrace.akm.ui"/>
+	<bundle bundleID="1186" class="org.emftrace.metamodel.LinkModel.provider.MetaModelEditPlugin$Implementation" localization="plugin" name="%pluginName" project="org.emftrace.metamodel.edit" provider="TU Ilmenau">
+		<library name="."/>
+	</bundle>
+</map>

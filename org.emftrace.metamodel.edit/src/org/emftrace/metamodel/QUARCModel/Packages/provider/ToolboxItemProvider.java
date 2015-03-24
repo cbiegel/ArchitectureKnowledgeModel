@@ -1,4 +1,8 @@
 /**
+ * <copyright>
+ * </copyright>
+ *
+ * $Id$
  */
 package org.emftrace.metamodel.QUARCModel.Packages.provider;
 
@@ -44,6 +48,7 @@ public class ToolboxItemProvider
 		ITreeItemContentProvider,
 		IItemLabelProvider,
 		IItemPropertySource {
+
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
@@ -233,14 +238,14 @@ public class ToolboxItemProvider
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public String getText(Object object) {
 		String label = ((Toolbox)object).getName();
 		return label == null || label.length() == 0 ?
 			getString("_UI_Toolbox_type") :
-			getString("_UI_Toolbox_type") + " " + label;
+			getString("_UI_Toolbox_type") + " \"" + label+"\"";
 	}
 
 	/**
@@ -305,5 +310,7 @@ public class ToolboxItemProvider
 				(PackagesPackage.Literals.TOOLBOX__QUERY_CONTAINMENT,
 				 QueryFactory.eINSTANCE.createGSSQueryContainment()));
 	}
+
+	
 
 }

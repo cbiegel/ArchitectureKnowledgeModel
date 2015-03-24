@@ -20,7 +20,15 @@ import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
 import org.emftrace.metamodel.ArchitectureKnowledgeModel.ArchitectureKnowledgeModel;
 
+/**
+ * A Window ({@link Shell}) that contains a dialog to modify a selected
+ * {@link ArchitectureKnowledgeModel} element's attributes (ID and Name).
+ * 
+ * @author Christopher Biegel
+ * 
+ */
 public class EditAKMElementWindow {
+
 	// ===========================================================
 	// Constants
 	// ===========================================================
@@ -46,6 +54,15 @@ public class EditAKMElementWindow {
 	// Constructors
 	// ===========================================================
 
+	/**
+	 * Constructor.
+	 * 
+	 * @param pParentShell
+	 *            The parent of the newly created shell. This is used to position the new shell in
+	 *            the center of the parent shell's location.
+	 * @param pModel
+	 *            The AKM element to modify
+	 */
 	public EditAKMElementWindow(final Shell pParentShell, final ArchitectureKnowledgeModel pModel) {
 
 		mModel = pModel;
@@ -89,21 +106,12 @@ public class EditAKMElementWindow {
 	}
 
 	// ===========================================================
-	// Getter & Setter
-	// ===========================================================
-
-	// ===========================================================
-	// Methods for/from SuperClass/Interfaces
-	// ===========================================================
-
-	// ===========================================================
 	// Methods
 	// ===========================================================
 
-	public void openWindow() {
-
-	}
-
+	/**
+	 * Initializes the content components
+	 */
 	private void initializeContents() {
 
 		mIDLabel = new Label(mContentsComposite, SWT.NONE);
@@ -183,6 +191,7 @@ public class EditAKMElementWindow {
 														.getEStructuralFeature("Name"),
 														mNameTextfield.getText()));
 
+										mShell.close();
 									}
 								});
 							}
@@ -191,7 +200,6 @@ public class EditAKMElementWindow {
 						pException.printStackTrace();
 					}
 
-					mShell.close();
 				}
 			}
 
@@ -201,6 +209,13 @@ public class EditAKMElementWindow {
 		});
 	}
 
+	/**
+	 * Add a KeyListener to the given Text element that will set the background color to white upon
+	 * typing.
+	 * 
+	 * @param pTextfield
+	 *            The Text element to add the KeyListener to
+	 */
 	private void addTextfieldListener(final Text pTextfield) {
 
 		pTextfield.addKeyListener(new KeyAdapter() {
@@ -213,12 +228,17 @@ public class EditAKMElementWindow {
 		});
 	}
 
+	/**
+	 * Determines whether the given Text element contains a valid input for the model's attributes
+	 * (cannot be empty).
+	 * 
+	 * @param pTextField
+	 *            The Text element to check
+	 * @return True, if the Text element contains text. If the Text element contains no text,
+	 *         returns false.
+	 */
 	private boolean isValidInput(final Text pTextField) {
 
 		return !pTextField.getText().equals("");
 	}
-
-	// ===========================================================
-	// Inner and Anonymous Classes
-	// ===========================================================
 }

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<org.eclipse.emf.emfstore.internal.server.model.versioning:ChangePackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ArchitectureKnowledgeModel="ArchitectureKnowledgeModel" xmlns:org.eclipse.emf.emfstore.internal.server.model.versioning="http://eclipse.org/emf/emfstore/server/model/versioning" xmlns:org.eclipse.emf.emfstore.internal.server.model.versioning.operations="http://eclipse.org/emf/emfstore/server/model/versioning/operations">
+  <operations xsi:type="org.eclipse.emf.emfstore.internal.server.model.versioning.operations:CreateDeleteOperation" identifier="_7k2NcNI_EeS6U5i8Ntpc4Q" clientDate="2015-03-24T17:07:55.079+0100">
+    <modelElementId id="_7kzKINI_EeS6U5i8Ntpc4Q"/>
+    <modelElement xsi:type="ArchitectureKnowledgeModel:ArchitectureKnowledgeModel"/>
+    <eObjectToIdMap key="#//@operations.0/@modelElement">
+      <value id="_7kzKINI_EeS6U5i8Ntpc4Q"/>
+    </eObjectToIdMap>
+  </operations>
+  <operations xsi:type="org.eclipse.emf.emfstore.internal.server.model.versioning.operations:CreateDeleteOperation" identifier="_8N7msdI_EeS6U5i8Ntpc4Q" clientDate="2015-03-24T17:07:59.387+0100">
+    <modelElementId id="_8N7msNI_EeS6U5i8Ntpc4Q"/>
+    <modelElement xsi:type="ArchitectureKnowledgeModel:TechnologySolutions"/>
+    <eObjectToIdMap key="#//@operations.1/@modelElement">
+      <value id="_8N7msNI_EeS6U5i8Ntpc4Q"/>
+    </eObjectToIdMap>
+  </operations>
+  <operations xsi:type="org.eclipse.emf.emfstore.internal.server.model.versioning.operations:SingleReferenceOperation" identifier="_8N800tI_EeS6U5i8Ntpc4Q" clientDate="2015-03-24T17:07:59.389+0100" featureName="TechnologySolutions" containmentType="CONTAINMENT">
+    <modelElementId id="_7kzKINI_EeS6U5i8Ntpc4Q"/>
+    <newValue id="_8N7msNI_EeS6U5i8Ntpc4Q"/>
+  </operations>
+</org.eclipse.emf.emfstore.internal.server.model.versioning:ChangePackage>

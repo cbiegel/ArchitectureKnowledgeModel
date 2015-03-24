@@ -6,11 +6,31 @@ import java.util.Map;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.widgets.Display;
 import org.emftrace.metamodel.ArchitectureKnowledgeModel.CapabilityType;
+import org.emftrace.metamodel.ArchitectureKnowledgeModel.TechnologyFeature;
 
+/**
+ * This class is a utility class.<br>
+ * It stores the colors that are associated with the {@link TechnologyFeature}s'
+ * {@link CapabilityType}.
+ * 
+ * @author Christopher Biegel
+ * 
+ */
 public class CapabilityTypeColorCoding {
 
+	// ===========================================================
+	// Constants
+	// ===========================================================
+
+	/**
+	 * Map that stores the color for each capability type
+	 */
 	private static final Map<CapabilityType, Color> COLOR_CODING_MAP =
 			new HashMap<CapabilityType, Color>();
+
+	// ===========================================================
+	// Constructors
+	// ===========================================================
 
 	// Static constructor
 	static {
@@ -44,6 +64,10 @@ public class CapabilityTypeColorCoding {
 		// Commercial Capability = yellow
 		COLOR_CODING_MAP.put(CapabilityType.COMMERCIAL_CAPABILITY, new Color(display, 255, 255, 0));
 	}
+
+	// ===========================================================
+	// Methods
+	// ===========================================================
 
 	/**
 	 * Get the color for the given capability type.

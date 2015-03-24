@@ -1,14 +1,17 @@
 /**
+ * <copyright>
+ * </copyright>
+ *
+ * $Id$
  */
 package org.emftrace.metamodel.QUARCModel.Query.provider;
 
-
+import org.emftrace.metamodel.QUARCModel.GSS.Element;
 import java.util.Collection;
 import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
@@ -16,7 +19,7 @@ import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
-
+import org.emftrace.metamodel.QUARCModel.Query.ApplicableElement;
 import org.emftrace.metamodel.QUARCModel.Query.QueryPackage;
 
 /**
@@ -33,6 +36,8 @@ public class ApplicableElementItemProvider
 		ITreeItemContentProvider,
 		IItemLabelProvider,
 		IItemPropertySource {
+
+
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
@@ -303,11 +308,18 @@ public class ApplicableElementItemProvider
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public String getText(Object object) {
-		return getString("_UI_ApplicableElement_type");
+		
+		String label = getString("_UI_ApplicableElement_type");
+
+		Element assignedElement = ((ApplicableElement)object).getElement();
+		if (assignedElement != null){
+			label += " \"" +assignedElement.getName()+"\"";
+		}
+		return 	label;
 	}
 
 	/**

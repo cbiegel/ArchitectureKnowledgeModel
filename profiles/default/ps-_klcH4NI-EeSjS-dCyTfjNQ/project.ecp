@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<org.eclipse.emf.emfstore.internal.common.model:Project xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ArchitectureKnowledgeModel="ArchitectureKnowledgeModel" xmlns:org.eclipse.emf.emfstore.internal.common.model="http://eclipse.org/emf/emfstore/common/model">
+  <modelElements xsi:type="ArchitectureKnowledgeModel:ArchitectureKnowledgeModel" xmi:id="_7kzKINI_EeS6U5i8Ntpc4Q">
+    <TechnologySolutions xmi:id="_8N7msNI_EeS6U5i8Ntpc4Q"/>
+  </modelElements>
+</org.eclipse.emf.emfstore.internal.common.model:Project>

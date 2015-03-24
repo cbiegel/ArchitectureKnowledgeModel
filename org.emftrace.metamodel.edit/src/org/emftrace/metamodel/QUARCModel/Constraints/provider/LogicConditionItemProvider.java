@@ -1,4 +1,8 @@
 /**
+ * <copyright>
+ * </copyright>
+ *
+ * $Id$
  */
 package org.emftrace.metamodel.QUARCModel.Constraints.provider;
 
@@ -40,6 +44,8 @@ public class LogicConditionItemProvider
 		ITreeItemContentProvider,
 		IItemLabelProvider,
 		IItemPropertySource {
+
+
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
@@ -180,7 +186,7 @@ public class LogicConditionItemProvider
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public String getText(Object object) {
@@ -188,7 +194,7 @@ public class LogicConditionItemProvider
 		String label = labelValue == null ? null : labelValue.toString();
 		return label == null || label.length() == 0 ?
 			getString("_UI_LogicCondition_type") :
-			getString("_UI_LogicCondition_type") + " " + label;
+			getString("_UI_LogicCondition_type") + " \"" + label+"\"";
 	}
 
 	/**
@@ -245,5 +251,6 @@ public class LogicConditionItemProvider
 				(ConstraintsPackage.Literals.LOGIC_CONDITION__BASE_CONDITIONS,
 				 ConstraintsFactory.eINSTANCE.createConstraint()));
 	}
+
 
 }

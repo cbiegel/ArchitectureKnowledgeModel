@@ -1,7 +1,10 @@
 /**
+ * <copyright>
+ * </copyright>
+ *
+ * $Id$
  */
 package org.emftrace.metamodel.QUARCModel.Constraints.provider;
-
 
 import java.util.Collection;
 import java.util.List;
@@ -15,7 +18,6 @@ import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
-
 import org.emftrace.metamodel.QUARCModel.Constraints.RegularExpressionTechnicalProperty;
 
 /**
@@ -32,6 +34,8 @@ public class RegularExpressionTechnicalPropertyItemProvider
 		ITreeItemContentProvider,
 		IItemLabelProvider,
 		IItemPropertySource {
+	
+
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
@@ -72,14 +76,14 @@ public class RegularExpressionTechnicalPropertyItemProvider
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public String getText(Object object) {
 		String label = ((RegularExpressionTechnicalProperty)object).getName();
 		return label == null || label.length() == 0 ?
 			getString("_UI_RegularExpressionTechnicalProperty_type") :
-			getString("_UI_RegularExpressionTechnicalProperty_type") + " " + label;
+			getString("_UI_RegularExpressionTechnicalProperty_type") + " \"" + label+"\"";
 	}
 
 	/**

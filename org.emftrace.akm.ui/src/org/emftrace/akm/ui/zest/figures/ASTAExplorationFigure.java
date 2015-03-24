@@ -2,28 +2,32 @@ package org.emftrace.akm.ui.zest.figures;
 
 import org.eclipse.draw2d.Graphics;
 import org.eclipse.draw2d.geometry.Rectangle;
+import org.emftrace.akm.ui.zest.nodes.ASTAExplorationGraphNode;
+import org.emftrace.metamodel.ArchitectureKnowledgeModel.ASTA;
 
+/**
+ * The figure used for {@link ASTAExplorationGraphNode}s.
+ * 
+ * @author Christopher Biegel
+ * 
+ */
 public class ASTAExplorationFigure extends AbstractDecoratorFigure {
-
-	// ===========================================================
-	// Constants
-	// ===========================================================
-
-	// ===========================================================
-	// Fields
-	// ===========================================================
 
 	// ===========================================================
 	// Constructors
 	// ===========================================================
 
-	public ASTAExplorationFigure(final String name, final boolean isExpandable) {
-		super(name, isExpandable);
+	/**
+	 * Constructor.
+	 * 
+	 * @param pName
+	 *            The name of this figure's {@link ASTA} element
+	 * @param pIsExpandable
+	 *            Whether the node of this figure is expandable or not
+	 */
+	public ASTAExplorationFigure(final String pName, final boolean pIsExpandable) {
+		super(pName, pIsExpandable);
 	}
-
-	// ===========================================================
-	// Getter & Setter
-	// ===========================================================
 
 	// ===========================================================
 	// Methods for/from SuperClass/Interfaces
@@ -40,12 +44,4 @@ public class ASTAExplorationFigure extends AbstractDecoratorFigure {
 
 		drawAndFillFigureBorderRectangle(g, r);
 	}
-
-	// ===========================================================
-	// Methods
-	// ===========================================================
-
-	// ===========================================================
-	// Inner and Anonymous Classes
-	// ===========================================================
 }

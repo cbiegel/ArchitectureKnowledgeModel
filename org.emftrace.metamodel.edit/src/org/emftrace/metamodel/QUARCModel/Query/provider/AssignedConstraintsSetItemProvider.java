@@ -1,4 +1,8 @@
 /**
+ * <copyright>
+ * </copyright>
+ *
+ * $Id$
  */
 package org.emftrace.metamodel.QUARCModel.Query.provider;
 
@@ -40,6 +44,8 @@ public class AssignedConstraintsSetItemProvider
 		ITreeItemContentProvider,
 		IItemLabelProvider,
 		IItemPropertySource {
+
+
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
@@ -156,12 +162,15 @@ public class AssignedConstraintsSetItemProvider
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public String getText(Object object) {
 		AssignedConstraintsSet assignedConstraintsSet = (AssignedConstraintsSet)object;
-		return getString("_UI_AssignedConstraintsSet_type") + " " + assignedConstraintsSet.isChanged();
+		if (assignedConstraintsSet.isChanged())
+			return getString("_UI_AssignedConstraintsSet_type") + " (modified)";
+		else
+			return getString("_UI_AssignedConstraintsSet_type") + " ";	
 	}
 
 	/**
@@ -202,5 +211,6 @@ public class AssignedConstraintsSetItemProvider
 				(QueryPackage.Literals.ASSIGNED_CONSTRAINTS_SET__ASSIGNED_CONSTRAINTS,
 				 ConstraintsFactory.eINSTANCE.createConstraint()));
 	}
+
 
 }

@@ -3811,15 +3811,19 @@
         <genEnumLiterals ecoreEnumLiteral="MetaModel.ecore#//ArchitectureKnowledgeModel/CapabilityType/OperationalCapability"/>
         <genEnumLiterals ecoreEnumLiteral="MetaModel.ecore#//ArchitectureKnowledgeModel/CapabilityType/CommercialCapability"/>
       </genEnums>
-      <genEnums typeSafeEnumCompatible="false" ecoreEnum="MetaModel.ecore#//ArchitectureKnowledgeModel/RelationType">
-        <genEnumLiterals ecoreEnumLiteral="MetaModel.ecore#//ArchitectureKnowledgeModel/RelationType/contains"/>
-        <genEnumLiterals ecoreEnumLiteral="MetaModel.ecore#//ArchitectureKnowledgeModel/RelationType/basedOn"/>
-        <genEnumLiterals ecoreEnumLiteral="MetaModel.ecore#//ArchitectureKnowledgeModel/RelationType/subFeature"/>
-        <genEnumLiterals ecoreEnumLiteral="MetaModel.ecore#//ArchitectureKnowledgeModel/RelationType/developmentFeatureEnvironment"/>
-        <genEnumLiterals ecoreEnumLiteral="MetaModel.ecore#//ArchitectureKnowledgeModel/RelationType/using"/>
-        <genEnumLiterals ecoreEnumLiteral="MetaModel.ecore#//ArchitectureKnowledgeModel/RelationType/embodies"/>
-        <genEnumLiterals ecoreEnumLiteral="MetaModel.ecore#//ArchitectureKnowledgeModel/RelationType/integrates"/>
-        <genEnumLiterals ecoreEnumLiteral="MetaModel.ecore#//ArchitectureKnowledgeModel/RelationType/implementedBy"/>
+      <genEnums typeSafeEnumCompatible="false" ecoreEnum="MetaModel.ecore#//ArchitectureKnowledgeModel/SolutionAndFeatureRelationType">
+        <genEnumLiterals ecoreEnumLiteral="MetaModel.ecore#//ArchitectureKnowledgeModel/SolutionAndFeatureRelationType/contains"/>
+        <genEnumLiterals ecoreEnumLiteral="MetaModel.ecore#//ArchitectureKnowledgeModel/SolutionAndFeatureRelationType/basedOn"/>
+        <genEnumLiterals ecoreEnumLiteral="MetaModel.ecore#//ArchitectureKnowledgeModel/SolutionAndFeatureRelationType/subFeature"/>
+        <genEnumLiterals ecoreEnumLiteral="MetaModel.ecore#//ArchitectureKnowledgeModel/SolutionAndFeatureRelationType/developmentFeatureEnvironment"/>
+        <genEnumLiterals ecoreEnumLiteral="MetaModel.ecore#//ArchitectureKnowledgeModel/SolutionAndFeatureRelationType/using"/>
+        <genEnumLiterals ecoreEnumLiteral="MetaModel.ecore#//ArchitectureKnowledgeModel/SolutionAndFeatureRelationType/embodies"/>
+        <genEnumLiterals ecoreEnumLiteral="MetaModel.ecore#//ArchitectureKnowledgeModel/SolutionAndFeatureRelationType/integrates"/>
+        <genEnumLiterals ecoreEnumLiteral="MetaModel.ecore#//ArchitectureKnowledgeModel/SolutionAndFeatureRelationType/implementedBy"/>
+      </genEnums>
+      <genEnums typeSafeEnumCompatible="false" ecoreEnum="MetaModel.ecore#//ArchitectureKnowledgeModel/ASTARelationType">
+        <genEnumLiterals ecoreEnumLiteral="MetaModel.ecore#//ArchitectureKnowledgeModel/ASTARelationType/solvedBy"/>
+        <genEnumLiterals ecoreEnumLiteral="MetaModel.ecore#//ArchitectureKnowledgeModel/ASTARelationType/improvedBy"/>
       </genEnums>
       <genDataTypes ecoreDataType="MetaModel.ecore#//ArchitectureKnowledgeModel/ID"/>
       <genClasses image="false" ecoreClass="MetaModel.ecore#//ArchitectureKnowledgeModel/ArchitectureKnowledgeModelBase">
@@ -3849,16 +3853,8 @@
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MetaModel.ecore#//ArchitectureKnowledgeModel/ASTACatalog/Description"/>
         <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MetaModel.ecore#//ArchitectureKnowledgeModel/ASTACatalog/ASTA"/>
       </genClasses>
-      <genClasses ecoreClass="MetaModel.ecore#//ArchitectureKnowledgeModel/ConceptualSolutionCatalog">
-        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MetaModel.ecore#//ArchitectureKnowledgeModel/ConceptualSolutionCatalog/Description"/>
-        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MetaModel.ecore#//ArchitectureKnowledgeModel/ConceptualSolutionCatalog/ConceptualSolution"/>
-      </genClasses>
-      <genClasses ecoreClass="MetaModel.ecore#//ArchitectureKnowledgeModel/DevelopmentEnvironmentCatalog">
-        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MetaModel.ecore#//ArchitectureKnowledgeModel/DevelopmentEnvironmentCatalog/Description"/>
-        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MetaModel.ecore#//ArchitectureKnowledgeModel/DevelopmentEnvironmentCatalog/DevelopmentEnvironment"/>
-      </genClasses>
       <genClasses ecoreClass="MetaModel.ecore#//ArchitectureKnowledgeModel/TechnologySolutions">
-        <genFeatures children="true" createChild="true" ecoreFeature="ecore:EReference MetaModel.ecore#//ArchitectureKnowledgeModel/TechnologySolutions/TechnologySolution"/>
+        <genFeatures children="true" createChild="false" ecoreFeature="ecore:EReference MetaModel.ecore#//ArchitectureKnowledgeModel/TechnologySolutions/TechnologySolution"/>
       </genClasses>
       <genClasses ecoreClass="MetaModel.ecore#//ArchitectureKnowledgeModel/TechnologySolution">
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MetaModel.ecore#//ArchitectureKnowledgeModel/TechnologySolution/Description"/>
@@ -3890,47 +3886,30 @@
       <genClasses ecoreClass="MetaModel.ecore#//ArchitectureKnowledgeModel/ConcernBasedDrawback">
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MetaModel.ecore#//ArchitectureKnowledgeModel/ConcernBasedDrawback/Concern"/>
       </genClasses>
-      <genClasses ecoreClass="MetaModel.ecore#//ArchitectureKnowledgeModel/ConceptualSolutions">
-        <genFeatures children="true" createChild="true" propertySortChoices="true"
-            ecoreFeature="ecore:EReference MetaModel.ecore#//ArchitectureKnowledgeModel/ConceptualSolutions/ConceptualSolutions"/>
-      </genClasses>
-      <genClasses ecoreClass="MetaModel.ecore#//ArchitectureKnowledgeModel/ConceptualSolution">
-        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MetaModel.ecore#//ArchitectureKnowledgeModel/ConceptualSolution/Description"/>
-        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MetaModel.ecore#//ArchitectureKnowledgeModel/ConceptualSolution/Variation"/>
-      </genClasses>
-      <genClasses ecoreClass="MetaModel.ecore#//ArchitectureKnowledgeModel/DevelopmentEnvironments">
-        <genFeatures children="true" createChild="true" propertySortChoices="true"
-            ecoreFeature="ecore:EReference MetaModel.ecore#//ArchitectureKnowledgeModel/DevelopmentEnvironments/DevelopmentEnvironments"/>
-      </genClasses>
-      <genClasses ecoreClass="MetaModel.ecore#//ArchitectureKnowledgeModel/DevelopmentEnvironment">
-        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MetaModel.ecore#//ArchitectureKnowledgeModel/DevelopmentEnvironment/Description"/>
-        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MetaModel.ecore#//ArchitectureKnowledgeModel/DevelopmentEnvironment/ProgrammingLanguage"/>
-      </genClasses>
       <genClasses ecoreClass="MetaModel.ecore#//ArchitectureKnowledgeModel/Relations">
         <genFeatures children="true" createChild="true" propertySortChoices="true"
-            ecoreFeature="ecore:EReference MetaModel.ecore#//ArchitectureKnowledgeModel/Relations/Relations"/>
+            ecoreFeature="ecore:EReference MetaModel.ecore#//ArchitectureKnowledgeModel/Relations/SolutionAndFeatureRelation"/>
+        <genFeatures children="true" createChild="true" propertySortChoices="true"
+            ecoreFeature="ecore:EReference MetaModel.ecore#//ArchitectureKnowledgeModel/Relations/ASTARelation"/>
       </genClasses>
-      <genClasses ecoreClass="MetaModel.ecore#//ArchitectureKnowledgeModel/Relation">
-        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MetaModel.ecore#//ArchitectureKnowledgeModel/Relation/Description"/>
+      <genClasses ecoreClass="MetaModel.ecore#//ArchitectureKnowledgeModel/TechnologySolutionRelation">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MetaModel.ecore#//ArchitectureKnowledgeModel/TechnologySolutionRelation/Description"/>
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
-            ecoreFeature="ecore:EReference MetaModel.ecore#//ArchitectureKnowledgeModel/Relation/SourceElement"/>
+            ecoreFeature="ecore:EReference MetaModel.ecore#//ArchitectureKnowledgeModel/TechnologySolutionRelation/SourceElement"/>
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
-            ecoreFeature="ecore:EReference MetaModel.ecore#//ArchitectureKnowledgeModel/Relation/TargetElement"/>
-        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MetaModel.ecore#//ArchitectureKnowledgeModel/Relation/Type"/>
+            ecoreFeature="ecore:EReference MetaModel.ecore#//ArchitectureKnowledgeModel/TechnologySolutionRelation/TargetElement"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MetaModel.ecore#//ArchitectureKnowledgeModel/TechnologySolutionRelation/Type"/>
+      </genClasses>
+      <genClasses ecoreClass="MetaModel.ecore#//ArchitectureKnowledgeModel/ASTARelation">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MetaModel.ecore#//ArchitectureKnowledgeModel/ASTARelation/Description"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference MetaModel.ecore#//ArchitectureKnowledgeModel/ASTARelation/SourceElement"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference MetaModel.ecore#//ArchitectureKnowledgeModel/ASTARelation/TargetElement"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MetaModel.ecore#//ArchitectureKnowledgeModel/ASTARelation/Type"/>
       </genClasses>
       <genClasses image="false" ecoreClass="MetaModel.ecore#//ArchitectureKnowledgeModel/RelationSourceType"/>
       <genClasses image="false" ecoreClass="MetaModel.ecore#//ArchitectureKnowledgeModel/RelationTargetType"/>
-      <nestedGenPackages prefix="TechnologySolutionCatalogPackage" disposableProviderFactory="true"
-          ecorePackage="MetaModel.ecore#//ArchitectureKnowledgeModel/TechnologySolutionCatalogPackage">
-        <genClasses ecoreClass="MetaModel.ecore#//ArchitectureKnowledgeModel/TechnologySolutionCatalogPackage/TechnologySolutionCatalogPackage">
-          <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MetaModel.ecore#//ArchitectureKnowledgeModel/TechnologySolutionCatalogPackage/TechnologySolutionCatalogPackage/TechnologySolutionCatalog"/>
-          <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MetaModel.ecore#//ArchitectureKnowledgeModel/TechnologySolutionCatalogPackage/TechnologySolutionCatalogPackage/TechnologyFeatureCatalog"/>
-          <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MetaModel.ecore#//ArchitectureKnowledgeModel/TechnologySolutionCatalogPackage/TechnologySolutionCatalogPackage/ASTACatalog"/>
-          <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MetaModel.ecore#//ArchitectureKnowledgeModel/TechnologySolutionCatalogPackage/TechnologySolutionCatalogPackage/RelationCatalog"/>
-          <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MetaModel.ecore#//ArchitectureKnowledgeModel/TechnologySolutionCatalogPackage/TechnologySolutionCatalogPackage/ConceptualSolutionCatalog"/>
-          <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MetaModel.ecore#//ArchitectureKnowledgeModel/TechnologySolutionCatalogPackage/TechnologySolutionCatalogPackage/DevelopmentEnvironmentCatalog"/>
-        </genClasses>
-      </nestedGenPackages>
     </nestedGenPackages>
     <nestedGenPackages prefix="ChangeModel" basePackage="org.emftrace.metamodel" disposableProviderFactory="true"
         ecorePackage="MetaModel.ecore#//ChangeModel">

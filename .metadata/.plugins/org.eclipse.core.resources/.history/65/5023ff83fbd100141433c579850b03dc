@@ -1,0 +1,57 @@
+/**
+ */
+package org.emftrace.metamodel.ArchitectureKnowledgeModel;
+
+import org.eclipse.emf.common.util.EList;
+
+/**
+ * <!-- begin-user-doc -->
+ * A representation of the model object '<em><b>Relations</b></em>'.
+ * <!-- end-user-doc -->
+ *
+ * <p>
+ * The following features are supported:
+ * <ul>
+ *   <li>{@link org.emftrace.metamodel.ArchitectureKnowledgeModel.Relations#getSolutionAndFeatureRelations <em>Solution And Feature Relations</em>}</li>
+ *   <li>{@link org.emftrace.metamodel.ArchitectureKnowledgeModel.Relations#getASTARelations <em>ASTA Relations</em>}</li>
+ * </ul>
+ * </p>
+ *
+ * @see org.emftrace.metamodel.ArchitectureKnowledgeModel.ArchitectureKnowledgeModelPackage#getRelations()
+ * @model
+ * @generated
+ */
+public interface Relations extends ArchitectureKnowledgeModelBase {
+	/**
+	 * Returns the value of the '<em><b>Solution And Feature Relations</b></em>' reference list.
+	 * The list contents are of type {@link org.emftrace.metamodel.ArchitectureKnowledgeModel.TechnologySolutionRelation}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Solution And Feature Relations</em>' reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Solution And Feature Relations</em>' reference list.
+	 * @see org.emftrace.metamodel.ArchitectureKnowledgeModel.ArchitectureKnowledgeModelPackage#getRelations_SolutionAndFeatureRelations()
+	 * @model
+	 * @generated
+	 */
+	EList<TechnologySolutionRelation> getSolutionAndFeatureRelations();
+
+	/**
+	 * Returns the value of the '<em><b>ASTA Relations</b></em>' reference list.
+	 * The list contents are of type {@link org.emftrace.metamodel.ArchitectureKnowledgeModel.TechnologySolutionRelation}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>ASTA Relations</em>' reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>ASTA Relations</em>' reference list.
+	 * @see org.emftrace.metamodel.ArchitectureKnowledgeModel.ArchitectureKnowledgeModelPackage#getRelations_ASTARelations()
+	 * @model
+	 * @generated
+	 */
+	EList<TechnologySolutionRelation> getASTARelations();
+
+} // Relations

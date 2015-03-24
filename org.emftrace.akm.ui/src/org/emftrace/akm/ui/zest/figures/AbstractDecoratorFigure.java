@@ -23,7 +23,8 @@ import org.eclipse.swt.graphics.Font;
 import org.emftrace.akm.ui.zest.figures.listeners.IExpandListener;
 
 /**
- * Abstract Figure for decorating a Zest GraphNode
+ * Abstract Figure for decorating a Zest GraphNode.<br>
+ * This class was taken from the QUARC project
  * 
  * @author Daniel Motschmann
  * @version 1.0

@@ -1,4 +1,8 @@
 /**
+ * <copyright>
+ * </copyright>
+ *
+ * $Id$
  */
 package org.emftrace.metamodel.QUARCModel.Constraints.provider;
 
@@ -8,7 +12,6 @@ import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
@@ -18,9 +21,7 @@ import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
-
 import org.emftrace.metamodel.QUARCModel.Constraints.BaseCondition;
-import org.emftrace.metamodel.QUARCModel.Constraints.BaseConditionOperators;
 import org.emftrace.metamodel.QUARCModel.Constraints.ConstraintsPackage;
 
 /**
@@ -37,6 +38,10 @@ public class BaseConditionItemProvider
 		ITreeItemContentProvider,
 		IItemLabelProvider,
 		IItemPropertySource {
+	
+	
+	
+
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
@@ -192,15 +197,17 @@ public class BaseConditionItemProvider
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public String getText(Object object) {
-		BaseConditionOperators labelValue = ((BaseCondition)object).getOperator();
-		String label = labelValue == null ? null : labelValue.toString();
-		return label == null || label.length() == 0 ?
-			getString("_UI_BaseCondition_type") :
-			getString("_UI_BaseCondition_type") + " " + label;
+		 BaseCondition baseCondition =  (BaseCondition)object;
+			
+		 String labelType = baseCondition.getOperator().getName();
+		 String labelValue = baseCondition.getValue() != null ? baseCondition.getValue() : "";
+		 String labelProperty =  baseCondition.getTechnicalProperty() != null  && baseCondition.getTechnicalProperty().getName() != null ? baseCondition.getTechnicalProperty().getName() : "";
+
+		return 	getString("_UI_BaseCondition_type") + " \" " + labelProperty + " " +labelType+ " "+ labelValue + "\""; 
 	}
 
 	/**

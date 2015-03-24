@@ -19,6 +19,7 @@ INDEX VERSION 1.126+C:\Users\Chris\workspace_EMFTrace\.metadata\.plugins\org.ecl
 1885880073.index
 3963179895.index
 2366211124.index
+3357390590.index
 2067672070.index
 847618560.index
 1049010757.index
@@ -46,6 +47,7 @@ INDEX VERSION 1.126+C:\Users\Chris\workspace_EMFTrace\.metadata\.plugins\org.ecl
 1254064805.index
 3569503860.index
 3881333162.index
+3466868809.index
 848431506.index
 1553243296.index
 3619908831.index
@@ -57,7 +59,6 @@ INDEX VERSION 1.126+C:\Users\Chris\workspace_EMFTrace\.metadata\.plugins\org.ecl
 2160072435.index
 3776425001.index
 2650077697.index
-3560709511.index
 2785666209.index
 3156813033.index
 1388145068.index

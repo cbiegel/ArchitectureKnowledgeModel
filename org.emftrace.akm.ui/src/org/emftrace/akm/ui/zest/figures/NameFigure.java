@@ -26,7 +26,8 @@ import org.emftrace.akm.ui.zest.figures.listeners.IExpandListener;
 
 /**
  * A Figure for the name and importance (local priority) of an Element. The Figure contains an icon
- * and observer for expanding and collapsing the node as well.
+ * and observer for expanding and collapsing the node as well.<br>
+ * This class was taken from the QUARC project.
  * 
  * @author Daniel Motschmann
  * @version 1.0

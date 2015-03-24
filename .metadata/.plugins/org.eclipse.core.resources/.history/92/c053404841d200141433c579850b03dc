@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+ <copyright>
+ </copyright>
+
+ $Id$
+-->
+
+<plugin>
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated MetaModel -->
+      <package
+            uri="LinkModel"
+            class="org.emftrace.metamodel.LinkModel.LinkModelPackage"
+            genModel="model/MetaModel.genmodel"/>
+   </extension>
+
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated MetaModel -->
+      <package
+            uri="RuleModel"
+            class="org.emftrace.metamodel.RuleModel.RuleModelPackage"
+            genModel="model/MetaModel.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated MetaModel -->
+      <package
+            uri="ReportModel"
+            class="org.emftrace.metamodel.ReportModel.ReportModelPackage"
+            genModel="model/MetaModel.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated MetaModel -->
+      <package
+            uri="FeatureModel"
+            class="org.emftrace.metamodel.FeatureModel.FeatureModelPackage"
+            genModel="model/MetaModel.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated MetaModel -->
+      <package
+            uri="OWLModel"
+            class="org.emftrace.metamodel.OWLModel.OWLModelPackage"
+            genModel="model/MetaModel.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated MetaModel -->
+      <package
+            uri="URNModel"
+            class="org.emftrace.metamodel.URNModel.URNModelPackage"
+            genModel="model/MetaModel.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.extension_parser">
+      <!-- @generated MetaModel -->
+      <parser
+            type="urnmodel"
+            class="org.emftrace.metamodel.URNModel.util.URNModelResourceFactoryImpl"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated MetaModel -->
+      <package
+            uri="UMLModel"
+            class="org.emftrace.metamodel.UMLModel.UMLModelPackage"
+            genModel="model/MetaModel.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.extension_parser">
+      <!-- @generated MetaModel -->
+      <parser
+            type="umlmodel"
+            class="org.emftrace.metamodel.UMLModel.util.UMLModelResourceFactoryImpl"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <package
+            uri="BPMN2Model"
+            class="org.emftrace.metamodel.BPMN2Model.BPMN2ModelPackage"
+            genModel="model/MetaModel.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.extension_parser">
+      <!-- @generated MetaModel -->
+      <parser
+            type="bpmn2model"
+            class="org.emftrace.metamodel.BPMN2Model.util.BPMN2ModelResourceFactoryImpl"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated MetaModel -->
+      <package
+            uri="ChangeModel"
+            class="org.emftrace.metamodel.ChangeModel.ChangeModelPackage"
+            genModel="model/MetaModel.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- manually added  -->
+      <package
+            uri="EMFfitModel"
+            class="org.emftrace.metamodel.EMFfitModel.EMFfitModelPackage"
+            genModel="model/MetaModel.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- manually added  -->
+      <package
+            uri="Constraints"
+            class="org.emftrace.metamodel.QUARCModel.Constraints.ConstraintsPackage"
+            genModel="model/MetaModel.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- manually added -->
+      <package
+            uri="GSS"
+            class="org.emftrace.metamodel.QUARCModel.GSS.GSSPackage"
+            genModel="model/MetaModel.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.extension_parser">
+      <!-- @generated MetaModel -->
+      <parser
+            type="gss"
+            class="org.emftrace.metamodel.QUARCModel.GSS.util.GSSResourceFactoryImpl"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- manually added -->
+      <package
+            uri="Query"
+            class="org.emftrace.metamodel.QUARCModel.Query.QueryPackage"
+            genModel="model/MetaModel.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.extension_parser">
+      <!-- @generated MetaModel -->
+      <parser
+            type="query"
+            class="org.emftrace.metamodel.QUARCModel.Query.util.QueryResourceFactoryImpl"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- manually added -->
+      <package
+            uri="Packages"
+            class="org.emftrace.metamodel.QUARCModel.Packages.PackagesPackage"
+            genModel="model/MetaModel.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.extension_parser">
+      <!-- @generated MetaModel -->
+      <parser
+            type="packages"
+            class="org.emftrace.metamodel.QUARCModel.Packages.util.PackagesResourceFactoryImpl"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated MetaModel -->
+      <package
+            uri="ArchitectureKnowledgeModel"
+            class="org.emftrace.metamodel.ArchitectureKnowledgeModel.ArchitectureKnowledgeModelPackage"
+            genModel="model/MetaModel.genmodel"/>
+   </extension>
+
+null
+</plugin>

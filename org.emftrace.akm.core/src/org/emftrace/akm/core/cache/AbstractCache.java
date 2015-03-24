@@ -3,6 +3,9 @@ package org.emftrace.akm.core.cache;
 import org.eclipse.emf.ecore.EObject;
 import org.emftrace.core.accesslayer.AccessLayer;
 
+/**
+ * This class was taken from the QUARC project
+ */
 public abstract class AbstractCache {
 
 	/**

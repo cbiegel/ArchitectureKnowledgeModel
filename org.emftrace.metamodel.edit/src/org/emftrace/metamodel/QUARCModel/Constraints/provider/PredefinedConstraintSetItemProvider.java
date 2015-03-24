@@ -1,4 +1,8 @@
 /**
+ * <copyright>
+ * </copyright>
+ *
+ * $Id$
  */
 package org.emftrace.metamodel.QUARCModel.Constraints.provider;
 
@@ -39,6 +43,8 @@ public class PredefinedConstraintSetItemProvider
 		ITreeItemContentProvider,
 		IItemLabelProvider,
 		IItemPropertySource {
+	
+
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
@@ -155,14 +161,14 @@ public class PredefinedConstraintSetItemProvider
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public String getText(Object object) {
 		String label = ((PredefinedConstraintSet)object).getName();
 		return label == null || label.length() == 0 ?
 			getString("_UI_PredefinedConstraintSet_type") :
-			getString("_UI_PredefinedConstraintSet_type") + " " + label;
+			getString("_UI_PredefinedConstraintSet_type") + " \"" + label+"\"";
 	}
 
 	/**
@@ -205,4 +211,5 @@ public class PredefinedConstraintSetItemProvider
 				 ConstraintsFactory.eINSTANCE.createConstraint()));
 	}
 
+	
 }

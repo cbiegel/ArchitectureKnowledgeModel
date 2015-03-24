@@ -7,7 +7,8 @@ import org.emftrace.core.accesslayer.AccessLayer;
 import org.emftrace.metamodel.ArchitectureKnowledgeModel.ArchitectureKnowledgeModel;
 
 /**
- * a manager for the used caches
+ * a manager for the used caches<br>
+ * This class was taken from the QUARC project
  * 
  * @author Daniel Motschmann
  * @version 1.0

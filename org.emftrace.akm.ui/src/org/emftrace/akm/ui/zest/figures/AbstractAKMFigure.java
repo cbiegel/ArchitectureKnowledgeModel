@@ -6,7 +6,15 @@ import org.eclipse.draw2d.MouseListener;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.swt.graphics.Color;
 import org.emftrace.akm.ui.zest.figures.listeners.IExpandListener;
+import org.emftrace.akm.ui.zest.nodes.AbstractAKMGraphNode;
 
+/**
+ * Abstract class for Figure elements that are used for {@link AbstractAKMGraphNode}s.<br>
+ * This class contains parts of the QUARC project and was modified for the AKM project.
+ * 
+ * @author Christopher Biegel
+ * 
+ */
 public abstract class AbstractAKMFigure extends Figure {
 
 	// ===========================================================
@@ -14,33 +22,14 @@ public abstract class AbstractAKMFigure extends Figure {
 	// ===========================================================
 
 	/**
-	 * the height of the whole Figure
+	 * The height of the whole Figure
 	 */
 	private int mHeight;
 
 	/**
-	 * the width of the whole Figure
+	 * The width of the whole Figure
 	 */
 	private int mWidth;
-
-	// ===========================================================
-	// Constructors
-	// ===========================================================
-
-	/**
-	 * 
-	 * the constructor
-	 * 
-	 * @param bodyDecoratorFigure
-	 *            the AbstractDecoratorFigure for the body
-	 * @param footDecoratorFigure
-	 *            the Figure for the decoration of the bottom
-	 * @param headDecoratorFigure
-	 *            the Figure for the decoration of the top
-	 */
-	public AbstractAKMFigure() {
-
-	}
 
 	// ===========================================================
 	// Getter & Setter
@@ -64,71 +53,82 @@ public abstract class AbstractAKMFigure extends Figure {
 	// Methods for/from SuperClass/Interfaces
 	// ===========================================================
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.eclipse.draw2d.Figure#paintFigure(org.eclipse.draw2d.Graphics)
-	 */
 	@Override
 	protected void paintFigure(final Graphics g) {
 		super.paintFigure(g);
-		// the height and weight for the figure could only be accessed here
-		// after the figure it painted!
 		Rectangle r = getClientArea();
 		mHeight = r.height;
 		mWidth = r.width;
-
 	}
+
+	@Override
+	abstract public void addMouseListener(final MouseListener listener);
+
+	@Override
+	abstract public void removeMouseListener(final MouseListener listener);
 
 	// ===========================================================
 	// Methods
 	// ===========================================================
 
+	/**
+	 * Highlight the figure after it was selected
+	 */
 	abstract public void highlight();
 
+	/**
+	 * Unhighlight the figure after it was deselected
+	 */
 	abstract public void unhighlight();
 
+	/**
+	 * Set the highlight color
+	 * 
+	 * @param pColor
+	 *            The Color used to highlight this figure
+	 */
 	abstract public void setHighlightColor(final Color pColor);
 
+	/**
+	 * @return True, if this figure is expanded. Otherwise, returns false.
+	 */
 	abstract public boolean isExpanded();
 
+	/**
+	 * Set the state of this figure to be expanded
+	 */
 	abstract public void setIsExpanded();
 
+	/**
+	 * Set the state of this figure to be collapsed
+	 * 
+	 * @param pApplyLayout
+	 *            If true, calls the applyLayout()-method of the super-class after setting the state
+	 *            to collapsed.
+	 */
 	abstract public void setIsCollapsed(final boolean pApplyLayout);
 
+	/**
+	 * Set the color of the figure's label
+	 * 
+	 * @param pColor
+	 *            The Color of the figure's label
+	 */
 	abstract public void setLabelColor(final Color pColor);
 
-	/*
-	 * (non-Javadoc)
+	/**
+	 * Adds the specified {@link IExpandListener}
 	 * 
-	 * @see org.eclipse.draw2d.Figure#addMouseListener(org.eclipse.draw2d.MouseListener)
+	 * @param pExpandListener
+	 *            The IExpandListener to be added
 	 */
-	@Override
-	abstract public void addMouseListener(final MouseListener listener);
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.eclipse.draw2d.Figure#removeMouseListener(org.eclipse.draw2d.MouseListener)
-	 */
-	@Override
-	abstract public void removeMouseListener(final MouseListener listener);
+	abstract public void addExpandListener(final IExpandListener pExpandListener);
 
 	/**
-	 * adds the specified ExpandListener
+	 * Removes the specified {@link IExpandListener}
 	 * 
-	 * @param showHideListener
+	 * @param pExpandListener
+	 *            The IExpandListener to be removed
 	 */
-	abstract public void addExpandListener(final IExpandListener expandListener);
-
-	/**
-	 * removes the specified ExpandListener
-	 * 
-	 * @param showHideListener
-	 */
-	abstract public void removeExpandListener(final IExpandListener expandListener);
-
-	// ===========================================================
-	// Inner and Anonymous Classes
-	// ===========================================================
+	abstract public void removeExpandListener(final IExpandListener pExpandListener);
 }

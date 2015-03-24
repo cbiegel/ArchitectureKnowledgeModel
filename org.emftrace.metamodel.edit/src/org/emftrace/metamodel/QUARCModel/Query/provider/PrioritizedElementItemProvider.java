@@ -1,4 +1,8 @@
 /**
+ * <copyright>
+ * </copyright>
+ *
+ * $Id$
  */
 package org.emftrace.metamodel.QUARCModel.Query.provider;
 
@@ -19,6 +23,7 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
+import org.emftrace.metamodel.QUARCModel.GSS.Element;
 import org.emftrace.metamodel.QUARCModel.Query.PrioritizedElement;
 import org.emftrace.metamodel.QUARCModel.Query.QueryPackage;
 
@@ -36,6 +41,7 @@ public class PrioritizedElementItemProvider
 		ITreeItemContentProvider,
 		IItemLabelProvider,
 		IItemPropertySource {
+	
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
@@ -122,14 +128,15 @@ public class PrioritizedElementItemProvider
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((PrioritizedElement)object).getGlobalPriority();
-		return label == null || label.length() == 0 ?
-			getString("_UI_PrioritizedElement_type") :
-			getString("_UI_PrioritizedElement_type") + " " + label;
+	
+		String globalPriorityStr = ((PrioritizedElement)object).getGlobalPriority();
+		Element element = ((PrioritizedElement)object).getElement();
+		String goalNameStr = element != null? "\""+element.getName()+"\"" : "none";
+		return 	getString("_UI_PrioritizedElement_type") + " " + goalNameStr + " " +" ("+globalPriorityStr+")";
 	}
 
 	/**
@@ -162,5 +169,5 @@ public class PrioritizedElementItemProvider
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 	}
-
+	
 }

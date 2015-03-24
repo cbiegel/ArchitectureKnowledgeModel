@@ -17,7 +17,8 @@ import org.eclipse.zest.core.widgets.IContainer;
 
 /**
  * A GraphNode used by the GSSGraphLayoutAlgorithm to draw a caption for a GSS layer or to draw a
- * separator between two layers
+ * separator between two layers.<br>
+ * This class was taken from the QUARC project
  * 
  * @author Daniel Motschmann
  * 

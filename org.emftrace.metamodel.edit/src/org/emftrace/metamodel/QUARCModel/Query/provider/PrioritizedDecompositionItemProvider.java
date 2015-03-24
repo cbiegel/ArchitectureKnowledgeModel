@@ -1,8 +1,12 @@
 /**
+ * <copyright>
+ * </copyright>
+ *
+ * $Id$
  */
 package org.emftrace.metamodel.QUARCModel.Query.provider;
 
-
+import org.emftrace.metamodel.QUARCModel.GSS.Element;
 import java.util.Collection;
 import java.util.List;
 
@@ -19,6 +23,7 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
+import org.emftrace.metamodel.QUARCModel.GSS.Decomposition;
 import org.emftrace.metamodel.QUARCModel.Query.PrioritizedDecomposition;
 import org.emftrace.metamodel.QUARCModel.Query.QueryPackage;
 
@@ -36,6 +41,7 @@ public class PrioritizedDecompositionItemProvider
 		ITreeItemContentProvider,
 		IItemLabelProvider,
 		IItemPropertySource {
+
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
@@ -122,13 +128,27 @@ public class PrioritizedDecompositionItemProvider
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((PrioritizedDecomposition)object).getWeight();
-		return label == null || label.length() == 0 ?
-			getString("_UI_PrioritizedDecomposition_type") :
+		Decomposition decomposition = ((PrioritizedDecomposition)object).getDecompostion();
+		String label = "";
+		if (decomposition != null ){
+		Element source = decomposition.getSource();
+		String sourceName = source == null ? "" : source.getName();
+		Element target = decomposition.getTarget();
+		String targetName = target == null ? "" : target.getName();
+		
+		label += "\"" + (sourceName == null || sourceName.isEmpty() && source != null ? source.eClass().getName() : sourceName) + "\" ";
+
+		String weight = ((PrioritizedDecomposition)object).getWeight();
+		if (weight!= null)
+			label+= " ("+weight+")";
+		
+		label += "-> \""+ (targetName == null || targetName.isEmpty() && target != null ? target.eClass().getName() : targetName) + "\"";
+		}
+		return 
 			getString("_UI_PrioritizedDecomposition_type") + " " + label;
 	}
 
@@ -162,5 +182,4 @@ public class PrioritizedDecompositionItemProvider
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 	}
-
 }

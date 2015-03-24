@@ -1,0 +1,166 @@
+/**
+ */
+package org.emftrace.metamodel.ArchitectureKnowledgeModel.impl;
+
+import java.util.Collection;
+
+import org.eclipse.emf.common.util.EList;
+
+import org.eclipse.emf.ecore.EClass;
+
+import org.eclipse.emf.ecore.util.EObjectResolvingEList;
+
+import org.emftrace.metamodel.ArchitectureKnowledgeModel.ArchitectureKnowledgeModelPackage;
+import org.emftrace.metamodel.ArchitectureKnowledgeModel.Relations;
+import org.emftrace.metamodel.ArchitectureKnowledgeModel.TechnologySolutionRelation;
+
+/**
+ * <!-- begin-user-doc -->
+ * An implementation of the model object '<em><b>Relations</b></em>'.
+ * <!-- end-user-doc -->
+ * <p>
+ * The following features are implemented:
+ * <ul>
+ *   <li>{@link org.emftrace.metamodel.ArchitectureKnowledgeModel.impl.RelationsImpl#getSolutionAndFeatureRelations <em>Solution And Feature Relations</em>}</li>
+ *   <li>{@link org.emftrace.metamodel.ArchitectureKnowledgeModel.impl.RelationsImpl#getASTARelations <em>ASTA Relations</em>}</li>
+ * </ul>
+ * </p>
+ *
+ * @generated
+ */
+public class RelationsImpl extends ArchitectureKnowledgeModelBaseImpl implements Relations {
+	/**
+	 * The cached value of the '{@link #getSolutionAndFeatureRelations() <em>Solution And Feature Relations</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getSolutionAndFeatureRelations()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<TechnologySolutionRelation> solutionAndFeatureRelations;
+
+	/**
+	 * The cached value of the '{@link #getASTARelations() <em>ASTA Relations</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getASTARelations()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<TechnologySolutionRelation> astaRelations;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected RelationsImpl() {
+		super();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	protected EClass eStaticClass() {
+		return ArchitectureKnowledgeModelPackage.Literals.RELATIONS;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<TechnologySolutionRelation> getSolutionAndFeatureRelations() {
+		if (solutionAndFeatureRelations == null) {
+			solutionAndFeatureRelations = new EObjectResolvingEList<TechnologySolutionRelation>(TechnologySolutionRelation.class, this, ArchitectureKnowledgeModelPackage.RELATIONS__SOLUTION_AND_FEATURE_RELATIONS);
+		}
+		return solutionAndFeatureRelations;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<TechnologySolutionRelation> getASTARelations() {
+		if (astaRelations == null) {
+			astaRelations = new EObjectResolvingEList<TechnologySolutionRelation>(TechnologySolutionRelation.class, this, ArchitectureKnowledgeModelPackage.RELATIONS__ASTA_RELATIONS);
+		}
+		return astaRelations;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+		switch (featureID) {
+			case ArchitectureKnowledgeModelPackage.RELATIONS__SOLUTION_AND_FEATURE_RELATIONS:
+				return getSolutionAndFeatureRelations();
+			case ArchitectureKnowledgeModelPackage.RELATIONS__ASTA_RELATIONS:
+				return getASTARelations();
+		}
+		return super.eGet(featureID, resolve, coreType);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@SuppressWarnings("unchecked")
+	@Override
+	public void eSet(int featureID, Object newValue) {
+		switch (featureID) {
+			case ArchitectureKnowledgeModelPackage.RELATIONS__SOLUTION_AND_FEATURE_RELATIONS:
+				getSolutionAndFeatureRelations().clear();
+				getSolutionAndFeatureRelations().addAll((Collection<? extends TechnologySolutionRelation>)newValue);
+				return;
+			case ArchitectureKnowledgeModelPackage.RELATIONS__ASTA_RELATIONS:
+				getASTARelations().clear();
+				getASTARelations().addAll((Collection<? extends TechnologySolutionRelation>)newValue);
+				return;
+		}
+		super.eSet(featureID, newValue);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void eUnset(int featureID) {
+		switch (featureID) {
+			case ArchitectureKnowledgeModelPackage.RELATIONS__SOLUTION_AND_FEATURE_RELATIONS:
+				getSolutionAndFeatureRelations().clear();
+				return;
+			case ArchitectureKnowledgeModelPackage.RELATIONS__ASTA_RELATIONS:
+				getASTARelations().clear();
+				return;
+		}
+		super.eUnset(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public boolean eIsSet(int featureID) {
+		switch (featureID) {
+			case ArchitectureKnowledgeModelPackage.RELATIONS__SOLUTION_AND_FEATURE_RELATIONS:
+				return solutionAndFeatureRelations != null && !solutionAndFeatureRelations.isEmpty();
+			case ArchitectureKnowledgeModelPackage.RELATIONS__ASTA_RELATIONS:
+				return astaRelations != null && !astaRelations.isEmpty();
+		}
+		return super.eIsSet(featureID);
+	}
+
+} //RelationsImpl

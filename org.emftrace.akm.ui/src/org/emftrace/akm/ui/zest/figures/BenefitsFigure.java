@@ -4,35 +4,34 @@ import java.util.List;
 
 import org.eclipse.draw2d.GridData;
 import org.eclipse.draw2d.Label;
+import org.emftrace.akm.ui.zest.nodes.ASTAGraphNode;
 import org.emftrace.metamodel.ArchitectureKnowledgeModel.Benefit;
 
+/**
+ * A Figure used for {@link ASTAGraphNode}s.
+ * 
+ * @author Christopher Biegel
+ * 
+ */
 public class BenefitsFigure extends AbstractASTAFigure {
-
-	// ===========================================================
-	// Constants
-	// ===========================================================
-
-	// ===========================================================
-	// Fields
-	// ===========================================================
 
 	// ===========================================================
 	// Constructors
 	// ===========================================================
-	public BenefitsFigure(final List<Benefit> pBenefitsList) {
 
+	/**
+	 * The constructor
+	 * 
+	 * @param pBenefitsList
+	 *            A list of all {@link Benefit} elements of this figure
+	 */
+	public BenefitsFigure(final List<Benefit> pBenefitsList) {
 		super();
 
 		Label titleLabel = getTitleLabel();
-
 		mBorderFigure.add(titleLabel);
-
 		addBenefits(pBenefitsList);
 	}
-
-	// ===========================================================
-	// Getter & Setter
-	// ===========================================================
 
 	// ===========================================================
 	// Methods for/from SuperClass/Interfaces
@@ -57,6 +56,13 @@ public class BenefitsFigure extends AbstractASTAFigure {
 	// Methods
 	// ===========================================================
 
+	/**
+	 * Adds a list of {@link Benefit}s to this figure.<br>
+	 * All {@link Benefit} elements in this list will be added to this figure
+	 * 
+	 * @param pBenefitsList
+	 *            The list of Benefits to add to this figure.
+	 */
 	private void addBenefits(final List<Benefit> pBenefitsList) {
 
 		for (Benefit benefit : pBenefitsList) {
@@ -72,8 +78,4 @@ public class BenefitsFigure extends AbstractASTAFigure {
 			mBorderFigure.add(benefitLabel);
 		}
 	}
-
-	// ===========================================================
-	// Inner and Anonymous Classes
-	// ===========================================================
 }

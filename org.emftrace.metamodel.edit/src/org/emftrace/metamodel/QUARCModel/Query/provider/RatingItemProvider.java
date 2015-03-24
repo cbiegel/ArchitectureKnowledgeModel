@@ -1,8 +1,12 @@
 /**
+ * <copyright>
+ * </copyright>
+ *
+ * $Id$
  */
 package org.emftrace.metamodel.QUARCModel.Query.provider;
 
-
+import org.emftrace.metamodel.QUARCModel.GSS.Element;
 import java.util.Collection;
 import java.util.List;
 
@@ -20,11 +24,8 @@ import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
-
 import org.emftrace.metamodel.LinkModel.provider.MetaModelEditPlugin;
-
 import org.emftrace.metamodel.QUARCModel.GSS.provider.RelationItemProvider;
-
 import org.emftrace.metamodel.QUARCModel.Query.QueryPackage;
 import org.emftrace.metamodel.QUARCModel.Query.Rating;
 
@@ -42,6 +43,8 @@ public class RatingItemProvider
 		ITreeItemContentProvider,
 		IItemLabelProvider,
 		IItemPropertySource {
+
+
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
@@ -105,14 +108,23 @@ public class RatingItemProvider
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((Rating)object).getWeight();
-		return label == null || label.length() == 0 ?
-			getString("_UI_Rating_type") :
-			getString("_UI_Rating_type") + " " + label;
+		
+		Element source = ((Rating)object).getSource();
+		String sourceName = source == null ? "" : source.getName();
+		Element target = ((Rating)object).getTarget();
+		String targetName = target == null ? "" : target.getName();
+		
+		String label = "\"" + (sourceName == null || sourceName.isEmpty() && source != null ? source.eClass().getName() : sourceName) + "\" ";
+
+		Object weight = ((Rating)object).getWeight();
+		label += "-(" + (weight == null ? "" : weight.toString()) + ")";
+		
+		label += "-> \""+ (targetName == null || targetName.isEmpty() && target != null ? target.eClass().getName() : targetName) + "\"";
+		return getString("_UI_Rating_type")  +label;
 	}
 
 	/**
@@ -156,5 +168,6 @@ public class RatingItemProvider
 	public ResourceLocator getResourceLocator() {
 		return MetaModelEditPlugin.INSTANCE;
 	}
+
 
 }

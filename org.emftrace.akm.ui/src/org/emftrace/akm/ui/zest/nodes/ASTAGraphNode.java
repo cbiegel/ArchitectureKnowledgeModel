@@ -9,8 +9,7 @@ import org.emftrace.metamodel.ArchitectureKnowledgeModel.ASTA;
 
 /**
  * A GraphNode for representing an ASTA element with a custom figure (ElementFigure).<br>
- * This class is abstract and should be inherited by the specific ASTA-typed nodes (Drawbacks &
- * Benefits).
+ * This GraphNode is used for the default view and Feature Exploration View.
  * 
  * @author Christopher Biegel
  */
@@ -20,8 +19,14 @@ public class ASTAGraphNode extends AbstractAKMGraphNode {
 	// Fields
 	// ===========================================================
 
+	/**
+	 * The title of this graph node ("Benefits" or "Drawbacks")
+	 */
 	private String mTitle;
 
+	/**
+	 * The figure of this graph node
+	 */
 	private AbstractASTAFigure mFigure;
 
 	// ===========================================================
@@ -62,15 +67,23 @@ public class ASTAGraphNode extends AbstractAKMGraphNode {
 	// Getter & Setter
 	// ===========================================================
 
+	/**
+	 * @return The title of this graph node
+	 */
 	public String getTitle() {
-
 		return mTitle;
 	}
 
+	/**
+	 * @return The amount of {@link ASTA} elements in this graph node
+	 */
 	public int getContentCount() {
 		return mFigure.getContentsCount();
 	}
 
+	/**
+	 * @return A list that contains all {@link ASTA} elements in this graph node
+	 */
 	public List<ASTA> getASTAList() {
 		return mFigure.getContents();
 	}

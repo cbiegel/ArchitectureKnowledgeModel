@@ -1,7 +1,10 @@
 /**
+ * <copyright>
+ * </copyright>
+ *
+ * $Id$
  */
 package org.emftrace.metamodel.QUARCModel.Query.provider;
-
 
 import java.util.Collection;
 import java.util.List;
@@ -20,7 +23,6 @@ import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
-
 import org.emftrace.metamodel.QUARCModel.Query.GSSQuery;
 import org.emftrace.metamodel.QUARCModel.Query.QueryFactory;
 import org.emftrace.metamodel.QUARCModel.Query.QueryPackage;
@@ -39,6 +41,8 @@ public class GSSQueryItemProvider
 		ITreeItemContentProvider,
 		IItemLabelProvider,
 		IItemPropertySource {
+
+
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
@@ -481,14 +485,16 @@ public class GSSQueryItemProvider
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((GSSQuery)object).getName();
-		return label == null || label.length() == 0 ?
-			getString("_UI_GSSQuery_type") :
-			getString("_UI_GSSQuery_type") + " " + label;
+		String name = ((GSSQuery)object).getName();
+		String time  = ((GSSQuery)object).getTimestamp();
+		if (time == null){
+			time = "never";
+		}
+		return	getString("_UI_GSSQuery_type") + " \"" + name+"\" (last execution: "+ time+")";
 	}
 
 	/**
@@ -564,4 +570,5 @@ public class GSSQueryItemProvider
 				 QueryFactory.eINSTANCE.createSelectedGoalsPriorities()));
 	}
 
+	
 }

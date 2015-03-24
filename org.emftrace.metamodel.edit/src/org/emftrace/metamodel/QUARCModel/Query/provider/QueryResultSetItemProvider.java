@@ -1,4 +1,8 @@
 /**
+ * <copyright>
+ * </copyright>
+ *
+ * $Id$
  */
 package org.emftrace.metamodel.QUARCModel.Query.provider;
 
@@ -20,9 +24,13 @@ import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
+import org.emftrace.metamodel.QUARCModel.Query.AssignedConstraintsSet;
+import org.emftrace.metamodel.QUARCModel.Query.GSSQuery;
 import org.emftrace.metamodel.QUARCModel.Query.QueryFactory;
 import org.emftrace.metamodel.QUARCModel.Query.QueryPackage;
 import org.emftrace.metamodel.QUARCModel.Query.QueryResultSet;
+import org.emftrace.metamodel.QUARCModel.Query.SelectedGoalsSet;
+import org.emftrace.metamodel.QUARCModel.Query.SelectedPrinciplesSet;
 
 /**
  * This is the item provider adapter for a {@link org.emftrace.metamodel.QUARCModel.Query.QueryResultSet} object.
@@ -38,6 +46,8 @@ public class QueryResultSetItemProvider
 		ITreeItemContentProvider,
 		IItemLabelProvider,
 		IItemPropertySource {
+
+
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
@@ -155,11 +165,40 @@ public class QueryResultSetItemProvider
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public String getText(Object object) {
-		return getString("_UI_QueryResultSet_type");
+		QueryResultSet resultSet = (QueryResultSet) object;
+		GSSQuery query = (GSSQuery) resultSet.eContainer();
+		boolean obsolete = false;
+		if (query != null){
+			
+			obsolete = obsolete || query.isChanged();
+			
+			AssignedConstraintsSet assignedConstraintsSet = query.getAssignedConstraintsSet();
+			SelectedGoalsSet selectedGoalsSet = query.getSelectedGoalsSet();
+			SelectedPrinciplesSet selectedPrinciplesSet = query.getSelectedPrinciplesSet();
+
+			
+			if (assignedConstraintsSet!= null)
+				obsolete = obsolete || assignedConstraintsSet.isChanged();
+			
+			if (selectedGoalsSet!= null)
+				obsolete = obsolete || selectedGoalsSet.isChanged();
+			
+			if (selectedPrinciplesSet!= null)
+				obsolete = obsolete || selectedPrinciplesSet.isChanged();
+			
+		}
+			
+
+		
+		
+		if (obsolete)
+			return getString("_UI_QueryResultSet_type")+ " (obsolete)";
+		else
+			return getString("_UI_QueryResultSet_type");
 	}
 
 	/**
@@ -204,4 +243,5 @@ public class QueryResultSetItemProvider
 				 QueryFactory.eINSTANCE.createRating()));
 	}
 
+	
 }

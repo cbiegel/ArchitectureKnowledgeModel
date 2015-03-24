@@ -1,22 +1,22 @@
 /**
+ * <copyright>
+ * </copyright>
+ *
+ * $Id$
  */
 package org.emftrace.metamodel.QUARCModel.Constraints.provider;
-
 
 import java.util.Collection;
 import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
-
-import org.emftrace.metamodel.QUARCModel.Constraints.BaseConditionOperators;
 import org.emftrace.metamodel.QUARCModel.Constraints.Constraint;
 
 /**
@@ -33,6 +33,8 @@ public class ConstraintItemProvider
 		ITreeItemContentProvider,
 		IItemLabelProvider,
 		IItemPropertySource {
+
+
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
@@ -73,15 +75,19 @@ public class ConstraintItemProvider
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public String getText(Object object) {
-		BaseConditionOperators labelValue = ((Constraint)object).getOperator();
-		String label = labelValue == null ? null : labelValue.toString();
-		return label == null || label.length() == 0 ?
-			getString("_UI_Constraint_type") :
-			getString("_UI_Constraint_type") + " " + label;
+
+
+	Constraint constraint =  (Constraint)object;
+		
+	 String labelType = constraint.getOperator().getName();
+	 String labelValue = constraint.getValue() != null ? constraint.getValue() : "";
+	 String labelProperty =  constraint.getTechnicalProperty() != null  && constraint.getTechnicalProperty().getName() != null ? constraint.getTechnicalProperty().getName() : "";
+
+	return 	getString("_UI_Constraint_type") + " \" " + labelProperty + " " +labelType+ " "+ labelValue + "\""; 
 	}
 
 	/**

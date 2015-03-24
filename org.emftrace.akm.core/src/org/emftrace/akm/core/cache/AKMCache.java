@@ -1,20 +1,19 @@
 package org.emftrace.akm.core.cache;
 
-import java.util.HashSet;
-import java.util.Set;
-
 import org.eclipse.emf.common.util.EList;
 import org.emftrace.core.accesslayer.AccessLayer;
 import org.emftrace.metamodel.ArchitectureKnowledgeModel.ArchitectureKnowledgeModel;
 import org.emftrace.metamodel.ArchitectureKnowledgeModel.TechnologySolution;
 import org.emftrace.metamodel.ArchitectureKnowledgeModel.TechnologySolutions;
 
+/**
+ * The main cache<br>
+ * This class contains parts of the QUARC project and was modified for the AKM project.
+ * 
+ * @author Christopher Biegel
+ * 
+ */
 public class AKMCache extends AbstractCache {
-
-	/**
-	 * A set to cache TechnologySolution objects
-	 */
-	private Set<TechnologySolution> mTechnologySolutionSet;
 
 	public AKMCache(final ArchitectureKnowledgeModel pInput, final AccessLayer pAccessLayer) {
 		super(pInput, pAccessLayer);
@@ -23,13 +22,6 @@ public class AKMCache extends AbstractCache {
 	@Override
 	public void initCache() {
 
-		mTechnologySolutionSet = new HashSet<TechnologySolution>();
-
-		// for (ApplicableElement applicableElement : getQueryResultSet().getApplicableElements()) {
-		// addApplicableElementToCache(applicableElement);
-		// }
-
-		// TODO CB: Cache benutzen
 	}
 
 	/**

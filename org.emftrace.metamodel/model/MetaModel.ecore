@@ -6195,10 +6195,6 @@
           defaultValueLiteral="1.0"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="TechnologySolutions"
           eType="#//ArchitectureKnowledgeModel/TechnologySolutions" containment="true"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="ConceptualSolutions"
-          eType="#//ArchitectureKnowledgeModel/ConceptualSolutions" containment="true"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="DevelopmentEnvironments"
-          eType="#//ArchitectureKnowledgeModel/DevelopmentEnvironments" containment="true"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="Relations" eType="#//ArchitectureKnowledgeModel/Relations"
           containment="true"/>
     </eClassifiers>
@@ -6215,23 +6211,12 @@
     <eClassifiers xsi:type="ecore:EClass" name="RelationCatalog" eSuperTypes="#//ArchitectureKnowledgeModel/ArchitectureKnowledgeModelBase">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="Description" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="Relation" upperBound="-1"
-          eType="#//ArchitectureKnowledgeModel/Relation" containment="true"/>
+          eType="#//ArchitectureKnowledgeModel/TechnologySolutionRelation" containment="true"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="ASTACatalog" eSuperTypes="#//ArchitectureKnowledgeModel/ArchitectureKnowledgeModelBase">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="Description" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="ASTA" upperBound="-1"
           eType="#//ArchitectureKnowledgeModel/ASTA" containment="true"/>
-    </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="ConceptualSolutionCatalog" eSuperTypes="#//ArchitectureKnowledgeModel/ArchitectureKnowledgeModelBase">
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="Description" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="ConceptualSolution" upperBound="-1"
-          eType="#//ArchitectureKnowledgeModel/ConceptualSolution" containment="true"/>
-    </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="DevelopmentEnvironmentCatalog" eSuperTypes="#//ArchitectureKnowledgeModel/ArchitectureKnowledgeModelBase">
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="Description" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="DevelopmentEnvironment"
-          upperBound="-1" eType="#//ArchitectureKnowledgeModel/DevelopmentEnvironment"
-          containment="true"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="TechnologySolutions" eSuperTypes="#//ArchitectureKnowledgeModel/ArchitectureKnowledgeModelBase">
       <eStructuralFeatures xsi:type="ecore:EReference" name="TechnologySolution" upperBound="-1"
@@ -6242,7 +6227,7 @@
       <eStructuralFeatures xsi:type="ecore:EReference" name="Features" upperBound="-1"
           eType="#//ArchitectureKnowledgeModel/TechnologyFeature"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="Relations" upperBound="-1"
-          eType="#//ArchitectureKnowledgeModel/Relation"/>
+          eType="#//ArchitectureKnowledgeModel/TechnologySolutionRelation"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="TechnologyFeature" eSuperTypes="#//ArchitectureKnowledgeModel/RelationSourceType #//ArchitectureKnowledgeModel/RelationTargetType">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="Description" lowerBound="1"
@@ -6252,7 +6237,7 @@
       <eStructuralFeatures xsi:type="ecore:EReference" name="ASTA" upperBound="-1"
           eType="#//ArchitectureKnowledgeModel/ASTA"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="Relations" upperBound="-1"
-          eType="#//ArchitectureKnowledgeModel/Relation"/>
+          eType="#//ArchitectureKnowledgeModel/TechnologySolutionRelation"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="ASTA" abstract="true" eSuperTypes="#//ArchitectureKnowledgeModel/ArchitectureKnowledgeModelBase">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="Description" lowerBound="1"
@@ -6274,36 +6259,29 @@
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="Concern" lowerBound="1"
           eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="ConceptualSolutions" eSuperTypes="#//ArchitectureKnowledgeModel/ArchitectureKnowledgeModelBase">
-      <eStructuralFeatures xsi:type="ecore:EReference" name="ConceptualSolutions"
-          upperBound="-1" eType="#//ArchitectureKnowledgeModel/ConceptualSolution"/>
-    </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="ConceptualSolution" eSuperTypes="#//ArchitectureKnowledgeModel/RelationSourceType #//ArchitectureKnowledgeModel/RelationTargetType">
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="Description" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="Variation" upperBound="-1"
-          eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
-    </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="DevelopmentEnvironments" eSuperTypes="#//ArchitectureKnowledgeModel/ArchitectureKnowledgeModelBase">
-      <eStructuralFeatures xsi:type="ecore:EReference" name="DevelopmentEnvironments"
-          upperBound="-1" eType="#//ArchitectureKnowledgeModel/DevelopmentEnvironment"/>
-    </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="DevelopmentEnvironment" eSuperTypes="#//ArchitectureKnowledgeModel/RelationSourceType #//ArchitectureKnowledgeModel/RelationTargetType">
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="Description" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="ProgrammingLanguage"
-          upperBound="-1" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
-    </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="Relations" eSuperTypes="#//ArchitectureKnowledgeModel/ArchitectureKnowledgeModelBase">
-      <eStructuralFeatures xsi:type="ecore:EReference" name="Relations" upperBound="-1"
-          eType="#//ArchitectureKnowledgeModel/Relation"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="SolutionAndFeatureRelation"
+          upperBound="-1" eType="#//ArchitectureKnowledgeModel/TechnologySolutionRelation"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="ASTARelation" upperBound="-1"
+          eType="#//ArchitectureKnowledgeModel/ASTARelation"/>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="Relation" eSuperTypes="#//ArchitectureKnowledgeModel/ArchitectureKnowledgeModelBase">
+    <eClassifiers xsi:type="ecore:EClass" name="TechnologySolutionRelation" eSuperTypes="#//ArchitectureKnowledgeModel/ArchitectureKnowledgeModelBase">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="Description" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="SourceElement" lowerBound="1"
           eType="#//ArchitectureKnowledgeModel/RelationSourceType"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="TargetElement" lowerBound="1"
           eType="#//ArchitectureKnowledgeModel/RelationTargetType"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="Type" lowerBound="1"
-          eType="#//ArchitectureKnowledgeModel/RelationType"/>
+          eType="#//ArchitectureKnowledgeModel/SolutionAndFeatureRelationType"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="ASTARelation" eSuperTypes="#//ArchitectureKnowledgeModel/ArchitectureKnowledgeModelBase">
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="Description" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="SourceElement" lowerBound="1"
+          eType="#//ArchitectureKnowledgeModel/ASTA"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="TargetElement" lowerBound="1"
+          eType="#//ArchitectureKnowledgeModel/TechnologyFeature"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="Type" lowerBound="1"
+          eType="#//ArchitectureKnowledgeModel/ASTARelationType"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EEnum" name="CapabilityType">
       <eLiterals name="DevelopmentCapability" literal="DevelopmentCapability"/>
@@ -6315,23 +6293,27 @@
       <eLiterals name="OperationalCapability" value="6" literal="OperationalCapability"/>
       <eLiterals name="CommercialCapability" value="7" literal="CommercialCapability"/>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EEnum" name="RelationType">
+    <eClassifiers xsi:type="ecore:EEnum" name="SolutionAndFeatureRelationType">
       <eLiterals name="contains"/>
       <eLiterals name="basedOn" value="1"/>
-      <eLiterals name="subFeature" value="3"/>
-      <eLiterals name="developmentFeatureEnvironment" value="4"/>
-      <eLiterals name="using" value="5"/>
-      <eLiterals name="embodies" value="6"/>
-      <eLiterals name="integrates" value="7"/>
-      <eLiterals name="implementedBy" value="8" literal="implementedBy"/>
+      <eLiterals name="subFeature" value="2"/>
+      <eLiterals name="developmentFeatureEnvironment" value="3"/>
+      <eLiterals name="using" value="4"/>
+      <eLiterals name="embodies" value="5"/>
+      <eLiterals name="integrates" value="6" literal="integrates"/>
+      <eLiterals name="implementedBy" value="7"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EEnum" name="ASTARelationType">
+      <eLiterals name="solvedBy" literal="solved by"/>
+      <eLiterals name="improvedBy" literal="improved by"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="RelationSourceType" abstract="true"
         eSuperTypes="#//ArchitectureKnowledgeModel/ArchitectureKnowledgeModelBase"/>
     <eClassifiers xsi:type="ecore:EClass" name="RelationTargetType" abstract="true"
         eSuperTypes="#//ArchitectureKnowledgeModel/ArchitectureKnowledgeModelBase"/>
-    <eSubpackages name="TechnologySolutionCatalogPackage" nsURI="TechnologySolutionCatalogPackage"
-        nsPrefix="TechnologySolutionCatalogPackage">
-      <eClassifiers xsi:type="ecore:EClass" name="TechnologySolutionCatalogPackage">
+    <eSubpackages name="ArchitectureKnowledgeCatalogPackage" nsURI="ArchitectureKnowledgeCatalogPackage"
+        nsPrefix="ArchitectureKnowledgeCatalogPackage">
+      <eClassifiers xsi:type="ecore:EClass" name="ArchitectureKnowledgeCatalogPackage">
         <eStructuralFeatures xsi:type="ecore:EReference" name="TechnologySolutionCatalog"
             lowerBound="1" eType="#//ArchitectureKnowledgeModel/TechnologySolutionCatalog"
             containment="true"/>
@@ -6342,12 +6324,6 @@
             eType="#//ArchitectureKnowledgeModel/ASTACatalog" containment="true"/>
         <eStructuralFeatures xsi:type="ecore:EReference" name="RelationCatalog" lowerBound="1"
             eType="#//ArchitectureKnowledgeModel/RelationCatalog" containment="true"/>
-        <eStructuralFeatures xsi:type="ecore:EReference" name="ConceptualSolutionCatalog"
-            lowerBound="1" eType="#//ArchitectureKnowledgeModel/ConceptualSolutionCatalog"
-            containment="true"/>
-        <eStructuralFeatures xsi:type="ecore:EReference" name="DevelopmentEnvironmentCatalog"
-            lowerBound="1" eType="#//ArchitectureKnowledgeModel/DevelopmentEnvironmentCatalog"
-            containment="true"/>
       </eClassifiers>
     </eSubpackages>
   </eSubpackages>

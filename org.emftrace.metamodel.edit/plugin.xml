@@ -196,8 +196,8 @@
    <extension point="org.eclipse.emf.edit.itemProviderAdapterFactories">
       <!-- @generated MetaModel -->
       <factory
-            uri="TechnologySolutionCatalogPackage"
-            class="org.emftrace.metamodel.ArchitectureKnowledgeModel.TechnologySolutionCatalogPackage.provider.TechnologySolutionCatalogPackageItemProviderAdapterFactory"
+            uri="ArchitectureKnowledgeCatalogPackage"
+            class="org.emftrace.metamodel.ArchitectureKnowledgeModel.ArchitectureKnowledgeCatalogPackage.provider.ArchitectureKnowledgeCatalogPackageItemProviderAdapterFactory"
             supportedTypes=
               "org.eclipse.emf.edit.provider.IEditingDomainItemProvider
                org.eclipse.emf.edit.provider.IStructuredItemContentProvider

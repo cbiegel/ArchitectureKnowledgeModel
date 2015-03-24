@@ -1,0 +1,158 @@
+/**
+ */
+package org.emftrace.metamodel.ArchitectureKnowledgeModel;
+
+
+/**
+ * <!-- begin-user-doc -->
+ * A representation of the model object '<em><b>Architecture Knowledge Model</b></em>'.
+ * <!-- end-user-doc -->
+ *
+ * <p>
+ * The following features are supported:
+ * <ul>
+ *   <li>{@link org.emftrace.metamodel.ArchitectureKnowledgeModel.ArchitectureKnowledgeModel#getVersion <em>Version</em>}</li>
+ *   <li>{@link org.emftrace.metamodel.ArchitectureKnowledgeModel.ArchitectureKnowledgeModel#getTechnologySolutions <em>Technology Solutions</em>}</li>
+ *   <li>{@link org.emftrace.metamodel.ArchitectureKnowledgeModel.ArchitectureKnowledgeModel#getConceptualSolutions <em>Conceptual Solutions</em>}</li>
+ *   <li>{@link org.emftrace.metamodel.ArchitectureKnowledgeModel.ArchitectureKnowledgeModel#getDevelopmentEnvironments <em>Development Environments</em>}</li>
+ *   <li>{@link org.emftrace.metamodel.ArchitectureKnowledgeModel.ArchitectureKnowledgeModel#getRelations <em>Relations</em>}</li>
+ * </ul>
+ * </p>
+ *
+ * @see org.emftrace.metamodel.ArchitectureKnowledgeModel.ArchitectureKnowledgeModelPackage#getArchitectureKnowledgeModel()
+ * @model
+ * @generated
+ */
+public interface ArchitectureKnowledgeModel extends ArchitectureKnowledgeModelBase {
+	/**
+	 * Returns the value of the '<em><b>Version</b></em>' attribute.
+	 * The default value is <code>"1.0"</code>.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Version</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Version</em>' attribute.
+	 * @see #setVersion(String)
+	 * @see org.emftrace.metamodel.ArchitectureKnowledgeModel.ArchitectureKnowledgeModelPackage#getArchitectureKnowledgeModel_Version()
+	 * @model default="1.0" unique="false"
+	 * @generated
+	 */
+	String getVersion();
+
+	/**
+	 * Sets the value of the '{@link org.emftrace.metamodel.ArchitectureKnowledgeModel.ArchitectureKnowledgeModel#getVersion <em>Version</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Version</em>' attribute.
+	 * @see #getVersion()
+	 * @generated
+	 */
+	void setVersion(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Technology Solutions</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Technology Solutions</em>' containment reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Technology Solutions</em>' containment reference.
+	 * @see #setTechnologySolutions(TechnologySolutions)
+	 * @see org.emftrace.metamodel.ArchitectureKnowledgeModel.ArchitectureKnowledgeModelPackage#getArchitectureKnowledgeModel_TechnologySolutions()
+	 * @model containment="true"
+	 * @generated
+	 */
+	TechnologySolutions getTechnologySolutions();
+
+	/**
+	 * Sets the value of the '{@link org.emftrace.metamodel.ArchitectureKnowledgeModel.ArchitectureKnowledgeModel#getTechnologySolutions <em>Technology Solutions</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Technology Solutions</em>' containment reference.
+	 * @see #getTechnologySolutions()
+	 * @generated
+	 */
+	void setTechnologySolutions(TechnologySolutions value);
+
+	/**
+	 * Returns the value of the '<em><b>Conceptual Solutions</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Conceptual Solutions</em>' containment reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Conceptual Solutions</em>' containment reference.
+	 * @see #setConceptualSolutions(ConceptualSolutions)
+	 * @see org.emftrace.metamodel.ArchitectureKnowledgeModel.ArchitectureKnowledgeModelPackage#getArchitectureKnowledgeModel_ConceptualSolutions()
+	 * @model containment="true"
+	 * @generated
+	 */
+	ConceptualSolutions getConceptualSolutions();
+
+	/**
+	 * Sets the value of the '{@link org.emftrace.metamodel.ArchitectureKnowledgeModel.ArchitectureKnowledgeModel#getConceptualSolutions <em>Conceptual Solutions</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Conceptual Solutions</em>' containment reference.
+	 * @see #getConceptualSolutions()
+	 * @generated
+	 */
+	void setConceptualSolutions(ConceptualSolutions value);
+
+	/**
+	 * Returns the value of the '<em><b>Development Environments</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Development Environments</em>' containment reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Development Environments</em>' containment reference.
+	 * @see #setDevelopmentEnvironments(DevelopmentEnvironments)
+	 * @see org.emftrace.metamodel.ArchitectureKnowledgeModel.ArchitectureKnowledgeModelPackage#getArchitectureKnowledgeModel_DevelopmentEnvironments()
+	 * @model containment="true"
+	 * @generated
+	 */
+	DevelopmentEnvironments getDevelopmentEnvironments();
+
+	/**
+	 * Sets the value of the '{@link org.emftrace.metamodel.ArchitectureKnowledgeModel.ArchitectureKnowledgeModel#getDevelopmentEnvironments <em>Development Environments</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Development Environments</em>' containment reference.
+	 * @see #getDevelopmentEnvironments()
+	 * @generated
+	 */
+	void setDevelopmentEnvironments(DevelopmentEnvironments value);
+
+	/**
+	 * Returns the value of the '<em><b>Relations</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Relations</em>' containment reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Relations</em>' containment reference.
+	 * @see #setRelations(Relations)
+	 * @see org.emftrace.metamodel.ArchitectureKnowledgeModel.ArchitectureKnowledgeModelPackage#getArchitectureKnowledgeModel_Relations()
+	 * @model containment="true"
+	 * @generated
+	 */
+	Relations getRelations();
+
+	/**
+	 * Sets the value of the '{@link org.emftrace.metamodel.ArchitectureKnowledgeModel.ArchitectureKnowledgeModel#getRelations <em>Relations</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Relations</em>' containment reference.
+	 * @see #getRelations()
+	 * @generated
+	 */
+	void setRelations(Relations value);
+
+} // ArchitectureKnowledgeModel

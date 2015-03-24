@@ -1,17 +1,22 @@
 package org.emftrace.akm.ui.services;
 
 import org.eclipse.draw2d.ColorConstants;
-import org.eclipse.draw2d.ConnectionEndpointLocator;
 import org.eclipse.draw2d.Figure;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.Label;
-import org.eclipse.draw2d.PolylineConnection;
 import org.eclipse.draw2d.ToolbarLayout;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Font;
 import org.eclipse.zest.core.widgets.GraphConnection;
 import org.emftrace.metamodel.ArchitectureKnowledgeModel.ArchitectureKnowledgeModelBase;
 
+/**
+ * This class is used to decorade GraphConnections (e.g. with a TooltipFigure).<br>
+ * This class originates from the QUARC project and was modified for the AKM project.
+ * 
+ * @author Christopher Biegel
+ * 
+ */
 public class ConnectionDecoratorService {
 
 	// ===========================================================
@@ -46,44 +51,7 @@ public class ConnectionDecoratorService {
 		pConnection.setLineColor(ColorConstants.black);
 		pConnection.setLineWidth(1);
 
-		// decorateWithWeight(pConnection, "");
-
-		// TODO CB: Tooltip entfernen? (Wird er überhaupt benötigt?)
 		pConnection.setTooltip(createTooltipFigure(pConnection, pSourceElement, pTargetElement));
-	}
-
-	/**
-	 * decorates the GraphConnection with the following figure:<br>
-	 * <br>
-	 * ?<br>
-	 * <br>
-	 * see Rec. ITU-T Z.151 (11/2008) page 27<br>
-	 * <br>
-	 * 
-	 * @param connection
-	 *            a GraphConnection
-	 */
-	private static void decorateWithWeight(final GraphConnection connection, final String weight) {
-
-		ConnectionEndpointLocator relationshipLocator =
-				new ConnectionEndpointLocator(connection.getConnectionFigure(), true);
-		relationshipLocator.setUDistance(0);
-		relationshipLocator.setVDistance(10);
-
-		Figure decoractionFigure = new Figure();
-
-		ToolbarLayout layout = new ToolbarLayout();
-		decoractionFigure.setLayoutManager(layout);
-		decoractionFigure.setOpaque(false);
-
-		Label weightLabel = new Label(weight);
-		weightLabel.setFont(DECORATION_FONT_SMALL);
-		decoractionFigure.add(weightLabel);
-
-		decoractionFigure.setSize(-1, -1);
-		((PolylineConnection) connection.getConnectionFigure()).add(decoractionFigure,
-				relationshipLocator);
-
 	}
 
 	/**
@@ -107,8 +75,7 @@ public class ConnectionDecoratorService {
 		tooltipFigure.setLayoutManager(layout);
 		tooltipFigure.setOpaque(true);
 
-		String relationType = "has";
-		// TODO CB Andere relationTypes? (z.B. für B&D-View)
+		String relationType = "Connection";
 
 		String sourceName = pSourceElement != null ? pSourceElement.getName() : "";
 		String targetName = pTargetElement != null ? pTargetElement.getName() : "";
@@ -132,46 +99,4 @@ public class ConnectionDecoratorService {
 
 		return tooltipFigure;
 	}
-
-	/**
-	 * decorates the GraphConnection with the following figure:<br>
-	 * <br>
-	 * â—�<br>
-	 * +<br>
-	 * <br>
-	 * see Rec. ITU-T Z.151 (11/2008) page 27<br>
-	 * <br>
-	 * 
-	 * @param pConnection
-	 *            a GraphConnection
-	 */
-	private static void decorateWithMakeFigure(final GraphConnection pConnection) {
-
-		ConnectionEndpointLocator relationshipLocator =
-				new ConnectionEndpointLocator(pConnection.getConnectionFigure(), true);
-		relationshipLocator.setUDistance(10);
-		relationshipLocator.setVDistance(10);
-
-		Figure decoractionFigure = new Figure();
-
-		ToolbarLayout layout = new ToolbarLayout();
-		decoractionFigure.setLayoutManager(layout);
-		decoractionFigure.setOpaque(false);
-
-		Label upperHelpLabel = new Label("\u25CF"); // = "â—�"
-		upperHelpLabel.setFont(DECORATION_FONT_SMALL);
-		decoractionFigure.add(upperHelpLabel);
-
-		Label lowerHelpLabel = new Label("+");
-		lowerHelpLabel.setFont(DECORATION_FONT_LARGE);
-		decoractionFigure.add(lowerHelpLabel);
-
-		decoractionFigure.setSize(-1, -1);
-		((PolylineConnection) pConnection.getConnectionFigure()).add(decoractionFigure,
-				relationshipLocator);
-	}
-
-	// ===========================================================
-	// Inner and Anonymous Classes
-	// ===========================================================
 }

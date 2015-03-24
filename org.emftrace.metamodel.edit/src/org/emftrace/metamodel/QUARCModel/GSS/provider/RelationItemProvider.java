@@ -1,4 +1,8 @@
 /**
+ * <copyright>
+ * </copyright>
+ *
+ * $Id$
  */
 package org.emftrace.metamodel.QUARCModel.GSS.provider;
 
@@ -8,7 +12,6 @@ import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
@@ -17,7 +20,11 @@ import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 
+import org.emftrace.metamodel.QUARCModel.GSS.Element;
 import org.emftrace.metamodel.QUARCModel.GSS.GSSPackage;
+import org.emftrace.metamodel.QUARCModel.GSS.Impact;
+import org.emftrace.metamodel.QUARCModel.GSS.Offset;
+import org.emftrace.metamodel.QUARCModel.GSS.Relation;
 
 /**
  * This is the item provider adapter for a {@link org.emftrace.metamodel.QUARCModel.GSS.Relation} object.
@@ -33,6 +40,8 @@ public class RelationItemProvider
 		ITreeItemContentProvider,
 		IItemLabelProvider,
 		IItemPropertySource {
+	
+	
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
@@ -140,4 +149,29 @@ public class RelationItemProvider
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 	}
 
+	/**
+	 * Generates the label for a <class>Relation</class>.
+	 * 
+	 * @param relation The relation to generate the label for.
+	 * @return A <class>String</class> with the label.
+	 * @generated NOT
+	 */
+	protected String getLabel(Relation relation) {
+		Element source = relation.getSource();
+		String sourceName = source == null ? "" : source.getName();
+		Element target = relation.getTarget();
+		String targetName = target == null ? "" : target.getName();
+		
+		String label = "\"" + (sourceName == null || sourceName.isEmpty() && source != null ? source.eClass().getName() : sourceName) + "\" ";
+		if (relation instanceof Impact) {
+			Object weight = ((Impact)relation).getWeight();
+			label += "-(" + (weight == null ? "" : weight.toString()) + ")";
+		} else
+		if (relation instanceof Offset) {
+			Object offset = ((Offset)relation).getValue();
+			label += "-(" + (offset == null ? "" : offset.toString()) + ")";
+		}
+		label += "-> \""+ (targetName == null || targetName.isEmpty() && target != null ? target.eClass().getName() : targetName) + "\"";
+		return label;
+	}
 }

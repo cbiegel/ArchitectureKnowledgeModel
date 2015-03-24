@@ -23,9 +23,9 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
-import org.emftrace.metamodel.ArchitectureKnowledgeModel.ArchitectureKnowledgeModelFactory;
+import org.emftrace.metamodel.ArchitectureKnowledgeModel.ArchitectureKnowledgeCatalogPackage.ArchitectureKnowledgeCatalogPackageFactory;
 
-import org.emftrace.metamodel.ArchitectureKnowledgeModel.TechnologySolutionCatalogPackage.TechnologySolutionCatalogPackageFactory;
+import org.emftrace.metamodel.ArchitectureKnowledgeModel.ArchitectureKnowledgeModelFactory;
 
 import org.emftrace.metamodel.BPMN2Model.BPMN2ModelFactory;
 import org.emftrace.metamodel.BPMN2Model.BPMN2ModelPackage;
@@ -8958,16 +8958,6 @@ public class DocumentRootItemProvider
 		newChildDescriptors.add
 			(createChildParameter
 				(BPMN2ModelPackage.eINSTANCE.getDocumentRoot_Script(),
-				 ArchitectureKnowledgeModelFactory.eINSTANCE.createConceptualSolutionCatalog()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(BPMN2ModelPackage.eINSTANCE.getDocumentRoot_Script(),
-				 ArchitectureKnowledgeModelFactory.eINSTANCE.createDevelopmentEnvironmentCatalog()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(BPMN2ModelPackage.eINSTANCE.getDocumentRoot_Script(),
 				 ArchitectureKnowledgeModelFactory.eINSTANCE.createTechnologySolutions()));
 
 		newChildDescriptors.add
@@ -9003,37 +8993,22 @@ public class DocumentRootItemProvider
 		newChildDescriptors.add
 			(createChildParameter
 				(BPMN2ModelPackage.eINSTANCE.getDocumentRoot_Script(),
-				 ArchitectureKnowledgeModelFactory.eINSTANCE.createConceptualSolutions()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(BPMN2ModelPackage.eINSTANCE.getDocumentRoot_Script(),
-				 ArchitectureKnowledgeModelFactory.eINSTANCE.createConceptualSolution()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(BPMN2ModelPackage.eINSTANCE.getDocumentRoot_Script(),
-				 ArchitectureKnowledgeModelFactory.eINSTANCE.createDevelopmentEnvironments()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(BPMN2ModelPackage.eINSTANCE.getDocumentRoot_Script(),
-				 ArchitectureKnowledgeModelFactory.eINSTANCE.createDevelopmentEnvironment()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(BPMN2ModelPackage.eINSTANCE.getDocumentRoot_Script(),
 				 ArchitectureKnowledgeModelFactory.eINSTANCE.createRelations()));
 
 		newChildDescriptors.add
 			(createChildParameter
 				(BPMN2ModelPackage.eINSTANCE.getDocumentRoot_Script(),
-				 ArchitectureKnowledgeModelFactory.eINSTANCE.createRelation()));
+				 ArchitectureKnowledgeModelFactory.eINSTANCE.createTechnologySolutionRelation()));
 
 		newChildDescriptors.add
 			(createChildParameter
 				(BPMN2ModelPackage.eINSTANCE.getDocumentRoot_Script(),
-				 TechnologySolutionCatalogPackageFactory.eINSTANCE.createTechnologySolutionCatalogPackage()));
+				 ArchitectureKnowledgeModelFactory.eINSTANCE.createASTARelation()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(BPMN2ModelPackage.eINSTANCE.getDocumentRoot_Script(),
+				 ArchitectureKnowledgeCatalogPackageFactory.eINSTANCE.createArchitectureKnowledgeCatalogPackage()));
 
 		newChildDescriptors.add
 			(createChildParameter
@@ -12098,16 +12073,6 @@ public class DocumentRootItemProvider
 		newChildDescriptors.add
 			(createChildParameter
 				(BPMN2ModelPackage.eINSTANCE.getDocumentRoot_Text(),
-				 ArchitectureKnowledgeModelFactory.eINSTANCE.createConceptualSolutionCatalog()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(BPMN2ModelPackage.eINSTANCE.getDocumentRoot_Text(),
-				 ArchitectureKnowledgeModelFactory.eINSTANCE.createDevelopmentEnvironmentCatalog()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(BPMN2ModelPackage.eINSTANCE.getDocumentRoot_Text(),
 				 ArchitectureKnowledgeModelFactory.eINSTANCE.createTechnologySolutions()));
 
 		newChildDescriptors.add
@@ -12143,37 +12108,22 @@ public class DocumentRootItemProvider
 		newChildDescriptors.add
 			(createChildParameter
 				(BPMN2ModelPackage.eINSTANCE.getDocumentRoot_Text(),
-				 ArchitectureKnowledgeModelFactory.eINSTANCE.createConceptualSolutions()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(BPMN2ModelPackage.eINSTANCE.getDocumentRoot_Text(),
-				 ArchitectureKnowledgeModelFactory.eINSTANCE.createConceptualSolution()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(BPMN2ModelPackage.eINSTANCE.getDocumentRoot_Text(),
-				 ArchitectureKnowledgeModelFactory.eINSTANCE.createDevelopmentEnvironments()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(BPMN2ModelPackage.eINSTANCE.getDocumentRoot_Text(),
-				 ArchitectureKnowledgeModelFactory.eINSTANCE.createDevelopmentEnvironment()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(BPMN2ModelPackage.eINSTANCE.getDocumentRoot_Text(),
 				 ArchitectureKnowledgeModelFactory.eINSTANCE.createRelations()));
 
 		newChildDescriptors.add
 			(createChildParameter
 				(BPMN2ModelPackage.eINSTANCE.getDocumentRoot_Text(),
-				 ArchitectureKnowledgeModelFactory.eINSTANCE.createRelation()));
+				 ArchitectureKnowledgeModelFactory.eINSTANCE.createTechnologySolutionRelation()));
 
 		newChildDescriptors.add
 			(createChildParameter
 				(BPMN2ModelPackage.eINSTANCE.getDocumentRoot_Text(),
-				 TechnologySolutionCatalogPackageFactory.eINSTANCE.createTechnologySolutionCatalogPackage()));
+				 ArchitectureKnowledgeModelFactory.eINSTANCE.createASTARelation()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(BPMN2ModelPackage.eINSTANCE.getDocumentRoot_Text(),
+				 ArchitectureKnowledgeCatalogPackageFactory.eINSTANCE.createArchitectureKnowledgeCatalogPackage()));
 
 		newChildDescriptors.add
 			(createChildParameter

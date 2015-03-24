@@ -4,36 +4,28 @@ import java.util.List;
 
 import org.eclipse.draw2d.GridData;
 import org.eclipse.draw2d.Label;
+import org.emftrace.akm.ui.zest.nodes.ASTAGraphNode;
 import org.emftrace.metamodel.ArchitectureKnowledgeModel.Drawback;
 
+/**
+ * A Figure used for {@link ASTAGraphNode}s.
+ * 
+ * @author Christopher Biegel
+ * 
+ */
 public class DrawbacksFigure extends AbstractASTAFigure {
-
-	// ===========================================================
-	// Constants
-	// ===========================================================
-
-	// ===========================================================
-	// Fields
-	// ===========================================================
 
 	// ===========================================================
 	// Constructors
 	// ===========================================================
 
 	public DrawbacksFigure(final List<Drawback> pDrawbacksList) {
-
 		super();
 
 		Label titleLabel = getTitleLabel();
-
 		mBorderFigure.add(titleLabel);
-
 		addDrawbacks(pDrawbacksList);
 	}
-
-	// ===========================================================
-	// Getter & Setter
-	// ===========================================================
 
 	// ===========================================================
 	// Methods for/from SuperClass/Interfaces
@@ -57,6 +49,13 @@ public class DrawbacksFigure extends AbstractASTAFigure {
 	// Methods
 	// ===========================================================
 
+	/**
+	 * Adds a list of {@link Drawback}s to this figure.<br>
+	 * All {@link Drawback} elements in this list will be added to this figure
+	 * 
+	 * @param pDrawbacksList
+	 *            The list of Drawbacks to add to this figure.
+	 */
 	private void addDrawbacks(final List<Drawback> pDrawbacksList) {
 
 		for (Drawback drawback : pDrawbacksList) {
@@ -72,8 +71,4 @@ public class DrawbacksFigure extends AbstractASTAFigure {
 			mBorderFigure.add(drawbackLabel);
 		}
 	}
-
-	// ===========================================================
-	// Inner and Anonymous Classes
-	// ===========================================================
 }

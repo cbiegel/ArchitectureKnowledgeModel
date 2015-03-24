@@ -1,4 +1,8 @@
 /**
+ * <copyright>
+ * </copyright>
+ *
+ * $Id$
  */
 package org.emftrace.metamodel.QUARCModel.Query.provider;
 
@@ -39,6 +43,7 @@ public class PrioritizedElementSetItemProvider
 		ITreeItemContentProvider,
 		IItemLabelProvider,
 		IItemPropertySource {
+
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
@@ -122,12 +127,15 @@ public class PrioritizedElementSetItemProvider
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public String getText(Object object) {
 		PrioritizedElementSet prioritizedElementSet = (PrioritizedElementSet)object;
-		return getString("_UI_PrioritizedElementSet_type") + " " + prioritizedElementSet.isChanged();
+		if (prioritizedElementSet.isChanged())
+			return getString("_UI_PrioritizedElementSet_type") + " (modified)";
+		else
+			return getString("_UI_PrioritizedElementSet_type");
 	}
 
 	/**
@@ -174,5 +182,6 @@ public class PrioritizedElementSetItemProvider
 				(QueryPackage.Literals.PRIORITIZED_ELEMENT_SET__PRIORIZED_DECOMPOSITION_RELATIONS,
 				 QueryFactory.eINSTANCE.createPrioritizedDecomposition()));
 	}
+
 
 }

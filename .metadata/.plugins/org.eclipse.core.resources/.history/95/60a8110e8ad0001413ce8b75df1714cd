@@ -1,0 +1,86 @@
+package org.emftrace.akm.ui.zest.nodes;
+
+import java.util.List;
+
+import org.eclipse.zest.core.widgets.IContainer;
+import org.emftrace.akm.ui.zest.figures.AbstractASTAFigure;
+import org.emftrace.akm.ui.zest.graph.AKMGraph;
+import org.emftrace.metamodel.ArchitectureKnowledgeModel.ASTA;
+
+/**
+ * A GraphNode for representing an ASTA element with a custom figure (ElementFigure).<br>
+ * This GraphNode is used for the default view and Feature Exploration View.
+ * 
+ * @author Christopher Biegel
+ */
+public class ASTAGraphNode extends AbstractAKMGraphNode {
+
+	// ===========================================================
+	// Fields
+	// ===========================================================
+
+	private String mTitle;
+
+	private AbstractASTAFigure mFigure;
+
+	// ===========================================================
+	// Constructors
+	// ===========================================================
+
+	/**
+	 * The default constructor
+	 * 
+	 * @param pGraphModel
+	 *            The graph that contains this node
+	 * @param pStyle
+	 *            The SWT style used for this node
+	 * @param pElementFigure
+	 *            The custom figure for the node
+	 * @param pLevel
+	 *            The level of the node within the graph (e.g. ArchitectureKnowledgeModel = 0,
+	 *            TechnologySolution = 1, TechnologyFeature = 2, ...)
+	 * @param pSublevel
+	 *            The sub level of the node (e.g. count of ancestors)
+	 * @param pTechnologyFeature
+	 *            The element represented by this node
+	 */
+	public ASTAGraphNode(final IContainer pGraphModel, final int pStyle,
+			final AbstractASTAFigure pASTAFigure, final int pLevel, final int pSublevel) {
+
+		super(pGraphModel, pStyle, pASTAFigure, pLevel, pSublevel, null);
+
+		mFigure = pASTAFigure;
+
+		final AKMGraph graph = (AKMGraph) pGraphModel.getGraph();
+
+		mFigure.addCustomMouseListener(graph, this);
+		mTitle = mFigure.getTitle();
+	}
+
+	// ===========================================================
+	// Getter & Setter
+	// ===========================================================
+
+	public String getTitle() {
+
+		return mTitle;
+	}
+
+	public int getContentCount() {
+		return mFigure.getContentsCount();
+	}
+
+	public List<ASTA> getASTAList() {
+		return mFigure.getContents();
+	}
+
+	// ===========================================================
+	// Methods for/from SuperClass/Interfaces
+	// ===========================================================
+
+	@Override
+	public String toString() {
+		// must be overridden due to GraphNode using text attribute for toString
+		return "ASTAGraphNode \"";
+	}
+}

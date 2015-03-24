@@ -1,4 +1,8 @@
 /**
+ * <copyright>
+ * </copyright>
+ *
+ * $Id$
  */
 package org.emftrace.metamodel.QUARCModel.Query.provider;
 
@@ -32,6 +36,8 @@ public class SelectedGoalsSetItemProvider
 		ITreeItemContentProvider,
 		IItemLabelProvider,
 		IItemPropertySource {
+
+
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
@@ -72,12 +78,16 @@ public class SelectedGoalsSetItemProvider
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public String getText(Object object) {
-		SelectedGoalsSet selectedGoalsSet = (SelectedGoalsSet)object;
-		return getString("_UI_SelectedGoalsSet_type") + " " + selectedGoalsSet.isChanged();
+		SelectedGoalsSet selectedGoalsSet = (SelectedGoalsSet)object;	
+		if (selectedGoalsSet.isChanged())
+			return getString("_UI_SelectedGoalsSet_type") + " (modified)";
+		else
+	return getString("_UI_SelectedGoalsSet_type");
+		
 	}
 
 	/**
@@ -104,5 +114,7 @@ public class SelectedGoalsSetItemProvider
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 	}
+
+
 
 }

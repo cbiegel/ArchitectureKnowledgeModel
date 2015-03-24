@@ -62,7 +62,6 @@ import org.emftrace.akm.ui.zest.figures.AbstractDecoratorFigure;
 import org.emftrace.akm.ui.zest.figures.BenefitsFigure;
 import org.emftrace.akm.ui.zest.figures.DrawbacksFigure;
 import org.emftrace.akm.ui.zest.figures.ElementFigure;
-import org.emftrace.akm.ui.zest.figures.SoftGoalFigure;
 import org.emftrace.akm.ui.zest.figures.TechnologyFeatureFigure;
 import org.emftrace.akm.ui.zest.figures.TechnologySolutionFigure;
 import org.emftrace.akm.ui.zest.graph.AKMGraph;
@@ -77,6 +76,7 @@ import org.emftrace.akm.ui.zest.nodes.TechnologyFeatureGraphNode;
 import org.emftrace.akm.ui.zest.nodes.TechnologySolutionGraphNode;
 import org.emftrace.core.accesslayer.AccessLayer;
 import org.emftrace.metamodel.ArchitectureKnowledgeModel.ASTA;
+import org.emftrace.metamodel.ArchitectureKnowledgeModel.ASTARelation;
 import org.emftrace.metamodel.ArchitectureKnowledgeModel.ArchitectureKnowledgeModel;
 import org.emftrace.metamodel.ArchitectureKnowledgeModel.ArchitectureKnowledgeModelBase;
 import org.emftrace.metamodel.ArchitectureKnowledgeModel.Benefit;
@@ -91,8 +91,35 @@ import org.emftrace.metamodel.ArchitectureKnowledgeModel.TechnologySolution;
 import org.emftrace.ui.editors.builders.AbstractGUIBuilder;
 import org.emftrace.ui.modelelementopener.EMFTraceModelElementOpener;
 
+/**
+ * This class builds the default graph for an Architecture Knowledge Model.<br>
+ * It handles the logic of the UI components and serves as a central control component for the
+ * graph's logic.<br>
+ * This class contains parts of the QUARC project and was modified for the AKM project.
+ * 
+ * @author Christopher Biegel
+ * 
+ */
 public abstract class AbstractElementGraphBuilder extends AbstractGUIBuilder {
 
+	// ===========================================================
+	// Constants
+	// ===========================================================
+
+	/**
+	 * The default font for labels
+	 */
+	protected static final Font DEFAULT_LABEL_FONT = new Font(null, "Arial", 10, SWT.NORMAL);
+
+	/**
+	 * The default font for titles
+	 */
+	protected static final Font DEFAULT_TITLE_FONT = new Font(null, "Arial", 12, SWT.BOLD);
+
+	/**
+	 * Contains strings for the external representation of ASTA types (these strings are be
+	 * displayed as the ASTA type filter buttons' text)
+	 */
 	private static final String[] ASTA_TYPES_EXTERNAL_REPRESENTATION = { "Feature-based",
 			"Feature-based", "Concern-based", "Concern-based" };
 
@@ -106,17 +133,32 @@ public abstract class AbstractElementGraphBuilder extends AbstractGUIBuilder {
 	private static final String[] ASTA_TYPES_INTERNAL_REPRESENTATION = { "FeatureBasedBenefit",
 			"FeatureBasedDrawback", "ConcernBasedBenefit", "ConcernBasedDrawback" };
 
+	/**
+	 * The default weights of the main SashForm
+	 */
+	private static final int[] GRAPH_SASH_FORM_WEIGHTS = { 75, 25 };
+
+	/**
+	 * The default weights of the SashForm that separates the sidebar components
+	 */
+	private static final int[] SIDE_SASH_FORM_WEIGHTS = { 50, 50 };
+
+	// ===========================================================
+	// Fields
+	// ===========================================================
+
+	/**
+	 * The {@link AKMGraph} that is controlled by this class
+	 */
 	protected AKMGraph mZestGraph;
 
+	/**
+	 * The {@link ArchitectureKnowledgeModel} element which is the root of the graph
+	 */
 	protected EObject mInputContainer;
 
 	/**
-	 * the SWT style
-	 */
-	private int mStyle;
-
-	/**
-	 * a map for GraphNodes of Elements
+	 * A map for GraphNodes of Elements
 	 */
 	protected HashMap<ArchitectureKnowledgeModelBase, AbstractAKMGraphNode> mNodeMap;
 
@@ -126,27 +168,27 @@ public abstract class AbstractElementGraphBuilder extends AbstractGUIBuilder {
 	protected AbstractAKMGraphNode mLastSelectedNode;
 
 	/**
-	 * the used WorkbenchPartSite
+	 * The used WorkbenchPartSite
 	 */
 	protected IWorkbenchPartSite mWorkbenchPartSite;
 
 	/**
-	 * the used CacheManager
+	 * The used CacheManager
 	 */
 	protected CacheManager cacheManager;
 
 	/**
-	 * the scale used for select the zoom level
+	 * The scale used for select the zoom level
 	 */
 	private Scale mZoomScale;
 
 	/**
-	 * a label used for show the current zoom level
+	 * A label used for show the current zoom level
 	 */
 	private Label zoomLevelLabel;
 
 	/**
-	 * a ZoomManager for the zest graph
+	 * A ZoomManager for the zest graph
 	 */
 	private ZoomManager zoomManager;
 
@@ -160,12 +202,18 @@ public abstract class AbstractElementGraphBuilder extends AbstractGUIBuilder {
 	 */
 	private Group mDetailGroup;
 
+	/**
+	 * A Map that maps {@link CapabilityType}s to their respective filter buttons
+	 */
 	private static Map<CapabilityType, Button> mCapabilityTypeButtonMap;
 
+	/**
+	 * A Map that maps {@link ASTA} types to their respective filter buttons
+	 */
 	private static Map<String, Button> mASTATypeButtonMap;
 
 	/**
-	 * a map for the Elements and their added ModelElementChangeListeners
+	 * A map for the Elements and their added ModelElementChangeListeners
 	 */
 	private Map<ECPModelElementChangeListener, ArchitectureKnowledgeModelBase> ecpModelChangeListenerMap;
 
@@ -184,34 +232,65 @@ public abstract class AbstractElementGraphBuilder extends AbstractGUIBuilder {
 	 */
 	private List<ISelectionChangedListener> mSelectionChangedListeners;
 
+	/**
+	 * A List that contains all nodes that are currently visible in the graph
+	 */
 	private List<AbstractAKMGraphNode> mCurrentlyVisibleNodesList;
 
+	/**
+	 * The default layout algorithm for the graph
+	 */
 	private FeatureExplorationLayoutAlgorithm mDefaultLayout;
 
-	protected static Font defaultLabelFont = new Font(null, "Arial", 10, SWT.NORMAL);
-	protected static Font defaultTitleFont = new Font(null, "Arial", 12, SWT.BOLD);
-
+	/**
+	 * The default MenuItem of the graph nodes
+	 */
 	private MenuItem mDefaultMenuItem;
 
+	/**
+	 * A Map that contains all nodes that are introduced with the Benefit&Drawback Exploration View
+	 * so they can later be disposed from the graph upon exiting this view
+	 */
 	private Map<ArchitectureKnowledgeModelBase, AbstractAKMGraphNode> mBenefitDrawbackExplorationNodeMap;
 
+	/**
+	 * A List that contains all connections that are introduced with the Benefit&Drawback
+	 * Exploration View so they can later be disposed from the graph upon exiting this view
+	 */
 	private List<GraphConnection> mBenefitDrawbackConnectionList;
 
 	/**
-	 * the constructor
+	 * The main SashForm that separates the graph and the sidebar
+	 */
+	private SashForm mGraphSideSashForm;
+
+	/**
+	 * The SashForm that separates the contents of the sidebar
+	 */
+	private SashForm mSideBarSashForm;
+
+	// ===========================================================
+	// Constructors
+	// ===========================================================
+
+	/**
+	 * The constructor
 	 * 
-	 * @param parent
-	 *            the parent Composite
+	 * @param pParentComposite
+	 *            The parent Composite of this Composite
 	 * @param pStyle
-	 *            the SWT sytle
-	 * @param inputObject
-	 *            a container with elements for the Graph
+	 *            The SWT style to be used for this Composite
+	 * @param pWorkbenchPartSite
+	 *            The workbench part sites for this Composite
+	 * @param pInputContainer
+	 *            The {@link ArchitectureKnowledgeModel} element
+	 * @param pAccessLayer
+	 *            The access layer
 	 */
 	public AbstractElementGraphBuilder(final Composite pParentComposite, final int pStyle,
 			final IWorkbenchPartSite pWorkbenchPartSite, final EObject pInputContainer,
 			final AccessLayer pAccessLayer) {
 		super(pAccessLayer, pParentComposite);
-		mStyle = pStyle;
 		mInputContainer = pInputContainer;
 		mNodeMap = new HashMap<ArchitectureKnowledgeModelBase, AbstractAKMGraphNode>();
 		mWorkbenchPartSite = pWorkbenchPartSite;
@@ -225,6 +304,21 @@ public abstract class AbstractElementGraphBuilder extends AbstractGUIBuilder {
 		mBenefitDrawbackConnectionList = new ArrayList<GraphConnection>();
 	}
 
+	// ===========================================================
+	// Getter & Setter
+	// ===========================================================
+
+	/**
+	 * @return The zest Graph
+	 */
+	public AKMGraph getZestGraph() {
+		return mZestGraph;
+	}
+
+	// ===========================================================
+	// Methods for/from SuperClass/Interfaces
+	// ===========================================================
+
 	@Override
 	protected void doBuild() {
 		super.doBuild();
@@ -235,20 +329,19 @@ public abstract class AbstractElementGraphBuilder extends AbstractGUIBuilder {
 		layout.marginWidth = 5;
 		bodyComposite.setLayout(layout);
 
-		// SashForm between the graph and the side bar
-		SashForm graphSideSashForm = new SashForm(bodyComposite, SWT.HORIZONTAL);
-		graphSideSashForm.SASH_WIDTH = 5;
+		mGraphSideSashForm = new SashForm(bodyComposite, SWT.HORIZONTAL);
+		mGraphSideSashForm.SASH_WIDTH = 5;
 		FormData graphSideSashFormData = new FormData();
 		graphSideSashFormData.top = new FormAttachment(0, 0);
 		graphSideSashFormData.bottom = new FormAttachment(85, 0);
 		graphSideSashFormData.left = new FormAttachment(0, 0);
 		graphSideSashFormData.right = new FormAttachment(100, 0);
-		graphSideSashForm.setLayoutData(graphSideSashFormData);
-		graphSideSashForm.setBackground(graphSideSashForm.getDisplay().getSystemColor(
+		mGraphSideSashForm.setLayoutData(graphSideSashFormData);
+		mGraphSideSashForm.setBackground(mGraphSideSashForm.getDisplay().getSystemColor(
 				SWT.COLOR_GRAY));
 
 		// Graph
-		mZestGraph = new AKMGraph(graphSideSashForm, SWT.BORDER);
+		mZestGraph = new AKMGraph(mGraphSideSashForm, SWT.BORDER);
 
 		FeatureExplorationLayoutAlgorithm featureExplorationLayout =
 				new FeatureExplorationLayoutAlgorithm(LayoutStyles.NO_LAYOUT_NODE_RESIZING,
@@ -316,17 +409,17 @@ public abstract class AbstractElementGraphBuilder extends AbstractGUIBuilder {
 		});
 
 		// The Composite for the side bar (contains filterComposite and detailsComposite)
-		Composite sideBarComposite = new Composite(graphSideSashForm, SWT.BORDER);
+		Composite sideBarComposite = new Composite(mGraphSideSashForm, SWT.BORDER);
 		sideBarComposite.setBackground(bodyComposite.getBackground());
 		sideBarComposite.setLayout(new GridLayout(1, true));
 
-		// SashForm for the side bar composite
-		SashForm sideBarSashForm = new SashForm(sideBarComposite, SWT.VERTICAL);
-		sideBarSashForm.SASH_WIDTH = 5;
-		sideBarSashForm.setLayoutData(new GridData(GridData.FILL, GridData.FILL, true, true));
-		sideBarSashForm.setBackground(sideBarSashForm.getDisplay().getSystemColor(SWT.COLOR_GRAY));
+		mSideBarSashForm = new SashForm(sideBarComposite, SWT.VERTICAL);
+		mSideBarSashForm.SASH_WIDTH = 5;
+		mSideBarSashForm.setLayoutData(new GridData(GridData.FILL, GridData.FILL, true, true));
+		mSideBarSashForm
+				.setBackground(mSideBarSashForm.getDisplay().getSystemColor(SWT.COLOR_GRAY));
 
-		mFilterGroup = new Group(sideBarSashForm, SWT.SHADOW_ETCHED_IN);
+		mFilterGroup = new Group(mSideBarSashForm, SWT.SHADOW_ETCHED_IN);
 		mFilterGroup.setText("Filters");
 		GridLayout filterGroupLayout = new GridLayout(1, false);
 		filterGroupLayout.marginHeight = 5;
@@ -338,7 +431,7 @@ public abstract class AbstractElementGraphBuilder extends AbstractGUIBuilder {
 		createNodeFilters();
 
 		// The Composite for the node details
-		mDetailGroup = new Group(sideBarSashForm, SWT.SHADOW_ETCHED_IN);
+		mDetailGroup = new Group(mSideBarSashForm, SWT.SHADOW_ETCHED_IN);
 		mDetailGroup.setText("Node Details");
 		GridLayout detailCompositeLayout = new GridLayout(1, false);
 		detailCompositeLayout.marginHeight = 5;
@@ -350,25 +443,27 @@ public abstract class AbstractElementGraphBuilder extends AbstractGUIBuilder {
 		createDetailsTitleLabel();
 
 		// Set the weights for the children of the main SashForm
-		graphSideSashForm.setWeights(new int[] { 75, 25 });
+		mGraphSideSashForm.setWeights(GRAPH_SASH_FORM_WEIGHTS);
 
 		// The Composite for the bottom bar (contains zoom controls)
 		Composite bottomBarComposite = createZoomBarComposite();
 		FormData bottombarFormData = new FormData();
-		bottombarFormData.top = new FormAttachment(graphSideSashForm, 5);
+		bottombarFormData.top = new FormAttachment(mGraphSideSashForm, 5);
 		bottombarFormData.bottom = new FormAttachment(100, 0);
 		bottombarFormData.left = new FormAttachment(0, 0);
 		bottombarFormData.right = new FormAttachment(100, 0);
 		bottomBarComposite.setLayoutData(bottombarFormData);
 	}
 
+	// ===========================================================
+	// Methods
+	// ===========================================================
+
 	/**
-	 * implementation of the creation of a Zest graph<br>
-	 * must be extended by subclasses
+	 * Implementation of the creation of a Zest graph
 	 * 
-	 * @param zestGraph
-	 *            a Zest Graph
-	 * @return a List with all created nodes
+	 * @param pAKMGraph
+	 *            The ZEST Graph
 	 */
 	protected void buildCustomGraph(final AKMGraph pAKMGraph) {
 
@@ -403,6 +498,11 @@ public abstract class AbstractElementGraphBuilder extends AbstractGUIBuilder {
 		});
 	}
 
+	/**
+	 * Create the UI component for the zoom bar
+	 * 
+	 * @return The UI component for the zoom bar
+	 */
 	private Composite createZoomBarComposite() {
 
 		// Composite
@@ -452,6 +552,10 @@ public abstract class AbstractElementGraphBuilder extends AbstractGUIBuilder {
 						button.setSelection(true);
 					}
 				}
+
+				// Reset Sashforms
+				mGraphSideSashForm.setWeights(GRAPH_SASH_FORM_WEIGHTS);
+				mSideBarSashForm.setWeights(SIDE_SASH_FORM_WEIGHTS);
 
 				mZestGraph.applyLayout();
 			}
@@ -700,6 +804,16 @@ public abstract class AbstractElementGraphBuilder extends AbstractGUIBuilder {
 		mDetailGroup.layout();
 	}
 
+	/**
+	 * Updates the details view for the given {@link ASTA} element
+	 * 
+	 * @param pASTAElement
+	 *            The {@link ASTA} element to update the details for
+	 * @param pDetailsTitlesComposite
+	 *            The Composite for the detail titles
+	 * @param pDetailsContentsComposite
+	 *            The Composite for the detail contents
+	 */
 	private void updateASTAElementDetails(final ASTA pASTAElement,
 			final Composite pDetailsTitlesComposite, final Composite pDetailsContentsComposite) {
 
@@ -784,6 +898,18 @@ public abstract class AbstractElementGraphBuilder extends AbstractGUIBuilder {
 		separator.setLayoutData(separatorData);
 	}
 
+	/**
+	 * Create a Label without a Separator line underneath it
+	 * 
+	 * @param pLabel
+	 *            Text The text of the label
+	 * @param pParent
+	 *            The parent Composite of the label
+	 * @param pAddWhiteSpaceBeginning
+	 *            Whether to add whitespace at the beginning of the text
+	 * @param pAddWhiteSpaceEnd
+	 *            Whether to add whitespace at the end of the text
+	 */
 	private void createLabelWithoutSeparator(final String pLabelText, final Composite pParent,
 			final boolean pAddWhiteSpaceBeginning, final boolean pAddWhiteSpaceEnd) {
 		String text = pLabelText;
@@ -801,6 +927,9 @@ public abstract class AbstractElementGraphBuilder extends AbstractGUIBuilder {
 		label.setBackground(label.getParent().getBackground());
 	}
 
+	/**
+	 * Create the title label for the details Composite
+	 */
 	private void createDetailsTitleLabel() {
 
 		Label nameLabel = new Label(mDetailGroup, SWT.NONE);
@@ -812,6 +941,9 @@ public abstract class AbstractElementGraphBuilder extends AbstractGUIBuilder {
 		mDetailGroup.layout();
 	}
 
+	/**
+	 * Create the node filter buttons and their UI components
+	 */
 	private void createNodeFilters() {
 
 		// ExpandBar containing the ExpandItems for the filters
@@ -952,7 +1084,7 @@ public abstract class AbstractElementGraphBuilder extends AbstractGUIBuilder {
 	}
 
 	/**
-	 * sets the zoom level selected by the zoomScale
+	 * Sets the zoom level selected by the zoomScale
 	 */
 	protected void updateZoom() {
 
@@ -987,7 +1119,7 @@ public abstract class AbstractElementGraphBuilder extends AbstractGUIBuilder {
 	/**
 	 * Creates a new TechnologySolutionGraphNode for the specified Element
 	 * 
-	 * @param graph
+	 * @param pGraph
 	 *            The containment zest Graph
 	 * @param pStyle
 	 *            The SWT style of the new node
@@ -999,17 +1131,17 @@ public abstract class AbstractElementGraphBuilder extends AbstractGUIBuilder {
 	 *            The sub level of the node
 	 * @param pIsLeaf
 	 *            Is node a leaf?
-	 * @param isExpandable
+	 * @param pIsExpandable
 	 *            Is node expandable?
 	 * @return The created node (sub-type of {@link AbstractAKMGraphNode})
 	 */
 	protected AbstractAKMGraphNode createAKMElementNode(final AKMGraph pGraph, final int pStyle,
 			final ArchitectureKnowledgeModelBase pAKMElement, final int pLevel,
-			final int pSublevel, final boolean pIsLeaf, final boolean isExpandable,
+			final int pSublevel, final boolean pIsLeaf, final boolean pIsExpandable,
 			final boolean pIsASTAExploration) {
 
 		ElementFigure elementFigure =
-				createElementFigure(pAKMElement, pIsLeaf, isExpandable, null, pIsASTAExploration);
+				createElementFigure(pAKMElement, pIsLeaf, pIsExpandable, null, pIsASTAExploration);
 
 		AbstractAKMGraphNode node = null;
 
@@ -1047,7 +1179,9 @@ public abstract class AbstractElementGraphBuilder extends AbstractGUIBuilder {
 					.printStackTrace();
 		}
 
-		mNodeMap.put(pAKMElement, node);
+		if (!pIsASTAExploration) {
+			mNodeMap.put(pAKMElement, node);
+		}
 
 		setContextMenu(node, pAKMElement, pIsASTAExploration);
 		return node;
@@ -1056,7 +1190,7 @@ public abstract class AbstractElementGraphBuilder extends AbstractGUIBuilder {
 	/**
 	 * Creates a new ASTAGraphNode for the Benefits
 	 * 
-	 * @param graph
+	 * @param pGraph
 	 *            The containment zest Graph
 	 * @param pStyle
 	 *            The SWT style of the new node
@@ -1068,7 +1202,7 @@ public abstract class AbstractElementGraphBuilder extends AbstractGUIBuilder {
 	 *            The sub level of the node
 	 * @param pIsLeaf
 	 *            Is node a leaf?
-	 * @param isExpandable
+	 * @param pIsExpandable
 	 *            Is node expandable?
 	 * @return The created node (sub-type of {@link AbstractAKMGraphNode})
 	 */
@@ -1092,7 +1226,7 @@ public abstract class AbstractElementGraphBuilder extends AbstractGUIBuilder {
 	/**
 	 * Creates a new ASTAGraphNode for the Drawbacks
 	 * 
-	 * @param graph
+	 * @param pGraph
 	 *            The containment zest Graph
 	 * @param pStyle
 	 *            The SWT style of the new node
@@ -1104,7 +1238,7 @@ public abstract class AbstractElementGraphBuilder extends AbstractGUIBuilder {
 	 *            The sub level of the node
 	 * @param pIsLeaf
 	 *            Is node a leaf?
-	 * @param isExpandable
+	 * @param pIsExpandable
 	 *            Is node expandable?
 	 * @return The created node (sub-type of {@link AbstractAKMGraphNode})
 	 */
@@ -1126,26 +1260,31 @@ public abstract class AbstractElementGraphBuilder extends AbstractGUIBuilder {
 	}
 
 	/**
+	 * Creates a Draw2D Figure for an element
 	 * 
-	 * Creates a draw2d Figure for an element
-	 * 
+	 * @param pAKMElement
+	 *            The element to create a figure for
+	 * @param isLeaf
+	 *            Whether this figure is a leaf in graph hierarchy
+	 * @param isExpandable
+	 *            Whether this figure is expandable
+	 * @param pTopFigure
+	 *            The top figure for this figure
+	 * @param pIsASTAExploration
+	 *            Whether this figure is created for the Benefit&Drawback Exploration View
+	 * @return The created {@link ElementFigure}
 	 */
 	protected ElementFigure createElementFigure(final ArchitectureKnowledgeModelBase pAKMElement,
-			final boolean isLeaf, final boolean isExpandable, final Figure topFigure,
+			final boolean isLeaf, final boolean isExpandable, final Figure pTopFigure,
 			final boolean pIsASTAExploration) {
 
 		ElementFigure elementFigure = null;
 		Figure footFigure = null;
 
-		// if (!isLeaf) {
-		// // TODO CB Relations-Typ dynamisch ermitteln
-		// decompostionTypeFigure = new RefinementTypeFigure("is a");
-		// }
-
 		Figure globalTopFigure = new Figure();
 
-		if (topFigure != null) {
-			globalTopFigure.add(topFigure);
+		if (pTopFigure != null) {
+			globalTopFigure.add(pTopFigure);
 		}
 
 		ToolbarLayout globalTopFigureLayout = new ToolbarLayout(false);
@@ -1185,9 +1324,7 @@ public abstract class AbstractElementGraphBuilder extends AbstractGUIBuilder {
 			bodyFigure = new ASTAExplorationFigure(asta.getName(), isExpandable);
 
 		} else {
-
-			// TODO CB: SoftGoalFigure entfernen
-			bodyFigure = new SoftGoalFigure(pAKMElement.getName(), isExpandable);
+			new Exception("Element type has no supported ElementFigure").printStackTrace();
 		}
 
 		elementFigure = new ElementFigure(bodyFigure, footFigure, globalTopFigure);
@@ -1213,6 +1350,15 @@ public abstract class AbstractElementGraphBuilder extends AbstractGUIBuilder {
 		return elementFigure;
 	}
 
+	/**
+	 * Creates a figure for a list of {@link Benefit}s
+	 * 
+	 * @param pBenefitsList
+	 *            The list of {@link Benefit}s for the figure
+	 * @param pParentElement
+	 *            The parent element of the {@link Benefit}s
+	 * @return The created figure
+	 */
 	protected BenefitsFigure createBenefitFigure(final List<Benefit> pBenefitsList,
 			final TechnologyFeature pParentElement) {
 
@@ -1223,6 +1369,15 @@ public abstract class AbstractElementGraphBuilder extends AbstractGUIBuilder {
 		return figure;
 	}
 
+	/**
+	 * Creates a figure for a list of {@link Drawback}s
+	 * 
+	 * @param pBenefitsList
+	 *            The list of {@link Drawback}s for the figure
+	 * @param pParentElement
+	 *            The parent element of the {@link Drawback}s
+	 * @return The created figure
+	 */
 	protected DrawbacksFigure createDrawbackFigure(final List<Drawback> pDrawbacksList,
 			final TechnologyFeature pParentElement) {
 
@@ -1253,7 +1408,7 @@ public abstract class AbstractElementGraphBuilder extends AbstractGUIBuilder {
 		}
 		org.eclipse.draw2d.Label titleLabel =
 				new org.eclipse.draw2d.Label("   " + pAKMElement.getName() + "   ");
-		titleLabel.setFont(defaultTitleFont);
+		titleLabel.setFont(DEFAULT_TITLE_FONT);
 		tooltipFigure.add(titleLabel);
 
 		String attributesAndFeaturesText = "";
@@ -1268,7 +1423,7 @@ public abstract class AbstractElementGraphBuilder extends AbstractGUIBuilder {
 
 		org.eclipse.draw2d.Label attributesAndFeaturesLabel =
 				new org.eclipse.draw2d.Label(" " + attributesAndFeaturesText + " \n");
-		attributesAndFeaturesLabel.setFont(defaultLabelFont);
+		attributesAndFeaturesLabel.setFont(DEFAULT_LABEL_FONT);
 		tooltipFigure.add(attributesAndFeaturesLabel);
 		tooltipFigure.setSize(-1, -1);
 
@@ -1300,7 +1455,7 @@ public abstract class AbstractElementGraphBuilder extends AbstractGUIBuilder {
 			parentNameLabel.setFont(new Font(null, "Arial", 10, SWT.BOLD));
 
 			titleLabel = new org.eclipse.draw2d.Label(pAstaType + " of");
-			titleLabel.setFont(defaultLabelFont);
+			titleLabel.setFont(DEFAULT_LABEL_FONT);
 		} else {
 			titleLabel = new org.eclipse.draw2d.Label("");
 			parentNameLabel = new org.eclipse.draw2d.Label("");
@@ -1313,6 +1468,16 @@ public abstract class AbstractElementGraphBuilder extends AbstractGUIBuilder {
 		return tooltipFigure;
 	}
 
+	/**
+	 * Sets the context menu for a {@link AbstractAKMGraphNode}
+	 * 
+	 * @param pNode
+	 *            The node to set its context menu for
+	 * @param pAKMElement
+	 *            The element of the node
+	 * @param pIsASTAExploration
+	 *            Whether this context menu is created for the Benefits&Drawbacks Exploration View
+	 */
 	protected void setContextMenu(final AbstractAKMGraphNode pNode,
 			final ArchitectureKnowledgeModelBase pAKMElement, final boolean pIsASTAExploration) {
 
@@ -1326,14 +1491,14 @@ public abstract class AbstractElementGraphBuilder extends AbstractGUIBuilder {
 				addEditIDAndNameMenuItem(menu, model);
 			}
 
-			if (pNode instanceof TechnologySolutionGraphNode) {
-				if (!pIsASTAExploration) {
-					addFeaturesExplorationMenuItem(menu, pNode, pAKMElement);
-				}
+			if ((pNode instanceof TechnologySolutionGraphNode) && !pIsASTAExploration) {
+				addFeaturesExplorationMenuItem(menu, pNode, pAKMElement);
 			}
 
-			addCloseMenuMenuItem(menu);
-			pNode.setMenu(menu);
+			if (!pIsASTAExploration) {
+				addCloseMenuMenuItem(menu);
+				pNode.setMenu(menu);
+			}
 		} else {
 
 			ASTAGraphNode astaNode = (ASTAGraphNode) pNode;
@@ -1350,8 +1515,10 @@ public abstract class AbstractElementGraphBuilder extends AbstractGUIBuilder {
 	}
 
 	/**
-	 * setter for a Popup-Menu for a Node
+	 * Adds an "Open Element" MenuItem to a menu
 	 * 
+	 * @param pMenu
+	 *            The menu to modify
 	 * @param pAKMElement
 	 *            the Element displayed by the node
 	 */
@@ -1374,6 +1541,16 @@ public abstract class AbstractElementGraphBuilder extends AbstractGUIBuilder {
 		});
 	}
 
+	/**
+	 * Adds an "Explore Features" MenuItem to a menu
+	 * 
+	 * @param pMenu
+	 *            The menu to modify
+	 * @param pNode
+	 *            The node of the menu
+	 * @param pAKMElement
+	 *            the Element displayed by the node
+	 */
 	protected void addFeaturesExplorationMenuItem(final Menu pMenu,
 			final AbstractAKMGraphNode pNode, final ArchitectureKnowledgeModelBase pAKMElement) {
 
@@ -1422,6 +1599,16 @@ public abstract class AbstractElementGraphBuilder extends AbstractGUIBuilder {
 		});
 	}
 
+	/**
+	 * Adds an "Exit Features Exploration" MenuItem to a menu
+	 * 
+	 * @param pMenu
+	 *            The menu to modify
+	 * @param pNode
+	 *            The node of the menu
+	 * @param pAKMElement
+	 *            the Element displayed by the node
+	 */
 	protected void addExitFeaturesExplorationMenuItem(final Menu pMenu,
 			final AbstractAKMGraphNode pNode, final ArchitectureKnowledgeModelBase pAKMElement) {
 
@@ -1460,6 +1647,14 @@ public abstract class AbstractElementGraphBuilder extends AbstractGUIBuilder {
 		});
 	}
 
+	/**
+	 * Adds an "Edit This Element" MenuItem to a menu
+	 * 
+	 * @param pMenu
+	 *            The menu to modify
+	 * @param pModel
+	 *            The model of the node
+	 */
 	protected void addEditIDAndNameMenuItem(final Menu pMenu,
 			final ArchitectureKnowledgeModel pModel) {
 
@@ -1479,6 +1674,16 @@ public abstract class AbstractElementGraphBuilder extends AbstractGUIBuilder {
 		});
 	}
 
+	/**
+	 * Adds a "Explore Features" MenuItem to a menu
+	 * 
+	 * @param pMenu
+	 *            The menu to modify
+	 * @param pNode
+	 *            The node of the menu
+	 * @param pAKMElement
+	 *            the Element displayed by the node
+	 */
 	protected void addBenefitsDrawbacksExplorationMenuItem(final Menu pMenu,
 			final ASTAGraphNode pNode, final ASTA pAKMElement) {
 
@@ -1511,7 +1716,6 @@ public abstract class AbstractElementGraphBuilder extends AbstractGUIBuilder {
 					}
 				}
 
-				// TODO CB: B&D-Exploration initialisieren (Layout)
 				initializeBenefitsAndDrawbacksExploration(pAKMElement);
 
 				mZestGraph.applyLayout();
@@ -1524,6 +1728,14 @@ public abstract class AbstractElementGraphBuilder extends AbstractGUIBuilder {
 		});
 	}
 
+	/**
+	 * Adds an "Exit ASTA Exploration" MenuItem to a menu
+	 * 
+	 * @param pMenu
+	 *            The menu to modify
+	 * @param pAKMElement
+	 *            the Element displayed by the node
+	 */
 	protected void addExitBenefitsDrawbacksExplorationMenuItem(final Menu pMenu,
 			final ASTA pAKMElement) {
 
@@ -1561,18 +1773,30 @@ public abstract class AbstractElementGraphBuilder extends AbstractGUIBuilder {
 		});
 	}
 
+	/**
+	 * Adds a "Close" MenuItem to a menu
+	 * 
+	 * @param pMenu
+	 *            The menu to modify
+	 */
 	protected void addCloseMenuMenuItem(final Menu pMenu) {
 
 		MenuItem closeMenuMenuItem = new MenuItem(pMenu, SWT.PUSH);
 		closeMenuMenuItem.setText("Close");
 	}
 
+	/**
+	 * Initializes the Benefits&Drawbacks Exploration View
+	 * 
+	 * @param pASTAElement
+	 *            The ASTA element for the view
+	 */
 	private void initializeBenefitsAndDrawbacksExploration(final ASTA pASTAElement) {
 
 		mBenefitDrawbackExplorationNodeMap.clear();
 
 		AbstractAKMGraphNode astaNode =
-				createAKMElementNode(mZestGraph, SWT.NONE, pASTAElement, 1, 0, false, false, true);
+				createAKMElementNode(mZestGraph, SWT.NONE, pASTAElement, 2, 0, false, false, true);
 		mBenefitDrawbackExplorationNodeMap.put(pASTAElement, astaNode);
 
 		Menu menu = new Menu(getZestGraph().getShell(), SWT.POP_UP);
@@ -1596,18 +1820,69 @@ public abstract class AbstractElementGraphBuilder extends AbstractGUIBuilder {
 					TechnologySolution technologySolution =
 							(TechnologySolution) technologySolutionNode.getAKMBaseElement();
 
-					AbstractAKMGraphNode newNode =
+					AbstractAKMGraphNode newSolutionNode =
 							createAKMElementNode(mZestGraph, SWT.NONE, technologySolution, 0, 0,
 									false, false, true);
-					mBenefitDrawbackExplorationNodeMap.put(technologySolution, newNode);
-					GraphConnection connection = createConnection(newNode, astaNode);
-					connection.setText("has");
+					AbstractAKMGraphNode newFeatureNode =
+							createAKMElementNode(mZestGraph, SWT.NONE, technologyFeature, 1, 0,
+									false, false, true);
+					mBenefitDrawbackExplorationNodeMap.put(technologyFeature, newFeatureNode);
+					mBenefitDrawbackExplorationNodeMap.put(technologySolution, newSolutionNode);
+					GraphConnection solutionFeatureConnection =
+							createConnection(newSolutionNode, newFeatureNode);
+					GraphConnection featureASTAConnection =
+							createConnection(newFeatureNode, astaNode);
+					featureASTAConnection.setText("has");
 				}
 			}
 		}
 
+		// In case of Drawbacks, check for "improved by" or "solved by" relations
 		if (pASTAElement instanceof Drawback) {
-			// TODO CB: Drawbacks solved by
+			List<AbstractAKMGraphNode> newSolutionNodesList = new ArrayList<AbstractAKMGraphNode>();
+			ArchitectureKnowledgeModel model = (ArchitectureKnowledgeModel) mInputContainer;
+
+			for (ASTARelation relation : model.getRelations().getASTARelation()) {
+				if (relation.getSourceElement() == pASTAElement) {
+					TechnologyFeature technologyFeature = relation.getTargetElement();
+					TechnologySolution technologySolution =
+							(TechnologySolution) mNodeMap.get(technologyFeature).getParentNode()
+									.getAKMBaseElement();
+
+					AbstractAKMGraphNode newFeatureNode =
+							createAKMElementNode(mZestGraph, SWT.NONE, technologyFeature, 3, 0,
+									false, false, true);
+					mBenefitDrawbackExplorationNodeMap.put(technologyFeature, newFeatureNode);
+
+					if (!newSolutionNodesList.isEmpty()) {
+						for (AbstractAKMGraphNode node : newSolutionNodesList) {
+							if (node.getAKMBaseElement() != technologySolution) {
+								AbstractAKMGraphNode newSolutionNode =
+										createAKMElementNode(mZestGraph, SWT.NONE,
+												technologySolution, 4, 0, false, false, true);
+								newSolutionNodesList.add(newSolutionNode);
+								mBenefitDrawbackExplorationNodeMap.put(technologySolution,
+										newSolutionNode);
+								createConnection(newSolutionNode, newFeatureNode);
+							} else {
+								createConnection(node, newFeatureNode);
+							}
+						}
+					} else {
+						AbstractAKMGraphNode newSolutionNode =
+								createAKMElementNode(mZestGraph, SWT.NONE, technologySolution, 4,
+										0, false, false, true);
+						newSolutionNodesList.add(newSolutionNode);
+						mBenefitDrawbackExplorationNodeMap.put(technologySolution, newSolutionNode);
+						GraphConnection solutionFeatureConnection =
+								createConnection(newSolutionNode, newFeatureNode);
+					}
+
+					GraphConnection featureASTAConnection =
+							createConnection(astaNode, newFeatureNode);
+					featureASTAConnection.setText(relation.getType().getLiteral());
+				}
+			}
 		}
 
 		new BenefitsAndDrawbacksExplorationLayoutAlgorithm(ZestStyles.NODES_NO_LAYOUT_RESIZE,
@@ -1622,6 +1897,9 @@ public abstract class AbstractElementGraphBuilder extends AbstractGUIBuilder {
 		}
 	}
 
+	/**
+	 * Cleans up after exiting the Benefits&Drawbacks Exploration View
+	 */
 	private void cleanupBenefitDrawbackExploration() {
 
 		// Clean up the node map
@@ -1658,10 +1936,12 @@ public abstract class AbstractElementGraphBuilder extends AbstractGUIBuilder {
 	}
 
 	/**
-	 * creates a connection for a relation
+	 * Creates a connection between two nodes by their elements
 	 * 
-	 * @param relation
-	 *            a Relation between Elements
+	 * @param pSourceElement
+	 *            The element of the source node of the connection
+	 * @param pTargetElement
+	 *            The element of the target node of the connection
 	 */
 	protected GraphConnection createConnection(final ArchitectureKnowledgeModelBase pSourceElement,
 			final ArchitectureKnowledgeModelBase pTargetElement) {
@@ -1692,10 +1972,12 @@ public abstract class AbstractElementGraphBuilder extends AbstractGUIBuilder {
 	}
 
 	/**
-	 * creates a connection for a relation
+	 * Creates a connection between two nodes
 	 * 
-	 * @param relation
-	 *            a Relation between Elements
+	 * @param pSourceNode
+	 *            The source node of the connection
+	 * @param pTargetNode
+	 *            The target node of the connection
 	 */
 	protected GraphConnection createConnection(final GraphNode pSourceNode,
 			final GraphNode pTargetNode) {
@@ -1726,7 +2008,7 @@ public abstract class AbstractElementGraphBuilder extends AbstractGUIBuilder {
 	}
 
 	/**
-	 * fires a SelectionChangedEvent to all listening SelectionChangedListeners
+	 * Fires a SelectionChangedEvent to all listening SelectionChangedListeners
 	 */
 	public void notifySelectionService() {
 		for (ISelectionChangedListener listener : mSelectionChangedListeners) {
@@ -1743,14 +2025,7 @@ public abstract class AbstractElementGraphBuilder extends AbstractGUIBuilder {
 	}
 
 	/**
-	 * @return the zest Graph
-	 */
-	public AKMGraph getZestGraph() {
-		return mZestGraph;
-	}
-
-	/**
-	 * inits the Cachemanager
+	 * Inits the Cachemanager
 	 */
 	protected abstract void initCache();
 }
